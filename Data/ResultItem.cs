@@ -19,7 +19,7 @@ namespace TMTVO.Data
             DataManager.NotifyPropertyChanged(name);
         }
 
-        public Driver Driver { get; private set; }
+        public Driver Driver { get; set; }
         public List<Lap> Laps { get; set; }
         public double PrevSpeed { get; set; }
         public int Position { get; set; }
@@ -54,6 +54,11 @@ namespace TMTVO.Data
             airTimeAirTime = TimeSpan.FromMilliseconds(0.0);
             airTimeLastAirTime = DateTime.MinValue;
             Stopwatch = new Stopwatch();
+        }
+
+        public void CrossedLine()
+        {
+            Stopwatch.Restart();
         }
 
         public Lap FindLap(int num)

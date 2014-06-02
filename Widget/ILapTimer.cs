@@ -10,8 +10,11 @@ namespace TMTVO.Widget
 {
     public interface ILapTimer : IWidget
     {
-        Stopwatch StopWatch { get; }
-        Driver Driver { get; set; }
-        void Update();
+        Stopwatch Stopwatch { get; }
+        ResultItem LapDriver { get; }
+
+        void FadeIn(ResultItem driver);
+        void SectorComplete();
+        void LapComplete();
     }
 }

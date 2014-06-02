@@ -58,5 +58,15 @@ namespace TMTVO.Data
 
             return "#" + Car.CarNumber + " " + lastName;
         }
+
+        public string LastUpperName
+        {
+            get
+            {
+                string lastName = FullName;
+                int i = lastName.LastIndexOf(' ');
+                return lastName.Substring(i).ToUpper();
+            }
+        }
     }
 }

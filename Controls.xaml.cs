@@ -34,6 +34,7 @@ namespace TMTVO
         private void Window_Closed(object sender, EventArgs e)
         {
             DataManager.RunApi = false;
+            window.LapTimer.Thread.Interrupt();
             window.Close();
         }
 
@@ -121,6 +122,43 @@ namespace TMTVO
 
                 window.SessionTimer.FadeIn(mode, type);
             }
+        }
+
+        private void SectorCompleteTest_Click(object sender, RoutedEventArgs e)
+        {
+            window.LapTimer.SectorComplete();
+        }
+
+        ResultItem item = new ResultItem();
+
+        private void ToggleLapTimerLeft_Click(object sender, RoutedEventArgs e)
+        {
+            if (window.LapTimer.Active)
+            {
+                window.LapTimer.FadeOut();
+            }
+            else
+            {
+                Driver testDriver = new Driver();
+                testDriver.FullName = "Simon Grossmann";
+                testDriver.Car = new Car();
+                testDriver.Car.CarNumber = "46";
+                testDriver.CarIndex = 0;
+                item.Position = 1;
+                item.Driver = testDriver;
+
+                window.LapTimer.FadeIn(item);
+            }
+        }
+
+        private void LapCompleteTest_Click(object sender, RoutedEventArgs e)
+        {
+            window.LapTimer.LapComplete();
+        }
+
+        private void CrossedLine_Click(object sender, RoutedEventArgs e)
+        {
+            item.CrossedLine();
         }
     }
 }
