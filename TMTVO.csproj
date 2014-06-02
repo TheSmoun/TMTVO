@@ -83,6 +83,7 @@
     <Compile Include="Data\TriggerType.cs" />
     <Compile Include="Data\Utils.cs" />
     <Compile Include="Data\Weather.cs" />
+    <Compile Include="Widget\ILapTimer.cs" />
     <Compile Include="Widget\IWidget.cs" />
     <Compile Include="Widget\LapTimerLeft.xaml.cs">
       <DependentUpon>LapTimerLeft.xaml</DependentUpon>

@@ -16,7 +16,7 @@ namespace TMTVO.Widget
 	/// <summary>
 	/// Interaktionslogik für LapTimer.xaml
 	/// </summary>
-	public partial class LapTimerLeft : UserControl, IWidget
+	public partial class LapTimerLeft : UserControl, ILapTimer
 	{
         public bool Active { get; private set; }
 
