@@ -6,7 +6,7 @@
     xmlns:w="clr-namespace:TMTVO.Widget"
 	mc:Ignorable="d"
 	x:Class="TMTVO.Widget.RaceBar"
-	d:DesignWidth="640" d:DesignHeight="480" Width="1920" Height="50">
+	d:DesignWidth="640" d:DesignHeight="480" Width="1920" Height="50" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <Storyboard x:Key="FadeListIn">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="RaceBarBox">

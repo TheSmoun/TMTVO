@@ -17,7 +17,7 @@ namespace TMTVO.Widget
 	/// <summary>
 	/// Interaktionslogik für UserControl1.xaml
 	/// </summary>
-	public partial class SessionTimer : UserControl
+	public partial class SessionTimer : UserControl, IWidget
 	{
         private Dictionary<SessionType, string> SessionTypeToString = new Dictionary<SessionType, string>() {
             {SessionType.OpenPractice, "OP"},
@@ -28,22 +28,21 @@ namespace TMTVO.Widget
             {SessionType.TimeTrial, "T"}
         };
 
-        private SessionTimerState state;
+        public SessionTimerState State { get; private set; }
         public SessionMode Mode { get; set; }
-        private bool visible;
+        public bool Active { get; private set; }
 
         private int lastDrivenLaps = -1;
         private int lastTotalLaps = -1;
-
         private int lastSeconds = -1;
 
 		public SessionTimer()
 		{
 			this.InitializeComponent();
 
-            this.visible = false;
+            this.Active = false;
             this.Mode = SessionMode.LapMode;
-            this.state = SessionTimerState.Normal;
+            this.State = SessionTimerState.Normal;
 		}
 
         public void FadeIn(SessionMode mode, SessionType type)
@@ -58,10 +57,10 @@ namespace TMTVO.Widget
                 LapText2.Text = s;
             }
 
-            if (visible)
+            if (Active)
                 return;
 
-            visible = true;
+            Active = true;
             Storyboard sb;
             if (Mode == SessionMode.LapMode)
                 sb = FindResource("FadeInLap") as Storyboard;
@@ -69,7 +68,7 @@ namespace TMTVO.Widget
                 sb = FindResource("FadeInTime") as Storyboard;
             sb.Begin();
 
-            if (state == SessionTimerState.SafetyCar)
+            if (State == SessionTimerState.SafetyCar)
             {
                 sb = FindResource("SafetyCarFadeIn") as Storyboard;
                 sb.Begin();
@@ -78,10 +77,10 @@ namespace TMTVO.Widget
 
         public void FadeOut()
         {
-            if (!visible)
+            if (!Active)
                 return;
 
-            visible = false;
+            Active = false;
             Storyboard sb;
             if (Mode == SessionMode.LapMode)
                 sb = FindResource("FadeOutLap") as Storyboard;
@@ -89,7 +88,7 @@ namespace TMTVO.Widget
                 sb = FindResource("FadeOutTime") as Storyboard;
             sb.Begin();
 
-            if (state == SessionTimerState.SafetyCar)
+            if (State == SessionTimerState.SafetyCar)
             {
                 sb = FindResource("SafetyCarFadeOut") as Storyboard;
                 sb.Begin();
@@ -98,13 +97,13 @@ namespace TMTVO.Widget
 
         public void YellowFlag()
         {
-            if (state == SessionTimerState.Yellow || state == SessionTimerState.SafetyCar)
+            if (State == SessionTimerState.Yellow || State == SessionTimerState.SafetyCar)
                 return;
 
             Storyboard sb = null;
-            if (Mode == SessionMode.TimeMode && state == SessionTimerState.Red)
+            if (Mode == SessionMode.TimeMode && State == SessionTimerState.Red)
                 sb = FindResource("RedFadeOutTime") as Storyboard;
-            else if (Mode == SessionMode.LapMode && state == SessionTimerState.Red)
+            else if (Mode == SessionMode.LapMode && State == SessionTimerState.Red)
                 sb = FindResource("RedFadeOutLap") as Storyboard;
 
             if (sb != null)
@@ -116,12 +115,12 @@ namespace TMTVO.Widget
                 sb = FindResource("YellowFadeInTime") as Storyboard;
             sb.Begin();
 
-            state = SessionTimerState.Yellow;
+            State = SessionTimerState.Yellow;
         }
 
         public void RedFlag()
         {
-            if (state == SessionTimerState.Red)
+            if (State == SessionTimerState.Red)
                 return;
 
             Storyboard sb = null;
@@ -132,35 +131,35 @@ namespace TMTVO.Widget
             sb.Begin();
 
             sb = null;
-            if (state == SessionTimerState.Yellow && Mode == SessionMode.LapMode)
+            if (State == SessionTimerState.Yellow && Mode == SessionMode.LapMode)
                 sb = FindResource("YellowFadeOutLap") as Storyboard;
-            else if (state == SessionTimerState.SafetyCar)
+            else if (State == SessionTimerState.SafetyCar)
                 Normal();
-            else if (state == SessionTimerState.Yellow && Mode == SessionMode.TimeMode)
+            else if (State == SessionTimerState.Yellow && Mode == SessionMode.TimeMode)
                 sb = FindResource("YellowFadeOutTime") as Storyboard;
 
             if (sb != null)
                 sb.Begin();
 
-            state = SessionTimerState.Red;
+            State = SessionTimerState.Red;
         }
 
         public void SafetyCarDeveloped()
         {
-            if (state == SessionTimerState.SafetyCar)
+            if (State == SessionTimerState.SafetyCar)
                 return;
 
-            if (state != SessionTimerState.Yellow)
+            if (State != SessionTimerState.Yellow)
                 YellowFlag();
 
-            state = SessionTimerState.SafetyCar;
+            State = SessionTimerState.SafetyCar;
             Storyboard sb = FindResource("SafetyCarFadeIn") as Storyboard;
             sb.Begin();
         }
 
         public void SafetyCarIn()
         {
-            if (state != SessionTimerState.SafetyCar)
+            if (State != SessionTimerState.SafetyCar)
                 return;
 
             Normal();
@@ -168,21 +167,21 @@ namespace TMTVO.Widget
 
         public void Normal()
         {
-            if (state == SessionTimerState.Normal)
+            if (State == SessionTimerState.Normal)
                 return;
 
             if (Mode == SessionMode.LapMode)
             {
                 Storyboard sb = null;
-                if (state == SessionTimerState.Yellow)
+                if (State == SessionTimerState.Yellow)
                     sb = FindResource("YellowFadeOutLap") as Storyboard;
-                else if (state == SessionTimerState.SafetyCar)
+                else if (State == SessionTimerState.SafetyCar)
                 {
                     sb = FindResource("SafetyCarFadeOut") as Storyboard;
                     sb.Begin();
                     sb = FindResource("YellowFadeOutLap") as Storyboard;
                 }
-                else if (state == SessionTimerState.Red)
+                else if (State == SessionTimerState.Red)
                     sb = FindResource("RedFadeOutLap") as Storyboard;
 
                 if (sb != null)
@@ -191,15 +190,15 @@ namespace TMTVO.Widget
             else
             {
                 Storyboard sb = null;
-                if (state == SessionTimerState.Yellow)
+                if (State == SessionTimerState.Yellow)
                     sb = FindResource("YellowFadeOutTime") as Storyboard;
-                else if (state == SessionTimerState.SafetyCar)
+                else if (State == SessionTimerState.SafetyCar)
                 {
                     sb = FindResource("SafetyCarFadeOut") as Storyboard;
                     sb.Begin();
                     sb = FindResource("YellowFadeOutTime") as Storyboard;
                 }
-                else if (state == SessionTimerState.Red)
+                else if (State == SessionTimerState.Red)
                     sb = FindResource("RedFadeOutTime") as Storyboard;
 
                 if (sb != null)
@@ -209,12 +208,12 @@ namespace TMTVO.Widget
             LapBackgroundCh.Opacity = 0;
             TimeBackgroundCh.Opacity = 0;
 
-            state = SessionTimerState.Normal;
+            State = SessionTimerState.Normal;
         }
 
         public void SwitchToTime()
         {
-            if (Mode == SessionMode.TimeMode || visible)
+            if (Mode == SessionMode.TimeMode || Active)
                 return;
 
             Mode = SessionMode.TimeMode;
@@ -222,7 +221,7 @@ namespace TMTVO.Widget
 
         public void SwitchToLap()
         {
-            if (Mode == SessionMode.LapMode || visible)
+            if (Mode == SessionMode.LapMode || Active)
                 return;
 
             Mode = SessionMode.LapMode;
@@ -230,10 +229,10 @@ namespace TMTVO.Widget
 
         public void ChequeredFlag()
         {
-            if (state == SessionTimerState.Chequered)
+            if (State == SessionTimerState.Chequered)
                 return;
 
-            if (state != SessionTimerState.Normal)
+            if (State != SessionTimerState.Normal)
                 Normal();
 
             if (Mode == SessionMode.LapMode)
@@ -241,7 +240,7 @@ namespace TMTVO.Widget
             else
                 TimeBackgroundCh.Opacity = 1;
 
-            state = SessionTimerState.Chequered;
+            State = SessionTimerState.Chequered;
         }
 
         public void UpdateLaps(int drivenLaps, int maxLaps)
@@ -286,7 +285,7 @@ namespace TMTVO.Widget
             }
         }
 
-        private enum SessionTimerState
+        public enum SessionTimerState
         {
             Yellow,
             SafetyCar,

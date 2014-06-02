@@ -5,7 +5,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
 	x:Class="TMTVO.Widget.TeamRadio"
-	x:Name="UserControl" d:DesignHeight="480" RenderTransformOrigin="0.5,0.5" Height="76" Width="342">
+	x:Name="UserControl" d:DesignHeight="480" RenderTransformOrigin="0.5,0.5" Height="76" Width="342" Loaded="UserControl_Loaded">
 	<UserControl.Resources>
 		<Storyboard x:Key="PfadAnimation1" RepeatBehavior="Forever">
 			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="Speech">
@@ -444,7 +444,7 @@
 					<TranslateTransform/>
 				</TransformGroup>
 			</TextBlock.RenderTransform><Run Text="Team Radio"/></TextBlock>
-		<Rectangle x:Name="FadeInColor" Fill="White" HorizontalAlignment="Center" Height="38" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0">
+		<Rectangle x:Name="FadeInColor" Fill="White" HorizontalAlignment="Center" Height="38" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0" Opacity="0">
 			<Rectangle.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>
@@ -468,7 +468,7 @@
 				</LinearGradientBrush>
 			</Rectangle.Stroke>
 		</Rectangle>
-		<Rectangle x:Name="FadeInColor2" Fill="White" HorizontalAlignment="Center" Height="38" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Bottom" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0">
+		<Rectangle x:Name="FadeInColor2" Fill="White" HorizontalAlignment="Center" Height="38" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Bottom" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0" Opacity="0">
 			<Rectangle.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>

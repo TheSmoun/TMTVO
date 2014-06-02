@@ -6,7 +6,7 @@
 	mc:Ignorable="d"
 	x:Class="TMTVO.Widget.LapTimerLeft"
 	x:Name="UserControl"
-	d:DesignWidth="640" d:DesignHeight="480" Width="417" Height="108">
+	d:DesignWidth="640" d:DesignHeight="480" Width="417" Height="108" Loaded="UserControl_Loaded">
 
 	<Grid x:Name="LayoutRoot" Width="417" HorizontalAlignment="Left" Height="108">
 		<Grid x:Name="Difference" Margin="8.334,71.998,128.666,0.002" Width="280" Height="36">

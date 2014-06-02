@@ -83,6 +83,7 @@
     <Compile Include="Data\TriggerType.cs" />
     <Compile Include="Data\Utils.cs" />
     <Compile Include="Data\Weather.cs" />
+    <Compile Include="Widget\IWidget.cs" />
     <Compile Include="Widget\LapTimerLeft.xaml.cs">
       <DependentUpon>LapTimerLeft.xaml</DependentUpon>
     </Compile>
@@ -177,6 +178,9 @@
       <Project>{72631b85-eb9a-473e-9b4c-65b355a9000d}</Project>
       <Name>iRSDKSharp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="trinitylogo2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

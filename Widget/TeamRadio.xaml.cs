@@ -17,31 +17,35 @@ namespace TMTVO.Widget
 	/// <summary>
 	/// Interaktionslogik für TeamRadio.xaml
 	/// </summary>
-	public partial class TeamRadio : UserControl
+	public partial class TeamRadio : UserControl, IWidget
 	{
-        private bool visible;
+        public bool Active { get; private set; }
 
 		public TeamRadio()
 		{
 			this.InitializeComponent();
-            visible = false;
 		}
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Active = false;
+        }
 
         public void StartsSpeaking(string LastNameDriver, string driverNumber)
         {
             DriversNumber.Text = driverNumber;
             DriversName.Text = LastNameDriver;
 
-            if (!visible)
-                visible = true;
+            if (!Active)
+                Active = true;
 
             Storyboard sb = FindResource("FadeIn") as Storyboard;
             sb.Begin();
         }
 
-        public void StopsSpeaking()
+        public void FadeOut()
         {
-            visible = false;
+            Active = false;
             Storyboard sb = FindResource("FadeOut") as Storyboard;
             sb.Begin();
         }

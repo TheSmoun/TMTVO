@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using TMTVO.Widget;
 
 namespace TMTVO
 {
@@ -47,7 +48,6 @@ namespace TMTVO
         };
 
         private Controls controlWindow;
-        private bool sessionTimerActive;
 
         public MainWindow()
         {
@@ -59,8 +59,6 @@ namespace TMTVO
             controlWindow = new Controls(this);
             controlWindow.Show();
             Show();
-
-            sessionTimerActive = false;
         }
     }
 }

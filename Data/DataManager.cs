@@ -34,6 +34,8 @@ namespace TMTVO.Data
         public static int SelectedPlaySpeed { get; set; }
         public static CameraInfo Camera { get; set; }
         public static bool ApiConnected { get; set; }
+        public static bool RunApi { get; set; }
+        public static bool RunOverlay { get; set; }
 
         static DataManager()
         {

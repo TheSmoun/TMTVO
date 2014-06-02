@@ -17,11 +17,23 @@ namespace TMTVO.Widget
 	/// <summary>
 	/// Interaktionslogik für RaceBar.xaml
 	/// </summary>
-	public partial class RaceBar : UserControl
+	public partial class RaceBar : UserControl, IWidget
 	{
+        public bool Active { get; private set; }
+
 		public RaceBar()
 		{
 			this.InitializeComponent();
 		}
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Active = false;
+        }
+
+        public void FadeOut()
+        {
+            // TODO
+        }
 	}
 }
