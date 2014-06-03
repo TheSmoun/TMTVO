@@ -118,7 +118,7 @@ namespace TMTVO.Widget
 
         public void LapComplete()
         {
-            if (!Active)
+            if (!Active || LapDriver.Stopwatch.ElapsedMilliseconds < 100)
                 return;
 
             SectorComplete();
