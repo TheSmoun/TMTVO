@@ -6,14 +6,8 @@ using System.Threading.Tasks;
 
 namespace TMTVO.Data
 {
-    public enum SessionEventType
+    public interface Component
     {
-        Bookmark,
-        OffTrack,
-        FastLap,
-        Pit,
-        Flag,
-        State,
-        StartLights
+        void Update();
     }
 }

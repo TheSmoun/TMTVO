@@ -56,32 +56,22 @@
     <Compile Include="Controls.xaml.cs">
       <DependentUpon>Controls.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Data\Camera.cs" />
+    <Compile Include="Data\API.cs" />
     <Compile Include="Data\Car.cs" />
-    <Compile Include="Data\CfgFile.cs" />
-    <Compile Include="Data\DataManager.cs" />
-    <Compile Include="Data\DataOrders.cs" />
+    <Compile Include="Data\Component.cs" />
     <Compile Include="Data\Driver.cs" />
-    <Compile Include="Data\iRacingAPI.cs" />
     <Compile Include="Data\Lap.cs" />
     <Compile Include="Data\LicenceLevel.cs" />
-    <Compile Include="Data\ResultItem.cs" />
+    <Compile Include="Data\Module.cs" />
+    <Compile Include="Data\Modules\LaptimeModule.cs" />
     <Compile Include="Data\Sector.cs" />
-    <Compile Include="Data\Session.cs" />
-    <Compile Include="Data\SessionEvent.cs" />
-    <Compile Include="Data\SessionEventType.cs" />
     <Compile Include="Data\SessionFlags.cs" />
-    <Compile Include="Data\Sessions.cs" />
     <Compile Include="Data\SessionStartLights.cs" />
     <Compile Include="Data\SessionState.cs" />
     <Compile Include="Data\SessionType.cs" />
     <Compile Include="Data\SurfaceType.cs" />
-    <Compile Include="Data\TimeDelta.cs" />
     <Compile Include="Data\Track.cs" />
     <Compile Include="Data\TrackType.cs" />
-    <Compile Include="Data\Trigger.cs" />
-    <Compile Include="Data\TriggerType.cs" />
-    <Compile Include="Data\Utils.cs" />
     <Compile Include="Data\Weather.cs" />
     <Compile Include="Widget\ILapTimer.cs" />
     <Compile Include="Widget\IWidget.cs" />
@@ -181,6 +171,10 @@
     <ProjectReference Include="..\..\..\Visual Studio 2013\irsdkSharp\iRSDKSharp.csproj">
       <Project>{72631b85-eb9a-473e-9b4c-65b355a9000d}</Project>
       <Name>iRSDKSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yaml\Yaml\Yaml.csproj">
+      <Project>{8b38618a-9e58-4b0e-b55a-656bb59f60ab}</Project>
+      <Name>Yaml</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
