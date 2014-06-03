@@ -34,7 +34,8 @@ namespace TMTVO
         private void Window_Closed(object sender, EventArgs e)
         {
             DataManager.RunApi = false;
-            window.LapTimer.Thread.Interrupt();
+            if (window.LapTimer.Thread != null)
+                window.LapTimer.Thread.Interrupt();
             window.Close();
         }
 
@@ -144,20 +145,16 @@ namespace TMTVO
                 testDriver.Car = new Car();
                 testDriver.Car.CarNumber = "46";
                 testDriver.CarIndex = 0;
-                item.Position = 1;
+                item.Position = 2;
                 item.Driver = testDriver;
 
                 window.LapTimer.FadeIn(item);
             }
         }
 
-        private void LapCompleteTest_Click(object sender, RoutedEventArgs e)
-        {
-            window.LapTimer.LapComplete();
-        }
-
         private void CrossedLine_Click(object sender, RoutedEventArgs e)
         {
+            window.LapTimer.LapComplete();
             item.CrossedLine();
         }
     }

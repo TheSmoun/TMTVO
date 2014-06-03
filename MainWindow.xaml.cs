@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using TMTVO.Data;
 using TMTVO.Widget;
 
 namespace TMTVO
@@ -59,6 +60,20 @@ namespace TMTVO
             controlWindow = new Controls(this);
             controlWindow.Show();
             Show();
+        }
+
+        public void ShowTeamRadio(Driver driver)
+        {
+            if (TeamRadio.Active)
+                return;
+
+
+        }
+
+        public void HideTeamRadio()
+        {
+            if (!TeamRadio.Active)
+                return;
         }
     }
 }

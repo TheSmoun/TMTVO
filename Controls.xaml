@@ -31,8 +31,7 @@
                 </Grid.RowDefinitions>
                 <Button x:Name="ToggleLapTimerLeft" Grid.Row="0" Content="ToggleLapTimer" Click="ToggleLapTimerLeft_Click" />
                 <Button x:Name="SectorCompleteTest" Grid.Row="1" Content="Sector" Click="SectorCompleteTest_Click" />
-                <Button x:Name="LapCompleteTest" Grid.Row="2" Content="Lap Complete" Click="LapCompleteTest_Click" />
-                <Button x:Name="CrossedLine" Grid.Row="4" Content="Crossed Line" Click="CrossedLine_Click" />
+                <Button x:Name="CrossedLine" Grid.Row="2" Content="Crossed Line" Click="CrossedLine_Click" />
             </Grid>
         </Grid>
     </Grid>
