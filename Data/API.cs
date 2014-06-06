@@ -1,7 +1,9 @@
-﻿using System;
+﻿using iRSDKSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Yaml;
 
@@ -13,14 +15,14 @@ namespace TMTVO.Data
 
         private readonly int ticksPerSecond;
         private readonly List<Module> modules;
-        private readonly iRSDKSharp.iRacingSDK sdk;
+        private readonly iRacingSDK sdk;
 
         public API(int ticksPerSecond)
         {
             this.ticksPerSecond = ticksPerSecond;
 
             modules = new List<Module>();
-            sdk = new iRSDKSharp.iRacingSDK();
+            sdk = new iRacingSDK();
 
             sdk.Startup();
         }
@@ -47,7 +49,7 @@ namespace TMTVO.Data
                 }
                 else
                 {
-                    System.Threading.Thread.Sleep(sleepTime);
+                    Thread.Sleep(sleepTime);
                 }
             }
         }

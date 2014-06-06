@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Yaml;
 
 namespace TMTVO.Data.Modules
 {
-    public class LaptimeModule : Module
+    public abstract class LaptimeModule : Module
     {
-        private Driver driver;
+        protected Driver Driver { get; private set; }
+
+        public LaptimeModule(Driver driver, string name) : base(name)
+        {
+            this.Driver = driver;
+        }
     }
 }
