@@ -9,9 +9,6 @@ namespace TMTVO.Data.Modules
 {
     public class LaptimeModule : Module
     {
-        public override void Update(Node rootNode)
-        {
-            
-        }
+        private Driver driver;
     }
 }
