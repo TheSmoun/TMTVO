@@ -74,8 +74,7 @@ namespace TMTVO.Data
 
         public void UpdateModules(string lines)
         {
-            Node rootNode = Yaml.Yaml.Parse(lines);
-
+            Node rootNode = Node.Parse(lines);
             foreach (Module m in modules)
             {
                 m.Update(rootNode);
