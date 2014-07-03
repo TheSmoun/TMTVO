@@ -16,10 +16,12 @@ namespace TMTVO.Data
         private readonly int ticksPerSecond;
         private readonly List<Module> modules;
         private readonly iRacingSDK sdk;
+        private Thread thread;
 
         public API(int ticksPerSecond)
         {
             this.ticksPerSecond = ticksPerSecond;
+            this.thread = new Thread(StartThread);
 
             modules = new List<Module>();
             sdk = new iRacingSDK();
@@ -27,9 +29,6 @@ namespace TMTVO.Data
             sdk.Startup();
         }
 
-        /// <summary>
-        /// Should be called from another thread.
-        /// </summary>
         public void run()
         {
             long maxDelay = 1000L / ticksPerSecond;
@@ -49,7 +48,14 @@ namespace TMTVO.Data
                 }
                 else
                 {
-                    Thread.Sleep(sleepTime);
+                    try
+                    {
+                        Thread.Sleep(sleepTime);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
                 }
             }
         }
@@ -74,11 +80,33 @@ namespace TMTVO.Data
 
         public void UpdateModules(string lines)
         {
-            Node rootNode = Node.Parse(lines);
+            ConfigurationSection rootNode = Yaml.Yaml.Parse(lines);
             foreach (Module m in modules)
             {
                 m.Update(rootNode);
             }
+        }
+
+        public void Start()
+        {
+            try
+            {
+                thread.Start();
+            }
+            catch (ThreadStateException)
+            {
+                thread.Resume();
+            }
+        }
+
+        private void StartThread(object obj)
+        {
+            run();
+        }
+
+        public void Stop()
+        {
+            thread.Suspend();
         }
     }
 }

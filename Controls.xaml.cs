@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TMTVO.Data;
+using TMTVO.Data.Modules;
 using TMTVO.Widget;
 
 namespace TMTVO
@@ -22,18 +23,20 @@ namespace TMTVO
     /// </summary>
     public partial class Controls : Window
     {
+        private TMTVO.Controller.TMTVO tmtvo;
         private MainWindow window;
         private Timer t;
 
-        public Controls(MainWindow window)
+        public Controls(MainWindow window, TMTVO.Controller.TMTVO tmtvo)
         {
+            this.tmtvo = tmtvo;
             this.window = window;
             InitializeComponent();
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            DataManager.RunApi = false;
+            tmtvo.Api.Run = false;
             if (window.LapTimer.Thread != null)
                 window.LapTimer.Thread.Interrupt();
             window.Close();
@@ -41,11 +44,14 @@ namespace TMTVO
 
         private void StartStopButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!DataManager.RunOverlay)
+            if (window.Visibility != Visibility.Visible)
             {
                 Running.Fill = new SolidColorBrush(Colors.Green);
                 StartStopButton.Content = "Stop";
-                DataManager.RunOverlay = true;
+                tmtvo.Api.Run = true;
+                tmtvo.Api.Start();
+                window.Show();
+                window.Visibility = Visibility.Visible;
                 t = new Timer(50);
                 t.Elapsed += ShowGrid;
                 t.Start();
@@ -54,12 +60,15 @@ namespace TMTVO
             {
                 Running.Fill = new SolidColorBrush(Colors.Red);
                 StartStopButton.Content = "Start";
-                DataManager.RunOverlay = false;
+                tmtvo.Api.Run = false;
+                window.Visibility = Visibility.Hidden;
                 InnerGrid.Visibility = Visibility.Hidden;
 
                 foreach (object o in window.MyCanvas.Children)
                     if (o is IWidget && ((IWidget)o).Active)
                         ((IWidget)o).FadeOut();
+
+                tmtvo.Api.Stop();
             }
         }
 
@@ -67,7 +76,7 @@ namespace TMTVO
         {
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
-                if (DataManager.Sessions.CurrentSession.SessionType == SessionType.Race)
+                if (tmtvo.sessionTimerModule.SessionType == SessionType.LapRace || tmtvo.sessionTimerModule.SessionType == SessionType.TimeRace)
                 {
                     RaceButtons.Visibility = Visibility.Visible;
                     NormalButtons.Visibility = Visibility.Hidden;
@@ -93,7 +102,7 @@ namespace TMTVO
                 Widget.SessionTimer.SessionType type;
                 Widget.SessionTimer.SessionMode mode = Widget.SessionTimer.SessionMode.TimeMode;
 
-                switch (DataManager.Sessions.CurrentSession.SessionType)
+                switch (tmtvo.sessionTimerModule.SessionType)
                 {
                     case SessionType.OfflineTesting:
                     case SessionType.Practice:
@@ -102,16 +111,12 @@ namespace TMTVO
                     case SessionType.Qualifying:
                         type = Widget.SessionTimer.SessionType.Qualify;
                         break;
-                    case SessionType.Race:
-                        if (DataManager.Sessions.CurrentSession.SessionLaps != int.MaxValue)
-                        {
-                            mode = Widget.SessionTimer.SessionMode.LapMode;
-                            type = Widget.SessionTimer.SessionType.LapRace;
-                        }
-                        else
-                        {
-                            type = Widget.SessionTimer.SessionType.TimeRace;
-                        }
+                    case SessionType.LapRace:
+                        mode = Widget.SessionTimer.SessionMode.LapMode;
+                        type = Widget.SessionTimer.SessionType.LapRace;
+                        break;
+                    case SessionType.TimeRace:
+                        type = Widget.SessionTimer.SessionType.TimeRace;
                         break;
                     case SessionType.WarmUp:
                         type = Widget.SessionTimer.SessionType.WarmUp;
@@ -128,34 +133,6 @@ namespace TMTVO
         private void SectorCompleteTest_Click(object sender, RoutedEventArgs e)
         {
             window.LapTimer.SectorComplete();
-        }
-
-        ResultItem item = new ResultItem();
-
-        private void ToggleLapTimerLeft_Click(object sender, RoutedEventArgs e)
-        {
-            if (window.LapTimer.Active)
-            {
-                window.LapTimer.FadeOut();
-            }
-            else
-            {
-                Driver testDriver = new Driver();
-                testDriver.FullName = "Simon Grossmann";
-                testDriver.Car = new Car();
-                testDriver.Car.CarNumber = "46";
-                testDriver.CarIndex = 0;
-                item.Position = 2;
-                item.Driver = testDriver;
-
-                window.LapTimer.FadeIn(item);
-            }
-        }
-
-        private void CrossedLine_Click(object sender, RoutedEventArgs e)
-        {
-            window.LapTimer.LapComplete();
-            item.CrossedLine();
         }
     }
 }

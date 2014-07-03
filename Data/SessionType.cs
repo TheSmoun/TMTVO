@@ -13,6 +13,7 @@ namespace TMTVO.Data
         Practice,
         Qualifying,
         WarmUp,
-        Race
+        TimeRace,
+        LapRace
     }
 }

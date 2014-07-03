@@ -17,7 +17,7 @@ namespace TMTVO.Data.Modules
             this.lapTimer = lapTimer;
         }
 
-        public override void Update(Node rootNode)
+        public override void Update(ConfigurationSection rootNode)
         {
             if (!lapTimer.Active)
                 return;

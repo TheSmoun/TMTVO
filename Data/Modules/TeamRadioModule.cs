@@ -19,7 +19,7 @@ namespace TMTVO.Data.Modules
             this.oldCarIdx = -1;
         }
 
-        public override void Update(Node rootNode)
+        public override void Update(ConfigurationSection rootNode)
         {
             if (!teamRadio.Active)
                 return;

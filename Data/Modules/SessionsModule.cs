@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Yaml;
 
 namespace TMTVO.Data.Modules
 {
-    public class RightLaptimeModule : LaptimeModule
+    public class SessionsModule : Module
     {
-        public RightLaptimeModule(Driver driver) : base(driver, "RightLapTimer")
+        public SessionsModule() : base("Sessions")
         {
-            // TODO LapTimer
+
         }
 
-        public override void Update(ConfigurationSection root)
+        public override void Update(Yaml.ConfigurationSection rootNode)
         {
+            Yaml.ConfigurationSection section = null;
             throw new NotImplementedException();
         }
     }

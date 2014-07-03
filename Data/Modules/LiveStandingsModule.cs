@@ -13,7 +13,21 @@ namespace TMTVO.Data.Modules
         private RaceBar raceBar;
         public LiveStandingsItem[] Items { get; set; }
 
-        public override void Update(Node rootNode)
+        public LiveStandingsModule() : base("LiveStandings")
+        {
+
+        }
+
+        public LiveStandingsItem FindDriver(int CarIndex)
+        {
+            for (int i = 0; i < Items.Length; i++)
+                if (Items[i].Driver.CarIndex == CarIndex)
+                    return Items[i];
+
+            return null;
+        }
+
+        public override void Update(ConfigurationSection rootNode)
         {
             throw new NotImplementedException();
         }

@@ -55,13 +55,6 @@ namespace TMTVO
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            controlWindow = new Controls(this);
-            controlWindow.Show();
-            Show();
-        }
-
         public void ShowTeamRadio(Driver driver)
         {
             if (TeamRadio.Active)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Yaml;
 
 namespace TMTVO.Data
 {
@@ -44,6 +45,6 @@ namespace TMTVO.Data
             get { return name; }
         }
 
-        public abstract void Update(Yaml.Node rootNode);    
+        public abstract void Update(ConfigurationSection rootNode);    
     }
 }

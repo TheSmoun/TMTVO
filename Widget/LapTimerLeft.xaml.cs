@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TMTVO.Data;
+using TMTVO.Data.Modules;
 
 namespace TMTVO.Widget
 {
@@ -26,9 +27,9 @@ namespace TMTVO.Widget
         private System.Timers.Timer updateCd;
         private bool canUpdate;
 
-        public Stopwatch Stopwatch { get { return LapDriver.Stopwatch; } }
+        //public Stopwatch Stopwatch { get { return LapDriver.Stopwatch; } }
         public Thread Thread { get; private set; }
-        public ResultItem LapDriver { get; private set; }
+        public LiveStandingsItem LapDriver { get; private set; }
         public bool Active { get; private set; }
 
 		public LapTimerLeft()
@@ -42,7 +43,7 @@ namespace TMTVO.Widget
             canUpdate = false;
         }
 
-        public void FadeIn(ResultItem driver)
+        public void FadeIn(LiveStandingsItem driver)
         {
             if (Active)
                 return;
@@ -77,7 +78,7 @@ namespace TMTVO.Widget
 
         public void SectorComplete()
         {
-            if (!Active)
+            /*if (!Active)
                 return;
 
             canUpdate = false;
@@ -113,12 +114,12 @@ namespace TMTVO.Widget
             TimeText.Text = sbu.ToString();
 
             Storyboard sb = FindResource("ShowGap") as Storyboard;
-            sb.Begin();
+            sb.Begin();*/
         }
 
         public void LapComplete()
         {
-            if (!Active || LapDriver.Stopwatch.ElapsedMilliseconds < 100)
+            /*if (!Active || LapDriver.Stopwatch.ElapsedMilliseconds < 100)
                 return;
 
             SectorComplete();
@@ -134,12 +135,12 @@ namespace TMTVO.Widget
             Storyboard sb = FindResource("ShowNumber") as Storyboard;
             sb.Begin();
 
-            LapDriver.Stopwatch.Restart();
+            LapDriver.Stopwatch.Restart();*/
         }
 
         private void Run()
         {
-            while (Active)
+            /*while (Active)
             {
                 if (!canUpdate)
                     continue;
@@ -168,7 +169,7 @@ namespace TMTVO.Widget
                 }));
             }
 
-            LapDriver = null;
+            LapDriver = null;*/
         }
 
         private void TimerElapsed(object sender, ElapsedEventArgs e)

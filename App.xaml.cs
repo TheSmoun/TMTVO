@@ -13,5 +13,9 @@ namespace TMTVO
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            TMTVO.Controller.TMTVO.Launch();
+        }
     }
 }

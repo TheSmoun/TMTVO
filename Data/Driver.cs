@@ -34,8 +34,10 @@ namespace TMTVO.Data
         {
             get
             {
-                if (Car.CarNumber != null) return Utils.padCarNum(Car.CarNumber);
-                else return -1;
+                if (Car.CarNumber != null) 
+                    return Utils.PadCarNum(Car.CarNumber);
+                else 
+                    return -1;
             }
         }
 

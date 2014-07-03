@@ -9,10 +9,12 @@ namespace TMTVO.Data.Modules
     public class LiveStandingsItem : Component
     {
         public Driver Driver { get; set; }
+        public int Position { get; private set; }
 
         public void Update()
         {
             throw new NotImplementedException();
         }
+
     }
 }

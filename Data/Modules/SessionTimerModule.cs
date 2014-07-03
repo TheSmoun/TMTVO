@@ -13,6 +13,9 @@ namespace TMTVO.Data.Modules
         private SessionTimer sessionTimer;
 
         public int SessionTime { get; private set; }
+        public int LapsTotal { get; private set; }
+        public int LapsDriven { get; private set; }
+        public SessionType SessionType { get; private set; }
 
         public SessionTimerModule(SessionTimer sessionTimer) : base("SessionTimer")
         {
@@ -20,13 +23,12 @@ namespace TMTVO.Data.Modules
             this.SessionTime = 0;
         }
 
-        public override void Update(Node rootNode)
+        public override void Update(ConfigurationSection rootNode)
         {
             if (!sessionTimer.Active)
                 return;
 
-            // TODO SessionTimer Updaten
-            throw new NotImplementedException();
+            // TODO implement
         }
     }
 }
