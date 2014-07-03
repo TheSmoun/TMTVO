@@ -21,6 +21,9 @@ namespace TMTVO.Data.Modules
 
         public override void Update(Node rootNode)
         {
+            if (!teamRadio.Active)
+                return;
+
             // TODO TeamRadio Updaten
             throw new NotImplementedException();
         }

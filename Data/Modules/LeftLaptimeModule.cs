@@ -19,6 +19,9 @@ namespace TMTVO.Data.Modules
 
         public override void Update(Node rootNode)
         {
+            if (!lapTimer.Active)
+                return;
+
             throw new NotImplementedException();
         }
     }
