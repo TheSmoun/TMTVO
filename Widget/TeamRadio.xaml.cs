@@ -54,5 +54,11 @@ namespace TMTVO.Widget
         {
             this.NumberPlate.Fill = brush;
         }
-	}
+
+
+        public void Tick()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

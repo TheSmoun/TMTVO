@@ -20,8 +20,6 @@ namespace TMTVO.Widget
 	/// </summary>
 	public partial class PreviousGaps : UserControl
 	{
-        private readonly int MAX_WIDTH = 320;
-
 		public PreviousGaps()
 		{
 			this.InitializeComponent();

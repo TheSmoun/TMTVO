@@ -10,5 +10,6 @@ namespace TMTVO.Widget
     {
         bool Active { get; }
         void FadeOut();
+        void Tick();
     }
 }

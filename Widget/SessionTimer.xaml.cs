@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TMTVO.Data.Modules;
 
 namespace TMTVO.Widget
 {
@@ -35,6 +36,8 @@ namespace TMTVO.Widget
         private int lastDrivenLaps = -1;
         private int lastTotalLaps = -1;
         private int lastSeconds = -1;
+
+        public SessionTimerModule Module { get; set; }
 
 		public SessionTimer()
 		{
@@ -309,5 +312,11 @@ namespace TMTVO.Widget
             LapMode,
             TimeMode
         }
-	}
+
+
+        public void Tick()
+        {
+            this.UpdateTime(Module.SessionTime);
+        }
+    }
 }

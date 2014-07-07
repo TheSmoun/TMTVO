@@ -177,5 +177,11 @@ namespace TMTVO.Widget
             updateCd.Stop();
             canUpdate = true;
         }
+
+
+        public void Tick()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

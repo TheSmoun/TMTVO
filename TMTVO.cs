@@ -16,7 +16,7 @@ namespace TMTVO.Controller
         public MainWindow Window { get; private set; }
         public TvoControls TvoControls { get; private set; }
         public iRacingControls iRControls { get; private set; }
-        public IAPI Api { get; private set; }
+        public API Api { get; private set; }
 
         public SessionTimerModule sessionTimerModule { get; private set; }
 
@@ -26,7 +26,7 @@ namespace TMTVO.Controller
         {
             TMTVO t = new TMTVO();
             //t.Api = new API(TICKS_PER_SECOND);
-            t.Api = new SimpleApi(TICKS_PER_SECOND);
+            t.Api = new API(TICKS_PER_SECOND);
             t.Window = new MainWindow();
             t.InitalizeModules();
 

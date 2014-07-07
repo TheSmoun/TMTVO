@@ -9,7 +9,7 @@ using Yaml;
 
 namespace TMTVO.Api
 {
-    public sealed class API : IAPI
+    public sealed class API
     {
         public iRacingSDK Sdk { get; private set; }
         public bool Run { get; set; }
@@ -78,7 +78,7 @@ namespace TMTVO.Api
         {
             if (Sdk.IsConnected())
             {
-                UpdateModules(Sdk.GetSessionInfo());              
+                UpdateModules(Sdk.GetSessionInfo());
             }
         }
 

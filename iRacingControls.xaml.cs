@@ -24,7 +24,7 @@ namespace TMTVO
     /// </summary>
     public partial class iRacingControls : Window
     {
-        private IAPI api;
+        private API api;
         DateTime cameraUpdate = DateTime.Now;
         DispatcherTimer updateTimer = new DispatcherTimer();
         Boolean autoCommitEnabled = false;
@@ -41,7 +41,7 @@ namespace TMTVO
             InitializeComponent();
         }
 
-        public iRacingControls(IAPI api, MainWindow mainWindow, Controller.TMTVO t) : this()
+        public iRacingControls(API api, MainWindow mainWindow, Controller.TMTVO t) : this()
         {
             this.api = api;
             this.mainWindow = mainWindow;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TMTVO.Api;
 using TMTVO.Widget;
 using Yaml;
@@ -21,6 +22,7 @@ namespace TMTVO.Data.Modules
         public SessionTimerModule(SessionTimer sessionTimer) : base("SessionTimer")
         {
             this.sessionTimer = sessionTimer;
+            sessionTimer.Module = this;
             this.SessionTime = 0;
         }
 
@@ -29,7 +31,18 @@ namespace TMTVO.Data.Modules
             if (!sessionTimer.Active)
                 return;
 
-            // TODO implement
+            List<Dictionary<string, object>> sessions = rootNode.GetMapList("SessionInfo.Sessions");
+
+            object sessionTime;
+            if (sessions[sessions.Count - 1].TryGetValue("SessionTime", out sessionTime) && sessionTime is string)
+            {
+                string sTime = (string)sessionTime;
+                this.SessionTime = (int)float.Parse(sTime.Replace('.', ',').Substring(0, sTime.Length - 4));
+            }
+
+            Application.Current.Dispatcher.Invoke(new Action(() => {
+                sessionTimer.Tick();
+            }));
         }
     }
 }

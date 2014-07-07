@@ -35,5 +35,11 @@ namespace TMTVO.Widget
         {
             // TODO
         }
-	}
+
+
+        public void Tick()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
