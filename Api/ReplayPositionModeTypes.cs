@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TMTVO.Data
+namespace TMTVO.Api
 {
-    public interface Component
+    public enum ReplayPositionModeTypes
     {
-        void Update();
+        Begin = 0,
+        Current = 1,
+        End = 2,
     }
 }

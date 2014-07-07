@@ -1,4 +1,4 @@
-﻿<Window x:Class="TMTVO.Controls"
+﻿<Window x:Class="TMTVO.TvoControls"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="TM iRacing TVO" Height="600" Width="300" Closed="Window_Closed">

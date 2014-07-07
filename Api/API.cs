@@ -7,15 +7,19 @@ using System.Threading;
 using System.Threading.Tasks;
 using Yaml;
 
-namespace TMTVO.Data
+namespace TMTVO.Api
 {
-    public sealed class API
+    public sealed class API : IAPI
     {
+        public iRacingSDK Sdk { get; private set; }
         public bool Run { get; set; }
+        public bool IsConnected
+        {
+            get { return Sdk.IsConnected(); }
+        }
 
         private readonly int ticksPerSecond;
         private readonly List<Module> modules;
-        private readonly iRacingSDK sdk;
         private Thread thread;
 
         public API(int ticksPerSecond)
@@ -24,12 +28,12 @@ namespace TMTVO.Data
             this.thread = new Thread(StartThread);
 
             modules = new List<Module>();
-            sdk = new iRacingSDK();
+            Sdk = new iRacingSDK();
 
-            sdk.Startup();
+            Sdk.Startup();
         }
 
-        public void run()
+        private void RunApi()
         {
             long maxDelay = 1000L / ticksPerSecond;
 
@@ -72,9 +76,9 @@ namespace TMTVO.Data
 
         public void UpdateModules()
         {
-            if (sdk.IsConnected())
+            if (Sdk.IsConnected())
             {
-                UpdateModules(sdk.GetSessionInfo());              
+                UpdateModules(Sdk.GetSessionInfo());              
             }
         }
 
@@ -101,12 +105,53 @@ namespace TMTVO.Data
 
         private void StartThread(object obj)
         {
-            run();
+            RunApi();
         }
 
         public void Stop()
         {
             thread.Suspend();
+        }
+
+        public void HideUI()
+        {
+
+        }
+
+        public void SwitchCamera(int driver, int camera)
+        {
+            Sdk.BroadcastMessage(BroadcastMessageTypes.CamSwitchNum, driver, camera);
+        }
+
+        public void ReplaySetPlaySpeed(int playspeed, int slowmotion)
+        {
+            Sdk.BroadcastMessage(BroadcastMessageTypes.ReplaySetPlaySpeed, playspeed, slowmotion);
+        }
+
+        public void ReplaySetPlayPosition(ReplayPositionModeTypes mode, int position)
+        {
+            Sdk.BroadcastMessage(BroadcastMessageTypes.ReplaySetPlayPosition, (int)mode, position);
+        }
+
+        public void ReplaySearch(ReplaySearchModeTypes mode, int position)
+        {
+            Sdk.BroadcastMessage(BroadcastMessageTypes.ReplaySearch, (int)mode, 0);
+        }
+
+        public void Pause()
+        {
+            Sdk.BroadcastMessage(BroadcastMessageTypes.ReplaySetPlaySpeed, 0, 0);
+        }
+
+        public void Play()
+        {
+            Sdk.BroadcastMessage(iRSDKSharp.BroadcastMessageTypes.ReplaySetPlaySpeed, 1, 0);
+        }
+
+
+        public object GetData(string key)
+        {
+            return Sdk.GetData(key);
         }
     }
 }

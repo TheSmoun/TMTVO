@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Yaml;
 
-namespace TMTVO.Data
+namespace TMTVO.Api
 {
     public abstract class Module
     {

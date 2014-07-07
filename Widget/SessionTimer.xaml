@@ -48,28 +48,31 @@
         <Storyboard x:Key="FadeInTime">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="SessionTimerTime">
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1.05"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.05"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
         	</DoubleAnimationUsingKeyFrames>
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="SessionTimerTime">
-        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1.05"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0.45"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.05"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
         	</DoubleAnimationUsingKeyFrames>
         	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="SessionTimerTime">
         		<EasingThicknessKeyFrame KeyTime="0" Value="-120,0,0,0"/>
-        		<EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="0"/>
         	</ThicknessAnimationUsingKeyFrames>
         	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="FadeInColor">
         		<EasingThicknessKeyFrame KeyTime="0" Value="-120,0,0,0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="0"/>
         		<EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="0"/>
         	</ThicknessAnimationUsingKeyFrames>
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="FadeInColor">
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.05"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
         	</DoubleAnimationUsingKeyFrames>
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="FadeInColor">
-        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.05"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
         	</DoubleAnimationUsingKeyFrames>
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FadeInColor">
@@ -78,9 +81,13 @@
         	</DoubleAnimationUsingKeyFrames>
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SessionTimerTime">
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
         	</DoubleAnimationUsingKeyFrames>
+        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="FadeInColor">
+        		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static HorizontalAlignment.Stretch}"/>
+        		<DiscreteObjectKeyFrame KeyTime="0:0:0.2" Value="{x:Static HorizontalAlignment.Stretch}"/>
+        	</ObjectAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="Yellow">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(RadialGradientBrush.RadiusX)" Storyboard.TargetName="LapBackgroundYellow">
@@ -605,6 +612,8 @@
 						</LinearGradientBrush>
 					</Rectangle.Stroke>
 				</Rectangle>
+				<TextBlock x:Name="LapText2" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="68.96" Margin="4.833,-0.666,0,-5.834" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Text="OP" Foreground="#FFF9F9F9"/>
+				<TextBlock x:Name="LapsText2" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="150.207" Margin="59.793,-0.666,0,-5.834" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Text="24:00:00" Foreground="#FFF9F9F9"/>
 				<Rectangle x:Name="Farbverlauf2" HorizontalAlignment="Left" Height="38" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="196" RenderTransformOrigin="0.5,0.5" Margin="12,0,0,0">
 					<Rectangle.RenderTransform>
 						<TransformGroup>
@@ -633,8 +642,6 @@
 						<SolidColorBrush Color="Black" Opacity="0"/>
 					</Rectangle.Stroke>
 				</Rectangle>
-				<TextBlock x:Name="LapText2" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="68.96" Margin="4.833,-0.666,0,-5.834" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Text="OP" Foreground="White"/>
-				<TextBlock x:Name="LapsText2" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="150.207" Margin="59.793,-0.666,0,-5.834" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Text="24:00:00" Foreground="White"/>
 				<Rectangle x:Name="TimeBackgroundCh" HorizontalAlignment="Right" Height="38" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="142.646" RenderTransformOrigin="0.5,0.5" Margin="0,0,12,0" Opacity="0">
 					<Rectangle.Fill>
 						<DrawingBrush Stretch="None" TileMode="Tile" Viewport="0,0,20,20" ViewportUnits="Absolute">

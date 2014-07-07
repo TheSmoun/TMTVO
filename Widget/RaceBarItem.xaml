@@ -32,7 +32,7 @@
 				</LinearGradientBrush>
 			</Rectangle.Stroke>
 		</Rectangle>
-		<Rectangle x:Name="NumberNormal" HorizontalAlignment="Left" Height="38" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="75" Margin="0.5,0.5,0,-0.5">
+		<Rectangle x:Name="NumberNormal" HorizontalAlignment="Left" Height="37" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="75" Margin="0.5,0.5,0,-0.5">
 			<Rectangle.Fill>
 				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 					<LinearGradientBrush.RelativeTransform>
@@ -62,7 +62,7 @@
 				</LinearGradientBrush>
 			</Rectangle.Stroke>
 		</Rectangle>
-		<Rectangle x:Name="NumberLeader" HorizontalAlignment="Left" Height="38" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="75" Margin="0.5,0.5,0,-0.5">
+		<Rectangle x:Name="NumberLeader" HorizontalAlignment="Left" Height="37" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="75" Margin="0.5,0.5,0,-0.5">
 			<Rectangle.Fill>
 				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 					<LinearGradientBrush.RelativeTransform>

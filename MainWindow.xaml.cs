@@ -48,25 +48,9 @@ namespace TMTVO
             {"W", Colors.LightGray}
         };
 
-        private Controls controlWindow;
-
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        public void ShowTeamRadio(Driver driver)
-        {
-            if (TeamRadio.Active)
-                return;
-
-
-        }
-
-        public void HideTeamRadio()
-        {
-            if (!TeamRadio.Active)
-                return;
         }
     }
 }

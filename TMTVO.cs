@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMTVO.Api;
 using TMTVO.Data;
 using TMTVO.Data.Modules;
 
@@ -10,9 +11,12 @@ namespace TMTVO.Controller
 {
     public class TMTVO
     {
+        private static readonly int TICKS_PER_SECOND = 20;
+
         public MainWindow Window { get; private set; }
-        public Controls Controls { get; private set; }
-        public API Api { get; private set; }
+        public TvoControls TvoControls { get; private set; }
+        public iRacingControls iRControls { get; private set; }
+        public IAPI Api { get; private set; }
 
         public SessionTimerModule sessionTimerModule { get; private set; }
 
@@ -21,12 +25,16 @@ namespace TMTVO.Controller
         public static TMTVO Launch()
         {
             TMTVO t = new TMTVO();
-            t.Api = new API(20);
+            //t.Api = new API(TICKS_PER_SECOND);
+            t.Api = new SimpleApi(TICKS_PER_SECOND);
             t.Window = new MainWindow();
             t.InitalizeModules();
 
-            t.Controls = new Controls(t.Window, t);
-            t.Controls.Show();
+            t.TvoControls = new TvoControls(t.Window, t);
+            t.TvoControls.Show();
+
+            t.iRControls = new iRacingControls(t.Api, t.Window, t);
+            t.iRControls.Show();
 
             return t;
         }

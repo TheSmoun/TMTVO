@@ -21,13 +21,13 @@ namespace TMTVO
     /// <summary>
     /// Interaktionslogik für Controls.xaml
     /// </summary>
-    public partial class Controls : Window
+    public partial class TvoControls : Window
     {
         private TMTVO.Controller.TMTVO tmtvo;
         private MainWindow window;
         private Timer t;
 
-        public Controls(MainWindow window, TMTVO.Controller.TMTVO tmtvo)
+        public TvoControls(MainWindow window, TMTVO.Controller.TMTVO tmtvo)
         {
             this.tmtvo = tmtvo;
             this.window = window;
@@ -40,6 +40,7 @@ namespace TMTVO
             if (window.LapTimer.Thread != null)
                 window.LapTimer.Thread.Interrupt();
             window.Close();
+            Environment.Exit(0);
         }
 
         private void StartStopButton_Click(object sender, RoutedEventArgs e)
