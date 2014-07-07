@@ -28,7 +28,7 @@ namespace TMTVO.Data.Modules
             return null;
         }
 
-        public override void Update(ConfigurationSection rootNode)
+        public override void Update(ConfigurationSection rootNode, API api)
         {
             throw new NotImplementedException();
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMTVO.Api;
 using TMTVO.Widget;
 using Yaml;
 
@@ -17,7 +18,7 @@ namespace TMTVO.Data.Modules
             this.lapTimer = lapTimer;
         }
 
-        public override void Update(ConfigurationSection rootNode)
+        public override void Update(ConfigurationSection rootNode, API api)
         {
             if (!lapTimer.Active)
                 return;

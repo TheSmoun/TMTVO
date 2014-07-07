@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TMTVO.Api;
+using Yaml;
 
 namespace TMTVO.Data.Modules
 {
@@ -14,9 +15,8 @@ namespace TMTVO.Data.Modules
 
         }
 
-        public override void Update(Yaml.ConfigurationSection rootNode)
+        public override void Update(ConfigurationSection rootNode, API api)
         {
-            Yaml.ConfigurationSection section = null;
             throw new NotImplementedException();
         }
     }

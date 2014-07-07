@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMTVO.Api;
 using Yaml;
 
 namespace TMTVO.Data.Modules
@@ -14,7 +15,7 @@ namespace TMTVO.Data.Modules
             // TODO LapTimer
         }
 
-        public override void Update(ConfigurationSection root)
+        public override void Update(ConfigurationSection root, API api)
         {
             throw new NotImplementedException();
         }

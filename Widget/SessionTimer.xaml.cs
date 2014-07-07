@@ -313,10 +313,10 @@ namespace TMTVO.Widget
             TimeMode
         }
 
-
         public void Tick()
         {
-            this.UpdateTime(Module.SessionTime);
+            // TODO update complete stuff
+            this.UpdateTime(Module.TimeRemaining);
         }
     }
 }

@@ -87,7 +87,7 @@ namespace TMTVO.Api
             ConfigurationSection rootNode = Yaml.Yaml.Parse(lines);
             foreach (Module m in modules)
             {
-                m.Update(rootNode);
+                m.Update(rootNode, this);
             }
         }
 
@@ -99,6 +99,7 @@ namespace TMTVO.Api
             }
             catch (ThreadStateException)
             {
+                #pragma warning disable
                 thread.Resume();
             }
         }
@@ -110,6 +111,7 @@ namespace TMTVO.Api
 
         public void Stop()
         {
+            #pragma warning disable
             thread.Suspend();
         }
 
