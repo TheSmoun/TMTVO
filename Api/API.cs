@@ -145,7 +145,7 @@ namespace TMTVO.Api
 
         public void Play()
         {
-            Sdk.BroadcastMessage(iRSDKSharp.BroadcastMessageTypes.ReplaySetPlaySpeed, 1, 0);
+            Sdk.BroadcastMessage(BroadcastMessageTypes.ReplaySetPlaySpeed, 1, 0);
         }
 
 
