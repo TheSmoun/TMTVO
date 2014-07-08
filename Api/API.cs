@@ -155,5 +155,10 @@ namespace TMTVO.Api
         {
             return Sdk.GetData(key);
         }
+
+        public Module FindModule(string name)
+        {
+            return modules.Find(m => m.Name == name);
+        }
     }
 }

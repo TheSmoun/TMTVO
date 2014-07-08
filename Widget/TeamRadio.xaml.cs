@@ -11,6 +11,9 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TMTVO.Controller;
+using TMTVO.Data;
+using TMTVO.Data.Modules;
 
 namespace TMTVO.Widget
 {
@@ -20,6 +23,7 @@ namespace TMTVO.Widget
 	public partial class TeamRadio : UserControl, IWidget
 	{
         public bool Active { get; private set; }
+        public TeamRadioModule Module { get; set; }
 
 		public TeamRadio()
 		{
@@ -55,10 +59,25 @@ namespace TMTVO.Widget
             this.NumberPlate.Fill = brush;
         }
 
-
         public void Tick()
         {
-            throw new NotImplementedException();
+            if (Module.SpeekingCarIndex == -1 && Active)
+                FadeOut();
+            else if (Module.SpeekingCarIndex != -1 && !Active)
+            {
+                Driver driver = ((DriverModule)Controller.TMTVO.Instance.Api.FindModule("DriverModule")).Drivers.Find(d => d.CarIndex == Module.SpeekingCarIndex);
+                if (driver != null)
+                    StartsSpeaking(driver.LastUpperName, driver.Car.CarNumber);
+            }
+            else if (Module.SpeekingCarIndex != -1)
+            {
+                Driver driver = ((DriverModule)Controller.TMTVO.Instance.Api.FindModule("DriverModule")).Drivers.Find(d => d.CarIndex == Module.SpeekingCarIndex);
+                if (driver != null)
+                {
+                    DriversNumber.Text = driver.Car.CarNumber;
+                    DriversName.Text = driver.LastUpperName;
+                }
+            }
         }
     }
 }

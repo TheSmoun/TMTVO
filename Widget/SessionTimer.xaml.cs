@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TMTVO.Data;
 using TMTVO.Data.Modules;
 
 namespace TMTVO.Widget
@@ -21,8 +22,9 @@ namespace TMTVO.Widget
 	public partial class SessionTimer : UserControl, IWidget
 	{
         private Dictionary<SessionType, string> SessionTypeToString = new Dictionary<SessionType, string>() {
-            {SessionType.OpenPractice, "OP"},
-            {SessionType.Qualify, "Q"},
+            {SessionType.OfflineTesting, "T"},
+            {SessionType.Practice, "P"},
+            {SessionType.Qualifying, "Q"},
             {SessionType.WarmUp, "W"},
             {SessionType.LapRace, "Lap"},
             {SessionType.TimeRace, "R"},
@@ -48,17 +50,12 @@ namespace TMTVO.Widget
             this.State = SessionTimerState.Normal;
 		}
 
-        public void FadeIn(SessionMode mode, SessionType type)
+        public void FadeIn(SessionMode mode)
         {
             if (mode == SessionMode.LapMode)
                 SwitchToLap();
             else
-            {
                 SwitchToTime();
-                string s;
-                SessionTypeToString.TryGetValue(type, out s);
-                LapText2.Text = s;
-            }
 
             if (Active)
                 return;
@@ -297,16 +294,6 @@ namespace TMTVO.Widget
             Chequered
         }
 
-        public enum SessionType
-        {
-            OpenPractice,
-            Qualify,
-            WarmUp,
-            LapRace,
-            TimeRace,
-            TimeTrial
-        }
-
         public enum SessionMode
         {
             LapMode,
@@ -315,8 +302,27 @@ namespace TMTVO.Widget
 
         public void Tick()
         {
-            // TODO update complete stuff
+            string sType = "";
+            if (SessionTypeToString.TryGetValue(Module.SessionType, out sType))
+                LapText2.Text = sType;
+
             this.UpdateTime(Module.TimeRemaining);
+            this.UpdateLaps(Module.LapsDriven, Module.LapsTotal);
+
+            switch (Module.SessionFlags)
+            {
+                case SessionFlags.Green:
+                    Normal();
+                    break;
+                case SessionFlags.Yellow:
+                    YellowFlag();
+                    break;
+                case SessionFlags.Checkered:
+                    ChequeredFlag();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

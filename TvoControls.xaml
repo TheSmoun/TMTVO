@@ -12,9 +12,15 @@
         <Grid x:Name="InnerGrid" Grid.Row="1" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Button x:Name="SessionTimer" Grid.Row="0" Content="Session Timer" Height="25" Width="100" Click="SessionTimer_Click" />
+            <Button x:Name="SessionTimer" Grid.Row="0" Content="Session Timer" Height="25" Width="100" Click="SessionTimer_Click" HorizontalAlignment="Left" Margin="5,0,0,0" />
+            <ComboBox x:Name="SessionTimerMode" Grid.Row="0" Height="24" Width="100" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0" SelectionChanged="SessionTimerMode_SelectionChanged">
+                <ComboBoxItem x:Name="TimeMode" Content="Time Mode" IsSelected="True" />
+                <ComboBoxItem x:Name="LapMode" Content="Lap Mode" />
+            </ComboBox>
+            <CheckBox x:Name="TeamRadioEnabled" Grid.Row="1" Content="Enable TeamRadio" Checked="TeamRadioEnabled_Checked" Unchecked="TeamRadioEnabled_Unchecked" VerticalAlignment="Center" HorizontalAlignment="Center" />
             <Grid x:Name="RaceButtons" Grid.Row="1" Visibility="Hidden">
 
             </Grid>

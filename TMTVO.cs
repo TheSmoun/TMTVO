@@ -11,6 +11,19 @@ namespace TMTVO.Controller
 {
     public class TMTVO
     {
+        private static TMTVO instance = null;
+
+        public static TMTVO Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new TMTVO();
+
+                return instance;
+            }
+        }
+
         private static readonly int TICKS_PER_SECOND = 20;
 
         public MainWindow Window { get; private set; }
@@ -18,13 +31,11 @@ namespace TMTVO.Controller
         public iRacingControls iRControls { get; private set; }
         public API Api { get; private set; }
 
-        public SessionTimerModule sessionTimerModule { get; private set; }
-
         private TMTVO() { }
 
         public static TMTVO Launch()
         {
-            TMTVO t = new TMTVO();
+            TMTVO t = TMTVO.Instance;
             //t.Api = new API(TICKS_PER_SECOND);
             t.Api = new API(TICKS_PER_SECOND);
             t.Window = new MainWindow();
@@ -41,7 +52,9 @@ namespace TMTVO.Controller
 
         public void InitalizeModules()
         {
-            Api.AddModule((this.sessionTimerModule = new SessionTimerModule(Window.SessionTimer)));
+            Api.AddModule(new SessionTimerModule(Window.SessionTimer));
+            Api.AddModule(new TeamRadioModule(Window.TeamRadio));
+            Api.AddModule(new DriverModule());
         }
     }
 }

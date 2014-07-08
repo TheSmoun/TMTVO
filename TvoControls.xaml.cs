@@ -26,6 +26,7 @@ namespace TMTVO
         private TMTVO.Controller.TMTVO tmtvo;
         private MainWindow window;
         private Timer t;
+        private SessionTimer.SessionMode sessionTimerMode = Widget.SessionTimer.SessionMode.TimeMode;
 
         public TvoControls(MainWindow window, TMTVO.Controller.TMTVO tmtvo)
         {
@@ -77,7 +78,8 @@ namespace TMTVO
         {
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
-                if (tmtvo.sessionTimerModule.SessionType == SessionType.LapRace || tmtvo.sessionTimerModule.SessionType == SessionType.TimeRace)
+                SessionTimerModule sTModule = (SessionTimerModule)tmtvo.Api.FindModule("SessionTimer");
+                if (sTModule.SessionType == SessionType.LapRace || sTModule.SessionType == SessionType.TimeRace)
                 {
                     RaceButtons.Visibility = Visibility.Visible;
                     NormalButtons.Visibility = Visibility.Hidden;
@@ -99,41 +101,38 @@ namespace TMTVO
             if (window.SessionTimer.Active)
                 window.SessionTimer.FadeOut();
             else
-            {
-                Widget.SessionTimer.SessionType type;
-                Widget.SessionTimer.SessionMode mode = Widget.SessionTimer.SessionMode.TimeMode;
-
-                switch (tmtvo.sessionTimerModule.SessionType)
-                {
-                    case SessionType.OfflineTesting:
-                    case SessionType.Practice:
-                        type = Widget.SessionTimer.SessionType.OpenPractice;
-                        break;
-                    case SessionType.Qualifying:
-                        type = Widget.SessionTimer.SessionType.Qualify;
-                        break;
-                    case SessionType.LapRace:
-                        mode = Widget.SessionTimer.SessionMode.LapMode;
-                        type = Widget.SessionTimer.SessionType.LapRace;
-                        break;
-                    case SessionType.TimeRace:
-                        type = Widget.SessionTimer.SessionType.TimeRace;
-                        break;
-                    case SessionType.WarmUp:
-                        type = Widget.SessionTimer.SessionType.WarmUp;
-                        break;
-                    default:
-                        type = Widget.SessionTimer.SessionType.TimeTrial;
-                        break;
-                }
-
-                window.SessionTimer.FadeIn(mode, type);
-            }
+                window.SessionTimer.FadeIn(sessionTimerMode);
         }
 
         private void SectorCompleteTest_Click(object sender, RoutedEventArgs e)
         {
             window.LapTimer.SectorComplete();
+        }
+
+        private void SessionTimerMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (((ComboBox)sender).SelectedIndex)
+            {
+                case 0:
+                    sessionTimerMode = Widget.SessionTimer.SessionMode.TimeMode;
+                    break;
+                case 1:
+                    sessionTimerMode = Widget.SessionTimer.SessionMode.LapMode;
+                    break;
+                default:
+                    sessionTimerMode = Widget.SessionTimer.SessionMode.TimeMode;
+                    break;
+            }
+        }
+
+        private void TeamRadioEnabled_Checked(object sender, RoutedEventArgs e)
+        {
+            ((TeamRadioModule)tmtvo.Api.FindModule("TeamRadio")).CanShowTeamRadio = true;
+        }
+
+        private void TeamRadioEnabled_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ((TeamRadioModule)tmtvo.Api.FindModule("TeamRadio")).CanShowTeamRadio = false;
         }
     }
 }

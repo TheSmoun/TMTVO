@@ -8,6 +8,11 @@ namespace TMTVO.Data
 {
     public class Driver
     {
+        public Driver()
+        { 
+            this.Car = new Car();
+        }
+
         public int CarIndex { get; set; }
         public string FullName { get; set; }
         public string ShortName { get; set; }

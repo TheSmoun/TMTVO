@@ -11,22 +11,22 @@
         <Storyboard x:Key="FadeInLap">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SessionTimerLap">
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
         	</DoubleAnimationUsingKeyFrames>
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="SessionTimerLap">
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1.05"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.05"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
         	</DoubleAnimationUsingKeyFrames>
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="SessionTimerLap">
-        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1.05"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.05"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
         	</DoubleAnimationUsingKeyFrames>
         	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="SessionTimerLap">
         		<EasingThicknessKeyFrame KeyTime="0" Value="-120,0,0,0"/>
-        		<EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="0"/>
         	</ThicknessAnimationUsingKeyFrames>
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FadeInColor">
         		<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
@@ -34,16 +34,32 @@
         	</DoubleAnimationUsingKeyFrames>
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="FadeInColor">
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.05"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
         	</DoubleAnimationUsingKeyFrames>
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="FadeInColor">
-        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.05"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
         	</DoubleAnimationUsingKeyFrames>
         	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="FadeInColor">
         		<EasingThicknessKeyFrame KeyTime="0" Value="-120,0,0,0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="0"/>
         		<EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="0"/>
         	</ThicknessAnimationUsingKeyFrames>
+        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="FadeInColor">
+        		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static HorizontalAlignment.Stretch}"/>
+        		<DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static HorizontalAlignment.Stretch}"/>
+        	</ObjectAnimationUsingKeyFrames>
+        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.VerticalAlignment)" Storyboard.TargetName="FadeInColor">
+        		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static VerticalAlignment.Stretch}"/>
+        		<DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static VerticalAlignment.Stretch}"/>
+        	</ObjectAnimationUsingKeyFrames>
+        	<PointAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)" Storyboard.TargetName="FadeInColor">
+        		<EasingPointKeyFrame KeyTime="0" Value="0.5,0.5"/>
+        		<EasingPointKeyFrame KeyTime="0:0:0.2" Value="0.5,0.5"/>
+        		<EasingPointKeyFrame KeyTime="0:0:0.3" Value="0.5,0.5"/>
+        	</PointAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="FadeInTime">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="SessionTimerTime">
@@ -113,39 +129,57 @@
         <Storyboard x:Key="SafetyCarFadeIn">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="SafetyCar">
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1.05"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.05"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
         	</DoubleAnimationUsingKeyFrames>
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="SafetyCar">
-        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1.05"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.05"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
         	</DoubleAnimationUsingKeyFrames>
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="FadeInColorSC">
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.006"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
         	</DoubleAnimationUsingKeyFrames>
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="FadeInColorSC">
-        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.05"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
         	</DoubleAnimationUsingKeyFrames>
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FadeInColorSC">
         		<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.325"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
         	</DoubleAnimationUsingKeyFrames>
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SafetyCar">
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
         	</DoubleAnimationUsingKeyFrames>
         	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="SafetyCar">
         		<EasingThicknessKeyFrame KeyTime="0" Value="0,0,90,0"/>
-        		<EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="0"/>
         	</ThicknessAnimationUsingKeyFrames>
         	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="FadeInColorSC">
         		<EasingThicknessKeyFrame KeyTime="0" Value="0,0,90,0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="0"/>
         		<EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="0"/>
         	</ThicknessAnimationUsingKeyFrames>
+        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.VerticalAlignment)" Storyboard.TargetName="FadeInColorSC">
+        		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static VerticalAlignment.Stretch}"/>
+        		<DiscreteObjectKeyFrame KeyTime="0:0:0.2" Value="{x:Static VerticalAlignment.Stretch}"/>
+        	</ObjectAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="FadeInColorSC">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="201"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="201"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="201"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="FadeInColorSC">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-4.417"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="SafetyCarFadeOut">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SafetyCar">

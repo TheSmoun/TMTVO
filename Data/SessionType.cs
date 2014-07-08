@@ -14,6 +14,7 @@ namespace TMTVO.Data
         Qualifying,
         WarmUp,
         TimeRace,
-        LapRace
+        LapRace,
+        TimeTrial
     }
 }
