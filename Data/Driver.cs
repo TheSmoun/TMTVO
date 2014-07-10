@@ -75,5 +75,14 @@ namespace TMTVO.Data
                 return lastName.Substring(i).ToUpper();
             }
         }
+
+        public string ThreeLetterCode
+        {
+            get
+            {
+                // TODO
+                return "!S!";
+            }
+        }
     }
 }

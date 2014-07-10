@@ -8,32 +8,20 @@
 	x:Class="TMTVO.Widget.RaceBar"
 	d:DesignWidth="640" d:DesignHeight="480" Width="1920" Height="50" Loaded="UserControl_Loaded">
     <UserControl.Resources>
-        <Storyboard x:Key="FadeListIn">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="RaceBarBox">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-        <Storyboard x:Key="FadeListOut">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="RaceBarBox">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
         <Storyboard x:Key="FadeAllIn">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="RaceBarBackground">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="FadeAllOut">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="RaceBarBackground">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
-    <Grid x:Name="RaceBarBackground" Background="#425B5B5B" Width="1920">
+    <Grid x:Name="RaceBarBackground" Background="#425B5B5B" Width="1920" Opacity="0">
         <w:RaceBarItem x:Name="RaceItem1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="340" Margin="131,6,0,0" />
         <w:RaceBarItem x:Name="RaceItem2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="340" Margin="461,6,0,0" />
         <w:RaceBarItem x:Name="RaceItem3" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="340" Margin="792,6,0,0" />

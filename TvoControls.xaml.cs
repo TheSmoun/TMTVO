@@ -134,5 +134,19 @@ namespace TMTVO
         {
             ((TeamRadioModule)tmtvo.Api.FindModule("TeamRadio")).CanShowTeamRadio = false;
         }
+
+        private void ShowHideTiming_Click(object sender, RoutedEventArgs e)
+        {
+            if (window.LiveTiming.Active)
+            {
+                ShowHideTiming.Content = "Show Live Timing";
+                window.LiveTiming.FadeOut();
+            }
+            else
+            {
+                ShowHideTiming.Content = "Hide Live Timing";
+                window.LiveTiming.FadeIn();
+            }
+        }
     }
 }

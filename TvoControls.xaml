@@ -24,8 +24,12 @@
             <Grid x:Name="RaceButtons" Grid.Row="1" Visibility="Hidden">
 
             </Grid>
-            <Grid x:Name="NormalButtons" Grid.Row="1" Visibility="Hidden">
-
+            <Grid x:Name="NormalButtons" Grid.Row="2" Visibility="Visible">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Button x:Name="ShowHideTiming" Width="150" Height="25" Content="Show Live Timing" Click="ShowHideTiming_Click" />
             </Grid>
         </Grid>
     </Grid>
