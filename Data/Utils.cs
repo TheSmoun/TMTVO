@@ -28,4 +28,17 @@ namespace TMTVO.Data
             return retVal;
         }
     }
+
+
+    internal static class DictHelper
+    {
+        internal static string GetDictValue(this Dictionary<string, object> dict, string key)
+        {
+            object value = null;
+            if (dict.TryGetValue(key, out value) && value is string)
+                return (string)value;
+
+            return null;
+        }
+    }
 }

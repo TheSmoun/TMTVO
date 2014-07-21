@@ -12,30 +12,26 @@ namespace TMTVO.Data.Modules
     public class LiveStandingsModule : Module
     {
         private RaceBar raceBar;
-        public LiveStandingsItem[] Items { get; set; }
+        public List<LiveStandingsItem> Items { get; private set; }
 
         public LiveStandingsModule() : base("LiveStandings")
         {
-
+            Items = new List<LiveStandingsItem>();
         }
 
         public LiveStandingsItem FindDriver(int CarIndex)
         {
-            for (int i = 0; i < Items.Length; i++)
-                if (Items[i].Driver.CarIndex == CarIndex)
-                    return Items[i];
-
-            return null;
+            return Items.Find(i => i.Driver.CarIndex == CarIndex);
         }
 
         public LiveStandingsItem GetLeader()
         {
-            return null;
+            return Items.Find(i => i.Position == 1);
         }
 
         public override void Update(ConfigurationSection rootNode, API api)
         {
-            throw new NotImplementedException();
+            // TODO
         }
     }
 }

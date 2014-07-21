@@ -17,6 +17,11 @@ namespace TMTVO.Data.Modules
             Drivers = new List<Driver>();
         }
 
+        public Driver FindDriver(int CarIdx)
+        {
+            return Drivers.Find(d => d.CarIndex == CarIdx);
+        }
+
         public override void Update(ConfigurationSection rootNode, API api)
         {
             List<Dictionary<string, object>> driverMapList = rootNode.GetMapList("DriverInfo.Drivers");

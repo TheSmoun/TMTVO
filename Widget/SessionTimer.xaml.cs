@@ -245,8 +245,11 @@ namespace TMTVO.Widget
 
         public void UpdateLaps(int drivenLaps, int maxLaps)
         {
-            if (drivenLaps <= 0 || maxLaps <= 0 || drivenLaps > maxLaps || Mode != SessionMode.LapMode)
+            if (drivenLaps < 0 || maxLaps <= 0 || drivenLaps > maxLaps || Mode != SessionMode.LapMode)
+            {
+                LapsText.Text = "-- / --";
                 return;
+            }
 
             if (lastDrivenLaps > 0 && lastDrivenLaps == lastTotalLaps)
                 ChequeredFlag();
@@ -257,7 +260,10 @@ namespace TMTVO.Widget
         public void UpdateTime(int seconds)
         {
             if (seconds < 0 || Mode != SessionMode.TimeMode)
+            {
+                LapText2.Text = "-:--";
                 return;
+            }
 
             if (lastSeconds == 0)
                 ChequeredFlag();

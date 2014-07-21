@@ -43,16 +43,21 @@ namespace TMTVO.Data.Modules
             {
                 string laps = (string)sessionLaps;
                 if (laps.StartsWith("unlimited"))
-                    LapsTotal = -1;
+                    LapsTotal = int.MaxValue;
                 else
                     LapsTotal = int.Parse(laps);
             }
-            // TODO Laps Driven.
+
+            int lapsRemain = (int)api.Sdk.GetData("SessionLapsRemain");
+            this.LapsDriven = LapsTotal - lapsRemain + 1;
             object sessionTime;
             if (session.TryGetValue("SessionTime", out sessionTime) && sessionTime is string)
             {
                 string time = ((string)sessionTime).Substring(0, ((string)sessionTime).Length - 4).Replace('.', ',');
-                TimeTotal = (int)float.Parse(time);
+                if (time.StartsWith("unlim"))
+                    TimeTotal = int.MaxValue;
+                else
+                    TimeTotal = (int)float.Parse(time);
             }
 
             object sessionType;
@@ -147,6 +152,8 @@ namespace TMTVO.Data.Modules
                 SessionFlags = Data.SessionFlags.Green;
 
             //session.StartLight = (SessionStartLights)startlight;
+
+            // TODO Flaggen parsen.
         }
     }
 }
