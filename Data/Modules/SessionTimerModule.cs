@@ -76,13 +76,13 @@ namespace TMTVO.Data.Modules
                         SessionType = Data.SessionType.Qualifying;
                         break;
                     case "Race":
-                        if (LapsTotal == -1)
+                        if (LapsTotal == int.MaxValue)
                             SessionType = Data.SessionType.TimeRace;
                         else
                             SessionType = Data.SessionType.LapRace;
                         break;
                     case "Time Trial":
-                        SessionType = Data.SessionType.TimeTrial; // TODO
+                        SessionType = Data.SessionType.TimeTrial;
                         break;
                     default:
                         SessionType = Data.SessionType.None;

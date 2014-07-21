@@ -245,6 +245,12 @@ namespace TMTVO.Widget
 
         public void UpdateLaps(int drivenLaps, int maxLaps)
         {
+            if (!LapsText.Text.StartsWith("-- / --") && SessionMode.LapMode == Mode && (drivenLaps < 0 || maxLaps <= 0 || drivenLaps > maxLaps))
+            {
+                ChequeredFlag();
+                return;
+            }
+
             if (drivenLaps < 0 || maxLaps <= 0 || drivenLaps > maxLaps || Mode != SessionMode.LapMode)
             {
                 LapsText.Text = "-- / --";
