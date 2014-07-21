@@ -4,7 +4,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
-	x:Class="TMTVO.WeatherWidget"
+	x:Class="TMTVO.Widget.WeatherWidget"
 	x:Name="UserControl"
 	d:DesignWidth="640" d:DesignHeight="480" Width="675" Height="235">
 
@@ -27,8 +27,11 @@
 					</LinearGradientBrush>
 				</Rectangle.Fill>
 			</Rectangle>
-			<Grid x:Name="RightBody" Margin="0" Width="287" Height="212" VerticalAlignment="Bottom" HorizontalAlignment="Right"/><Grid x:Name="SkiesGrid" Margin="0,13,0,0" Width="287" Height="50" VerticalAlignment="Top" HorizontalAlignment="Right">
-	<TextBlock x:Name="SkiesValue" HorizontalAlignment="Center" TextWrapping="Wrap" Text="PARTLY CLOUDY" VerticalAlignment="Center" Foreground="White" FontFamily="DIN 1451 Std Mittelschrift" FontSize="20" Height="20" Margin="40,0,0,0" Width="150" TextAlignment="Center"/>
+			<Grid x:Name="RightBody" Margin="0" Width="287" Height="212" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+			<Border x:Name="TrackBorder" BorderThickness="1" HorizontalAlignment="Left" Height="212" VerticalAlignment="Top" Width="377"/>
+			<Border x:Name="WindDirectionBorder" BorderThickness="1" HorizontalAlignment="Left" Height="212" VerticalAlignment="Top" Width="377"/><Rectangle x:Name="SelectedRect" Fill="#FF183B50" HorizontalAlignment="Left" Height="48" VerticalAlignment="Top" Width="285" StrokeThickness="0" Margin="1,15,0,0"/>
+		<Grid x:Name="SkiesGrid" Margin="0,13,0,0" Width="287" Height="50" VerticalAlignment="Top" HorizontalAlignment="Right">
+			<TextBlock x:Name="SkiesValue" HorizontalAlignment="Center" TextWrapping="Wrap" Text="PARTLY CLOUDY" VerticalAlignment="Center" Foreground="White" FontFamily="DIN 1451 Std Mittelschrift" FontSize="20" Height="20" Margin="40,0,0,0" Width="150" TextAlignment="Center"/>
 </Grid>
 				<Grid x:Name="TempGrid" Margin="0,0,0,93" Width="287" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right">
 					<Grid x:Name="AirTempGrid" Margin="0" Width="287" Height="23" VerticalAlignment="Top" HorizontalAlignment="Right">

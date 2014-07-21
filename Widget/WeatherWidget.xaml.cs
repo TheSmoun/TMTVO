@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TMTVO
+namespace TMTVO.Widget
 {
 	/// <summary>
 	/// Interaktionslogik für WeatherWidget.xaml
