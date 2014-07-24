@@ -33,6 +33,11 @@ namespace TMTVO.Api
             components.Remove(c);
         }
 
+        public void ClearComponents()
+        {
+            components.Clear();
+        }
+
         public void UpdateComponents()
         {
             foreach (Component c in components) {

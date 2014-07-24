@@ -52,5 +52,11 @@ namespace TMTVO
         {
             InitializeComponent();
         }
+
+        private void Overlay_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            Visibility = Visibility.Hidden;
+        }
     }
 }

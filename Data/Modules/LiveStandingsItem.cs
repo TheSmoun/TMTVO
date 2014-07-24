@@ -35,10 +35,10 @@ namespace TMTVO.Data.Modules
             Position = int.Parse(dict.GetDictValue("Position"));
             ClassPosition = int.Parse(dict.GetDictValue("ClassPosition")) + 1;
             GapLaps = int.Parse(dict.GetDictValue("Lap"));
-            GapTime = float.Parse(dict.GetDictValue("Time"));
+            GapTime = float.Parse(dict.GetDictValue("Time").Replace('.', ','));
             FastestLapNumber = int.Parse(dict.GetDictValue("FastestLap"));
-            FastestLapTime = float.Parse(dict.GetDictValue("FastestTime"));
-            LastLapTime = float.Parse(dict.GetDictValue("LastTime"));
+            FastestLapTime = float.Parse(dict.GetDictValue("FastestTime").Replace('.', ','));
+            LastLapTime = float.Parse(dict.GetDictValue("LastTime").Replace('.', ','));
             LapsLed = int.Parse(dict.GetDictValue("LapsLed"));
             LapsComplete = int.Parse(dict.GetDictValue("LapsComplete"));
             Incidents = int.Parse(dict.GetDictValue("Incidents"));

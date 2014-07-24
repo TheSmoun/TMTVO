@@ -148,5 +148,10 @@ namespace TMTVO
                 window.LiveTiming.FadeIn();
             }
         }
+
+        private void TimingMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            window.LiveTiming.Mode = (LiveTimingItemMode)((ComboBox)sender).SelectedIndex;
+        }
     }
 }

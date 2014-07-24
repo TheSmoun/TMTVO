@@ -20,53 +20,68 @@ namespace TMTVO.Widget
     /// </summary>
     public partial class LiveTimingItem : UserControl
     {
-        public TMTVO.Data.Modules.LiveStandingsItem Item { get; private set; }
+        public LiveStandingsItem Item { get; private set; }
         public LiveStandingsModule Module { get; set; }
 
-        private float oldTime = float.MaxValue;
-        private int oldPosition = int.MaxValue;
+        public int OldPosition = -1;
+        private float oldTime = -1;
+        private LiveTimingItemMode mode;
 
         public LiveTimingItem()
         {
             this.InitializeComponent();
         }
 
-        public void LapTimeImproved()
+        private void LapTimeImproved()
         {
-            updateWidget();
+            UpdateWidget();
 
             Storyboard sb = FindResource("TimeImproved") as Storyboard;
             sb.Begin();
         }
 
-        public void PositionImproved()
+        private void PositionImproved()
         {
-            updateWidget();
+            UpdateWidget();
 
             Storyboard sb = FindResource("PositionImproved") as Storyboard;
             sb.Begin();
         }
 
-        private void updateWidget()
+        private void UpdateWidget()
         {
             int position = Item.Position;
             float time = Item.FastestLapTime;
 
             if (position == 1)
             {
-                BackgroundLeader.Visibility = Visibility.Visible;
-                BackgroundLeader1.Visibility = Visibility.Visible;
-                NumberLeader.Visibility = Visibility.Visible;
+                switch (mode)
+                {
+                    case LiveTimingItemMode.LastName:
+                        GapText.Visibility = Visibility.Hidden;
+                        ThreeLetterCode.Text = Item.Driver.LastUpperName;
+                        break;
+                    default:
+                        GapText.Visibility = Visibility.Visible;
+                        ThreeLetterCode.Text = Item.Driver.ThreeLetterCode;
+                        BackgroundLeader.Visibility = Visibility.Visible;
+                        BackgroundLeader1.Visibility = Visibility.Visible;
+                        NumberLeader.Visibility = Visibility.Visible;
 
-                int min = (int)(time / 60);
-                float sectime = time % 60;
-                StringBuilder sb = new StringBuilder();
-                if (min > 0)
-                    sb.Append(min).Append(':');
+                        int min = (int)(time / 60);
+                        float sectime = time % 60;
+                        StringBuilder sb = new StringBuilder();
+                        if (min > 0)
+                            sb.Append(min).Append(':');
 
-                sb.Append(sectime.ToString("00.000"));
+                        sb.Append(sectime.ToString("00.000"));
 
-                GapText.Text = sb.ToString();
+                        GapText.Text = sb.ToString().Replace(',','.');
+
+                        if (time != oldTime)
+                            UpdateDiff();
+                        break;
+                }
             }
             else
             {
@@ -74,23 +89,47 @@ namespace TMTVO.Widget
                 BackgroundLeader1.Visibility = Visibility.Hidden;
                 NumberLeader.Visibility = Visibility.Hidden;
 
-                float diff = time - Module.GetLeader().FastestLapTime;
-                int min = (int)(diff / 60);
-                float secDiff = diff % 60;
-                StringBuilder sb = new StringBuilder();
-                if (min > 0)
-                    sb.Append(min).Append(':');
+                switch (mode)
+                {
+                    case LiveTimingItemMode.Gap:
+                        GapText.Visibility = Visibility.Visible;
+                        ThreeLetterCode.Text = Item.Driver.ThreeLetterCode;
 
-                sb.Append(secDiff.ToString("00.000"));
+                        float diff = time - Module.GetLeader().FastestLapTime;
+                        int min = (int)(diff / 60);
+                        float secDiff = diff % 60;
+                        StringBuilder sb = new StringBuilder();
+                        if (min > 0)
+                            sb.Append(min).Append(':');
 
-                GapText.Text = sb.ToString();
+                        sb.Append(secDiff.ToString("0.000"));
+
+                        GapText.Text = sb.ToString().Replace(',', '.');
+                        break;
+                    case LiveTimingItemMode.Time:
+                        GapText.Visibility = Visibility.Visible;
+                        ThreeLetterCode.Text = Item.Driver.ThreeLetterCode;
+
+                        min = (int)(time / 60);
+                        float sectime = time % 60;
+                        sb = new StringBuilder();
+                        if (min > 0)
+                            sb.Append(min).Append(':');
+
+                        sb.Append(sectime.ToString("00.000"));
+
+                        GapText.Text = sb.ToString().Replace(',', '.');
+                        break;
+                    case LiveTimingItemMode.LastName:
+                        GapText.Visibility = Visibility.Hidden;
+                        ThreeLetterCode.Text = Item.Driver.LastUpperName;
+                        break;
+                }
             }
 
-            ThreeLetterCode.Text = Item.Driver.ThreeLetterCode;
             Position.Text = position.ToString();
-
             oldTime = time;
-            oldPosition = position;
+            OldPosition = position;
         }
 
         public void JoinedPit()
@@ -113,12 +152,18 @@ namespace TMTVO.Widget
             Flag.Visibility = Visibility.Hidden;
         }
 
-        public void Tick()
+        public void Tick(LiveStandingsItem item, LiveTimingItemMode mode)
         {
-            if (Item.Position < oldPosition)
+            this.Item = item;
+            this.mode = mode;
+            this.Module = TMTVO.Controller.TMTVO.Instance.Api.FindModule("LiveStandings") as LiveStandingsModule;
+
+            if (Item.Position < OldPosition)
                 PositionImproved();
             else if (Item.FastestLapTime < oldTime)
                 LapTimeImproved();
+            else
+                UpdateWidget();
         }
 
         public void UpdateDiff()
@@ -134,5 +179,12 @@ namespace TMTVO.Widget
 
             GapText.Text = sb.ToString();
         }
+    }
+
+    public enum LiveTimingItemMode : int
+    {
+        Gap = 0,
+        Time = 1,
+        LastName = 2
     }
 }

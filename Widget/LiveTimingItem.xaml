@@ -172,8 +172,8 @@
 					</TransformGroup>
 				</TextBlock.RenderTransform>
 			</TextBlock>
-			<TextBlock x:Name="ThreeLetterCode" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="72" Margin="66.313,1.497,0,-7.997" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="#FFE9E9E9" RenderTransformOrigin="0.5,0.5" Text="HAM" FontSize="30.667">
-				<TextBlock.RenderTransform>
+            <TextBlock x:Name="ThreeLetterCode" HorizontalAlignment="Left" Text="HAM" VerticalAlignment="Center" Height="44.5" Width="188.75" Margin="66.313,0.497,0,-8.997" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" UseLayoutRounding="False" Foreground="#FFE9E9E9" RenderTransformOrigin="0.5,0.5" FontSize="30.667" FontWeight="Bold" TextTrimming="CharacterEllipsis">
+                <TextBlock.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
 						<SkewTransform AngleX="32"/>

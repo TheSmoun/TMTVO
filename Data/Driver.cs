@@ -81,7 +81,7 @@ namespace TMTVO.Data
             get
             {
                 // TODO
-                return "!S!";
+                return this.Initials;
             }
         }
     }

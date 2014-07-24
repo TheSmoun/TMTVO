@@ -40,5 +40,14 @@ namespace TMTVO.Data
 
             return null;
         }
+
+        internal static object Get(this Dictionary<string, object> dict, string key)
+        {
+            object value = null;
+            if (dict.TryGetValue(key, out value))
+                return value;
+
+            return null;
+        }
     }
 }

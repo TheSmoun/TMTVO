@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TMTVO.Data.Modules;
 
 namespace TMTVO.Widget
 {
@@ -20,6 +21,10 @@ namespace TMTVO.Widget
 	public partial class LiveTimingWidget : UserControl, IWidget
 	{
         public bool Active { get; private set; }
+        public LinkedList<LiveTimingItem> Items;
+        public LiveTimingItemMode Mode { get; set; }
+
+        public LiveStandingsModule Module { get; set; }
 
 		public LiveTimingWidget()
 		{
@@ -28,6 +33,7 @@ namespace TMTVO.Widget
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            Items = new LinkedList<LiveTimingItem>();
             int i = 1;
             foreach (UIElement elem in LayoutRoot.Children)
             {
@@ -43,6 +49,8 @@ namespace TMTVO.Widget
                 }
 
                 item.Position.Text = (i++).ToString();
+
+                Items.AddLast(item);
             }
         }
 
@@ -62,7 +70,27 @@ namespace TMTVO.Widget
 
         public void Tick()
         {
-            
+            LinkedListNode<LiveTimingItem> node = Items.First;
+            foreach (LiveStandingsItem item in Module.Items)
+            {
+                LiveTimingItem current = node.Value;
+                current.Tick(item, Mode);
+
+                node = node.Next;
+                if (node == null)
+                {
+                    Items.AddLast(new LiveTimingItem());
+                    node = Items.Last;
+                }
+            }
+
+            foreach (LiveTimingItem item in Items)
+            {
+                if (item.OldPosition == -1)
+                    item.Visibility = Visibility.Hidden;
+                else
+                    item.Visibility = Visibility.Visible;
+            }
         }
     }
 }

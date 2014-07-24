@@ -36,7 +36,6 @@ namespace TMTVO.Controller
         public static TMTVO Launch()
         {
             TMTVO t = TMTVO.Instance;
-            //t.Api = new API(TICKS_PER_SECOND);
             t.Api = new API(TICKS_PER_SECOND);
             t.Window = new MainWindow();
             t.InitalizeModules();
@@ -55,6 +54,7 @@ namespace TMTVO.Controller
             Api.AddModule(new SessionTimerModule(Window.SessionTimer));
             Api.AddModule(new TeamRadioModule(Window.TeamRadio));
             Api.AddModule(new DriverModule());
+            Api.AddModule(new LiveStandingsModule(Window.LiveTiming, Window.RaceBar));
         }
     }
 }
