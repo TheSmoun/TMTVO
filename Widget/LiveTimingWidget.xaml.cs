@@ -71,8 +71,9 @@ namespace TMTVO.Widget
         public void Tick()
         {
             LinkedListNode<LiveTimingItem> node = Items.First;
-            foreach (LiveStandingsItem item in Module.Items)
+            for (int i = 1; i <= Module.Items.Count; i++)
             {
+                LiveStandingsItem item = Module.Items.Find(it => it.Position == i);
                 LiveTimingItem current = node.Value;
                 current.Tick(item, Mode);
 
@@ -88,11 +89,8 @@ namespace TMTVO.Widget
             {
                 if (item.OldPosition == -1)
                     item.Visibility = Visibility.Hidden;
-                else if (item.Visibility == Visibility.Hidden || item.Visibility == Visibility.Collapsed)
-                {
+                else
                     item.Visibility = Visibility.Visible;
-                    item.PositionImproved();
-                }
             }
         }
     }

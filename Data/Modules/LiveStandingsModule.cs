@@ -43,7 +43,6 @@ namespace TMTVO.Data.Modules
                 return;
 
             ClearComponents();
-            Items.Clear();
 
             List<Dictionary<string, object>> sessions = rootNode.GetMapList("SessionInfo.Sessions");
             Dictionary<string, object> session = sessions[sessions.Count - 1];
@@ -51,10 +50,15 @@ namespace TMTVO.Data.Modules
             foreach (Dictionary<string, object> resultPosition in resultPositions)
             {
                 int carIdx = int.Parse(resultPosition.GetDictValue("CarIdx"));
-                LiveStandingsItem item = new LiveStandingsItem(((DriverModule)api.FindModule("DriverModule")).FindDriver(carIdx));
-                this.AddComponent(item);
+                LiveStandingsItem item = Items.Find(i => i.Driver.CarIndex == carIdx);
+                if (item == null)
+                {
+                    item = new LiveStandingsItem(((DriverModule)api.FindModule("DriverModule")).FindDriver(carIdx));
+                    this.AddComponent(item);
+                    Items.Add(item);
+                }
+
                 item.Update(resultPosition, api);
-                Items.Add(item);
             }
 
             Application.Current.Dispatcher.Invoke(new Action(() =>

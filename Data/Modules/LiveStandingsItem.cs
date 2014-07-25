@@ -37,19 +37,28 @@ namespace TMTVO.Data.Modules
         public int Sector { get; private set; }
         public double SectorBegin { get; private set; }
         public SurfaceType Surface { get; private set; }
+        public bool PositionImproved { get; set; }
+        public bool PositionLost { get; set; }
+        public bool LapTimeImproved { get; set; }
+        public bool FirstLapTime { get; private set; }
+
 
         private double prevTime;
+        private bool first;
 
         public LiveStandingsItem(Driver driver)
         {
             this.Driver = driver;
             Laps = new List<Lap>();
+            first = true;
+            FirstLapTime = false;
+            prevTime = float.MaxValue;
         }
 
         public void Update(Dictionary<string, object> dict, API api)
         {
+            prevTime = FastestLapTime;
             double currTime = (double)api.GetData("SessionTime");
-
             OldPosition = Position;
 
             int carIdx = int.Parse(dict.GetDictValue("CarIdx"));
@@ -57,20 +66,26 @@ namespace TMTVO.Data.Modules
                 return;
 
             Position = int.Parse(dict.GetDictValue("Position"));
+            PositionImproved = Position < OldPosition || (OldPosition == 0 && Position != 0) && !first;
+            PositionLost = OldPosition < Position && !first;
             ClassPosition = int.Parse(dict.GetDictValue("ClassPosition")) + 1;
             GapLaps = int.Parse(dict.GetDictValue("Lap"));
             GapTime = float.Parse(dict.GetDictValue("Time").Replace('.', ','));
             FastestLapNumber = int.Parse(dict.GetDictValue("FastestLap"));
-            FastestLapTime = float.Parse(dict.GetDictValue("FastestTime").Replace('.', ','));
+            float newTime = float.Parse(dict.GetDictValue("FastestTime").Replace('.', ','));
+            LapTimeImproved = newTime < FastestLapTime || (newTime != 0 && FastestLapTime == 0) && !first;
+            FastestLapTime = newTime;
             LastLapTime = float.Parse(dict.GetDictValue("LastTime").Replace('.', ','));
             LapsLed = int.Parse(dict.GetDictValue("LapsLed"));
             LapsComplete = int.Parse(dict.GetDictValue("LapsComplete"));
             Incidents = int.Parse(dict.GetDictValue("Incidents"));
+            FirstLapTime = prevTime == 0 && FastestLapTime != 0 && !first;
 
             SurfaceType surfaceType = ((SurfaceType[])api.GetData("CarIdxTrackSurface"))[carIdx];
             InPits = (((bool[])api.GetData("CarIdxOnPitRoad"))[carIdx] || surfaceType == SurfaceType.InPitStall || surfaceType == SurfaceType.NotInWorld);
             Surface = surfaceType;
 
+            /*
             SessionTimerModule sessionTimer = api.FindModule("SessionTimer") as SessionTimerModule;
             SessionsModule sessions = api.FindModule("Sessions") as SessionsModule;
             LiveStandingsModule standings = api.FindModule("LiveStandings") as LiveStandingsModule;
@@ -79,7 +94,7 @@ namespace TMTVO.Data.Modules
             if ((currTime - (double)api.GetData("ReplaySessionTime")) < 2)
                         timeOffset = ((int)api.GetData("ReplayFrameNum") - currTime * 60);
 
-            double curpos = ((double[])api.GetData("CarIdxLapDistPct"))[carIdx];
+            double curpos = (double)((float[])api.GetData("CarIdxLapDistPct"))[carIdx];
 
             double prevpos = PrevTrackPct;
             double prevupdate = PrevTrackPctUpdate;
@@ -162,7 +177,7 @@ namespace TMTVO.Data.Modules
                     {
                         if (curpos > sessions.Track.Sectors[j] && j > Sector)
                         {
-                            Double now = currTime - ((curpos - sessions.Track.Sectors[j]) * (curpos - prevpos));
+                            double now = currTime - ((curpos - sessions.Track.Sectors[j]) * (curpos - prevpos));
                             Sector sector = new Sector();
                             sector.Number = Sector;
                             sector.Time = (float)(now - SectorBegin);
@@ -184,6 +199,9 @@ namespace TMTVO.Data.Modules
             }
 
             prevTime = currTime;
+             * */
+
+            first = false;
         }
     }
 }

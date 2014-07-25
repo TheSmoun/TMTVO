@@ -160,13 +160,14 @@ namespace TMTVO.Widget
             this.mode = mode;
             this.Module = TMTVO.Controller.TMTVO.Instance.Api.FindModule("LiveStandings") as LiveStandingsModule;
 
-            if (Item.Position < Item.OldPosition && Item.Driver.CarIndex != OldCarIdx) // TODO Fix this bug.
+            if (Item.PositionImproved || Item.FirstLapTime)
                 PositionImproved();
-            else if (Item.FastestLapTime < oldTime && Item.Driver.CarIndex == OldCarIdx)
+            else if (Item.LapTimeImproved)
                 LapTimeImproved();
 
             UpdateWidget();
             OldCarIdx = item.Driver.CarIndex;
+            Item.PositionImproved = Item.LapTimeImproved = Item.PositionLost = false;
         }
 
         public void UpdateDiff()
