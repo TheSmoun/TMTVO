@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,11 +60,7 @@ namespace TMTVO.Data
 
         public override string ToString()
         {
-            string lastName = FullName;
-            int i = lastName.LastIndexOf(' ');
-            lastName = lastName.Substring(i);
-
-            return "#" + Car.CarNumber + " " + lastName;
+            return "#" + Car.CarNumber + " " + LastUpperName;
         }
 
         public string LastUpperName
@@ -71,8 +68,13 @@ namespace TMTVO.Data
             get
             {
                 string lastName = FullName;
-                int i = lastName.LastIndexOf(' ');
-                return lastName.Substring(i).ToUpper();
+                string[] names = lastName.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                if (names[names.Length - 1].StartsWith("Jr", true, CultureInfo.CurrentCulture) || names[names.Length - 1].StartsWith("Sr", true, CultureInfo.CurrentCulture))
+                    lastName = names[names.Length - 2] + " " + names[names.Length - 1];
+                else
+                    lastName = names[names.Length - 1];
+
+                return lastName.ToUpper();
             }
         }
 

@@ -24,8 +24,9 @@ namespace TMTVO.Widget
         public LiveStandingsModule Module { get; set; }
 
         public int OldPosition = -1;
-        private float oldTime = -1;
+        private float oldTime = int.MaxValue;
         private LiveTimingItemMode mode;
+        private int OldCarIdx;
 
         public LiveTimingItem()
         {
@@ -34,16 +35,12 @@ namespace TMTVO.Widget
 
         private void LapTimeImproved()
         {
-            UpdateWidget();
-
             Storyboard sb = FindResource("TimeImproved") as Storyboard;
             sb.Begin();
         }
 
-        private void PositionImproved()
+        public void PositionImproved()
         {
-            UpdateWidget();
-
             Storyboard sb = FindResource("PositionImproved") as Storyboard;
             sb.Begin();
         }
@@ -127,6 +124,11 @@ namespace TMTVO.Widget
                 }
             }
 
+            if (Item.InPits)
+                JoinedPit();
+            else
+                LeftPit();
+
             Position.Text = position.ToString();
             oldTime = time;
             OldPosition = position;
@@ -158,12 +160,14 @@ namespace TMTVO.Widget
             this.mode = mode;
             this.Module = TMTVO.Controller.TMTVO.Instance.Api.FindModule("LiveStandings") as LiveStandingsModule;
 
-            if (Item.Position < OldPosition)
+            if (Item.Position < Item.OldPosition && Item.Driver.CarIndex != OldCarIdx) // TODO Fix this bug.
                 PositionImproved();
-            else if (Item.FastestLapTime < oldTime)
+            else if (Item.FastestLapTime < oldTime && Item.Driver.CarIndex == OldCarIdx)
                 LapTimeImproved();
-            else
-                UpdateWidget();
+
+            UpdateWidget();
+
+            OldCarIdx = item.Driver.CarIndex;
         }
 
         public void UpdateDiff()

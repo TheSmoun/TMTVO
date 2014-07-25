@@ -11,6 +11,7 @@ namespace TMTVO.Api
 {
     public sealed class API
     {
+        public double CurrentTime { get; private set; }
         public iRacingSDK Sdk { get; private set; }
         public bool Run { get; set; }
         public bool IsConnected
@@ -41,6 +42,7 @@ namespace TMTVO.Api
             {
                 long start = Environment.TickCount;
 
+                CurrentTime = (double)Sdk.GetData("SessionTime");
                 UpdateModules();
 
                 long end = Environment.TickCount;

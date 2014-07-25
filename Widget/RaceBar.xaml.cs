@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Timers;
+using TMTVO.Data.Modules;
 
 namespace TMTVO.Widget
 {
@@ -20,6 +21,7 @@ namespace TMTVO.Widget
 	public partial class RaceBar : UserControl, IWidget
 	{
         public bool Active { get; private set; }
+        public LiveStandingsModule Module { get; set; }
 
 		public RaceBar()
 		{

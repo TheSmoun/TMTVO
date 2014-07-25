@@ -24,7 +24,7 @@ namespace TMTVO.Data.Modules
             this.liveTiming.Module = this;
 
             this.raceBar = raceBar;
-            //this.raceBar.Module = this;
+            this.raceBar.Module = this;
         }
 
         public LiveStandingsItem FindDriver(int CarIndex)
@@ -53,7 +53,7 @@ namespace TMTVO.Data.Modules
                 int carIdx = int.Parse(resultPosition.GetDictValue("CarIdx"));
                 LiveStandingsItem item = new LiveStandingsItem(((DriverModule)api.FindModule("DriverModule")).FindDriver(carIdx));
                 this.AddComponent(item);
-                item.Update(resultPosition);
+                item.Update(resultPosition, api);
                 Items.Add(item);
             }
 

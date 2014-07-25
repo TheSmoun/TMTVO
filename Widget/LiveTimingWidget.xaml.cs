@@ -88,8 +88,11 @@ namespace TMTVO.Widget
             {
                 if (item.OldPosition == -1)
                     item.Visibility = Visibility.Hidden;
-                else
+                else if (item.Visibility == Visibility.Hidden || item.Visibility == Visibility.Collapsed)
+                {
                     item.Visibility = Visibility.Visible;
+                    item.PositionImproved();
+                }
             }
         }
     }
