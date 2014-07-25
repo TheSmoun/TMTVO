@@ -26,16 +26,7 @@ namespace TMTVO.Data.Modules
 
         public override void Update(ConfigurationSection rootNode, API api)
         {
-            Dictionary<string, object> map = rootNode.GetMapList("RadioInfo.Radios")[0];
-            object radioObject = null;
-            if (!map.TryGetValue("Frequencies", out radioObject) || !(radioObject is List<Dictionary<string, object>>))
-                return;
-
-            Dictionary<string, object> radio = ((List<Dictionary<string, object>>)radioObject)[0];
-            object car = null;
-            if (map.TryGetValue("CarIdx", out car) && car is string)
-                SpeekingCarIndex = int.Parse((string)car);
-
+            SpeekingCarIndex= (int)api.GetData("RadioTransmitCarIdx");
             if (canShowTeamRadio)
                 Application.Current.Dispatcher.Invoke(new Action(() =>
                 {

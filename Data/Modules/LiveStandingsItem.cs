@@ -12,6 +12,7 @@ namespace TMTVO.Data.Modules
         public Driver Driver { get; private set; }
         public List<Lap> Laps { get; private set; }
         public Lap CurrentLap { get; private set; }
+        public Lap PreviousLap { get; private set; }
         public int Position { get; private set; }
         public int OldPosition { get; private set; }
         public int ClassPosition { get; private set; }
@@ -20,11 +21,24 @@ namespace TMTVO.Data.Modules
         public float LastLapTime { get; private set; }
         public float GapTime { get; private set; }
         public int GapLaps { get; private set; }
+        public float GapLive { get; private set; }
         public int LapsLed { get; private set; }
+        public int ClassLapsLed { get; private set; }
         public int LapsComplete { get; private set; }
         public int Incidents { get; private set; }
         public double LapBegin { get; private set; }
         public bool InPits { get; private set; }
+        public bool Finished { get; private set; }
+        public float Speed { get; private set; }
+        public double PrevSpeed { get; private set; }
+        public double CurrentTrackPct { get; private set; }
+        public double PrevTrackPct { get; private set; }
+        public double PrevTrackPctUpdate { get; private set; }
+        public int Sector { get; private set; }
+        public double SectorBegin { get; private set; }
+        public SurfaceType Surface { get; private set; }
+
+        private double prevTime;
 
         public LiveStandingsItem(Driver driver)
         {
@@ -34,6 +48,8 @@ namespace TMTVO.Data.Modules
 
         public void Update(Dictionary<string, object> dict, API api)
         {
+            double currTime = (double)api.GetData("SessionTime");
+
             OldPosition = Position;
 
             int carIdx = int.Parse(dict.GetDictValue("CarIdx"));
@@ -51,8 +67,123 @@ namespace TMTVO.Data.Modules
             LapsComplete = int.Parse(dict.GetDictValue("LapsComplete"));
             Incidents = int.Parse(dict.GetDictValue("Incidents"));
 
-            SurfaceType type = ((SurfaceType[])api.GetData("CarIdxTrackSurface"))[carIdx];
-            InPits = (((bool[])api.GetData("CarIdxOnPitRoad"))[carIdx] || type == SurfaceType.InPitStall || type == SurfaceType.NotInWorld);
+            SurfaceType surfaceType = ((SurfaceType[])api.GetData("CarIdxTrackSurface"))[carIdx];
+            InPits = (((bool[])api.GetData("CarIdxOnPitRoad"))[carIdx] || surfaceType == SurfaceType.InPitStall || surfaceType == SurfaceType.NotInWorld);
+            Surface = surfaceType;
+
+            SessionTimerModule sessionTimer = api.FindModule("SessionTimer") as SessionTimerModule;
+            SessionsModule sessions = api.FindModule("Sessions") as SessionsModule;
+            LiveStandingsModule standings = api.FindModule("LiveStandings") as LiveStandingsModule;
+
+            double timeOffset = 0;
+            if ((currTime - (double)api.GetData("ReplaySessionTime")) < 2)
+                        timeOffset = ((int)api.GetData("ReplayFrameNum") - currTime * 60);
+
+            double curpos = ((double[])api.GetData("CarIdxLapDistPct"))[carIdx];
+
+            double prevpos = PrevTrackPct;
+            double prevupdate = PrevTrackPctUpdate;
+
+            CurrentLap.ReplayPos = (int)(((double)api.GetData("SessionTime") * 60) + timeOffset);
+
+            if (currTime > prevupdate && curpos != prevpos)
+            {
+                float speed = 0;
+
+                if (curpos < 0.1 && prevpos > 0.9)
+                    speed = (float)((((curpos - prevpos) + 1) * (double)sessions.Track.Length) / (currTime - prevupdate));
+                else
+                    speed = (float)(((curpos - prevpos) * (double)sessions.Track.Length) / (currTime - prevupdate));
+
+                if (Math.Abs(PrevSpeed - speed) < 1 && (curpos - prevpos) >= 0)
+                    Speed = speed;
+
+                PrevSpeed = speed;
+                PrevTrackPct = curpos;
+                PrevTrackPctUpdate = currTime;
+
+                int lapNumber = ((int[])api.GetData("CarIdxLap"))[carIdx];
+
+                if (!Finished && surfaceType != SurfaceType.NotInWorld)
+                    CurrentTrackPct = lapNumber + curpos - 1;
+
+                if (curpos < 0.1 && prevpos > 0.9 && !Finished)
+                {
+                    if (sessionTimer.SessionType != SessionType.LapRace && sessionTimer.SessionType != SessionType.TimeRace)
+                        Finished = true;
+
+                    if (surfaceType != SurfaceType.NotInWorld && speed > 0)
+                    {
+                        double now = currTime - ((curpos / (1 + curpos - prevpos)) * (currTime - prevTime));
+
+                        Sector sector = new Sector();
+                        sector.Number = Sector;
+                        sector.Speed = Speed;
+                        sector.Time = (float)(now - SectorBegin);
+                        sector.Begin = SectorBegin;
+
+                        CurrentLap.Sectors.Add(sector);
+                        CurrentLap.Time = (float)(now - LapBegin);
+                        CurrentLap.ClassPosition = ClassPosition;
+                        if (sessionTimer.SessionType == SessionType.LapRace || sessionTimer.SessionType == SessionType.TimeRace)
+                            CurrentLap.Gap = (float)GapLive;
+                        else
+                            CurrentLap.Gap = CurrentLap.Time - standings.GetLeader().FastestLapTime;
+                        CurrentLap.GapLaps = 0;
+
+
+                        if (CurrentLap.LapNumber > 0 && Laps.FindIndex(l => l.LapNumber.Equals(CurrentLap.LapNumber)) == -1 &&
+                            (sessionTimer.SessionState != SessionState.Gridding || sessionTimer.SessionState != SessionState.Cooldown))
+                        {
+                            Laps.Add(CurrentLap);
+                        }
+
+                        CurrentLap = new Lap();
+                        CurrentLap.LapNumber = ((int[])api.GetData("CarIdxLap"))[carIdx];
+                        CurrentLap.Gap = PreviousLap.Gap;
+                        CurrentLap.GapLaps = PreviousLap.GapLaps;
+                        CurrentLap.ReplayPos = (int)(((double)api.GetData("SessionTime") * 60) + timeOffset);
+                        CurrentLap.SessionTime = now;
+                        SectorBegin = now;
+                        Sector = 0;
+                        LapBegin = now;
+
+                        if (sessionTimer.SessionFlags == SessionFlags.Yellow && Position == 1) ;
+                            sessionTimer.CautionLaps++;
+
+                        if (ClassPosition == 1 && CurrentLap.LapNumber > 1)
+                            ClassLapsLed++;
+                    }
+                }
+
+                if (sessions.Track.Sectors.Count > 0 && Driver.CarIndex >= 0)
+                {
+                    for (int j = 0; j < sessions.Track.Sectors.Count; j++)
+                    {
+                        if (curpos > sessions.Track.Sectors[j] && j > Sector)
+                        {
+                            Double now = currTime - ((curpos - sessions.Track.Sectors[j]) * (curpos - prevpos));
+                            Sector sector = new Sector();
+                            sector.Number = Sector;
+                            sector.Time = (float)(now - SectorBegin);
+                            sector.Speed = Speed;
+                            sector.Begin = SectorBegin;
+                            CurrentLap.Sectors.Add(sector);
+                            SectorBegin = now;
+                            Sector = j;
+                        }
+                    }
+                }
+
+                if (CurrentLap.LapNumber + CurrentLap.GapLaps >= sessionTimer.LapsTotal && surfaceType != SurfaceType.NotInWorld &&
+                    (sessionTimer.SessionType == SessionType.LapRace || sessionTimer.SessionType == SessionType.TimeRace) && !Finished)
+                {
+                    CurrentTrackPct = (Math.Floor(CurrentTrackPct) + 0.0064) - (0.0001 * Position);
+                    Finished = true;
+                }                  
+            }
+
+            prevTime = currTime;
         }
     }
 }

@@ -22,5 +22,6 @@ namespace TMTVO.Data
         public float PitSpeedLimit { get; set; }
         public TrackType TrackType { get; set; }
         public Weather Weather { get; set; }
+        public List<float> Sectors { get; set; }
     }
 }

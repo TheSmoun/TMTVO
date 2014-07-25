@@ -20,12 +20,15 @@ namespace TMTVO.Data.Modules
         public int TimeRemaining { get; private set; }
         public SessionType SessionType { get; private set; }
         public SessionFlags SessionFlags { get; private set; }
+        public SessionState SessionState { get; private set; }
+        public int CautionLaps { get; set; }
 
         public SessionTimerModule(SessionTimer sessionTimer) : base("SessionTimer")
         {
             this.sessionTimer = sessionTimer;
             sessionTimer.Module = this;
             this.TimeTotal = 0;
+            CautionLaps = 0;
         }
 
         public override void Update(ConfigurationSection rootNode, API api)

@@ -166,7 +166,6 @@ namespace TMTVO.Widget
                 LapTimeImproved();
 
             UpdateWidget();
-
             OldCarIdx = item.Driver.CarIndex;
         }
 
@@ -180,7 +179,6 @@ namespace TMTVO.Widget
                 sb.Append(min).Append(':');
 
             sb.Append(secDiff.ToString("00.000"));
-
             GapText.Text = sb.ToString();
         }
     }
