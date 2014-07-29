@@ -13,7 +13,7 @@ namespace TMTVO.Data.Modules
     {
         private LapTimerLeft lapTimer;
 
-        public LeftLaptimeModule(LapTimerLeft lapTimer, Driver driver) : base(driver, "LeftLapTimer")
+        public LeftLaptimeModule(LapTimerLeft lapTimer) : base( "LeftLapTimer")
         {
             this.lapTimer = lapTimer;
         }
@@ -23,7 +23,7 @@ namespace TMTVO.Data.Modules
             if (!lapTimer.Active)
                 return;
 
-            throw new NotImplementedException();
+            lapTimer.Tick();
         }
     }
 }

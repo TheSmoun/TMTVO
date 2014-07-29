@@ -31,7 +31,7 @@ namespace TMTVO.Data
             get
             {
                 if (Car.CarNumber != null)
-                    return Int32.Parse(Car.CarNumber);
+                    return int.Parse(Car.CarNumber);
                 else return 0;
             }
         }

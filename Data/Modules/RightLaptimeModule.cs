@@ -10,7 +10,7 @@ namespace TMTVO.Data.Modules
 {
     public class RightLaptimeModule : LaptimeModule
     {
-        public RightLaptimeModule(Driver driver) : base(driver, "RightLapTimer")
+        public RightLaptimeModule() : base("RightLapTimer")
         {
             // TODO LapTimer
         }

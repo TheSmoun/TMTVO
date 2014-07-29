@@ -9,11 +9,6 @@ namespace TMTVO.Data.Modules
 {
     public abstract class LaptimeModule : Module
     {
-        protected Driver Driver { get; private set; }
-
-        public LaptimeModule(Driver driver, string name) : base(name)
-        {
-            this.Driver = driver;
-        }
+        public LaptimeModule(string name) : base(name) { }
     }
 }

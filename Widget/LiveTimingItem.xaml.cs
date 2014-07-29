@@ -95,7 +95,7 @@ namespace TMTVO.Widget
                         float diff = time - Module.GetLeader().FastestLapTime;
                         int min = (int)(diff / 60);
                         float secDiff = diff % 60;
-                        StringBuilder sb = new StringBuilder();
+                        StringBuilder sb = new StringBuilder("+");
                         if (min > 0)
                             sb.Append(min).Append(':');
 
@@ -160,12 +160,12 @@ namespace TMTVO.Widget
             this.mode = mode;
             this.Module = TMTVO.Controller.TMTVO.Instance.Api.FindModule("LiveStandings") as LiveStandingsModule;
 
-            if (Item.PositionImproved || Item.FirstLapTime)
+            UpdateWidget();
+            if (Item.PositionImproved)
                 PositionImproved();
             else if (Item.LapTimeImproved)
                 LapTimeImproved();
 
-            UpdateWidget();
             OldCarIdx = item.Driver.CarIndex;
             Item.PositionImproved = Item.LapTimeImproved = Item.PositionLost = false;
         }

@@ -56,6 +56,7 @@ namespace TMTVO.Controller
             Api.AddModule(new TeamRadioModule(Window.TeamRadio));
             Api.AddModule(new DriverModule());
             Api.AddModule(new LiveStandingsModule(Window.LiveTiming, Window.RaceBar));
+            Api.AddModule(new LeftLaptimeModule(Window.LapTimerLeft));
         }
     }
 }

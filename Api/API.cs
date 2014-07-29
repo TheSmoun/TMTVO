@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using Yaml;
 
 namespace TMTVO.Api
@@ -45,9 +46,14 @@ namespace TMTVO.Api
                 CurrentTime = (double)Sdk.GetData("SessionTime");
                 UpdateModules();
 
+                Application.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    TMTVO.Controller.TMTVO.Instance.TvoControls.UpdateWindow();
+                }));
+
                 long end = Environment.TickCount;
 
-                int sleepTime = (int) (maxDelay - (end - start));
+                int sleepTime = (int)(maxDelay - (end - start));
                 if (sleepTime < 0)
                 {
                     Console.WriteLine("System overloaded!");
@@ -101,7 +107,7 @@ namespace TMTVO.Api
             }
             catch (ThreadStateException)
             {
-                #pragma warning disable
+#pragma warning disable
                 thread.Resume();
             }
         }
@@ -113,7 +119,7 @@ namespace TMTVO.Api
 
         public void Stop()
         {
-            #pragma warning disable
+#pragma warning disable
             thread.Suspend();
         }
 

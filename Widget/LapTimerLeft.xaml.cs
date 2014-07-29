@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using System.Threading;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,11 +23,12 @@ namespace TMTVO.Widget
 	/// </summary>
 	public partial class LapTimerLeft : UserControl, ILapTimer
 	{
-        private System.Timers.Timer updateCd;
+        private Timer updateCd;
         private bool canUpdate;
 
-        //public Stopwatch Stopwatch { get { return LapDriver.Stopwatch; } }
-        public Thread Thread { get; private set; }
+        private bool gapVisible;
+        private bool posVisible;
+
         public LiveStandingsItem LapDriver { get; private set; }
         public bool Active { get; private set; }
 
@@ -41,6 +41,8 @@ namespace TMTVO.Widget
         {
             Active = false;
             canUpdate = false;
+
+            gapVisible = posVisible = false;
         }
 
         public void FadeIn(LiveStandingsItem driver)
@@ -53,12 +55,8 @@ namespace TMTVO.Widget
             this.canUpdate = true;
 
             this.DriversName.Text = driver.Driver.LastUpperName;
-            this.DriversNumber.Text = driver.Driver.Car.CarNumber;
+            this.DriversNumber.Text = driver.Driver.NumberPlateInt.ToString();
             // TODO ClassColor
-
-            this.Thread = new Thread(Run);
-            TimeText.Text = "0.0    ";
-            Thread.Start();
 
             Storyboard sb = FindResource("FadeIn") as Storyboard;
             sb.Begin();
@@ -73,12 +71,28 @@ namespace TMTVO.Widget
             this.canUpdate = true;
 
             Storyboard sb = FindResource("FadeOut") as Storyboard;
-            sb.Begin(); // TODO Pos und Gap Ausblenden
+            sb.Begin();
+
+            if (gapVisible)
+            {
+                gapVisible = false;
+                Storyboard sb1 = FindResource("HideGap") as Storyboard;
+                sb1.Begin();
+            }
+
+            if (posVisible)
+            {
+                posVisible = false;
+                Storyboard sb2 = FindResource("HideNumber") as Storyboard;
+                sb2.Begin();
+            }
+
+            LapDriver = null;
         }
 
         public void SectorComplete()
         {
-            /*if (!Active)
+            if (!Active)
                 return;
 
             canUpdate = false;
@@ -90,15 +104,16 @@ namespace TMTVO.Widget
             if (gap >= 0)
             {
                 BackgroundGreen.Visibility = Visibility.Hidden;
-                Gap.Text = '+' + gap.ToString("0.000");
+                GapTime.Text = '+' + gap.ToString("0.000");
             }
             else
             {
                 BackgroundGreen.Visibility = Visibility.Visible;
-                Gap.Text = gap.ToString("0.000");
+                GapTime.Text = gap.ToString("0.000");
             }
 
-            float seconds = ((float)LapDriver.Stopwatch.ElapsedMilliseconds) / 1000f;
+
+            float seconds = LapDriver.CurrentLap.Time;
 
             float s = seconds % 60;
             int m = (int)(seconds / 60);
@@ -113,13 +128,14 @@ namespace TMTVO.Widget
             sbu.Append(s.ToString("0.000"));
             TimeText.Text = sbu.ToString();
 
+            gapVisible = true;
             Storyboard sb = FindResource("ShowGap") as Storyboard;
-            sb.Begin();*/
+            sb.Begin();
         }
 
         public void LapComplete()
         {
-            /*if (!Active || LapDriver.Stopwatch.ElapsedMilliseconds < 100)
+            if (!Active || LapDriver.CurrentLap.Time < 0.100)
                 return;
 
             SectorComplete();
@@ -132,56 +148,59 @@ namespace TMTVO.Widget
 
             Position.Text = position.ToString();
 
+            posVisible = true;
             Storyboard sb = FindResource("ShowNumber") as Storyboard;
             sb.Begin();
-
-            LapDriver.Stopwatch.Restart();*/
-        }
-
-        private void Run()
-        {
-            /*while (Active)
-            {
-                if (!canUpdate)
-                    continue;
-
-                float seconds = ((float)LapDriver.Stopwatch.ElapsedMilliseconds) / 1000f;
-                if (seconds < 0)
-                    return;
-
-                float s = seconds % 60;
-                int m = (int)(seconds / 60);
-
-                StringBuilder sb = new StringBuilder();
-                if (m != 0)
-                    sb.Append(m).Append(":");
-
-                if (s < 10 && m != 0)
-                    sb.Append("0");
-
-                sb.Append(s.ToString("0.0"));
-                sb.Append("    ");
-
-                Application.Current.Dispatcher.Invoke(new Action(() =>
-                {
-                    if (canUpdate)
-                        TimeText.Text = sb.ToString();
-                }));
-            }
-
-            LapDriver = null;*/
         }
 
         private void TimerElapsed(object sender, ElapsedEventArgs e)
         {
             updateCd.Stop();
             canUpdate = true;
+
+            if (gapVisible)
+            {
+                gapVisible = false;
+                Storyboard sb = FindResource("HideGap") as Storyboard;
+                sb.Begin();
+            }
+
+            if (posVisible)
+            {
+                posVisible = false;
+                Storyboard sb = FindResource("HideNumber") as Storyboard;
+                sb.Begin();
+            }
         }
 
 
         public void Tick()
         {
-            throw new NotImplementedException();
+            if (!canUpdate)
+                return;
+
+            float seconds = LapDriver.CurrentLap.Time;
+            if (seconds < 0)
+                return;
+
+            float s = seconds % 60;
+            int m = (int)(seconds / 60);
+
+            StringBuilder sb = new StringBuilder();
+            if (m != 0)
+                sb.Append(m).Append(":");
+
+            if (s < 10 && m != 0)
+                sb.Append("0");
+
+            sb.Append(s.ToString("0.0"));
+            sb.Append("    ");
+
+            Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                if (canUpdate)
+                    TimeText.Text = sb.ToString();
+            }));
         }
     }
 }

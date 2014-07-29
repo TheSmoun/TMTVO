@@ -62,7 +62,7 @@ namespace TMTVO.Data.Modules
                         driver.UserId = int.Parse((string)kv.Value);
                         break;
                     case "CarNumber":
-                        driver.Car.CarNumber = (string)kv.Value;
+                        driver.Car.CarNumber = ((string)kv.Value).Substring(1, ((string)kv.Value).Length - 2);
                         break;
                     case "CarPath":
                         driver.Car.CarName = (string)kv.Value;

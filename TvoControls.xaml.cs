@@ -27,6 +27,7 @@ namespace TMTVO
         private MainWindow window;
         private Timer t;
         private SessionTimer.SessionMode sessionTimerMode = Widget.SessionTimer.SessionMode.TimeMode;
+        private int driverCount = 0;
 
         public TvoControls(MainWindow window, TMTVO.Controller.TMTVO tmtvo)
         {
@@ -35,11 +36,25 @@ namespace TMTVO
             InitializeComponent();
         }
 
+        public void UpdateWindow()
+        {
+            DriverModule dM = ((DriverModule)tmtvo.Api.FindModule("DriverModule"));
+            if (driverCount == dM.Drivers.Count)
+                return;
+
+            int selIdx = DriversLeft.SelectedIndex;
+            DriversLeft.Items.Clear();
+            for (int carIdx = 0; carIdx < dM.Drivers.Count; carIdx++)
+            {
+                DriversLeft.Items.Add(dM.Drivers.Find(d => d.CarIndex == carIdx));
+            }
+
+            driverCount = dM.Drivers.Count;
+        }
+
         private void Window_Closed(object sender, EventArgs e)
         {
             tmtvo.Api.Run = false;
-            if (window.LapTimer.Thread != null)
-                window.LapTimer.Thread.Interrupt();
             window.Close();
             Environment.Exit(0);
         }
@@ -104,11 +119,6 @@ namespace TMTVO
                 window.SessionTimer.FadeIn(sessionTimerMode);
         }
 
-        private void SectorCompleteTest_Click(object sender, RoutedEventArgs e)
-        {
-            window.LapTimer.SectorComplete();
-        }
-
         private void SessionTimerMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             switch (((ComboBox)sender).SelectedIndex)
@@ -152,6 +162,30 @@ namespace TMTVO
         private void TimingMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             window.LiveTiming.Mode = (LiveTimingItemMode)((ComboBox)sender).SelectedIndex;
+        }
+
+        private void ShowHideLeftTimer_Click(object sender, RoutedEventArgs e)
+        {
+            if (window.LapTimerLeft.Active)
+            {
+                ShowHideLeftTimer.Content = "Show LapTimer L";
+                window.LapTimerLeft.FadeOut();
+                DriversLeft.IsEnabled = true;
+            }
+            else
+            {
+                int carIdx = DriversLeft.SelectedIndex;
+                if (carIdx == -1)
+                    return;
+
+                LiveStandingsItem driver = ((LiveStandingsModule)tmtvo.Api.FindModule("LiveStandings")).FindDriver(carIdx);
+                if (driver == null)
+                    return;
+
+                ShowHideLeftTimer.Content = "Hide LapTimer L";
+                window.LapTimerLeft.FadeIn(driver);
+                DriversLeft.IsEnabled = false;
+            }
         }
     }
 }

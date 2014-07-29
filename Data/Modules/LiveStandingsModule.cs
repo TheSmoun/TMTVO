@@ -39,11 +39,6 @@ namespace TMTVO.Data.Modules
 
         public override void Update(ConfigurationSection rootNode, API api)
         {
-            if (!liveTiming.Active && !raceBar.Active)
-                return;
-
-            ClearComponents();
-
             List<Dictionary<string, object>> sessions = rootNode.GetMapList("SessionInfo.Sessions");
             Dictionary<string, object> session = sessions[sessions.Count - 1];
             List<Dictionary<string, object>> resultPositions = session.Get("ResultsPositions") as List<Dictionary<string, object>>;

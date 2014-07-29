@@ -40,8 +40,6 @@ namespace TMTVO.Data.Modules
         public bool PositionImproved { get; set; }
         public bool PositionLost { get; set; }
         public bool LapTimeImproved { get; set; }
-        public bool FirstLapTime { get; private set; }
-
 
         private double prevTime;
         private bool first;
@@ -51,13 +49,13 @@ namespace TMTVO.Data.Modules
             this.Driver = driver;
             Laps = new List<Lap>();
             first = true;
-            FirstLapTime = false;
             prevTime = float.MaxValue;
+            CurrentLap = new Lap();
+            PreviousLap = new Lap();
         }
 
         public void Update(Dictionary<string, object> dict, API api)
         {
-            prevTime = FastestLapTime;
             double currTime = (double)api.GetData("SessionTime");
             OldPosition = Position;
 
@@ -79,16 +77,18 @@ namespace TMTVO.Data.Modules
             LapsLed = int.Parse(dict.GetDictValue("LapsLed"));
             LapsComplete = int.Parse(dict.GetDictValue("LapsComplete"));
             Incidents = int.Parse(dict.GetDictValue("Incidents"));
-            FirstLapTime = prevTime == 0 && FastestLapTime != 0 && !first;
 
             SurfaceType surfaceType = ((SurfaceType[])api.GetData("CarIdxTrackSurface"))[carIdx];
             InPits = (((bool[])api.GetData("CarIdxOnPitRoad"))[carIdx] || surfaceType == SurfaceType.InPitStall || surfaceType == SurfaceType.NotInWorld);
             Surface = surfaceType;
 
-            /*
+            // TODO Fix this hole thing
             SessionTimerModule sessionTimer = api.FindModule("SessionTimer") as SessionTimerModule;
             SessionsModule sessions = api.FindModule("Sessions") as SessionsModule;
             LiveStandingsModule standings = api.FindModule("LiveStandings") as LiveStandingsModule;
+
+            if (CurrentLap == null)
+                CurrentLap = new Lap();
 
             double timeOffset = 0;
             if ((currTime - (double)api.GetData("ReplaySessionTime")) < 2)
@@ -101,6 +101,7 @@ namespace TMTVO.Data.Modules
 
             CurrentLap.ReplayPos = (int)(((double)api.GetData("SessionTime") * 60) + timeOffset);
 
+            double now = currTime - ((curpos / (1 + curpos - prevpos)) * (currTime - prevTime));
             if (currTime > prevupdate && curpos != prevpos)
             {
                 float speed = 0;
@@ -129,7 +130,6 @@ namespace TMTVO.Data.Modules
 
                     if (surfaceType != SurfaceType.NotInWorld && speed > 0)
                     {
-                        double now = currTime - ((curpos / (1 + curpos - prevpos)) * (currTime - prevTime));
 
                         Sector sector = new Sector();
                         sector.Number = Sector;
@@ -177,14 +177,14 @@ namespace TMTVO.Data.Modules
                     {
                         if (curpos > sessions.Track.Sectors[j] && j > Sector)
                         {
-                            double now = currTime - ((curpos - sessions.Track.Sectors[j]) * (curpos - prevpos));
+                            double now2 = currTime - ((curpos - sessions.Track.Sectors[j]) * (curpos - prevpos));
                             Sector sector = new Sector();
                             sector.Number = Sector;
-                            sector.Time = (float)(now - SectorBegin);
+                            sector.Time = (float)(now2 - SectorBegin);
                             sector.Speed = Speed;
                             sector.Begin = SectorBegin;
                             CurrentLap.Sectors.Add(sector);
-                            SectorBegin = now;
+                            SectorBegin = now2;
                             Sector = j;
                         }
                     }
@@ -198,9 +198,9 @@ namespace TMTVO.Data.Modules
                 }                  
             }
 
+            CurrentLap.Time = (float)(now - LapBegin);
             prevTime = currTime;
-             * */
-
+            // TODO Fix up to here
             first = false;
         }
     }
