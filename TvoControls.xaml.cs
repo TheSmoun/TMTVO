@@ -187,5 +187,18 @@ namespace TMTVO
                 DriversLeft.IsEnabled = false;
             }
         }
+
+        private void RaceBarToggle_Click(object sender, RoutedEventArgs e)
+        {
+            if (window.RaceBar.Active)
+                window.RaceBar.FadeOut();
+            else
+                window.RaceBar.FadeIn();
+        }
+
+        private void RaceBartModeBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            window.RaceBar.Mode = (RaceBar.RaceBarMode)RaceBartModeBox.SelectedIndex;
+        }
     }
 }

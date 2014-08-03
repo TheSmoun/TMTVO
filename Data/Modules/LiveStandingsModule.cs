@@ -44,7 +44,11 @@ namespace TMTVO.Data.Modules
             List<Dictionary<string, object>> resultPositions = session.Get("ResultsPositions") as List<Dictionary<string, object>>;
             foreach (Dictionary<string, object> resultPosition in resultPositions)
             {
-                int carIdx = int.Parse(resultPosition.GetDictValue("CarIdx"));
+                string s = resultPosition.GetDictValue("CarIdx");
+                if (s == null)
+                    continue;
+
+                int carIdx = int.Parse(s);
                 LiveStandingsItem item = Items.Find(i => i.Driver.CarIndex == carIdx);
                 if (item == null)
                 {

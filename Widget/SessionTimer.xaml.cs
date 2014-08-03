@@ -52,13 +52,19 @@ namespace TMTVO.Widget
 
         public void FadeIn(SessionMode mode)
         {
-            if (mode == SessionMode.LapMode)
-                SwitchToLap();
-            else
-                SwitchToTime();
-
             if (Active)
                 return;
+
+            if (mode == SessionMode.LapMode)
+            {
+                SwitchToLap();
+                UpdateLaps(1, Module.LapsTotal);
+            }
+            else
+            {
+                SwitchToTime();
+                UpdateTime(Module.TimeTotal);
+            }
 
             Active = true;
             Storyboard sb;
