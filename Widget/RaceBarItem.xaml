@@ -146,7 +146,17 @@
 				</TransformGroup>
 			</TextBlock.RenderTransform>
         </TextBlock>
-		<TextBlock x:Name="GapText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="163.46" Margin="158.625,-0.501,-2.085,-5.999" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="+38.547">
+        <TextBlock x:Name="DriverName" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="223.666" Margin="87.79,-0.501,0,-5.999" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="GROSSMANN" TextAlignment="Center" TextTrimming="CharacterEllipsis">
+        	<TextBlock.RenderTransform>
+        		<TransformGroup>
+        			<ScaleTransform/>
+        			<SkewTransform AngleX="32"/>
+        			<RotateTransform/>
+        			<TranslateTransform/>
+        		</TransformGroup>
+        	</TextBlock.RenderTransform>
+        </TextBlock>
+		<TextBlock x:Name="GapText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="163.46" Margin="147.436,-0.501,0,-5.999" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Right" LineHeight="48" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="+38.547">
 			<TextBlock.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>
@@ -155,26 +165,6 @@
 					<TranslateTransform/>
 				</TransformGroup>
 			</TextBlock.RenderTransform>
-        </TextBlock>
-        <TextBlock x:Name="IntText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="163.46" Margin="158.625,-0.501,-2.085,-5.999" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="+38.547" Visibility="Hidden">
-            <TextBlock.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="32"/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </TextBlock.RenderTransform>
-        </TextBlock>
-        <TextBlock x:Name="StopsText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="163.46" Margin="158.625,-0.501,-2.085,-5.999" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="+38.547" Visibility="Hidden">
-            <TextBlock.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="32"/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </TextBlock.RenderTransform>
         </TextBlock>
     </Grid>
 </UserControl>

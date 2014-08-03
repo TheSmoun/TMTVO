@@ -19,6 +19,9 @@ namespace TMTVO.Widget
 	/// </summary>
 	public partial class RaceBarItem : UserControl
 	{
+        public bool Show { get; set; }
+        public bool Active { get; private set; }
+
 		public RaceBarItem()
 		{
 			this.InitializeComponent();
@@ -26,12 +29,20 @@ namespace TMTVO.Widget
 
         public void FadeIn()
         {
+            if (!Show || Active)
+                return;
+
+            Active = true;
             Storyboard sb = FindResource("FadeIn") as Storyboard;
             sb.Begin();
         }
 
         public void FadeOut()
         {
+            if (!Active)
+                return;
+
+            Active = false;
             Storyboard sb = FindResource("FadeOut") as Storyboard;
             sb.Begin();
         }

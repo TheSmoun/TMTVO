@@ -52,7 +52,7 @@ namespace TMTVO.Data.Modules
             }
 
             int lapsRemain = (int)api.Sdk.GetData("SessionLapsRemain");
-            this.LapsDriven = LapsTotal - lapsRemain + 1;
+            this.LapsDriven = LapsTotal - lapsRemain;
             object sessionTime;
             if (session.TryGetValue("SessionTime", out sessionTime) && sessionTime is string)
             {
