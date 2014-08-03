@@ -101,7 +101,7 @@ namespace TMTVO.Widget
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
                 pageCooldown.Stop();
-                LoadPage((++pageIndex) % ((Module.Items.Count / 5) + 1));
+                LoadPage((++pageIndex) % (Module.Items.Count / 5));
 
                 foreach (UIElement elem in RaceBarBackground.Children)
                     ((RaceBarItem)elem).FadeIn();
@@ -118,7 +118,8 @@ namespace TMTVO.Widget
             for (int i = index; i < index + 5; i++)
             {
                 RaceBarItem item = (RaceBarItem)items[j++];
-                LiveStandingsItem stItem = Module.Items.Find(it => it.Position == j + (index * 5));
+                int pos = j + (index * 5);
+                LiveStandingsItem stItem = Module.Items.Find(it => it.Position == pos);
                 if (stItem == null)
                 {
                     item.Show = false;
@@ -141,6 +142,8 @@ namespace TMTVO.Widget
                         item.GapText.Visibility = Visibility.Visible;
                         item.DriverName.Visibility = Visibility.Hidden;
 
+                        checkPits(item, stItem);
+
                         item.ThreeLetterCode.Text = stItem.Driver.ThreeLetterCode;
                         if (stItem.Position == 1)
                             item.GapText.Text = "Leader";
@@ -157,6 +160,8 @@ namespace TMTVO.Widget
                         item.GapText.Visibility = Visibility.Visible;
                         item.DriverName.Visibility = Visibility.Hidden;
 
+                        checkPits(item, stItem);
+
                         item.ThreeLetterCode.Text = stItem.Driver.ThreeLetterCode;
                         if (stItem.Position == 1)
                             item.GapText.Text = "Interval";
@@ -165,16 +170,12 @@ namespace TMTVO.Widget
                             LiveStandingsItem stItem2 = Module.Items.Find(it => it.Position == (j + (index * 5)) - 1);
                             float gap = stItem.GapTime - stItem2.GapTime;
                             item.GapText.Text = "+" + gap.ToString("0.000").Replace(',', '.');
-
-                            /*if (stItem.GapLaps == 0)
-                                item.GapText.Text = "+" + stItem.GapTime.ToString("0.000").Replace(',', '.');
-                            else
-                                item.GapText.Text = "+" + stItem.GapLaps.ToString() + (stItem.GapLaps == 1 ? "Lap" : "Laps");*/
                         }
                         break;
                     case RaceBarMode.Name:
                         item.ThreeLetterCode.Visibility = Visibility.Hidden;
                         item.GapText.Visibility = Visibility.Hidden;
+                        item.PitText.Visibility = Visibility.Hidden;
                         item.DriverName.Visibility = Visibility.Visible;
 
                         item.DriverName.Text = stItem.Driver.LastUpperName;
@@ -182,6 +183,20 @@ namespace TMTVO.Widget
                     default:
                         break;
                 }
+            }
+        }
+
+        private void checkPits(RaceBarItem raceBarItem, LiveStandingsItem liveStandingsItem)
+        {
+            if (liveStandingsItem.InPits)
+            {
+                raceBarItem.PitText.Visibility = Visibility.Visible;
+                raceBarItem.GapText.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                raceBarItem.PitText.Visibility = Visibility.Hidden;
+                raceBarItem.GapText.Visibility = Visibility.Visible;
             }
         }
 

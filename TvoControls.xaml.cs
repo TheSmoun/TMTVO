@@ -198,7 +198,7 @@ namespace TMTVO
 
         private void RaceBartModeBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            window.RaceBar.Mode = (RaceBar.RaceBarMode)RaceBartModeBox.SelectedIndex;
+            window.RaceBar.Mode = (RaceBar.RaceBarMode)((ComboBox)sender).SelectedIndex;
         }
     }
 }

@@ -21,7 +21,7 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
-    <Grid x:Name="RaceBarBackground" Background="#425B5B5B" Width="1920" Opacity="0">
+    <Grid x:Name="RaceBarBackground" Background="#BD5B5B5B" Width="1920" Opacity="0">
         <w:RaceBarItem x:Name="RaceItem1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="340" Margin="131,6,0,0" />
         <w:RaceBarItem x:Name="RaceItem2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="340" Margin="461,6,0,0" />
         <w:RaceBarItem x:Name="RaceItem3" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="340" Margin="792,6,0,0" />
