@@ -43,8 +43,11 @@ namespace TMTVO.Api
             {
                 long start = Environment.TickCount;
 
-                CurrentTime = (double)Sdk.GetData("SessionTime");
-                UpdateModules();
+                if (Sdk.IsConnected())
+                {
+                    CurrentTime = (double)Sdk.GetData("SessionTime");
+                    UpdateModules();
+                }
 
                 Application.Current.Dispatcher.Invoke(new Action(() =>
                 {

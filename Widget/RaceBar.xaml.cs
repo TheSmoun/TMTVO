@@ -26,7 +26,6 @@ namespace TMTVO.Widget
 
         public bool Active { get; private set; }
         public LiveStandingsModule Module { get; set; }
-
         public RaceBarMode Mode { get; set; }
 
         private RaceBarMode oldMode;
@@ -59,8 +58,9 @@ namespace TMTVO.Widget
                 return;
 
             Active = true;
-
             pageIndex = 0;
+            LoadPage(pageIndex);
+
             Storyboard sb = FindResource("FadeAllIn") as Storyboard;
             sb.Begin();
 
@@ -78,6 +78,7 @@ namespace TMTVO.Widget
             sb.Begin();
 
             pageTimer.Stop();
+            pageCooldown.Stop();
         }
 
         public void Tick()
@@ -91,18 +92,22 @@ namespace TMTVO.Widget
             {
                 foreach (UIElement elem in RaceBarBackground.Children)
                     ((RaceBarItem)elem).FadeOut();
-
-                pageCooldown.Start();
             }));
+
+            pageCooldown.Start();
         }
 
         private void FadeNewPageIn(object sender, ElapsedEventArgs e)
         {
+            pageCooldown.Stop();
+            if (Module.Items.Count / 5 == 0)
+                pageIndex = (pageIndex + 1) % (Module.Items.Count / 5);
+            else
+                pageIndex = (pageIndex + 1) % ((Module.Items.Count / 5) + 1);
+
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
-                pageCooldown.Stop();
-                LoadPage((++pageIndex) % (Module.Items.Count / 5));
-
+                LoadPage(pageIndex);
                 foreach (UIElement elem in RaceBarBackground.Children)
                     ((RaceBarItem)elem).FadeIn();
             }));

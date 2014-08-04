@@ -58,5 +58,8 @@
                 </ComboBox>
             </Grid>
         </Grid>
+        <StatusBar x:Name="Status" Height="23" VerticalAlignment="Bottom" Grid.Row="1">
+            <StatusBarItem x:Name="StatusText" Content="No connection to iRacing simulator." Margin="5,0,0,0" />
+        </StatusBar>
     </Grid>
 </Window>

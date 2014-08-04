@@ -20,11 +20,12 @@ namespace TMTVO.Widget
 	public partial class RaceBarItem : UserControl
 	{
         public bool Show { get; set; }
-        public bool Active { get; private set; }
+        public bool Active { get; internal set; }
 
 		public RaceBarItem()
 		{
 			this.InitializeComponent();
+            Active = true;
 		}
 
         public void FadeIn()

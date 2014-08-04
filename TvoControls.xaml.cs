@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TMTVO.Api;
 using TMTVO.Data;
 using TMTVO.Data.Modules;
 using TMTVO.Widget;
@@ -28,12 +29,17 @@ namespace TMTVO
         private Timer t;
         private SessionTimer.SessionMode sessionTimerMode = Widget.SessionTimer.SessionMode.TimeMode;
         private int driverCount = 0;
+        private Timer statusBarTimer;
 
         public TvoControls(MainWindow window, TMTVO.Controller.TMTVO tmtvo)
         {
             this.tmtvo = tmtvo;
             this.window = window;
             InitializeComponent();
+
+            statusBarTimer = new Timer(1000);
+            statusBarTimer.Elapsed += updateStatusBar;
+            statusBarTimer.Start();
         }
 
         public void UpdateWindow()
@@ -199,6 +205,17 @@ namespace TMTVO
         private void RaceBartModeBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             window.RaceBar.Mode = (RaceBar.RaceBarMode)((ComboBox)sender).SelectedIndex;
+        }
+
+        private void updateStatusBar(object sender, ElapsedEventArgs e)
+        {
+            Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                if (tmtvo.Api.IsConnected)
+                    StatusText.Content = "iRacing connected.";
+                else
+                    StatusText.Content = "No connection to iRacing simulator.";
+            }));
         }
     }
 }
