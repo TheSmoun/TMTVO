@@ -25,5 +25,10 @@ namespace TMTVO.Data.Modules
 
             lapTimer.Tick();
         }
+
+        public override void Reset()
+        {
+            // TODO Implement
+        }
     }
 }

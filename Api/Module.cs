@@ -50,6 +50,7 @@ namespace TMTVO.Api
             get { return name; }
         }
 
-        public abstract void Update(ConfigurationSection rootNode, API api);    
+        public abstract void Update(ConfigurationSection rootNode, API api);
+        public abstract void Reset();
     }
 }

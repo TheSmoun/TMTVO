@@ -158,5 +158,17 @@ namespace TMTVO.Data.Modules
 
             // TODO Flaggen parsen.
         }
+
+        public override void Reset()
+        {
+            TimeTotal = 0;
+            LapsTotal = 0;
+            LapsDriven = 0;
+            TimeRemaining = 0;
+            SessionType = SessionType.None;
+            SessionFlags = SessionFlags.Invalid;
+            SessionState = SessionState.Invalid;
+            CautionLaps = 0;
+        }
     }
 }

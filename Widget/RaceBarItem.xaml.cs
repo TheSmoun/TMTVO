@@ -25,7 +25,6 @@ namespace TMTVO.Widget
 		public RaceBarItem()
 		{
 			this.InitializeComponent();
-            Active = true;
 		}
 
         public void FadeIn()

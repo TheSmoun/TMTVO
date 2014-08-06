@@ -32,6 +32,7 @@ namespace TMTVO.Widget
         private Timer pageTimer;
         private Timer pageCooldown;
         private int pageIndex;
+        private int oldPageIndex;
 
 		public RaceBar()
 		{
@@ -42,6 +43,7 @@ namespace TMTVO.Widget
         {
             Active = false;
             pageIndex = 0;
+            oldPageIndex = 0;
 
             pageTimer = new Timer(PAGE_DURATION_MS);
             pageTimer.Elapsed += SwitchPage;
@@ -59,7 +61,8 @@ namespace TMTVO.Widget
 
             Active = true;
             pageIndex = 0;
-            LoadPage(pageIndex);
+            oldPageIndex = 0;
+            LoadPage();
 
             Storyboard sb = FindResource("FadeAllIn") as Storyboard;
             sb.Begin();
@@ -88,23 +91,47 @@ namespace TMTVO.Widget
 
         private void SwitchPage(object sender, ElapsedEventArgs e)
         {
+            /*if (Module.Items.Count % 5 == 0)
+                pageIndex = (pageIndex + 1) / (Module.Items.Count % 5);
+            else
+                pageIndex = (pageIndex + 1) / ((Module.Items.Count % 5) + 1);
+             (1 + 1) * 5 < 10*/
+
+            int i = ((pageIndex + 1) * 5 < Module.Items.Count) ? pageIndex + 1 : 0;
+            if (oldPageIndex == i)
+                return;
+
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
                 foreach (UIElement elem in RaceBarBackground.Children)
                     ((RaceBarItem)elem).FadeOut();
-            }));
 
-            pageCooldown.Start();
+                pageCooldown.Start();
+            }));
         }
 
         private void FadeNewPageIn(object sender, ElapsedEventArgs e)
         {
             pageCooldown.Stop();
-            if (Module.Items.Count / 5 == 0)
-                pageIndex = (pageIndex + 1) % (Module.Items.Count / 5);
-            else
-                pageIndex = (pageIndex + 1) % ((Module.Items.Count / 5) + 1);
+            pageIndex = ((pageIndex + 1) * 5 < Module.Items.Count) ? pageIndex + 1 : 0;
 
+            if (oldPageIndex != pageIndex)
+            {
+                LoadPage();
+                oldPageIndex = pageIndex;
+            }
+            else
+            {
+                Application.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    foreach (UIElement elem in RaceBarBackground.Children)
+                        ((RaceBarItem)elem).FadeIn();
+                }));
+            }
+        }
+
+        private void LoadPage()
+        {
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
                 LoadPage(pageIndex);

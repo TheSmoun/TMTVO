@@ -69,5 +69,10 @@ namespace TMTVO.Data.Modules
                     raceBar.Tick();
             }));
         }
+
+        public override void Reset()
+        {
+            Items.Clear();
+        }
     }
 }

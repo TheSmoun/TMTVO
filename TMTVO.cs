@@ -38,14 +38,12 @@ namespace TMTVO.Controller
             TMTVO t = TMTVO.Instance;
             t.Api = new API(TICKS_PER_SECOND);
             t.Window = new MainWindow();
-            t.InitalizeModules();
-
             t.TvoControls = new TvoControls(t.Window, t);
-            t.TvoControls.Show();
-
             t.iRControls = new iRacingControls(t.Api, t.Window, t);
-            t.iRControls.Show();
 
+            t.InitalizeModules();
+            t.TvoControls.Show();
+            t.iRControls.Show();
             return t;
         }
 
@@ -54,9 +52,10 @@ namespace TMTVO.Controller
             Api.AddModule(new SessionsModule());
             Api.AddModule(new SessionTimerModule(Window.SessionTimer));
             Api.AddModule(new TeamRadioModule(Window.TeamRadio));
-            Api.AddModule(new DriverModule());
+            Api.AddModule(new DriverModule(iRControls));
             Api.AddModule(new LiveStandingsModule(Window.LiveTiming, Window.RaceBar));
             Api.AddModule(new LeftLaptimeModule(Window.LapTimerLeft));
+            Api.AddModule(new CameraModule(iRControls));
         }
     }
 }

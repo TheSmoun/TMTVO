@@ -82,7 +82,7 @@ namespace TMTVO.Data
         {
             get
             {
-                return this.Initials + LastUpperName[1];
+                return this.Initials.ToUpper() + LastUpperName[1];
             }
         }
     }

@@ -53,5 +53,11 @@ namespace TMTVO.Data.Modules
                 canShowTeamRadio = value;
             }
         }
+
+        public override void Reset()
+        {
+            this.SpeekingCarIndex = -1;
+            this.CanShowTeamRadio = false;
+        }
     }
 }

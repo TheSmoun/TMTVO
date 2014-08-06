@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TMTVO.Api;
 using Yaml;
 
@@ -11,10 +12,16 @@ namespace TMTVO.Data.Modules
     public class DriverModule : Module
     {
         public List<Driver> Drivers { get; private set; }
+        public int CamCarIndex { get; private set; }
 
-        public DriverModule() : base("DriverModule")
+        private iRacingControls window;
+
+        public DriverModule(iRacingControls window) : base("DriverModule")
         {
             Drivers = new List<Driver>();
+            this.window = window;
+            window.DriverModule = this;
+            CamCarIndex = -1;
         }
 
         public Driver FindDriver(int CarIdx)
@@ -24,7 +31,15 @@ namespace TMTVO.Data.Modules
 
         public override void Update(ConfigurationSection rootNode, API api)
         {
+            int newIndex = (int)api.GetData("CamCarIdx");
+            if (newIndex != CamCarIndex)
+            {
+                CamCarIndex = newIndex;
+                window.UpdateSelectedDriver(CamCarIndex.ToString());
+            }
+
             List<Dictionary<string, object>> driverMapList = rootNode.GetMapList("DriverInfo.Drivers");
+            bool added = false;
             foreach (Dictionary<string, object> dict in driverMapList)
             {
                 object carIndex = null;
@@ -32,9 +47,18 @@ namespace TMTVO.Data.Modules
                 {
                     int carIdx = int.Parse((string)carIndex);
                     if (!driverExists(carIdx))
+                    {
+                        added = true;
                         Drivers.Add(parseDriver(dict));
+                    }
                 }
             }
+
+            if (added)
+                Application.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    TMTVO.Controller.TMTVO.Instance.iRControls.UpdateDrivers();
+                }));
         }
 
         private bool driverExists(int carIdx)
@@ -151,6 +175,11 @@ namespace TMTVO.Data.Modules
             }
 
             return driver;
+        }
+
+        public override void Reset()
+        {
+            Drivers.Clear();
         }
     }
 }

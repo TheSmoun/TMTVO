@@ -64,5 +64,13 @@ namespace TMTVO.Data.Modules
             foreach (Dictionary<string, object> dict in splitTime.GetMapList("Sectors"))
                 Track.Sectors.Add(float.Parse(dict.GetDictValue("SectorStartPct").Replace('.', ',')));
         }
+
+        public override void Reset()
+        {
+            Track = null;
+            Track = new Track();
+            Track.Weather = new Weather();
+            Track.Sectors = new List<float>();
+        }
     }
 }

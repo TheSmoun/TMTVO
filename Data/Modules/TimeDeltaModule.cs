@@ -191,5 +191,10 @@ namespace TMTVO.Data.Modules
         {
             // TODO implement
         }
+
+        public override void Reset()
+        {
+            // TODO implement
+        }
     }
 }

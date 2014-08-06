@@ -48,6 +48,13 @@ namespace TMTVO.Api
                     CurrentTime = (double)Sdk.GetData("SessionTime");
                     UpdateModules();
                 }
+                else
+                {
+                    Sdk.Shutdown();
+                    ResetModules();
+                    Sdk.Startup();
+                    continue;
+                }
 
                 Application.Current.Dispatcher.Invoke(new Action(() =>
                 {
@@ -88,18 +95,22 @@ namespace TMTVO.Api
         public void UpdateModules()
         {
             if (Sdk.IsConnected())
-            {
                 UpdateModules(Sdk.GetSessionInfo());
-            }
         }
 
         public void UpdateModules(string lines)
         {
             ConfigurationSection rootNode = Yaml.Yaml.Parse(lines);
             foreach (Module m in modules)
-            {
                 m.Update(rootNode, this);
-            }
+        }
+
+        public void ResetModules()
+        {
+            foreach (Module m in modules)
+                m.Reset();
+
+            TMTVO.Controller.TMTVO.Instance.iRControls.Reset();
         }
 
         public void Start()
@@ -124,11 +135,12 @@ namespace TMTVO.Api
         {
 #pragma warning disable
             thread.Suspend();
+            ResetModules();
         }
 
         public void HideUI()
         {
-
+            // TODO Implement
         }
 
         public void SwitchCamera(int driver, int camera)
