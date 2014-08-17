@@ -30,11 +30,13 @@ namespace TMTVO
         private SessionTimer.SessionMode sessionTimerMode = Widget.SessionTimer.SessionMode.TimeMode;
         private int driverCount = 0;
         private Timer statusBarTimer;
+        private bool running;
 
         public TvoControls(MainWindow window, TMTVO.Controller.TMTVO tmtvo)
         {
             this.tmtvo = tmtvo;
             this.window = window;
+            running = false;
             InitializeComponent();
 
             statusBarTimer = new Timer(1000);
@@ -58,6 +60,29 @@ namespace TMTVO
             driverCount = dM.Drivers.Count;
         }
 
+        public void UpdateLaunchButton(API api)
+        {
+            if (!api.IsConnected && window.Visibility == Visibility.Visible)
+            {
+                StartStopButton_Click(null, null);
+                StartStopButton.IsEnabled = false;
+            }
+            else if (api.IsConnected)
+            {
+                StartStopButton.IsEnabled = true;
+
+                if (!tmtvo.iRControls.IsVisible)
+                    tmtvo.iRControls.Show();
+            }
+            else
+            {
+                StartStopButton.IsEnabled = false;
+
+                if (tmtvo.iRControls.IsVisible)
+                    tmtvo.iRControls.Hide();
+            }
+        }
+
         private void Window_Closed(object sender, EventArgs e)
         {
             tmtvo.Api.Run = false;
@@ -78,6 +103,8 @@ namespace TMTVO
                 t = new Timer(50);
                 t.Elapsed += ShowGrid;
                 t.Start();
+
+                tmtvo.iRControls.Visibility = Visibility.Visible;
             }
             else
             {
@@ -92,6 +119,8 @@ namespace TMTVO
                         ((IWidget)o).FadeOut();
 
                 tmtvo.Api.Stop();
+
+                tmtvo.iRControls.Visibility = Visibility.Hidden;
             }
         }
 
@@ -216,6 +245,16 @@ namespace TMTVO
                 else
                     StatusText.Content = "No connection to iRacing simulator.";
             }));
+        }
+
+        private void RaceBarLive_Checked(object sender, RoutedEventArgs e)
+        {
+            window.RaceBar.Live = true;
+        }
+
+        private void RaceBarLive_Unchecked(object sender, RoutedEventArgs e)
+        {
+            window.RaceBar.Live = false;
         }
     }
 }

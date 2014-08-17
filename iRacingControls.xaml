@@ -1,7 +1,7 @@
 ﻿<Window x:Class="TMTVO.iRacingControls"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="iRacing Camera Controls" Height="121" Width="514" ResizeMode="NoResize" Name="controlsWindow" WindowStyle="ToolWindow" Loaded="controlsWindow_Loaded">
+        Title="iRacing Camera Controls" Height="121" Width="514" ResizeMode="NoResize" Name="controlsWindow" WindowStyle="ToolWindow" Loaded="controlsWindow_Loaded" Closing="controlsWindow_Closing">
     <Grid Name="grid" Margin="3">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>

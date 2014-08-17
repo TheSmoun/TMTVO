@@ -21,7 +21,6 @@ namespace TMTVO.Data.Modules
         public float LastLapTime { get; private set; }
         public float GapTime { get; private set; }
         public int GapLaps { get; private set; }
-        public float GapLive { get; private set; }
         public int LapsLed { get; private set; }
         public int ClassLapsLed { get; private set; }
         public int LapsComplete { get; private set; }
@@ -40,6 +39,42 @@ namespace TMTVO.Data.Modules
         public bool PositionImproved { get; set; }
         public bool PositionLost { get; set; }
         public bool LapTimeImproved { get; set; }
+
+        public float GapLive
+        {
+            get
+            {
+                if (Position > 1 && Speed > 1)
+                {
+                    TimeDelta delta = ((TimeDeltaModule)TMTVO.Controller.TMTVO.Instance.Api.FindModule("TimeDelta")).TimeDelta;
+                    LiveStandingsModule standings = ((LiveStandingsModule)TMTVO.Controller.TMTVO.Instance.Api.FindModule("LiveStandings"));
+
+                    return (float)delta.GetDelta(this.Driver.CarIndex, standings.FindDriverByPos(Position - 1).Driver.CarIndex).TotalSeconds;
+                }
+                else
+                {
+                    return 0F;
+                }
+            }
+        }
+
+        public float GapLiveLeader
+        {
+            get
+            {
+                if (Position > 1 && Speed > 1)
+                {
+                    TimeDelta delta = ((TimeDeltaModule)TMTVO.Controller.TMTVO.Instance.Api.FindModule("TimeDelta")).TimeDelta;
+                    LiveStandingsModule standings = ((LiveStandingsModule)TMTVO.Controller.TMTVO.Instance.Api.FindModule("LiveStandings"));
+
+                    return (float)delta.GetDelta(this.Driver.CarIndex, standings.FindDriverByPos(1).Driver.CarIndex).TotalSeconds;
+                }
+                else
+                {
+                    return 0F;
+                }
+            }
+        }
 
         private double prevTime;
         private bool first;

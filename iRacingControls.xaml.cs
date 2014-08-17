@@ -55,8 +55,11 @@ namespace TMTVO
 
         public void Reset()
         {
-            cameraSelectComboBox.Items.Clear();
-            driverSelect.Items.Clear();
+            Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                cameraSelectComboBox.Items.Clear();
+                driverSelect.Items.Clear();
+            }));
         }
 
         protected override void OnActivated(EventArgs e)
@@ -232,6 +235,12 @@ namespace TMTVO
         private void uiCheckBox_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void controlsWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            Hide();
         }
     }
 }

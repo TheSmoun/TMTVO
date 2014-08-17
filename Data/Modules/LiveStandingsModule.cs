@@ -32,6 +32,11 @@ namespace TMTVO.Data.Modules
             return Items.Find(i => i.Driver.CarIndex == CarIndex);
         }
 
+        public LiveStandingsItem FindDriverByPos(int position)
+        {
+            return Items.Find(i => i.Position == position);
+        }
+
         public LiveStandingsItem GetLeader()
         {
             return Items.Find(i => i.Position == 1);

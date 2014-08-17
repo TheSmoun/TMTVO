@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TMTVO.Api;
 using TMTVO.Data;
 using TMTVO.Data.Modules;
@@ -43,7 +44,6 @@ namespace TMTVO.Controller
 
             t.InitalizeModules();
             t.TvoControls.Show();
-            t.iRControls.Show();
             return t;
         }
 
@@ -56,6 +56,7 @@ namespace TMTVO.Controller
             Api.AddModule(new LiveStandingsModule(Window.LiveTiming, Window.RaceBar));
             Api.AddModule(new LeftLaptimeModule(Window.LapTimerLeft));
             Api.AddModule(new CameraModule(iRControls));
+            Api.AddModule(new TimeDeltaModule());
         }
     }
 }

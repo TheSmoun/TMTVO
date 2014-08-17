@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using Yaml;
 
@@ -23,16 +24,29 @@ namespace TMTVO.Api
         private readonly int ticksPerSecond;
         private readonly List<Module> modules;
         private Thread thread;
+        private System.Timers.Timer windowUpdater;
 
         public API(int ticksPerSecond)
         {
             this.ticksPerSecond = ticksPerSecond;
             this.thread = new Thread(StartThread);
 
+            windowUpdater = new System.Timers.Timer(500);
+            windowUpdater.Elapsed += UpdateWindows;
+            windowUpdater.Start();
+
             modules = new List<Module>();
             Sdk = new iRacingSDK();
 
             Sdk.Startup();
+        }
+
+        private void UpdateWindows(object sender, ElapsedEventArgs e)
+        {
+            Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                TMTVO.Controller.TMTVO.Instance.TvoControls.UpdateLaunchButton(this);
+            }));
         }
 
         private void RunApi()

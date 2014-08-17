@@ -25,6 +25,7 @@ namespace TMTVO.Widget
         private static readonly double PAGE_SWITCH_COOLDOWN = 500;
 
         public bool Active { get; private set; }
+        public bool Live { get; set; }
         public LiveStandingsModule Module { get; set; }
         public RaceBarMode Mode { get; set; }
 
@@ -42,6 +43,7 @@ namespace TMTVO.Widget
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             Active = false;
+            Live = false;
             pageIndex = 0;
             oldPageIndex = 0;
 
@@ -182,7 +184,10 @@ namespace TMTVO.Widget
                         else
                         {
                             if (stItem.GapLaps == 0)
-                                item.GapText.Text = "+" + stItem.GapTime.ToString("0.000").Replace(',', '.');
+                                if (Live)
+                                    item.GapText.Text = "+" + stItem.GapLiveLeader.ToString("0.000").Replace(',', '.');
+                                else
+                                    item.GapText.Text = "+" + stItem.GapTime.ToString("0.000").Replace(',', '.');
                             else
                                 item.GapText.Text = "+" + stItem.GapLaps.ToString() + (stItem.GapLaps == 1 ? " Lap" : " Laps");
                         }
@@ -199,8 +204,15 @@ namespace TMTVO.Widget
                             item.GapText.Text = "Interval";
                         else
                         {
-                            LiveStandingsItem stItem2 = Module.Items.Find(it => it.Position == (j + (index * 5)) - 1);
-                            float gap = stItem.GapTime - stItem2.GapTime;
+                            float gap = 0;
+                            if (Live)
+                                gap = stItem.GapLive;
+                            else
+                            {
+                                LiveStandingsItem stItem2 = Module.Items.Find(it => it.Position == (j + (index * 5)) - 1);
+                                gap = stItem.GapTime - stItem2.GapTime;
+                            }
+
                             item.GapText.Text = "+" + gap.ToString("0.000").Replace(',', '.');
                         }
                         break;
