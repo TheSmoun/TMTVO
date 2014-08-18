@@ -23,6 +23,9 @@ namespace TMTVO.Widget
 	/// </summary>
 	public partial class LapTimerLeft : UserControl, ILapTimer
 	{
+        protected static readonly float roadPreviewTime = 0.005F;
+        protected static readonly float ovalPreviewTime = 0.002F;
+
         private Timer updateCd;
         private bool canUpdate;
 
@@ -200,6 +203,27 @@ namespace TMTVO.Widget
                 if (canUpdate)
                     TimeText.Text = sb.ToString();
             }));
+
+            List<float> Sectors = ((SessionsModule)TMTVO.Controller.TMTVO.Instance.Api.FindModule("Sessions")).Track.Sectors;
+            for (int i = 0; i < Sectors.Count; i++)
+            {
+                float sector = Sectors[i];
+                if (sector < 0.1F)
+                    continue;
+
+                if (LapDriver.PrevTrackPct <= sector - LapTimerLeft.roadPreviewTime && LapDriver.CurrentTrackPct > sector - LapTimerLeft.roadPreviewTime)
+                {
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        BackgroundRed.Visibility = Visibility.Visible;
+                    
+                    // TOTO Set sector text
+
+                        Storyboard sb1 = FindResource("ShowGap") as Storyboard;
+                        sb1.Begin();
+                    }));
+                }
+            }
 
             // TODO Call sector- and lap-complete-methods.
         }

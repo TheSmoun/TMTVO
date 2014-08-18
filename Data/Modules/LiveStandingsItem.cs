@@ -198,7 +198,7 @@ namespace TMTVO.Data.Modules
                         Sector = 0;
                         LapBegin = now;
 
-                        if (sessionTimer.SessionFlags == SessionFlags.Yellow && Position == 1) ;
+                        if (sessionTimer.SessionFlags == SessionFlag.Yellow && Position == 1) ;
                             sessionTimer.CautionLaps++;
 
                         if (ClassPosition == 1 && CurrentLap.LapNumber > 1)

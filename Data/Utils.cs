@@ -30,7 +30,7 @@ namespace TMTVO.Data
     }
 
 
-    internal static class DictHelper
+    internal static class HelperVoids
     {
         internal static string GetDictValue(this Dictionary<string, object> dict, string key)
         {
@@ -48,6 +48,11 @@ namespace TMTVO.Data
                 return value;
 
             return null;
+        }
+
+        internal static bool FlagSet(this SessionFlag value, SessionFlag flag)
+        {
+            return (value & flag) == flag;
         }
     }
 }

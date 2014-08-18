@@ -19,7 +19,7 @@ namespace TMTVO.Data.Modules
         public int LapsDriven { get; private set; }
         public int TimeRemaining { get; private set; }
         public SessionType SessionType { get; private set; }
-        public SessionFlags SessionFlags { get; private set; }
+        public SessionFlag SessionFlags { get; private set; }
         public SessionState SessionState { get; private set; }
         public int CautionLaps { get; set; }
 
@@ -36,8 +36,9 @@ namespace TMTVO.Data.Modules
             if (!sessionTimer.Active)
                 return;
 
+            SessionState = (SessionState)api.GetData("SessionState");
             this.TimeRemaining = (int)(double)api.Sdk.GetData("SessionTimeRemain");
-            parseFlag((int)api.Sdk.GetData("SessionFlags"));
+            SessionFlags = (SessionFlag)Enum.Parse(typeof(SessionFlag), ((int)api.Sdk.GetData("SessionFlags")).ToString(), true);
 
             List<Dictionary<string, object>> sessions = rootNode.GetMapList("SessionInfo.Sessions");
             Dictionary<string, object> session = sessions[sessions.Count - 1];
@@ -99,66 +100,6 @@ namespace TMTVO.Data.Modules
             }));
         }
 
-        private void parseFlag(int flag)
-        {
-            /*
-            Dictionary<Int32, sessionFlag> flagMap = new Dictionary<Int32, sessionFlag>()
-            {
-                // global flags
-                0x00000001 = sessionFlag.checkered,
-                0x00000002 = sessionFlag.white,
-                green = sessionFlag.green,
-                yellow = 0x00000008,
-             * 
-                red = 0x00000010,
-                blue = 0x00000020,
-                debris = 0x00000040,
-                crossed = 0x00000080,
-             * 
-                yellowWaving = 0x00000100,
-                oneLapToGreen = 0x00000200,
-                greenHeld = 0x00000400,
-                tenToGo = 0x00000800,
-             * 
-                fiveToGo = 0x00001000,
-                randomWaving = 0x00002000,
-                caution = 0x00004000,
-                cautionWaving = 0x00008000,
-
-                // drivers black flags
-                black = 0x00010000,
-                disqualify = 0x00020000,
-                servicible = 0x00040000, // car is allowed service (not a flag)
-                furled = 0x00080000,
-             * 
-                repair = 0x00100000,
-
-                // start lights
-                startHidden = 0x10000000,
-                startReady = 0x20000000,
-                startSet = 0x40000000,
-                startGo = 0x80000000,
-
-            };*/
-
-            Int64 regularFlag = flag & 0x0000000f;
-            Int64 specialFlag = (flag & 0x0000f000) >> (4 * 3);
-            Int64 startlight = (flag & 0xf0000000) >> (4 * 7);
-
-            if (regularFlag == 0x8 || specialFlag >= 0x4)
-                SessionFlags = Data.SessionFlags.Yellow;
-            else if (regularFlag == 0x2)
-                SessionFlags = Data.SessionFlags.White;
-            else if (regularFlag == 0x1)
-                SessionFlags = Data.SessionFlags.Checkered;
-            else
-                SessionFlags = Data.SessionFlags.Green;
-
-            //session.StartLight = (SessionStartLights)startlight;
-
-            // TODO Flaggen parsen.
-        }
-
         public override void Reset()
         {
             TimeTotal = 0;
@@ -166,7 +107,7 @@ namespace TMTVO.Data.Modules
             LapsDriven = 0;
             TimeRemaining = 0;
             SessionType = SessionType.None;
-            SessionFlags = SessionFlags.Invalid;
+            SessionFlags = SessionFlag.Invalid;
             SessionState = SessionState.Invalid;
             CautionLaps = 0;
         }

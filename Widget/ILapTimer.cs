@@ -11,9 +11,6 @@ namespace TMTVO.Widget
 {
     public interface ILapTimer : IWidget
     {
-        protected static readonly float roadPreviewTime = 0.005F;
-        protected static readonly float ovalPreviewTime = 0.002F;
-
         LiveStandingsItem LapDriver { get; }
         void FadeIn(LiveStandingsItem driver);
         void SectorComplete();

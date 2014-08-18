@@ -26,7 +26,7 @@ namespace TMTVO.Widget
             {SessionType.Practice, "P"},
             {SessionType.Qualifying, "Q"},
             {SessionType.WarmUp, "W"},
-            {SessionType.LapRace, "Lap"},
+            {SessionType.LapRace, "R"},
             {SessionType.TimeRace, "R"},
             {SessionType.TimeTrial, "T"}
         };
@@ -327,20 +327,45 @@ namespace TMTVO.Widget
             this.UpdateTime(Module.TimeRemaining);
             this.UpdateLaps(Module.LapsDriven, Module.LapsTotal);
 
-            switch (Module.SessionFlags)
-            {
-                case SessionFlags.Green:
-                    Normal();
-                    break;
-                case SessionFlags.Yellow:
-                    YellowFlag();
-                    break;
-                case SessionFlags.Checkered:
-                    ChequeredFlag();
-                    break;
-                default:
-                    break;
-            }
+            SessionFlag f = Module.SessionFlags;
+            if (IsCheckeredFlag(f) || Module.SessionState == SessionState.Checkered || Module.SessionState == SessionState.Cooldown)
+                ChequeredFlag();
+            else if (IsYellowFlag(f))
+                YellowFlag();
+            else if (IsSafetyCar(f))
+                SafetyCarDeveloped();
+            else if (IsRedFlag(f))
+                RedFlag();
+            else if (IsWhiteFlag(f))
+                return;
+            else
+                Normal();
+        }
+
+
+        private bool IsYellowFlag(SessionFlag f)
+        {
+            return f.FlagSet(SessionFlag.Yellow) || f.FlagSet(SessionFlag.YellowWaving);
+        }
+
+        private bool IsSafetyCar(SessionFlag f)
+        {
+            return f.FlagSet(SessionFlag.Caution) || f.FlagSet(SessionFlag.CautionWaving) || f.FlagSet(SessionFlag.OneLapToGreen);
+        }
+
+        private bool IsRedFlag(SessionFlag f)
+        {
+            return f.FlagSet(SessionFlag.Red);
+        }
+
+        private bool IsCheckeredFlag(SessionFlag f)
+        {
+            return f.FlagSet(SessionFlag.Checkered);
+        }
+
+        private bool IsWhiteFlag(SessionFlag f)
+        {
+            return f.FlagSet(SessionFlag.White);
         }
     }
 }
