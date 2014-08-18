@@ -173,7 +173,6 @@ namespace TMTVO.Widget
             }
         }
 
-
         public void Tick()
         {
             if (!canUpdate)
@@ -201,6 +200,8 @@ namespace TMTVO.Widget
                 if (canUpdate)
                     TimeText.Text = sb.ToString();
             }));
+
+            // TODO Call sector- and lap-complete-methods.
         }
     }
 }

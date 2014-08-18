@@ -5,15 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TMTVO.Data;
+using TMTVO.Data.Modules;
 
 namespace TMTVO.Widget
 {
     public interface ILapTimer : IWidget
     {
-        //Stopwatch Stopwatch { get; }
-        //ResultItem LapDriver { get; }
+        protected static readonly float roadPreviewTime = 0.005F;
+        protected static readonly float ovalPreviewTime = 0.002F;
 
-        //void FadeIn(ResultItem driver);
+        LiveStandingsItem LapDriver { get; }
+        void FadeIn(LiveStandingsItem driver);
         void SectorComplete();
         void LapComplete();
     }
