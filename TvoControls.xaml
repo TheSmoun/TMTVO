@@ -9,7 +9,7 @@
         </Grid.RowDefinitions>
         <Rectangle x:Name="Running" Grid.Row="0" Margin="0" Fill="Red" />
         <Button x:Name="StartStopButton" Grid.Row="0" Content="Start" Height="25" Width="100" Click="StartStopButton_Click" />
-        <Grid x:Name="InnerGrid" Grid.Row="1" Visibility="Visible">
+        <Grid x:Name="InnerGrid" Grid.Row="1" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="35" />
                 <RowDefinition Height="35" />
@@ -62,6 +62,7 @@
         </Grid>
         <StatusBar x:Name="Status" Height="23" VerticalAlignment="Bottom" Grid.Row="1">
             <StatusBarItem x:Name="StatusText" Content="No connection to iRacing simulator." Margin="5,0,0,0" />
+            <StatusBarItem x:Name="FpsItem" Content="FPS" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0" />
         </StatusBar>
     </Grid>
 </Window>

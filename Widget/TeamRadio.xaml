@@ -5,7 +5,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
 	x:Class="TMTVO.Widget.TeamRadio"
-	x:Name="UserControl" d:DesignHeight="480" RenderTransformOrigin="0.5,0.5" Height="76" Width="342" Loaded="UserControl_Loaded">
+	x:Name="UserControl" d:DesignHeight="480" RenderTransformOrigin="0.5,0.5" Height="72" Width="342" Loaded="UserControl_Loaded">
 	<UserControl.Resources>
 		<Storyboard x:Key="PfadAnimation1" RepeatBehavior="Forever">
 			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="Speech">
@@ -144,8 +144,8 @@
 		</EventTrigger>
 	</UserControl.Triggers>
 
-	<Grid x:Name="TeamRadioNormal">
-		<Grid x:Name="FirstRow" Margin="11,0,0,0" RenderTransformOrigin="0.5,0.5" Width="320" Height="38" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0">
+	<Grid x:Name="TeamRadioNormal" Height="72">
+		<Grid x:Name="FirstRow" Margin="11,0,0,0" RenderTransformOrigin="0.5,0.5" Width="320" Height="36" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0">
 			<Grid.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>
@@ -154,7 +154,7 @@
 					<TranslateTransform/>
 				</TransformGroup>
 			</Grid.RenderTransform>
-			<Rectangle x:Name="Background1" Fill="Black" HorizontalAlignment="Center" Height="38" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0">
+			<Rectangle x:Name="Background1" Fill="Black" HorizontalAlignment="Center" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0">
 				<Rectangle.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -178,7 +178,7 @@
 					</LinearGradientBrush>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<Rectangle x:Name="NumberPlate" HorizontalAlignment="Left" Height="32" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="62.688" Fill="#FF6800FF" RenderTransformOrigin="0.5,0.5" Margin="9.812,3,0,0">
+			<Rectangle x:Name="NumberPlate" HorizontalAlignment="Left" Height="30" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="62.688" Fill="#FF6800FF" RenderTransformOrigin="0.5,0.5" Margin="9.812,3,0,0">
 				<Rectangle.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -191,7 +191,7 @@
 					<SolidColorBrush Color="Black" Opacity="0"/>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<Rectangle x:Name="Farbverlauf1" HorizontalAlignment="Center" Height="38" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0">
+			<Rectangle x:Name="Farbverlauf1" HorizontalAlignment="Center" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0">
 				<Rectangle.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -219,7 +219,7 @@
 					<SolidColorBrush Color="Black" Opacity="0"/>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<TextBlock x:Name="DriversNumber" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="38" Width="50" Margin="15.44,0.5,0,0" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="000" TextAlignment="Center">
+			<TextBlock x:Name="DriversNumber" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="36" Width="50" Margin="15.44,0.5,0,0" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="000" TextAlignment="Center">
 				<TextBlock.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -229,7 +229,7 @@
 					</TransformGroup>
 				</TextBlock.RenderTransform>
 			</TextBlock>
-			<TextBlock x:Name="DriversName" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="38" Width="223.46" Margin="81.94,0.5,0,0" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="R GROSJEAN">
+			<TextBlock x:Name="DriversName" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="36" Width="223.46" Margin="81.94,0.5,0,0" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="R GROSJEAN">
 				<TextBlock.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -240,7 +240,7 @@
 				</TextBlock.RenderTransform>
 			</TextBlock>
 		</Grid>
-		<Grid x:Name="SecondRow" Margin="11,38,0,0" Width="320" Height="38" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Opacity="0">
+		<Grid x:Name="SecondRow" Margin="11,38,0,0" Width="320" Height="36" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Opacity="0">
 			<Grid.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>
@@ -249,7 +249,7 @@
 					<TranslateTransform/>
 				</TransformGroup>
 			</Grid.RenderTransform>
-			<Rectangle x:Name="Background2" Fill="Black" HorizontalAlignment="Center" Height="38" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Bottom" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0">
+			<Rectangle x:Name="Background2" Fill="Black" HorizontalAlignment="Center" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Bottom" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0">
 				<Rectangle.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -273,7 +273,7 @@
 					</LinearGradientBrush>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<Grid x:Name="SpeechGrid" Margin="0,1.25,2,0" RenderTransformOrigin="0.5,0.5" Height="37" Width="155" HorizontalAlignment="Right">
+			<Grid x:Name="SpeechGrid" Margin="0,1.25,2,0" RenderTransformOrigin="0.5,0.5" Height="35" Width="155" HorizontalAlignment="Right">
 				<Grid.OpacityMask>
 					<LinearGradientBrush EndPoint="77.5,37" StartPoint="77.5,0" MappingMode="Absolute">
 						<LinearGradientBrush.RelativeTransform>
@@ -319,7 +319,7 @@
 					</Path.RenderTransform>
 				</Path>
 			</Grid>
-			<Rectangle x:Name="Farbverlauf2" HorizontalAlignment="Center" Height="38" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Bottom" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0">
+			<Rectangle x:Name="Farbverlauf2" HorizontalAlignment="Center" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Bottom" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0">
 				<Rectangle.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -347,7 +347,7 @@
 					<SolidColorBrush Color="Black" Opacity="0"/>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<TextBlock x:Name="TeamRadioText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="38" Width="278.46" Margin="14.94,0,0,0.25" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" FontWeight="Light" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5"><TextBlock.RenderTransform>
+			<TextBlock x:Name="TeamRadioText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="36" Width="278.46" Margin="14.94,0,0,0.25" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" FontWeight="Light" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5"><TextBlock.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
 						<SkewTransform/>
@@ -356,7 +356,7 @@
 					</TransformGroup>
 				</TextBlock.RenderTransform><Run Text="Team Radio"/></TextBlock>
 		</Grid>
-		<Rectangle x:Name="FadeInColor" Fill="White" HorizontalAlignment="Left" Height="38" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" Margin="11,0,0,0" Opacity="0">
+		<Rectangle x:Name="FadeInColor" Fill="White" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" Margin="11,0,0,0" Opacity="0">
 			<Rectangle.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>
@@ -380,7 +380,7 @@
 				</LinearGradientBrush>
 			</Rectangle.Stroke>
 		</Rectangle>
-		<Rectangle x:Name="FadeInColor2" Fill="White" HorizontalAlignment="Left" Height="38" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0,38,0,0" Opacity="0">
+		<Rectangle x:Name="FadeInColor2" Fill="White" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0,38,0,0" Opacity="0">
 			<Rectangle.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>

@@ -6,7 +6,7 @@
     xmlns:w="clr-namespace:TMTVO.Widget"
 	mc:Ignorable="d"
 	x:Class="TMTVO.Widget.RaceBar"
-	d:DesignWidth="640" d:DesignHeight="480" Width="1920" Height="50" Loaded="UserControl_Loaded">
+	d:DesignWidth="640" d:DesignHeight="480" Width="1920" Height="47" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <Storyboard x:Key="FadeAllIn">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="RaceBarBackground">
@@ -21,11 +21,11 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
-    <Grid x:Name="RaceBarBackground" Background="#BD5B5B5B" Width="1920" Opacity="0">
-        <w:RaceBarItem x:Name="RaceItem1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="340" Margin="131,6,0,0" />
-        <w:RaceBarItem x:Name="RaceItem2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="340" Margin="461,6,0,0" />
-        <w:RaceBarItem x:Name="RaceItem3" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="340" Margin="792,6,0,0" />
-        <w:RaceBarItem x:Name="RaceItem4" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="340" Margin="1121,6,0,0" />
-        <w:RaceBarItem x:Name="RaceItem5" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="340" Margin="1451,6,0,0" />
+    <Grid x:Name="RaceBarBackground" Background="#B2111111" Width="1920" Opacity="0" Height="47">
+        <w:RaceBarItem x:Name="RaceItem1" HorizontalAlignment="Left" Height="38" Width="340" Margin="131,0,0,0" />
+        <w:RaceBarItem x:Name="RaceItem2" HorizontalAlignment="Left" Height="38" Width="340" Margin="461,0,0,0" />
+        <w:RaceBarItem x:Name="RaceItem3" HorizontalAlignment="Left" Height="38" Width="340" Margin="792,0,0,0" />
+        <w:RaceBarItem x:Name="RaceItem4" HorizontalAlignment="Left" Height="38" Width="340" Margin="1121,0,0,0" />
+        <w:RaceBarItem x:Name="RaceItem5" HorizontalAlignment="Left" Height="38" Width="340" Margin="1451,0,0,0" />
     </Grid>
 </UserControl>

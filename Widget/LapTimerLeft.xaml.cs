@@ -193,7 +193,7 @@ namespace TMTVO.Widget
             if (s < 10 && m != 0)
                 sb.Append("0");
 
-            sb.Append(s.ToString("0.0"));
+            sb.Append(s.ToString("0.0").Replace(',', '.'));
             sb.Append("    ");
 
             Application.Current.Dispatcher.Invoke(new Action(() =>

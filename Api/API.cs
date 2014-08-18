@@ -76,11 +76,18 @@ namespace TMTVO.Api
                 }));
 
                 long end = Environment.TickCount;
+                long time = end - start;
+                int sleepTime = (int)(maxDelay - time);
 
-                int sleepTime = (int)(maxDelay - (end - start));
-                if (sleepTime < 0)
+                if (time > 0)
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        TMTVO.Controller.TMTVO.Instance.TvoControls.FpsItem.Content = (1000F / ((float)time)).ToString("0.0") + " FPS";
+                    }));
+
+                if (sleepTime <= 0)
                 {
-                    Console.WriteLine("System overloaded!");
+                    Console.WriteLine("System overloaded! " + time + "ms");
                 }
                 else
                 {
