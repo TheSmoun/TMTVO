@@ -155,7 +155,7 @@
 					<TranslateTransform/>
 				</TransformGroup>
 			</Grid.RenderTransform>
-			<Rectangle x:Name="Background1" Fill="Black" HorizontalAlignment="Center" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0">
+			<Rectangle x:Name="Background1" Fill="Black" HorizontalAlignment="Center" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0">
 				<Rectangle.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -250,7 +250,7 @@
 					<TranslateTransform/>
 				</TransformGroup>
 			</Grid.RenderTransform>
-			<Rectangle x:Name="Background2" Fill="Black" HorizontalAlignment="Center" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Bottom" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0">
+			<Rectangle x:Name="Background2" Fill="Black" HorizontalAlignment="Center" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Bottom" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0">
 				<Rectangle.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -357,7 +357,7 @@
 					</TransformGroup>
 				</TextBlock.RenderTransform><Run Text="Team Radio"/></TextBlock>
 		</Grid>
-		<Rectangle x:Name="FadeInColor" Fill="White" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" Margin="11,0,0,0" Opacity="0">
+		<Rectangle x:Name="FadeInColor" Fill="White" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" Margin="11,0,0,0" Opacity="0">
 			<Rectangle.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>
@@ -381,7 +381,7 @@
 				</LinearGradientBrush>
 			</Rectangle.Stroke>
 		</Rectangle>
-		<Rectangle x:Name="FadeInColor2" Fill="White" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0,36,0,0" Opacity="0">
+		<Rectangle x:Name="FadeInColor2" Fill="White" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0,36,0,0" Opacity="0">
 			<Rectangle.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>

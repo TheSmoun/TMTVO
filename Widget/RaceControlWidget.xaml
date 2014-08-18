@@ -102,7 +102,7 @@
     					<TranslateTransform/>
     				</TransformGroup>
     			</Grid.RenderTransform>
-    			<Rectangle x:Name="BackgroundWhite" Fill="#FFB9B9B9" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.5,0.5" Margin="0,0.002,0,0">
+    			<Rectangle x:Name="BackgroundWhite" Fill="#FFB9B9B9" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.5,0.5" Margin="0,0.002,0,0">
     				<Rectangle.RenderTransform>
     					<TransformGroup>
     						<ScaleTransform/>
@@ -165,7 +165,7 @@
     					<TranslateTransform/>
     				</TransformGroup>
     			</Grid.RenderTransform>
-    			<Rectangle x:Name="BackgroundBlack" Fill="Black" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Bottom" Width="865" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,1.202">
+    			<Rectangle x:Name="BackgroundBlack" Fill="Black" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" VerticalAlignment="Bottom" Width="865" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,1.202">
     				<Rectangle.RenderTransform>
     					<TransformGroup>
     						<ScaleTransform/>
@@ -247,7 +247,7 @@
     			</Rectangle>
     			<TextBlock x:Name="Announcement" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontFamily="DIN 1451 Std Mittelschrift" FontSize="29.333" Margin="13.667,1.002,0,0" Width="841.333" Text="SAFETY CAR IN THIS LAP"/>
     		</Grid>
-    		<Rectangle x:Name="FadeInColor" Fill="White" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.5,0.5" Margin="0" Opacity="0">
+    		<Rectangle x:Name="FadeInColor" Fill="White" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.5,0.5" Margin="0" Opacity="0">
     			<Rectangle.RenderTransform>
     				<TransformGroup>
     					<ScaleTransform/>
@@ -271,7 +271,7 @@
     				</LinearGradientBrush>
     			</Rectangle.Stroke>
     		</Rectangle>
-    		<Rectangle x:Name="FadeInColor_Copy" Fill="White" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Bottom" Width="865" RenderTransformOrigin="0.5,0.5" Margin="0" Opacity="0">
+    		<Rectangle x:Name="FadeInColor_Copy" Fill="White" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" VerticalAlignment="Bottom" Width="865" RenderTransformOrigin="0.5,0.5" Margin="0" Opacity="0">
     			<Rectangle.RenderTransform>
     				<TransformGroup>
     					<ScaleTransform/>
@@ -298,7 +298,7 @@
     	</Grid>
     	<Grid x:Name="Double" Margin="9.5,0" Width="865" Height="105" VerticalAlignment="Top">
     		<Grid x:Name="RaceControlDouble" Margin="0,-0.002,565,34.802" Opacity="0">
-    			<Rectangle x:Name="BackgroundWhite1" Fill="#FFB9B9B9" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.5,0.5" Margin="0,0.002,0,0">
+    			<Rectangle x:Name="BackgroundWhite1" Fill="#FFB9B9B9" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.5,0.5" Margin="0,0.002,0,0">
     				<Rectangle.RenderTransform>
     					<TransformGroup>
     						<ScaleTransform/>
@@ -351,7 +351,7 @@
     				</Rectangle.Stroke>
     			</Rectangle>
     			<TextBlock x:Name="Racecontrol1" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="Black" FontFamily="DIN 1451 Std Mittelschrift" FontSize="29.333" Margin="13.667,0,0,0" Width="244.333" Text="RACE CONTROL" FontWeight="Bold"/>
-    			<Rectangle x:Name="FadeInColor_Copy1" Fill="White" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.5,0.5" Margin="0" Opacity="0">
+    			<Rectangle x:Name="FadeInColor_Copy1" Fill="White" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.5,0.5" Margin="0" Opacity="0">
     				<Rectangle.RenderTransform>
     					<TransformGroup>
     						<ScaleTransform/>
@@ -377,7 +377,7 @@
     			</Rectangle>
     		</Grid>
     		<Grid x:Name="AnnouncementLineDouble1" Margin="0,35,0,0" Height="35" VerticalAlignment="Top" Opacity="0" HorizontalAlignment="Left">
-    			<Rectangle x:Name="BackgroundBlack1" Fill="Black" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Bottom" Width="865" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,1.202">
+    			<Rectangle x:Name="BackgroundBlack1" Fill="Black" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" VerticalAlignment="Bottom" Width="865" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,1.202">
     				<Rectangle.RenderTransform>
     					<TransformGroup>
     						<ScaleTransform/>
@@ -458,7 +458,7 @@
     				</Rectangle.Stroke>
     			</Rectangle>
     			<TextBlock x:Name="Announcement1" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontFamily="DIN 1451 Std Mittelschrift" FontSize="29.333" Margin="13.667,1.002,0,0" Width="841.333" Text="SAFETY CAR IN THIS LAP"/>
-    			<Rectangle x:Name="FadeInColor_Copy2" Fill="White" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="865" RenderTransformOrigin="0.5,0.5" Margin="0" Opacity="0">
+    			<Rectangle x:Name="FadeInColor_Copy2" Fill="White" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="865" RenderTransformOrigin="0.5,0.5" Margin="0" Opacity="0">
     				<Rectangle.RenderTransform>
     					<TransformGroup>
     						<ScaleTransform/>
@@ -484,7 +484,7 @@
     			</Rectangle>
     		</Grid>
     		<Grid x:Name="AnnouncementLineDouble2" Margin="0" Height="35" VerticalAlignment="Bottom" Opacity="0" HorizontalAlignment="Left">
-    			<Rectangle x:Name="BackgroundBlack2" Fill="Black" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Bottom" Width="865" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,1.202">
+    			<Rectangle x:Name="BackgroundBlack2" Fill="Black" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" VerticalAlignment="Bottom" Width="865" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,1.202">
     				<Rectangle.RenderTransform>
     					<TransformGroup>
     						<ScaleTransform/>
@@ -565,7 +565,7 @@
     				</Rectangle.Stroke>
     			</Rectangle>
     			<TextBlock x:Name="Announcement2" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontFamily="DIN 1451 Std Mittelschrift" FontSize="29.333" Margin="13.667,1.002,0,0" Width="841.333" Text="SAFETY CAR IN THIS LAP"/>
-    			<Rectangle x:Name="FadeInColor_Copy3" Fill="White" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="865" RenderTransformOrigin="0.5,0.5" Margin="0" Opacity="0">
+    			<Rectangle x:Name="FadeInColor_Copy3" Fill="White" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="865" RenderTransformOrigin="0.5,0.5" Margin="0" Opacity="0">
     				<Rectangle.RenderTransform>
     					<TransformGroup>
     						<ScaleTransform/>

@@ -10,7 +10,7 @@
 
 	<Grid x:Name="LayoutRoot" Width="675" Height="235">
 		<Grid x:Name="Body" Margin="0" Width="675" Height="212" VerticalAlignment="Bottom">
-			<Rectangle x:Name="Background" Fill="#FF222E3F" HorizontalAlignment="Left" Height="212" Stroke="#FF858585" VerticalAlignment="Top" Width="675" RadiusX="6" RadiusY="6"/>
+			<Rectangle x:Name="Background1" Fill="#FF222E3F" HorizontalAlignment="Left" Height="212" Stroke="#FF858585" VerticalAlignment="Top" Width="675" RadiusX="6" RadiusY="6"/>
 			<Rectangle x:Name="Spacer" Height="210" VerticalAlignment="Top" Width="12" Margin="376,1,0,0" HorizontalAlignment="Left" StrokeThickness="0" Opacity="0.7">
 				<Rectangle.Fill>
 					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

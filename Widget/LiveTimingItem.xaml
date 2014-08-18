@@ -70,7 +70,7 @@
 					<TranslateTransform/>
 				</TransformGroup>
 			</Grid.RenderTransform>
-			<Rectangle x:Name="BackgroundNormal" Fill="Black" HorizontalAlignment="Right" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="260" RenderTransformOrigin="0.5,0.5" Margin="0" Opacity="0.795">
+			<Rectangle x:Name="BackgroundNormal" Fill="Black" HorizontalAlignment="Right" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="260" RenderTransformOrigin="0.5,0.5" Margin="0" Opacity="0.795">
 				<Rectangle.Stroke>
 					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 						<LinearGradientBrush.RelativeTransform>
@@ -86,7 +86,7 @@
 					</LinearGradientBrush>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<Rectangle x:Name="BackgroundLeader" Fill="Black" HorizontalAlignment="Right" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="260" RenderTransformOrigin="0.5,0.5" Margin="0">
+			<Rectangle x:Name="BackgroundLeader" Fill="Black" HorizontalAlignment="Right" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="260" RenderTransformOrigin="0.5,0.5" Margin="0">
 				<Rectangle.Stroke>
 					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 						<LinearGradientBrush.RelativeTransform>
@@ -102,7 +102,7 @@
 					</LinearGradientBrush>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<Rectangle x:Name="NumberNormal" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="55" Margin="0.5,0.5,0,-0.5">
+			<Rectangle x:Name="NumberNormal" HorizontalAlignment="Left" Height="34" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="55" Margin="1,1,0,-0.5">
 				<Rectangle.Fill>
 					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 						<LinearGradientBrush.RelativeTransform>
@@ -132,7 +132,7 @@
 					</LinearGradientBrush>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<Rectangle x:Name="NumberLeader" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="55" Margin="0.5,0.5,0,-0.5">
+			<Rectangle x:Name="NumberLeader" HorizontalAlignment="Left" Height="34" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="55" Margin="1,1,0,-0.5">
 				<Rectangle.Fill>
 					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 						<LinearGradientBrush.RelativeTransform>
@@ -213,7 +213,7 @@
 				</Rectangle.Stroke>
 			</Rectangle>
 		</Grid>
-		<Rectangle x:Name="FadeInColor" Fill="White" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="260" RenderTransformOrigin="0.5,0.5" Margin="10,0,0,0" Opacity="0">
+		<Rectangle x:Name="FadeInColor" Fill="White" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="260" RenderTransformOrigin="0.5,0.5" Margin="10,0,0,0" Opacity="0">
 			<Rectangle.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>
@@ -246,7 +246,7 @@
 					<TranslateTransform/>
 				</TransformGroup>
 			</Grid.RenderTransform>
-			<Rectangle x:Name="BackgroundNormal1" Fill="Black" HorizontalAlignment="Right" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.5" Margin="0" Opacity="0.795">
+			<Rectangle x:Name="BackgroundNormal1" Fill="Black" HorizontalAlignment="Right" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.5" Margin="0" Opacity="0.795">
 				<Rectangle.Stroke>
 					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 						<LinearGradientBrush.RelativeTransform>
@@ -262,7 +262,7 @@
 					</LinearGradientBrush>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<Rectangle x:Name="BackgroundLeader1" Fill="Black" HorizontalAlignment="Right" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.5" Margin="0">
+			<Rectangle x:Name="BackgroundLeader1" Fill="Black" HorizontalAlignment="Right" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.5" Margin="0">
 				<Rectangle.Stroke>
 					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 						<LinearGradientBrush.RelativeTransform>
@@ -320,7 +320,7 @@
 					<TranslateTransform/>
 				</TransformGroup>
 			</Grid.RenderTransform>
-			<Rectangle x:Name="TimeBackgroundCh" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.5" Margin="0">
+			<Rectangle x:Name="TimeBackgroundCh" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.5" Margin="0">
 				<Rectangle.Fill>
 					<DrawingBrush Stretch="None" TileMode="Tile" Viewport="0,0,20,20" ViewportUnits="Absolute">
 						<DrawingBrush.RelativeTransform>

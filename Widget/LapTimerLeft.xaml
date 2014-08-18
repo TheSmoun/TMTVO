@@ -205,7 +205,7 @@
 					<TranslateTransform/>
 				</TransformGroup>
 			</Grid.RenderTransform>
-			<Rectangle x:Name="BackgroundYellow" Fill="#FF938700" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="280" RenderTransformOrigin="0.5,0.5">
+			<Rectangle x:Name="BackgroundYellow" Fill="#FF938700" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="280" RenderTransformOrigin="0.5,0.5">
 				<Rectangle.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -229,7 +229,7 @@
 					</LinearGradientBrush>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<Rectangle x:Name="BackgroundGreen" Fill="#FF1C8B1D" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="280" RenderTransformOrigin="0.5,0.5">
+			<Rectangle x:Name="BackgroundGreen" Fill="#FF1C8B1D" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="280" RenderTransformOrigin="0.5,0.5">
 				<Rectangle.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -253,7 +253,7 @@
 					</LinearGradientBrush>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<Rectangle x:Name="BackgroundRed" Fill="#FF471619" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="280" RenderTransformOrigin="0.5,0.5">
+			<Rectangle x:Name="BackgroundRed" Fill="#FF471619" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="280" RenderTransformOrigin="0.5,0.5">
 				<Rectangle.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -277,7 +277,7 @@
 					</LinearGradientBrush>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<Rectangle x:Name="BackgroundNumber" Fill="#FF641B20" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="50" RenderTransformOrigin="0.5,0.5">
+			<Rectangle x:Name="BackgroundNumber" Fill="#FF641B20" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="50" RenderTransformOrigin="0.5,0.5">
 				<Rectangle.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -341,7 +341,7 @@
 					<TranslateTransform/>
 				</TransformGroup>
 			</Grid.RenderTransform>
-			<Rectangle x:Name="BackgroundBlack_Copy" Fill="Black" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="280" RenderTransformOrigin="0.5,0.5">
+			<Rectangle x:Name="BackgroundBlack_Copy" Fill="Black" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="280" RenderTransformOrigin="0.5,0.5">
 				<Rectangle.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -404,7 +404,7 @@
 					<TranslateTransform/>
 				</TransformGroup>
 			</Grid.RenderTransform>
-			<Rectangle x:Name="BackgroundBlack_Copy1" Fill="Black" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="280" RenderTransformOrigin="0.5,0.5">
+			<Rectangle x:Name="BackgroundBlack_Copy1" Fill="Black" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="280" RenderTransformOrigin="0.5,0.5">
 				<Rectangle.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -481,7 +481,7 @@
 					<TranslateTransform/>
 				</TransformGroup>
 			</Grid.RenderTransform>
-			<Rectangle x:Name="BackgroundNormal" Fill="#FF484D61" HorizontalAlignment="Left" Height="72" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="76" RenderTransformOrigin="0.5,0.5">
+			<Rectangle x:Name="BackgroundNormal" Fill="#FF484D61" HorizontalAlignment="Left" Height="72" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="76" RenderTransformOrigin="0.5,0.5">
 				<Rectangle.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -505,7 +505,7 @@
 					</LinearGradientBrush>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<Rectangle x:Name="BackgroundLeader" Fill="#FF641B20" HorizontalAlignment="Left" Height="72" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="76" RenderTransformOrigin="0.5,0.5">
+			<Rectangle x:Name="BackgroundLeader" Fill="#FF641B20" HorizontalAlignment="Left" Height="72" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="76" RenderTransformOrigin="0.5,0.5">
 				<Rectangle.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -559,7 +559,7 @@
 			</Rectangle>
 			<TextBlock x:Name="Position" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="DIN 1451 Std Mittelschrift" Foreground="White" FontSize="50.667" Text="1&#xD;&#xA;" Height="54" Width="73.986" TextAlignment="Center" Margin="-0.342,5.661,0,0" FontWeight="Bold"/>
 		</Grid>
-		<Rectangle x:Name="FadeInColorTime" Fill="White" Height="38" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="280" RenderTransformOrigin="0.5,0.5" Margin="30.645,36.043,0,0" Opacity="0" HorizontalAlignment="Left">
+		<Rectangle x:Name="FadeInColorTime" Fill="White" Height="38" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="280" RenderTransformOrigin="0.5,0.5" Margin="30.645,36.043,0,0" Opacity="0" HorizontalAlignment="Left">
 			<Rectangle.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>
@@ -583,7 +583,7 @@
 				</LinearGradientBrush>
 			</Rectangle.Stroke>
 		</Rectangle>
-		<Rectangle x:Name="FadeInColorDriver" Fill="White" HorizontalAlignment="Left" Height="38" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="280" RenderTransformOrigin="0.5,0.5" Margin="52.956,0,0,0" Opacity="0">
+		<Rectangle x:Name="FadeInColorDriver" Fill="White" HorizontalAlignment="Left" Height="38" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="280" RenderTransformOrigin="0.5,0.5" Margin="52.956,0,0,0" Opacity="0">
 			<Rectangle.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>
@@ -607,7 +607,7 @@
 				</LinearGradientBrush>
 			</Rectangle.Stroke>
 		</Rectangle>
-		<Rectangle x:Name="FadeInColorTimeDiff" Fill="White" Height="38" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="280" RenderTransformOrigin="0.5,0.5" Margin="8.334,71.998,0,0" Opacity="0" HorizontalAlignment="Left">
+		<Rectangle x:Name="FadeInColorTimeDiff" Fill="White" Height="38" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="280" RenderTransformOrigin="0.5,0.5" Margin="8.334,71.998,0,0" Opacity="0" HorizontalAlignment="Left">
 			<Rectangle.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>
@@ -631,7 +631,7 @@
 				</LinearGradientBrush>
 			</Rectangle.Stroke>
 		</Rectangle>
-		<Rectangle x:Name="FadeInColorNumber" Fill="White" Height="72" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="82" RenderTransformOrigin="0.5,0.5" Margin="321.333,0.665,0,0" Opacity="0" HorizontalAlignment="Left">
+		<Rectangle x:Name="FadeInColorNumber" Fill="White" Height="72" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="82" RenderTransformOrigin="0.5,0.5" Margin="321.333,0.665,0,0" Opacity="0" HorizontalAlignment="Left">
 			<Rectangle.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>

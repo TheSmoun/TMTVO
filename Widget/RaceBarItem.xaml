@@ -30,7 +30,7 @@
 				<TranslateTransform/>
 			</TransformGroup>
 		</Grid.RenderTransform>
-		<Rectangle x:Name="BackgroundBlack" Fill="Black" HorizontalAlignment="Right" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0.5" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0">
+		<Rectangle x:Name="BackgroundBlack" Fill="Black" HorizontalAlignment="Right" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0">
 			<Rectangle.Stroke>
 				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 					<LinearGradientBrush.RelativeTransform>
