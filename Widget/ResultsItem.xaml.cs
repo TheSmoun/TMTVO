@@ -11,14 +11,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TMTVO.Widget
+namespace TMTVO
 {
 	/// <summary>
-	/// Interaktionslogik für ResultsWidget.xaml
+	/// Interaktionslogik für ResultsItem.xaml
 	/// </summary>
-	public partial class ResultsWidget : UserControl
+	public partial class ResultsItem : UserControl
 	{
-		public ResultsWidget()
+		public ResultsItem()
 		{
 			this.InitializeComponent();
 		}

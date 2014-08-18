@@ -3,10 +3,182 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:local="clr-namespace:TMTVO"
 	mc:Ignorable="d"
-	x:Class="TMTVO.ResultsWidget"
+	x:Class="TMTVO.Widget.ResultsWidget"
 	x:Name="UserControl"
-	d:DesignWidth="640" d:DesignHeight="480" Height="580" Width="1135">
+	d:DesignWidth="640" d:DesignHeight="480" Height="580" Width="1152">
 
-	<Grid x:Name="LayoutRoot"/>
+	<Grid x:Name="LayoutRoot">
+		<Grid x:Name="Header" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="870" Height="72">
+			<Grid x:Name="FirstLine" Margin="31,0,0,0" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Height="36" Width="839" VerticalAlignment="Top">
+				<Grid.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform/>
+						<RotateTransform/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Grid.RenderTransform>
+				<Rectangle x:Name="BackgroundWhite" Fill="#FFB9BBBB" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Bottom" Width="830" RenderTransformOrigin="0.5,0.5" Margin="0">
+					<Rectangle.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform/>
+							<SkewTransform AngleX="-32"/>
+							<RotateTransform/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</Rectangle.RenderTransform>
+					<Rectangle.Stroke>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<LinearGradientBrush.RelativeTransform>
+								<TransformGroup>
+									<ScaleTransform CenterY="0.5" CenterX="0.5"/>
+									<SkewTransform CenterY="0.5" CenterX="0.5"/>
+									<RotateTransform Angle="21.038" CenterY="0.5" CenterX="0.5"/>
+									<TranslateTransform/>
+								</TransformGroup>
+							</LinearGradientBrush.RelativeTransform>
+							<GradientStop Color="Black" Offset="1"/>
+							<GradientStop Color="#FF666666"/>
+						</LinearGradientBrush>
+					</Rectangle.Stroke>
+				</Rectangle>
+				<Rectangle x:Name="Farbverlauf1" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Bottom" Width="830" RenderTransformOrigin="0.5,0.5" Margin="0">
+					<Rectangle.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform/>
+							<SkewTransform AngleX="-32"/>
+							<RotateTransform/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</Rectangle.RenderTransform>
+					<Rectangle.Fill>
+						<RadialGradientBrush Center="600,26" GradientOrigin="181,94" MappingMode="Absolute" RadiusY="38" RadiusX="700">
+							<RadialGradientBrush.RelativeTransform>
+								<TransformGroup>
+									<ScaleTransform CenterY="0.5" CenterX="0.5"/>
+									<SkewTransform CenterY="0.5" CenterX="0.5"/>
+									<RotateTransform CenterY="0.5" CenterX="0.5"/>
+									<TranslateTransform/>
+								</TransformGroup>
+							</RadialGradientBrush.RelativeTransform>
+							<GradientStop Offset="0.741"/>
+							<GradientStop Color="#D2FFFFFF" Offset="0.767"/>
+							<GradientStop Offset="1"/>
+						</RadialGradientBrush>
+					</Rectangle.Fill>
+					<Rectangle.Stroke>
+						<SolidColorBrush Color="Black" Opacity="0"/>
+					</Rectangle.Stroke>
+				</Rectangle>
+				<TextBlock x:Name="Race_Title" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="Black" FontFamily="DIN 1451 Std Mittelschrift" FontSize="29.333" Margin="13.667,1.002,0,0" Width="794" Text="FORMULA 1 GROSSER PREIS SANTANDER VON DEUTSCHLAND" TextTrimming="CharacterEllipsis"/>
+			</Grid>
+			<Grid x:Name="SecondLine" Margin="9,0,0,0" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Height="36" Width="839" VerticalAlignment="Bottom">
+				<Grid.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform/>
+						<RotateTransform/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Grid.RenderTransform>
+				<Rectangle x:Name="BackgroundBlue" Fill="#FF292E39" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Bottom" Width="830" RenderTransformOrigin="0.5,0.5" Margin="0">
+					<Rectangle.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform/>
+							<SkewTransform AngleX="-32"/>
+							<RotateTransform/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</Rectangle.RenderTransform>
+					<Rectangle.Stroke>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<LinearGradientBrush.RelativeTransform>
+								<TransformGroup>
+									<ScaleTransform CenterY="0.5" CenterX="0.5"/>
+									<SkewTransform CenterY="0.5" CenterX="0.5"/>
+									<RotateTransform Angle="21.038" CenterY="0.5" CenterX="0.5"/>
+									<TranslateTransform/>
+								</TransformGroup>
+							</LinearGradientBrush.RelativeTransform>
+							<GradientStop Color="Black" Offset="1"/>
+							<GradientStop Color="#FF666666"/>
+						</LinearGradientBrush>
+					</Rectangle.Stroke>
+				</Rectangle>
+				<Rectangle x:Name="Farbverlauf" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Bottom" Width="830" RenderTransformOrigin="0.5,0.5" Margin="0">
+					<Rectangle.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform/>
+							<SkewTransform AngleX="-32"/>
+							<RotateTransform/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</Rectangle.RenderTransform>
+					<Rectangle.Fill>
+						<RadialGradientBrush Center="600,26" GradientOrigin="181,94" MappingMode="Absolute" RadiusY="38" RadiusX="700">
+							<RadialGradientBrush.RelativeTransform>
+								<TransformGroup>
+									<ScaleTransform CenterY="0.5" CenterX="0.5"/>
+									<SkewTransform CenterY="0.5" CenterX="0.5"/>
+									<RotateTransform CenterY="0.5" CenterX="0.5"/>
+									<TranslateTransform/>
+								</TransformGroup>
+							</RadialGradientBrush.RelativeTransform>
+							<GradientStop Offset="0.741"/>
+							<GradientStop Color="#3FFFFFFF" Offset="0.767"/>
+							<GradientStop Offset="1"/>
+						</RadialGradientBrush>
+					</Rectangle.Fill>
+					<Rectangle.Stroke>
+						<SolidColorBrush Color="Black" Opacity="0"/>
+					</Rectangle.Stroke>
+				</Rectangle>
+				<Rectangle x:Name="Shine" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Bottom" Width="830" RenderTransformOrigin="0.5,0.5" Margin="0">
+					<Rectangle.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform/>
+							<SkewTransform AngleX="-32"/>
+							<RotateTransform/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</Rectangle.RenderTransform>
+					<Rectangle.Fill>
+						<RadialGradientBrush Center="467,57" GradientOrigin="181,94" MappingMode="Absolute" RadiusY="38" RadiusX="700">
+							<RadialGradientBrush.RelativeTransform>
+								<TransformGroup>
+									<ScaleTransform CenterY="0.5" CenterX="0.5"/>
+									<SkewTransform CenterY="0.5" CenterX="0.5"/>
+									<RotateTransform CenterY="0.5" CenterX="0.5"/>
+									<TranslateTransform/>
+								</TransformGroup>
+							</RadialGradientBrush.RelativeTransform>
+							<GradientStop Offset="0.741"/>
+							<GradientStop Color="#88FFFFFF" Offset="0.767"/>
+							<GradientStop Offset="1"/>
+						</RadialGradientBrush>
+					</Rectangle.Fill>
+					<Rectangle.Stroke>
+						<SolidColorBrush Color="Black" Opacity="0"/>
+					</Rectangle.Stroke>
+				</Rectangle>
+				<TextBlock x:Name="Announcement" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontFamily="DIN 1451 Std Mittelschrift" FontSize="29.333" Margin="13.667,1.002,0,-0.202" Width="797.333" Text="Race Classification" TextTrimming="CharacterEllipsis"/>
+			</Grid>
+		</Grid>
+		<Grid x:Name="Positions" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+			<local:ResultsItem x:Name="Item1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+			<local:ResultsItem x:Name="Item2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,36,0,0"/>
+			<local:ResultsItem x:Name="Item3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,72,0,0"/>
+			<local:ResultsItem x:Name="Item4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,108,0,0"/>
+			<local:ResultsItem x:Name="Item5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,144,0,0"/>
+			<local:ResultsItem x:Name="Item6" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,180,0,0"/>
+			<local:ResultsItem x:Name="Item7" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,216,0,0"/>
+			<local:ResultsItem x:Name="Item8" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,252,0,0"/>
+			<local:ResultsItem x:Name="Item9" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,288,0,0"/>
+			<local:ResultsItem x:Name="Item10" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,324,0,0"/>
+			<local:ResultsItem x:Name="Item11" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,360,0,0"/>
+			<local:ResultsItem x:Name="Item12" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,396,0,0"/>
+		</Grid>
+	</Grid>
 </UserControl>
