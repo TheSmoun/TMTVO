@@ -14,9 +14,11 @@ namespace TMTVO.Data.Modules
     {
         private RaceBar raceBar;
         private LiveTimingWidget liveTiming;
+        private ResultsWidget results;
+
         public List<LiveStandingsItem> Items { get; private set; }
 
-        public LiveStandingsModule(LiveTimingWidget liveTiming, RaceBar raceBar) : base("LiveStandings")
+        public LiveStandingsModule(LiveTimingWidget liveTiming, RaceBar raceBar, ResultsWidget results) : base("LiveStandings")
         {
             Items = new List<LiveStandingsItem>();
 
@@ -25,6 +27,9 @@ namespace TMTVO.Data.Modules
 
             this.raceBar = raceBar;
             this.raceBar.Module = this;
+
+            this.results = results;
+            this.results.Module = this;
         }
 
         public LiveStandingsItem FindDriver(int CarIndex)
@@ -37,9 +42,12 @@ namespace TMTVO.Data.Modules
             return Items.Find(i => i.Position == position);
         }
 
-        public LiveStandingsItem GetLeader()
+        public LiveStandingsItem Leader
         {
-            return Items.Find(i => i.Position == 1);
+            get
+            {
+                return Items.Find(i => i.Position == 1);
+            }
         }
 
         public override void Update(ConfigurationSection rootNode, API api)

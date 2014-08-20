@@ -178,7 +178,7 @@ namespace TMTVO.Data.Modules
                         if (sessionTimer.SessionType == SessionType.LapRace || sessionTimer.SessionType == SessionType.TimeRace)
                             CurrentLap.Gap = (float)GapLive;
                         else
-                            CurrentLap.Gap = CurrentLap.Time - standings.GetLeader().FastestLapTime;
+                            CurrentLap.Gap = CurrentLap.Time - standings.Leader.FastestLapTime;
                         CurrentLap.GapLaps = 0;
 
 
@@ -198,7 +198,7 @@ namespace TMTVO.Data.Modules
                         Sector = 0;
                         LapBegin = now;
 
-                        if (sessionTimer.SessionFlags == SessionFlag.Yellow && Position == 1) ;
+                        if (sessionTimer.SessionFlags == SessionFlag.Yellow && Position == 1)
                             sessionTimer.CautionLaps++;
 
                         if (ClassPosition == 1 && CurrentLap.LapNumber > 1)
@@ -237,6 +237,21 @@ namespace TMTVO.Data.Modules
             prevTime = currTime;
             // TODO Fix up to here
             first = false;
+        }
+
+        public string FastestLapTimeSting
+        {
+            get
+            {
+                int min = (int)(FastestLapTime / 60);
+                float sectime = FastestLapTime % 60;
+                StringBuilder sb = new StringBuilder();
+                if (min > 0)
+                    sb.Append(min).Append(':');
+
+                sb.Append(sectime.ToString("00.000"));
+                return sb.ToString().Replace(',', '.');
+            }
         }
     }
 }

@@ -92,7 +92,7 @@ namespace TMTVO.Widget
                         GapText.Visibility = Visibility.Visible;
                         ThreeLetterCode.Text = Item.Driver.ThreeLetterCode;
 
-                        float diff = time - Module.GetLeader().FastestLapTime;
+                        float diff = time - Module.Leader.FastestLapTime;
                         int min = (int)(diff / 60);
                         float secDiff = diff % 60;
                         StringBuilder sb = new StringBuilder("+");
@@ -172,7 +172,7 @@ namespace TMTVO.Widget
 
         public void UpdateDiff()
         {
-            float diff = oldTime - Module.GetLeader().FastestLapTime;
+            float diff = oldTime - Module.Leader.FastestLapTime;
             int min = (int)(diff / 60);
             float secDiff = diff % 60;
             StringBuilder sb = new StringBuilder();

@@ -29,9 +29,6 @@ namespace TMTVO
         private API api;
         DateTime cameraUpdate = DateTime.Now;
         DispatcherTimer updateTimer = new DispatcherTimer();
-        Boolean autoCommitEnabled = false;
-
-        Thread replayThread;
 
         private const int GWL_EXSTYLE = -20;
         private const int WS_EX_NOACTIVATE = 0x08000000;
@@ -225,7 +222,7 @@ namespace TMTVO
             if (position < 1)
                 nextPlate = m.Items.Find(i => i.Position == m.Items.Count).Driver.Car.CarNumber;
             else if (position > m.Items.Count)
-                nextPlate = m.GetLeader().Driver.Car.CarNumber;
+                nextPlate = m.Leader.Driver.Car.CarNumber;
             else
                 nextPlate = m.Items.Find(i => i.Position == position).Driver.Car.CarNumber;
 

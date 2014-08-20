@@ -30,13 +30,11 @@ namespace TMTVO
         private SessionTimer.SessionMode sessionTimerMode = Widget.SessionTimer.SessionMode.TimeMode;
         private int driverCount = 0;
         private Timer statusBarTimer;
-        private bool running;
 
         public TvoControls(MainWindow window, TMTVO.Controller.TMTVO tmtvo)
         {
             this.tmtvo = tmtvo;
             this.window = window;
-            running = false;
             InitializeComponent();
 
             statusBarTimer = new Timer(1000);
@@ -255,6 +253,20 @@ namespace TMTVO
         private void RaceBarLive_Unchecked(object sender, RoutedEventArgs e)
         {
             window.RaceBar.Live = false;
+        }
+
+        private void ResultsButton_Click(object sender, RoutedEventArgs e)
+        {
+            switch (window.SessionTimer.Module.SessionType)
+            {
+                case SessionType.LapRace:
+                case SessionType.TimeRace:
+                    window.ResultsWidget.Show(ResultsWidget.MS_PER_PAGE, ResultsWidget.ResultsMode.Race);
+                    break;
+                default:
+                    window.ResultsWidget.Show(ResultsWidget.MS_PER_PAGE, ResultsWidget.ResultsMode.Practice);
+                    break;
+            }
         }
     }
 }

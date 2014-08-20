@@ -40,6 +40,7 @@
                     <RowDefinition Height="35" />
                     <RowDefinition Height="35" />
                     <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Button x:Name="ShowHideTiming" Width="150" Height="25" Content="Show Live Timing" Click="ShowHideTiming_Click" HorizontalAlignment="Left" Margin="10,0,0,0" />
@@ -58,6 +59,7 @@
                     <ComboBoxItem Content="Interval" />
                     <ComboBoxItem Content="Name" />
                 </ComboBox>
+                <Button Grid.Row="3" x:Name="ResultsButton" Click="ResultsButton_Click" Content="Show Results" Width="100" Height="25" />
             </Grid>
         </Grid>
         <StatusBar x:Name="Status" Height="23" VerticalAlignment="Bottom" Grid.Row="1">

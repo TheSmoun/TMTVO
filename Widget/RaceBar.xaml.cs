@@ -93,12 +93,6 @@ namespace TMTVO.Widget
 
         private void SwitchPage(object sender, ElapsedEventArgs e)
         {
-            /*if (Module.Items.Count % 5 == 0)
-                pageIndex = (pageIndex + 1) / (Module.Items.Count % 5);
-            else
-                pageIndex = (pageIndex + 1) / ((Module.Items.Count % 5) + 1);
-             (1 + 1) * 5 < 10*/
-
             int i = ((pageIndex + 1) * 5 < Module.Items.Count) ? pageIndex + 1 : 0;
             if (oldPageIndex == i)
                 return;

@@ -53,7 +53,7 @@ namespace TMTVO.Controller
             Api.AddModule(new SessionTimerModule(Window.SessionTimer));
             Api.AddModule(new TeamRadioModule(Window.TeamRadio));
             Api.AddModule(new DriverModule(iRControls));
-            Api.AddModule(new LiveStandingsModule(Window.LiveTiming, Window.RaceBar));
+            Api.AddModule(new LiveStandingsModule(Window.LiveTiming, Window.RaceBar, Window.ResultsWidget));
             Api.AddModule(new LeftLaptimeModule(Window.LapTimerLeft));
             Api.AddModule(new CameraModule(iRControls));
             Api.AddModule(new TimeDeltaModule());
