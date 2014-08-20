@@ -104,6 +104,16 @@
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LayoutRoot">
         		<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
         	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="InPit">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Flag">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
 

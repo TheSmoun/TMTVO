@@ -60,8 +60,8 @@
     </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot" Width="310" Height="792" Margin="0,0,310,0" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5">
-		<Grid x:Name="PageSwitcherOuter" Margin="0,36,5,0" ClipToBounds="True">
-			<Grid x:Name="PageSwitcherInner" Height="756" Width="305" Margin="0" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+		<Grid x:Name="PageSwitcherOuter" Margin="0,36,0,0" ClipToBounds="True" Width="308">
+			<Grid x:Name="PageSwitcherInner" Height="756" Width="308" Margin="0" VerticalAlignment="Bottom" HorizontalAlignment="Left">
 				<local:LiveTimingItem x:Name="Item2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 				<local:LiveTimingItem x:Name="Item3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,36,0,0"/>
 				<local:LiveTimingItem x:Name="Item4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,72,0,0"/>

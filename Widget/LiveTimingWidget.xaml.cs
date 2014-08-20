@@ -21,7 +21,7 @@ namespace TMTVO.Widget
 	/// </summary>
 	public partial class LiveTimingWidget : UserControl, IWidget
 	{
-        private static readonly double pageCd = 550D;
+        private static readonly double pageCd = 500D;
 
         public bool Active { get; private set; }
         public LinkedList<LiveTimingItem> Items;
@@ -128,7 +128,7 @@ namespace TMTVO.Widget
             }
 
             int j = (((pageIndex + 1) * 21) + 1 < Module.Items.Count) ? pageIndex + 1 : 0;
-            if (pageIndex <= j && canUpdateButtons)
+            if (pageIndex < j && canUpdateButtons)
                 nextPageButton.IsEnabled = true;
 
             foreach (LiveTimingItem item in Items)
