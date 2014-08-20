@@ -268,5 +268,15 @@ namespace TMTVO
                     break;
             }
         }
+
+        private void TimingPrevPage_Click(object sender, RoutedEventArgs e)
+        {
+            window.LiveTiming.PrevPage();
+        }
+
+        private void TimingNextPage_Click(object sender, RoutedEventArgs e)
+        {
+            window.LiveTiming.NextPage();
+        }
     }
 }

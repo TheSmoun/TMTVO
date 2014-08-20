@@ -41,6 +41,7 @@
                     <RowDefinition Height="35" />
                     <RowDefinition Height="35" />
                     <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Button x:Name="ShowHideTiming" Width="150" Height="25" Content="Show Live Timing" Click="ShowHideTiming_Click" HorizontalAlignment="Left" Margin="10,0,0,0" />
@@ -49,17 +50,19 @@
                     <ComboBoxItem x:Name="Time" Content="Time" />
                     <ComboBoxItem x:Name="LastName" Content="Last Name" />
                 </ComboBox>
-                <Button x:Name="ShowHideLeftTimer" Grid.Row="1" Height="25" Width="105" Content="Show LapTimer L" Click="ShowHideLeftTimer_Click" HorizontalAlignment="Left" Margin="10,0,0,0" />
-                <ComboBox x:Name="DriversLeft" Grid.Row="1" Height="24" Width="150" HorizontalAlignment="Right" Margin="0,0,5,0" />
-                <Button x:Name="RaceBarToggle2" Grid.Row="2" Height="25" Width="105" Content="RaceBar" Click="RaceBarToggle_Click" HorizontalAlignment="Left" Margin="10,0,0,0" />
-                <CheckBox x:Name="RaceBarLive" Grid.Row="2" Checked="RaceBarLive_Checked" Unchecked="RaceBarLive_Unchecked" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-20,0,0,0" />
-                <Label Grid.Row="2" Content="Live" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,0,0,0" />
-                <ComboBox x:Name="RaceBartModeBox2" Grid.Row="2" Height="24" Width="80" HorizontalAlignment="Right" Margin="0,0,5,0" SelectionChanged="RaceBartModeBox_SelectionChanged">
+                <Button x:Name="TimingNextPage" Width="100" Height="25" Content="Next Page" IsEnabled="False" Grid.Row="1" Margin="105,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="TimingNextPage_Click" />
+                <Button x:Name="TimingPrevPage" Width="100" Height="25" Content="Prev Page" IsEnabled="False" Grid.Row="1" Margin="-105,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="TimingPrevPage_Click" />
+                <Button x:Name="ShowHideLeftTimer" Grid.Row="2" Height="25" Width="105" Content="Show LapTimer L" Click="ShowHideLeftTimer_Click" HorizontalAlignment="Left" Margin="10,0,0,0" />
+                <ComboBox x:Name="DriversLeft" Grid.Row="2" Height="24" Width="150" HorizontalAlignment="Right" Margin="0,0,5,0" />
+                <Button x:Name="RaceBarToggle2" Grid.Row="3" Height="25" Width="105" Content="RaceBar" Click="RaceBarToggle_Click" HorizontalAlignment="Left" Margin="10,0,0,0" />
+                <CheckBox x:Name="RaceBarLive" Grid.Row="3" Checked="RaceBarLive_Checked" Unchecked="RaceBarLive_Unchecked" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-20,0,0,0" />
+                <Label Grid.Row="3" Content="Live" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,0,0,0" />
+                <ComboBox x:Name="RaceBartModeBox2" Grid.Row="3" Height="24" Width="80" HorizontalAlignment="Right" Margin="0,0,5,0" SelectionChanged="RaceBartModeBox_SelectionChanged">
                     <ComboBoxItem Content="Gap" IsSelected="True" />
                     <ComboBoxItem Content="Interval" />
                     <ComboBoxItem Content="Name" />
                 </ComboBox>
-                <Button Grid.Row="3" x:Name="ResultsButton" Click="ResultsButton_Click" Content="Show Results" Width="100" Height="25" />
+                <Button Grid.Row="4" x:Name="ResultsButton" Click="ResultsButton_Click" Content="Show Results" Width="100" Height="25" />
             </Grid>
         </Grid>
         <StatusBar x:Name="Status" Height="23" VerticalAlignment="Bottom" Grid.Row="1">

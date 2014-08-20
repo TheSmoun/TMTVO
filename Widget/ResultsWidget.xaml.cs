@@ -23,7 +23,7 @@ namespace TMTVO.Widget
 	{
 
         public static readonly double PAGE_SWITCH_COOLDOWN = 500;
-        public static readonly int MS_PER_PAGE = 10000;
+        public static readonly int MS_PER_PAGE = 15000;
 
         public bool Active { get; private set; }
         public LiveStandingsModule Module { get; set; }
