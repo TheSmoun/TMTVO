@@ -124,7 +124,7 @@ namespace TMTVO.Widget
                 item.Position.Text = stItem.Position.ToString();
                 item.DriversNumber.Text = stItem.Driver.NumberPlateInt.ToString();
                 item.DriverName.Text = stItem.Driver.LastUpperName;
-                item.TeamCarName.Text = stItem.Driver.Car.CarName; // TODO Car
+                item.TeamCarName.Text = TMTVO.Controller.TMTVO.Instance.Cars.GetValue(stItem.Driver.Car.CarName);
 
                 switch (Mode)
                 {

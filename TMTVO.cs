@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using TMTVO.Api;
 using TMTVO.Data;
+using TMTVO.Data.Ini;
 using TMTVO.Data.Modules;
 
 namespace TMTVO.Controller
@@ -31,6 +32,7 @@ namespace TMTVO.Controller
         public TvoControls TvoControls { get; private set; }
         public iRacingControls iRControls { get; private set; }
         public API Api { get; private set; }
+        public IniFile Cars { get; private set; }
 
         private TMTVO() { }
 
@@ -44,6 +46,7 @@ namespace TMTVO.Controller
 
             t.InitalizeModules();
             t.TvoControls.Show();
+            t.Cars = new IniFile(@"C:\Users\Simon\Documents\TMTVO\TMTVO\Data\Ini\cars.ini"); // TODO Pfad einstellen
             return t;
         }
 
