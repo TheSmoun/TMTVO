@@ -124,6 +124,9 @@ namespace TMTVO.Widget
                 }
             }
 
+            ClassColorLeader.Color = Item.Driver.LicColor;
+            ClassColorNormal.Color = Item.Driver.LicColor; // TODO ClassColor
+
             if (Item.InPits)
                 JoinedPit();
             else

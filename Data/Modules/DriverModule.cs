@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using TMTVO.Api;
 using Yaml;
 
@@ -108,6 +109,9 @@ namespace TMTVO.Data.Modules
                         break;
                     case "IRating":
                         driver.IRating = int.Parse((string)kv.Value);
+                        break;
+                    case "LicColor":
+                        driver.LicColor = (Color)ColorConverter.ConvertFromString("#FF" + kv.Value.ToString().Substring(2));
                         break;
                     case "LicLevel":
                         int licLevel = int.Parse((string)kv.Value);

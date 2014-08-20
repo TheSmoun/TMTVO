@@ -162,6 +162,8 @@ namespace TMTVO.Widget
                     item.NumberLeader.Visibility = Visibility.Hidden;
 
                 item.Position.Text = stItem.Position.ToString();
+                item.ClassColorLeader.Color = stItem.Driver.LicColor; // TODO ClassColor
+                item.ClassColorNormal.Color = stItem.Driver.LicColor;
 
                 switch (oldMode)
                 {

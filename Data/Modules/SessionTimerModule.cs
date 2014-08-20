@@ -13,6 +13,7 @@ namespace TMTVO.Data.Modules
     public class SessionTimerModule : Module
     {
         private SessionTimer sessionTimer;
+        private LapsRemainingWidget lapsRemaining;
 
         public int TimeTotal { get; private set; }
         public int LapsTotal { get; private set; }
@@ -23,10 +24,11 @@ namespace TMTVO.Data.Modules
         public SessionState SessionState { get; private set; }
         public int CautionLaps { get; set; }
 
-        public SessionTimerModule(SessionTimer sessionTimer) : base("SessionTimer")
+        public SessionTimerModule(SessionTimer sessionTimer, LapsRemainingWidget lapsRemaining) : base("SessionTimer")
         {
             this.sessionTimer = sessionTimer;
             sessionTimer.Module = this;
+            this.lapsRemaining = lapsRemaining;
             this.TimeTotal = 0;
             CautionLaps = 0;
         }
@@ -38,7 +40,14 @@ namespace TMTVO.Data.Modules
 
             SessionState = (SessionState)api.GetData("SessionState");
             this.TimeRemaining = (int)(double)api.Sdk.GetData("SessionTimeRemain");
-            SessionFlags = (SessionFlag)Enum.Parse(typeof(SessionFlag), ((int)api.Sdk.GetData("SessionFlags")).ToString(), true);
+            SessionFlag newFlag = (SessionFlag)Enum.Parse(typeof(SessionFlag), ((int)api.Sdk.GetData("SessionFlags")).ToString(), true);
+            if (newFlag.FlagSet(SessionFlag.White) && !SessionFlags.FlagSet(SessionFlag.White))
+                Application.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    lapsRemaining.FadeIn(1);
+                }));
+
+            SessionFlags = newFlag;
 
             List<Dictionary<string, object>> sessions = rootNode.GetMapList("SessionInfo.Sessions");
             Dictionary<string, object> session = sessions[sessions.Count - 1];
@@ -53,6 +62,12 @@ namespace TMTVO.Data.Modules
             }
 
             int lapsRemain = (int)api.Sdk.GetData("SessionLapsRemain");
+            if (lapsRemain <= 5 && lapsRemain > 1)
+                Application.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    lapsRemaining.FadeIn(lapsRemain);
+                }));
+
             this.LapsDriven = LapsTotal - lapsRemain;
             object sessionTime;
             if (session.TryGetValue("SessionTime", out sessionTime) && sessionTime is string)

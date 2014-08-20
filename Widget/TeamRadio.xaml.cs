@@ -35,10 +35,11 @@ namespace TMTVO.Widget
             Active = false;
         }
 
-        public void StartsSpeaking(string LastNameDriver, string driverNumber)
+        public void StartsSpeaking(string LastNameDriver, string driverNumber, Color classColor)
         {
             DriversNumber.Text = driverNumber;
             DriversName.Text = LastNameDriver;
+            NumberPlate.Fill = new SolidColorBrush(classColor);
 
             if (!Active)
                 Active = true;
@@ -67,7 +68,7 @@ namespace TMTVO.Widget
             {
                 Driver driver = ((DriverModule)Controller.TMTVO.Instance.Api.FindModule("DriverModule")).Drivers.Find(d => d.CarIndex == Module.SpeekingCarIndex);
                 if (driver != null)
-                    StartsSpeaking(driver.LastUpperName, driver.Car.CarNumber);
+                    StartsSpeaking(driver.LastUpperName, driver.Car.CarNumber, driver.LicColor);
             }
             else if (Module.SpeekingCarIndex != -1)
             {

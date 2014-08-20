@@ -108,6 +108,7 @@
         <Storyboard x:Key="Yellow">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(RadialGradientBrush.RadiusX)" Storyboard.TargetName="LapBackgroundYellow">
                 <EasingDoubleKeyFrame KeyTime="0" Value="20"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="20"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="13"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="20"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="13"/>
@@ -116,7 +117,7 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:3" Value="20"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LapBackgroundYellow">
-            	<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+            	<SplineDoubleKeyFrame KeyTime="0" Value="0"/>
             	<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>

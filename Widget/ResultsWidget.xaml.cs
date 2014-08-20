@@ -122,9 +122,10 @@ namespace TMTVO.Widget
                     item.NumberLeader.Visibility = Visibility.Hidden;
 
                 item.Position.Text = stItem.Position.ToString();
-                item.DriversNumber.Text = stItem.Driver.NumberPlateInt.ToString();
+                item.DriversNumber.Text = stItem.Driver.Car.CarNumber;
                 item.DriverName.Text = stItem.Driver.LastUpperName;
                 item.TeamCarName.Text = TMTVO.Controller.TMTVO.Instance.Cars.GetValue(stItem.Driver.Car.CarName);
+                item.NumberPlate.Fill = new SolidColorBrush(stItem.Driver.LicColor);
 
                 switch (Mode)
                 {

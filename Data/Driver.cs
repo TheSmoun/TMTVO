@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace TMTVO.Data
 {
@@ -26,6 +27,7 @@ namespace TMTVO.Data
         public string Division { get; set; }
         public Car Car { get; set; }
         public bool Spectator { get; set; }
+        public Color LicColor { get; set; }
         public int NumberPlateInt
         {
             get
