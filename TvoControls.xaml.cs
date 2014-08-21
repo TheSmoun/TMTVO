@@ -278,5 +278,10 @@ namespace TMTVO
         {
             window.LiveTiming.NextPage();
         }
+
+        private void TimingLeaderPage_Click(object sender, RoutedEventArgs e)
+        {
+            window.LiveTiming.LeaderPage();
+        }
     }
 }

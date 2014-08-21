@@ -30,11 +30,13 @@ namespace TMTVO.Widget
 
         private Button prevPageButton;
         private Button nextPageButton;
+        private Button leaderPageButton;
         private bool canUpdateButtons;
 
         private int pageIndex;
         private Timer nextPageCd;
         private Timer prevPageCd;
+        private Timer leaderPageCd;
 
 		public LiveTimingWidget()
 		{
@@ -51,9 +53,13 @@ namespace TMTVO.Widget
             prevPageCd = new Timer(pageCd);
             prevPageCd.Elapsed += LoadPrevPage;
 
+            leaderPageCd = new Timer(pageCd);
+            leaderPageCd.Elapsed += LoadLeaderPage;
+
             TvoControls tvoC = TMTVO.Controller.TMTVO.Instance.TvoControls;
             prevPageButton = tvoC.TimingPrevPage;
             nextPageButton = tvoC.TimingNextPage;
+            leaderPageButton = tvoC.TimingLeaderPage;
 
             Items = new LinkedList<LiveTimingItem>();
             int i = 1;
@@ -147,6 +153,7 @@ namespace TMTVO.Widget
             {
                 nextPageButton.IsEnabled = false;
                 prevPageButton.IsEnabled = false;
+                leaderPageButton.IsEnabled = false;
             }));
 
             int i = (((pageIndex + 1) * 21) + 1 < Module.Items.Count) ? pageIndex + 1 : 0;
@@ -171,6 +178,7 @@ namespace TMTVO.Widget
             {
                 nextPageButton.IsEnabled = false;
                 prevPageButton.IsEnabled = false;
+                leaderPageButton.IsEnabled = false;
             }));
 
             if (pageIndex <= 0)
@@ -185,6 +193,30 @@ namespace TMTVO.Widget
         {
             prevPageCd.Stop();
             LoadPage(pageIndex - 1);
+        }
+
+        internal void LeaderPage()
+        {
+            canUpdateButtons = false;
+            Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                nextPageButton.IsEnabled = false;
+                prevPageButton.IsEnabled = false;
+                leaderPageButton.IsEnabled = false;
+            }));
+
+            if (pageIndex <= 0)
+                return;
+
+            Storyboard sb = FindResource("PrevPage") as Storyboard;
+            sb.Begin();
+            prevPageCd.Start();
+        }
+
+        private void LoadLeaderPage(object sender, ElapsedEventArgs e)
+        {
+            leaderPageCd.Stop();
+            LoadPage(0);
         }
 
         private void LoadPage(int npi)
@@ -210,7 +242,10 @@ namespace TMTVO.Widget
 
             canUpdateButtons = true;
             if (pageIndex > 0)
+            {
                 prevPageButton.IsEnabled = true;
+                leaderPageButton.IsEnabled = true;
+            }
         }
     }
 }
