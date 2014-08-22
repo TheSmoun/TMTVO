@@ -28,26 +28,41 @@
         <Storyboard x:Key="NextPage">
         	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.VerticalAlignment)" Storyboard.TargetName="PageSwitcherInner">
         		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static VerticalAlignment.Top}"/>
-        		<DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static VerticalAlignment.Top}"/>
+        		<DiscreteObjectKeyFrame KeyTime="0:0:0.8" Value="{x:Static VerticalAlignment.Top}"/>
         	</ObjectAnimationUsingKeyFrames>
         	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="PageSwitcherInner">
         		<EasingThicknessKeyFrame KeyTime="0" Value="0"/>
-        		<EasingThicknessKeyFrame KeyTime="0:0:0.5" Value="0,-756,0,0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.8" Value="0,-756,0,0"/>
         	</ThicknessAnimationUsingKeyFrames>
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="PageSwitcherInner">
         		<EasingDoubleKeyFrame KeyTime="0" Value="756"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="756"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="756"/>
         	</DoubleAnimationUsingKeyFrames>
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="PageSwitcherInnerDummy">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="0,0,0,-756"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.8" Value="0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.VerticalAlignment)" Storyboard.TargetName="PageSwitcherInnerDummy">
+        		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static VerticalAlignment.Bottom}"/>
+        		<DiscreteObjectKeyFrame KeyTime="0:0:0.8" Value="{x:Static VerticalAlignment.Bottom}"/>
+        	</ObjectAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="PrevPage">
         	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="PageSwitcherInner">
         		<EasingThicknessKeyFrame KeyTime="0" Value="0"/>
-        		<EasingThicknessKeyFrame KeyTime="0:0:0.5" Value="0,756,0,0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.8" Value="0,756,0,0"/>
         	</ThicknessAnimationUsingKeyFrames>
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="PageSwitcherInner">
         		<EasingDoubleKeyFrame KeyTime="0" Value="756"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0"/>
         	</DoubleAnimationUsingKeyFrames>
+        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.VerticalAlignment)" Storyboard.TargetName="PageSwitcherInnerDummy">
+        		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static VerticalAlignment.Top}"/>
+        	</ObjectAnimationUsingKeyFrames>
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="PageSwitcherInnerDummy">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="0,-756,0,0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.8" Value="0"/>
+        	</ThicknessAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="NeutralizePage">
         	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="PageSwitcherInner">
@@ -61,6 +76,29 @@
 
     <Grid x:Name="LayoutRoot" Width="310" Height="792" Margin="0,0,310,0" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5">
 		<Grid x:Name="PageSwitcherOuter" Margin="0,36,0,0" ClipToBounds="True" Width="308">
+			<Grid x:Name="PageSwitcherInnerDummy" Height="756" Width="308" Margin="0" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+				<local:LiveTimingItem x:Name="Dummy2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+				<local:LiveTimingItem x:Name="Dummy3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,36,0,0"/>
+				<local:LiveTimingItem x:Name="Dummy4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,72,0,0"/>
+				<local:LiveTimingItem x:Name="Dummy5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,108,0,0"/>
+				<local:LiveTimingItem x:Name="Dummy6" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,144,0,0"/>
+				<local:LiveTimingItem x:Name="Dummy7" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,180,0,0"/>
+				<local:LiveTimingItem x:Name="Dummy8" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,216,0,0"/>
+				<local:LiveTimingItem x:Name="Dummy9" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,252,0,0"/>
+				<local:LiveTimingItem x:Name="Dummy10" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,288,0,0"/>
+				<local:LiveTimingItem x:Name="Dummy11" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,324,0,0"/>
+				<local:LiveTimingItem x:Name="Dummy12" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,360,0,0"/>
+				<local:LiveTimingItem x:Name="Dummy13" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,396,0,0"/>
+				<local:LiveTimingItem x:Name="Dummy14" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,432,0,0"/>
+				<local:LiveTimingItem x:Name="Dummy15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,468,0,0"/>
+				<local:LiveTimingItem x:Name="Dummy16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,504,0,0"/>
+				<local:LiveTimingItem x:Name="Dummy17" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,540,0,0"/>
+				<local:LiveTimingItem x:Name="Dummy18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,576,0,0"/>
+				<local:LiveTimingItem x:Name="Dummy19" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,612,0,0"/>
+				<local:LiveTimingItem x:Name="Dummy20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,648,0,0"/>
+				<local:LiveTimingItem x:Name="Dummy21" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,684,0,0"/>
+				<local:LiveTimingItem x:Name="Dummy22" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,720,0,0"/>
+			</Grid>
 			<Grid x:Name="PageSwitcherInner" Height="756" Width="308" Margin="0" VerticalAlignment="Bottom" HorizontalAlignment="Left">
 				<local:LiveTimingItem x:Name="Item2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 				<local:LiveTimingItem x:Name="Item3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,36,0,0"/>

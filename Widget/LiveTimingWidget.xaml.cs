@@ -21,22 +21,27 @@ namespace TMTVO.Widget
 	/// </summary>
 	public partial class LiveTimingWidget : UserControl, IWidget
 	{
-        private static readonly double pageCd = 500D;
+        private static readonly double pageCd = 1100D;
 
         public bool Active { get; private set; }
-        public LinkedList<LiveTimingItem> Items;
+        public LinkedList<LiveTimingItem> Items { get; private set; }
+        public LinkedList<LiveTimingItem> Dummies { get; private set; }
         public LiveTimingItemMode Mode { get; set; }
         public LiveStandingsModule Module { get; set; }
 
         private Button prevPageButton;
         private Button nextPageButton;
         private Button leaderPageButton;
-        private bool canUpdateButtons;
 
-        private int pageIndex;
         private Timer nextPageCd;
         private Timer prevPageCd;
         private Timer leaderPageCd;
+        private Timer neutralizeTimer;
+
+        private bool canUpdateButtons;
+        private bool dummyActive;
+        private int pageIndex;
+        private int dummyPageIndex;
 
 		public LiveTimingWidget()
 		{
@@ -46,6 +51,9 @@ namespace TMTVO.Widget
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             canUpdateButtons = true;
+            dummyActive = false;
+            PageSwitcherInnerDummy.Visibility = Visibility.Hidden;
+
             pageIndex = 0;
             nextPageCd = new Timer(pageCd);
             nextPageCd.Elapsed += LoadNextPage;
@@ -56,12 +64,16 @@ namespace TMTVO.Widget
             leaderPageCd = new Timer(pageCd);
             leaderPageCd.Elapsed += LoadLeaderPage;
 
+            neutralizeTimer = new Timer(200);
+            neutralizeTimer.Elapsed += NeutralizePage;
+
             TvoControls tvoC = TMTVO.Controller.TMTVO.Instance.TvoControls;
             prevPageButton = tvoC.TimingPrevPage;
             nextPageButton = tvoC.TimingNextPage;
             leaderPageButton = tvoC.TimingLeaderPage;
 
             Items = new LinkedList<LiveTimingItem>();
+            Dummies = new LinkedList<LiveTimingItem>();
             int i = 1;
 
             LiveTimingItem item = Item1;
@@ -84,17 +96,17 @@ namespace TMTVO.Widget
                 item = (LiveTimingItem)elem;
                 item.Flag.Visibility = Visibility.Hidden;
                 item.InPit.Visibility = Visibility.Hidden;
-
-                if (item.Name != "Item1")
-                {
-                    item.NumberLeader.Visibility = Visibility.Hidden;
-                    item.BackgroundLeader.Visibility = Visibility.Hidden;
-                    item.BackgroundLeader1.Visibility = Visibility.Hidden;
-                }
-
                 item.Position.Text = (i++).ToString();
-
                 Items.AddLast(item);
+            }
+
+            foreach (UIElement elem in PageSwitcherInnerDummy.Children)
+            {
+                item = (LiveTimingItem)elem;
+                item.Flag.Visibility = Visibility.Hidden;
+                item.InPit.Visibility = Visibility.Hidden;
+                item.Position.Text = (i++).ToString();
+                Dummies.AddLast(item);
             }
         }
 
@@ -128,10 +140,11 @@ namespace TMTVO.Widget
 
                 node = node.Next;
                 if (node == null)
-                {
                     break;
-                }
             }
+
+            if (dummyActive)
+                UpadeDummies();
 
             int j = (((pageIndex + 1) * 21) + 1 < Module.Items.Count) ? pageIndex + 1 : 0;
             if (pageIndex < j && canUpdateButtons)
@@ -143,6 +156,23 @@ namespace TMTVO.Widget
                     item.Visibility = Visibility.Hidden;
                 else
                     item.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void UpadeDummies()
+        {
+            LinkedListNode<LiveTimingItem> node = Dummies.First;
+            for (int i = 2; i <= Module.Items.Count; i++)
+            {
+                int pos = i + (dummyPageIndex * 21);
+
+                LiveStandingsItem item = Module.Items.Find(it => it.Position == pos);
+                LiveTimingItem current = node.Value;
+                current.Tick(item, Mode);
+
+                node = node.Next;
+                if (node == null)
+                    break;
             }
         }
 
@@ -160,9 +190,33 @@ namespace TMTVO.Widget
             if (pageIndex >= i)
                 return;
 
+            LoadNextDummy();
             Storyboard sb = FindResource("NextPage") as Storyboard;
             sb.Begin();
             nextPageCd.Start();
+        }
+
+        private void LoadNextDummy()
+        {
+            dummyActive = true;
+            dummyPageIndex = pageIndex + 1;
+            PageSwitcherInnerDummy.Visibility = Visibility.Visible;
+
+            UIElementCollection uiE = PageSwitcherInnerDummy.Children;
+            for (int i = 0; i < uiE.Count; i++)
+                ((LiveTimingItem)uiE[i]).FadeInLater(i * 40);
+        }
+
+        private void LoadPrevDummy(int npi = 0)
+        {
+            dummyActive = true;
+            dummyPageIndex = npi;
+            PageSwitcherInnerDummy.Visibility = Visibility.Visible;
+
+            UIElementCollection uiE = PageSwitcherInnerDummy.Children;
+            int j = 0;
+            for (int i = uiE.Count - 1; i >= 0; i--)
+                ((LiveTimingItem)uiE[i]).FadeInLater((j++) * 40);
         }
 
         private void LoadNextPage(object sender, ElapsedEventArgs e)
@@ -184,6 +238,7 @@ namespace TMTVO.Widget
             if (pageIndex <= 0)
                 return;
 
+            LoadPrevDummy(pageIndex - 1);
             Storyboard sb = FindResource("PrevPage") as Storyboard;
             sb.Begin();
             prevPageCd.Start();
@@ -208,9 +263,10 @@ namespace TMTVO.Widget
             if (pageIndex <= 0)
                 return;
 
+            LoadPrevDummy();
             Storyboard sb = FindResource("PrevPage") as Storyboard;
             sb.Begin();
-            prevPageCd.Start();
+            leaderPageCd.Start();
         }
 
         private void LoadLeaderPage(object sender, ElapsedEventArgs e)
@@ -229,23 +285,29 @@ namespace TMTVO.Widget
 
         private void FadeInPositions(int npi)
         {
-            UIElementCollection uiE = PageSwitcherInner.Children;
-            foreach (UIElement e in uiE)
-                ((LiveTimingItem)e).FadeOut();
-
             pageIndex = npi;
-            Storyboard sb = FindResource("NeutralizePage") as Storyboard;
-            sb.Begin();
+            neutralizeTimer.Start();
+        }
 
-            for (int i = 0; i < uiE.Count; i++)
-                ((LiveTimingItem)uiE[i]).FadeInLater(i * 25);
-
-            canUpdateButtons = true;
-            if (pageIndex > 0)
+        private void NeutralizePage(object sender, ElapsedEventArgs e)
+        {
+            neutralizeTimer.Stop();
+            Application.Current.Dispatcher.Invoke(new Action(() =>
             {
-                prevPageButton.IsEnabled = true;
-                leaderPageButton.IsEnabled = true;
-            }
+                Storyboard sb = FindResource("NeutralizePage") as Storyboard;
+                sb.Begin();
+
+                PageSwitcherInnerDummy.Visibility = Visibility.Hidden;
+                dummyActive = false;
+                dummyPageIndex = -1;
+
+                canUpdateButtons = true;
+                if (pageIndex > 0)
+                {
+                    prevPageButton.IsEnabled = true;
+                    leaderPageButton.IsEnabled = true;
+                }
+            }));
         }
     }
 }

@@ -95,7 +95,7 @@ namespace TMTVO.Data.Modules
             OldPosition = Position;
 
             int carIdx = int.Parse(dict.GetDictValue("CarIdx"));
-            if (Driver.CarIndex != carIdx)
+            if (Driver == null || Driver.CarIndex != carIdx)
                 return;
 
             Position = int.Parse(dict.GetDictValue("Position"));
