@@ -210,7 +210,7 @@ namespace TMTVO.Widget
                                 gap = stItem.GapTime - stItem2.GapTime;
                             }
 
-                            item.GapText.Text = "+" + gap.ToString("0.000").Replace(',', '.');
+                            item.GapText.Text = "+" + gap.ConvertToTimeString();
                         }
                         break;
                     case RaceBarMode.Name:
