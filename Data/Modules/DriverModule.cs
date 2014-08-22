@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using TMTVO.Api;
+using TMTVO.Widget;
 using Yaml;
 
 namespace TMTVO.Data.Modules
@@ -17,17 +18,28 @@ namespace TMTVO.Data.Modules
 
         private iRacingControls window;
 
-        public DriverModule(iRacingControls window) : base("DriverModule")
+        public DriverModule(iRacingControls window, ResultsWidget results) : base("DriverModule")
         {
             Drivers = new List<Driver>();
             this.window = window;
             window.DriverModule = this;
             CamCarIndex = -1;
+
+            results.DriverModule = this;
         }
 
         public Driver FindDriver(int CarIdx)
         {
             return Drivers.Find(d => d.CarIndex == CarIdx);
+        }
+
+        public int GetStrengthOfField()
+        {
+            int sof = 0;
+            foreach (Driver d in Drivers)
+                sof += d.IRating;
+
+            return sof / Drivers.Count;
         }
 
         public override void Update(ConfigurationSection rootNode, API api)

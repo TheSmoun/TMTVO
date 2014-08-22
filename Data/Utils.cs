@@ -54,5 +54,18 @@ namespace TMTVO.Data
         {
             return (value & flag) == flag;
         }
+
+        internal static string ConvertToTimeString(this float seconds)
+        {
+            int min = (int)(seconds / 60);
+            float sectime = seconds % 60;
+            StringBuilder sb = new StringBuilder();
+            if (min > 0)
+                sb.Append(min).Append(':').Append(sectime.ToString("00.000"));
+            else
+                sb.Append(sectime.ToString("0.000"));
+
+            return sb.ToString().Replace(',', '.');
+        }
     }
 }

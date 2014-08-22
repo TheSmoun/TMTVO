@@ -12,6 +12,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TMTVO.Data;
 using TMTVO.Data.Modules;
 
 namespace TMTVO.Widget
@@ -27,6 +28,7 @@ namespace TMTVO.Widget
 
         public bool Active { get; private set; }
         public LiveStandingsModule Module { get; set; }
+        public DriverModule DriverModule { get; set; }
         public ResultsMode Mode { get; private set; }
 
         private Timer pageTimer;
@@ -141,16 +143,7 @@ namespace TMTVO.Widget
                             if (diff < 0)
                                 item.Time.Text = "No Time";
                             else
-                            {
-                                int min = (int)(diff / 60);
-                                float secDiff = diff % 60;
-                                StringBuilder sb = new StringBuilder("+");
-                                if (min > 0)
-                                    sb.Append(min).Append(':');
-
-                                sb.Append(secDiff.ToString("0.000"));
-                                item.Time.Text = sb.ToString().Replace(',', '.');
-                            }
+                                item.Time.Text = "+" + diff.ConvertToTimeString();
                         }
 
                         break;
@@ -163,18 +156,38 @@ namespace TMTVO.Widget
                         else
                         {
                             if (stItem.GapLaps == 0)
-                                item.Time.Text = "+" + stItem.GapTime.ToString("0.000").Replace(',', '.');
+                                item.Time.Text = "+" + stItem.GapTime.ConvertToTimeString();
                             else
                                 item.Time.Text = "+" + stItem.GapLaps.ToString() + (stItem.GapLaps == 1 ? " Lap" : " Laps");
                         }
 
-                        // TODO calculate Points
+                        int points = getPoints(pos);
+                        if (points <= 0)
+                        {
+                            item.PointsItem.Visibility = Visibility.Hidden;
+                            item.FadeInColorP.Visibility = Visibility.Hidden;
+                        }
+                        else
+                        {
+                            item.PointsItem.Visibility = Visibility.Visible;
+                            item.FadeInColorP.Visibility = Visibility.Visible;
+
+                            if (points == 1)
+                                item.Time1.Text = "1 pt";
+                            else
+                                item.Time1.Text = points + " pts";
+                        }
 
                         break;
                     default:
                         break;
                 }
             }
+        }
+
+        private int getPoints(int pos) // (SOF/16)*(1-((x-1)/(y-1))) x=pos, y=count
+        {
+            return (int)Math.Floor((DriverModule.GetStrengthOfField() / 16F) * ((pos - 1F) / (Module.Items.Count - 1F)));
         }
 
         private void FadeInPositions()

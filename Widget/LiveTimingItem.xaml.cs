@@ -93,6 +93,12 @@ namespace TMTVO.Widget
                         GapText.Visibility = Visibility.Visible;
                         ThreeLetterCode.Text = Item.Driver.ThreeLetterCode;
 
+                        if (time < 0)
+                        {
+                            GapText.Text = "No Time";
+                            break;
+                        }
+
                         float diff = time - Module.Leader.FastestLapTime;
                         int min = (int)(diff / 60);
                         float secDiff = diff % 60;
@@ -107,6 +113,12 @@ namespace TMTVO.Widget
                     case LiveTimingItemMode.Time:
                         GapText.Visibility = Visibility.Visible;
                         ThreeLetterCode.Text = Item.Driver.ThreeLetterCode;
+
+                        if (time < 0)
+                        {
+                            GapText.Text = "No Time";
+                            break;
+                        }
 
                         min = (int)(time / 60);
                         float sectime = time % 60;

@@ -121,6 +121,11 @@ namespace TMTVO.Widget
         public void FadeOut()
         {
             Active = false;
+
+            prevPageButton.IsEnabled = false;
+            nextPageButton.IsEnabled = false;
+            leaderPageButton.IsEnabled = false;
+
             Storyboard sb = FindResource("FadeOut") as Storyboard;
             sb.Begin();
         }
@@ -204,7 +209,7 @@ namespace TMTVO.Widget
 
             UIElementCollection uiE = PageSwitcherInnerDummy.Children;
             for (int i = 0; i < uiE.Count; i++)
-                ((LiveTimingItem)uiE[i]).FadeInLater(i * 40);
+                ((LiveTimingItem)uiE[i]).FadeInLater(i * 38);
         }
 
         private void LoadPrevDummy(int npi = 0)
@@ -216,7 +221,7 @@ namespace TMTVO.Widget
             UIElementCollection uiE = PageSwitcherInnerDummy.Children;
             int j = 0;
             for (int i = uiE.Count - 1; i >= 0; i--)
-                ((LiveTimingItem)uiE[i]).FadeInLater((j++) * 40);
+                ((LiveTimingItem)uiE[i]).FadeInLater((j++) * 38);
         }
 
         private void LoadNextPage(object sender, ElapsedEventArgs e)

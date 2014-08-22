@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Timers;
+using TMTVO.Data;
 using TMTVO.Data.Modules;
 using System.Windows.Media.Animation;
 
@@ -181,9 +182,9 @@ namespace TMTVO.Widget
                         {
                             if (stItem.GapLaps == 0)
                                 if (Live)
-                                    item.GapText.Text = "+" + stItem.GapLiveLeader.ToString("0.000").Replace(',', '.');
+                                    item.GapText.Text = "+" + stItem.GapLiveLeader.ConvertToTimeString();
                                 else
-                                    item.GapText.Text = "+" + stItem.GapTime.ToString("0.000").Replace(',', '.');
+                                    item.GapText.Text = "+" + stItem.GapTime.ConvertToTimeString();
                             else
                                 item.GapText.Text = "+" + stItem.GapLaps.ToString() + (stItem.GapLaps == 1 ? " Lap" : " Laps");
                         }
