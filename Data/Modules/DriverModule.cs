@@ -62,7 +62,9 @@ namespace TMTVO.Data.Modules
                     if (!driverExists(carIdx))
                     {
                         added = true;
-                        Drivers.Add(parseDriver(dict));
+                        Driver driver = parseDriver(dict);
+                        if (driver != null)
+                            Drivers.Add(driver);
                     }
                 }
             }
@@ -81,6 +83,10 @@ namespace TMTVO.Data.Modules
 
         private Driver parseDriver(Dictionary<string, object> dict)
         {
+            int spec = int.Parse((string)dict.GetDictValue("IsSpectator"));
+            if (spec != 0)
+                return null;
+
             Driver driver = new Driver();
             foreach (KeyValuePair<string, object> kv in dict)
             {
