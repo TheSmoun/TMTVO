@@ -35,22 +35,11 @@ namespace TMTVO.Data.Modules
 
         public override void Update(ConfigurationSection rootNode, API api)
         {
-            if (!sessionTimer.Active)
-                return;
-
             SessionState = (SessionState)api.GetData("SessionState");
-            this.TimeRemaining = (int)(double)api.Sdk.GetData("SessionTimeRemain");
-            SessionFlag newFlag = (SessionFlag)Enum.Parse(typeof(SessionFlag), ((int)api.Sdk.GetData("SessionFlags")).ToString(), true);
-            if (newFlag.FlagSet(SessionFlag.White) && !SessionFlags.FlagSet(SessionFlag.White))
-                Application.Current.Dispatcher.Invoke(new Action(() =>
-                {
-                    lapsRemaining.FadeIn(1);
-                }));
-
-            SessionFlags = newFlag;
 
             List<Dictionary<string, object>> sessions = rootNode.GetMapList("SessionInfo.Sessions");
             Dictionary<string, object> session = sessions[sessions.Count - 1];
+
             object sessionLaps;
             if (session.TryGetValue("SessionLaps", out sessionLaps) && sessionLaps is string)
             {
@@ -59,24 +48,6 @@ namespace TMTVO.Data.Modules
                     LapsTotal = int.MaxValue;
                 else
                     LapsTotal = int.Parse(laps);
-            }
-
-            int lapsRemain = (int)api.Sdk.GetData("SessionLapsRemain");
-            if (lapsRemain <= 5 && lapsRemain > 1)
-                Application.Current.Dispatcher.Invoke(new Action(() =>
-                {
-                    lapsRemaining.FadeIn(lapsRemain);
-                }));
-
-            this.LapsDriven = LapsTotal - lapsRemain;
-            object sessionTime;
-            if (session.TryGetValue("SessionTime", out sessionTime) && sessionTime is string)
-            {
-                string time = ((string)sessionTime).Substring(0, ((string)sessionTime).Length - 4).Replace('.', ',');
-                if (time.StartsWith("unlim"))
-                    TimeTotal = int.MaxValue;
-                else
-                    TimeTotal = (int)float.Parse(time);
             }
 
             object sessionType;
@@ -109,6 +80,36 @@ namespace TMTVO.Data.Modules
                 }
             }
 
+            if (!sessionTimer.Active)
+                return;
+
+            this.TimeRemaining = (int)(double)api.Sdk.GetData("SessionTimeRemain");
+            SessionFlag newFlag = (SessionFlag)Enum.Parse(typeof(SessionFlag), ((int)api.Sdk.GetData("SessionFlags")).ToString(), true);
+            if (newFlag.FlagSet(SessionFlag.White) && !SessionFlags.FlagSet(SessionFlag.White))
+                Application.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    lapsRemaining.FadeIn(1);
+                }));
+
+            SessionFlags = newFlag;
+
+            int lapsRemain = (int)api.Sdk.GetData("SessionLapsRemain");
+            if (lapsRemain <= 5 && lapsRemain > 1)
+                Application.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    lapsRemaining.FadeIn(lapsRemain);
+                }));
+
+            this.LapsDriven = LapsTotal - lapsRemain;
+            object sessionTime;
+            if (session.TryGetValue("SessionTime", out sessionTime) && sessionTime is string)
+            {
+                string time = ((string)sessionTime).Substring(0, ((string)sessionTime).Length - 4).Replace('.', ',');
+                if (time.StartsWith("unlim"))
+                    TimeTotal = int.MaxValue;
+                else
+                    TimeTotal = (int)float.Parse(time);
+            }
 
             Application.Current.Dispatcher.Invoke(new Action(() => {
                 sessionTimer.Tick();
