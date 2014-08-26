@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TMTVO.Api;
+using TMTVO.Widget;
 using Yaml;
 
 namespace TMTVO.Data.Modules
@@ -19,8 +21,13 @@ namespace TMTVO.Data.Modules
             }
         }
 
-        public SessionsModule() : base("Sessions")
+        private WeatherWidget weatherWidget;
+
+        public SessionsModule(WeatherWidget weatherWidget) : base("Sessions")
         {
+            this.weatherWidget = weatherWidget;
+            this.weatherWidget.Module = this;
+
             Track = new Track();
             Track.Weather = new Weather();
             Track.Sectors = new List<float>();
@@ -56,13 +63,23 @@ namespace TMTVO.Data.Modules
             else
                 Track.TrackType = TrackType.None;
 
-            Weather.Skies = weekendInfo.GetString("TrackSkies");
-            // TODO Parse Rest
+            Weather.Skies = (Skies)Enum.Parse(typeof(Skies), weekendInfo.GetString("TrackSkies"));
+            string airTemp = weekendInfo.GetString("TrackAirTemp");
+            Weather.AirTemp = float.Parse(airTemp.Substring(0, airTemp.Length - 2).Replace('.', ','));
+            string trackTemp = weekendInfo.GetString("TrackSurfaceTemp");
+            Weather.TrackTemp = float.Parse(trackTemp.Substring(0, trackTemp.Length - 2).Replace('.', ','));
+            string windSpeed = weekendInfo.GetString("TrackWindVel");
+            Weather.WindSpeed = float.Parse(windSpeed.Substring(0, windSpeed.Length - 4).Replace('.', ','));
+            string humidity = weekendOptions.GetString("RelativeHumidity");
+            Weather.Humidity = int.Parse(humidity.Substring(0, humidity.Length - 2));
 
             Track.Sectors.Clear();
             ConfigurationSection splitTime = rootNode.GetConfigurationSection("SplitTimeInfo");
             foreach (Dictionary<string, object> dict in splitTime.GetMapList("Sectors"))
                 Track.Sectors.Add(float.Parse(dict.GetDictValue("SectorStartPct").Replace('.', ',')));
+
+            if (weatherWidget.Active)
+                Application.Current.Dispatcher.Invoke(weatherWidget.Tick);
         }
 
         public override void Reset()
