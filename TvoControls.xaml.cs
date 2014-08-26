@@ -25,13 +25,13 @@ namespace TMTVO
     public partial class TvoControls : Window
     {
         private TMTVO.Controller.TMTVO tmtvo;
-        private MainWindow window;
+        private F1TVOverlay window;
         private Timer t;
         private SessionTimer.SessionMode sessionTimerMode = Widget.SessionTimer.SessionMode.TimeMode;
         private int driverCount = 0;
         private Timer statusBarTimer;
 
-        public TvoControls(MainWindow window, TMTVO.Controller.TMTVO tmtvo)
+        public TvoControls(F1TVOverlay window, TMTVO.Controller.TMTVO tmtvo)
         {
             this.tmtvo = tmtvo;
             this.window = window;

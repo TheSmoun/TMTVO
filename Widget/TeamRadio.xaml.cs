@@ -77,6 +77,7 @@ namespace TMTVO.Widget
                 {
                     DriversNumber.Text = driver.Car.CarNumber;
                     DriversName.Text = driver.LastUpperName;
+                    NumberPlate.Fill = new SolidColorBrush(driver.LicColor);
                 }
             }
         }

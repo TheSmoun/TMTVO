@@ -28,7 +28,7 @@ namespace TMTVO.Controller
 
         private static readonly int TICKS_PER_SECOND = 20;
 
-        public MainWindow Window { get; private set; }
+        public F1TVOverlay Window { get; private set; }
         public TvoControls TvoControls { get; private set; }
         public iRacingControls iRControls { get; private set; }
         public API Api { get; private set; }
@@ -40,7 +40,7 @@ namespace TMTVO.Controller
         {
             TMTVO t = TMTVO.Instance;
             t.Api = new API(TICKS_PER_SECOND);
-            t.Window = new MainWindow();
+            t.Window = new F1TVOverlay();
             t.TvoControls = new TvoControls(t.Window, t);
             t.iRControls = new iRacingControls(t.Api, t.Window, t);
 

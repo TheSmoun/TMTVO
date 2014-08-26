@@ -24,7 +24,7 @@ namespace TMTVO
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class F1TVOverlay : Window
     {
         private Dictionary<string, Brush> RacingLicenceToBrush = new Dictionary<string, Brush>()
         {
@@ -48,7 +48,7 @@ namespace TMTVO
             {"W", Colors.LightGray}
         };
 
-        public MainWindow()
+        public F1TVOverlay()
         {
             InitializeComponent();
         }

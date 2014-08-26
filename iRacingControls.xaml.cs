@@ -32,7 +32,7 @@ namespace TMTVO
 
         private const int GWL_EXSTYLE = -20;
         private const int WS_EX_NOACTIVATE = 0x08000000;
-        private MainWindow mainWindow;
+        private F1TVOverlay mainWindow;
         private Controller.TMTVO tmtvo;
 
         public CameraModule CameraModule { get; set; }
@@ -43,7 +43,7 @@ namespace TMTVO
             InitializeComponent();
         }
 
-        public iRacingControls(API api, MainWindow mainWindow, Controller.TMTVO t) : this()
+        public iRacingControls(API api, F1TVOverlay mainWindow, Controller.TMTVO t) : this()
         {
             this.api = api;
             this.mainWindow = mainWindow;
