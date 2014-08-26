@@ -12,14 +12,14 @@
             <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Body">
                 <EasingThicknessKeyFrame KeyTime="0" Value="0,0,0,95"/>
                 <EasingThicknessKeyFrame KeyTime="0:0:0.1" Value="0,0,0,95"/>
-                <EasingThicknessKeyFrame KeyTime="0:0:0.12" Value="0,0,0,95"/>
-                <EasingThicknessKeyFrame KeyTime="0:0:0.28" Value="0"/>
+                <EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="0,0,0,95"/>
+                <EasingThicknessKeyFrame KeyTime="0:0:0.6" Value="0"/>
             </ThicknessAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="Body">
                 <EasingDoubleKeyFrame KeyTime="0" Value="20"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="20"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.12" Value="20"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.28" Value="212"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="20"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="212"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="LayoutRoot">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
@@ -29,32 +29,32 @@
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="Header">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0.2"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.12" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="Header">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0.2"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.12" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Header">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.12" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Body">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.12" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="Body">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0.2"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.12" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="Body">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0.2"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.12" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
             <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Header">
                 <EasingThicknessKeyFrame KeyTime="0" Value="0,95,0,0"/>
-                <EasingThicknessKeyFrame KeyTime="0:0:0.12" Value="0,95,0,0"/>
-                <EasingThicknessKeyFrame KeyTime="0:0:0.28" Value="0"/>
+                <EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="0,95,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="0:0:0.6" Value="0"/>
             </ThicknessAnimationUsingKeyFrames>
             <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Spacer">
                 <EasingThicknessKeyFrame KeyTime="0" Value="530,1,0,0"/>

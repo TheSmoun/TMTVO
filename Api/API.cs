@@ -83,6 +83,7 @@ namespace TMTVO.Api
                     Application.Current.Dispatcher.Invoke(new Action(() =>
                     {
                         TMTVO.Controller.TMTVO.Instance.TvoControls.FpsItem.Content = (1000F / ((float)time)).ToString("0.0") + " FPS";
+                        TMTVO.Controller.TMTVO.Instance.TvoControls.MsItem.Content = time + " ms";
                     }));
 
                 if (sleepTime <= 0)

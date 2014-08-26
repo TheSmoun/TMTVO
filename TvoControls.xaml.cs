@@ -235,7 +235,7 @@ namespace TMTVO
                 if (tmtvo.Api.IsConnected)
                     StatusText.Content = "iRacing connected.";
                 else
-                    StatusText.Content = "No connection to iRacing simulator.";
+                    StatusText.Content = "iRacing not connected.";
             }));
         }
 
