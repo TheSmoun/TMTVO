@@ -21,6 +21,8 @@ namespace TMTVO.Widget
 	/// </summary>
 	public partial class WeatherWidget : UserControl, IWidget
 	{
+        private static readonly string prefix = "CURRENT TRACK CONDITIONS - ";
+
         public bool Active { get; private set; }
         public SessionsModule Module { get; set; }
 
@@ -40,6 +42,14 @@ namespace TMTVO.Widget
                 return;
 
             Active = true;
+
+            SkiesValue.Text = Module.Weather.Skies.GetStringValue();
+            AirTempValue.Text = ((int)Module.Weather.AirTemp) + "°c";
+            TrackTempValue.Text = ((int)Module.Weather.TrackTemp) + "°c";
+            WindValue.Text = Module.Weather.WindSpeed.ToString("0.0").Replace(',', '.') + " m/s";
+            HumidityValue.Text = Module.Weather.Humidity.ToString() + "%";
+            TitleText.Text = prefix + Module.Track.City.ToUpper() + ", " + Module.Track.Country.ToUpper();
+
             Storyboard sb = FindResource("FadeIn") as Storyboard;
             sb.Begin();
         }
@@ -54,16 +64,6 @@ namespace TMTVO.Widget
             sb.Begin();
         }
 
-        public void Tick()
-        {
-            if (!Active)
-                return;
-
-            SkiesValue.Text = Module.Weather.Skies.GetStringValue();
-            AirTempValue.Text = ((int)Module.Weather.AirTemp) + "°c";
-            TrackTempValue.Text = ((int)Module.Weather.TrackTemp) + "°c";
-            WindValue.Text = Module.Weather.WindSpeed.ToString("0.0").Replace(',', '.') + " m/s";
-            HumidityValue.Text = Module.Weather.Humidity.ToString() + "%";
-        }
+        public void Tick() { }
     }
 }

@@ -231,6 +231,18 @@ namespace TMTVO.Widget
             Thread.Sleep(time);
             Application.Current.Dispatcher.Invoke(new Action(FadeIn));
         }
+
+        public void FadeOutElements()
+        {
+            Storyboard sb = FindResource("FadeOutElement") as Storyboard;
+            sb.Begin();
+        }
+
+        public void FadeInElements()
+        {
+            Storyboard sb = FindResource("FadeInElement") as Storyboard;
+            sb.Begin();
+        }
     }
 
     public enum LiveTimingItemMode : int

@@ -272,10 +272,7 @@ namespace TMTVO.Widget
         public void UpdateTime(int seconds)
         {
             if (seconds < 0 || Mode != SessionMode.TimeMode)
-            {
-                LapText2.Text = "-:--";
                 return;
-            }
 
             if (lastSeconds == 0)
                 ChequeredFlag();
@@ -323,6 +320,8 @@ namespace TMTVO.Widget
             string sType = "";
             if (SessionTypeToString.TryGetValue(Module.SessionType, out sType))
                 LapText2.Text = sType;
+            else
+                LapText2.Text = "-";
 
             this.UpdateTime(Module.TimeRemaining);
             this.UpdateLaps(Module.LapsDriven, Module.LapsTotal);

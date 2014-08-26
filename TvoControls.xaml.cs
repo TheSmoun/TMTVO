@@ -181,20 +181,14 @@ namespace TMTVO
         private void ShowHideTiming_Click(object sender, RoutedEventArgs e)
         {
             if (window.LiveTiming.Active)
-            {
-                ShowHideTiming.Content = "Show Live Timing";
                 window.LiveTiming.FadeOut();
-            }
             else
-            {
-                ShowHideTiming.Content = "Hide Live Timing";
                 window.LiveTiming.FadeIn();
-            }
         }
 
         private void TimingMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            window.LiveTiming.Mode = (LiveTimingItemMode)((ComboBox)sender).SelectedIndex;
+            window.LiveTiming.ChangeMode((LiveTimingItemMode)((ComboBox)sender).SelectedIndex);
         }
 
         private void ShowHideLeftTimer_Click(object sender, RoutedEventArgs e)
@@ -282,6 +276,24 @@ namespace TMTVO
         private void TimingLeaderPage_Click(object sender, RoutedEventArgs e)
         {
             window.LiveTiming.LeaderPage();
+        }
+
+        private void WeatherToggle_Click(object sender, RoutedEventArgs e)
+        {
+            if (window.WeatherWidget.Active)
+                window.WeatherWidget.FadeOut();
+            else
+                window.WeatherWidget.FadeIn();
+        }
+
+        private void LiveTimingLeaderOnly_Checked(object sender, RoutedEventArgs e)
+        {
+            window.LiveTiming.FadeOutPage();
+        }
+
+        private void LiveTimingLeaderOnly_Unchecked(object sender, RoutedEventArgs e)
+        {
+            window.LiveTiming.FadeInPage();
         }
     }
 }

@@ -26,7 +26,7 @@ namespace TMTVO.Widget
         public bool Active { get; private set; }
         public LinkedList<LiveTimingItem> Items { get; private set; }
         public LinkedList<LiveTimingItem> Dummies { get; private set; }
-        public LiveTimingItemMode Mode { get; set; }
+        public LiveTimingItemMode Mode { get; private set; }
         public LiveStandingsModule Module { get; set; }
 
         private Button prevPageButton;
@@ -37,11 +37,14 @@ namespace TMTVO.Widget
         private Timer prevPageCd;
         private Timer leaderPageCd;
         private Timer neutralizeTimer;
+        private Timer changeModeTimer;
 
         private bool canUpdateButtons;
         private bool dummyActive;
         private int pageIndex;
         private int dummyPageIndex;
+
+        private LiveTimingItemMode newMode;
 
 		public LiveTimingWidget()
 		{
@@ -66,6 +69,9 @@ namespace TMTVO.Widget
 
             neutralizeTimer = new Timer(200);
             neutralizeTimer.Elapsed += NeutralizePage;
+
+            changeModeTimer = new Timer(300);
+            changeModeTimer.Elapsed += changeMode;
 
             TvoControls tvoC = TMTVO.Controller.TMTVO.Instance.TvoControls;
             prevPageButton = tvoC.TimingPrevPage;
@@ -108,6 +114,29 @@ namespace TMTVO.Widget
                 item.Position.Text = (i++).ToString();
                 Dummies.AddLast(item);
             }
+        }
+
+        public void ChangeMode(LiveTimingItemMode newMode)
+        {
+            this.newMode = newMode;
+            if (Items == null)
+            {
+                Mode = newMode;
+                return;
+            }
+
+            foreach (LiveTimingItem i in Items)
+                i.FadeOutElements();
+
+            changeModeTimer.Start();
+        }
+
+        private void changeMode(object sender, ElapsedEventArgs e)
+        {
+            changeModeTimer.Stop();
+            Mode = newMode;
+            foreach (LiveTimingItem i in Items)
+                Application.Current.Dispatcher.Invoke(new Action(i.FadeInElements));
         }
 
         public void FadeIn()
@@ -162,6 +191,20 @@ namespace TMTVO.Widget
                 else
                     item.Visibility = Visibility.Visible;
             }
+        }
+
+        public void FadeInPage()
+        {
+            UIElementCollection uiE = PageSwitcherInner.Children;
+            for (int i = 0; i < uiE.Count; i++)
+                ((LiveTimingItem)uiE[i]).FadeInLater(i * 38);
+        }
+
+        public void FadeOutPage()
+        {
+            UIElementCollection uiE = PageSwitcherInner.Children;
+            for (int i = 0; i < uiE.Count; i++)
+                ((LiveTimingItem)uiE[i]).FadeOut();
         }
 
         private void UpadeDummies()

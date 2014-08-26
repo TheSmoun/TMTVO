@@ -143,7 +143,7 @@ namespace TMTVO.Widget
                             if (diff < 0)
                                 item.Time.Text = "No Time";
                             else
-                                item.Time.Text = "+" + diff.ConvertToTimeString();
+                                item.Time.Text = stItem.FastestLapTime.ConvertToTimeString();
                         }
 
                         break;

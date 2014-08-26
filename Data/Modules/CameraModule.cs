@@ -64,10 +64,7 @@ namespace TMTVO.Data.Modules
             }
 
             if (added)
-                Application.Current.Dispatcher.Invoke(new Action(() =>
-                {
-                    window.UpdateCameras();
-                }));
+                Application.Current.Dispatcher.Invoke(new Action(window.UpdateCameras));
         }
 
         public override void Reset()

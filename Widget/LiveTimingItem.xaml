@@ -60,7 +60,7 @@
         </Storyboard>
         <Storyboard x:Key="FadeOut">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LayoutRoot">
-        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="FadeIn">
@@ -113,6 +113,24 @@
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="FadeInElement">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ThreeLetterCode">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="GapText">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="FadeOutElement">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ThreeLetterCode">
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="GapText">
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>

@@ -135,7 +135,7 @@
 				<TranslateTransform/>
 			</TransformGroup>
 		</Grid.RenderTransform>
-		<Grid x:Name="Body" Margin="0" Width="675" Height="212" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
+		<Grid x:Name="Body" Margin="0" Width="675" Height="212" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Opacity="0">
 			<Grid.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>
@@ -145,7 +145,6 @@
 				</TransformGroup>
 			</Grid.RenderTransform>
 			<Rectangle x:Name="Background1" Fill="#FF222E3F" HorizontalAlignment="Left" Height="212" Stroke="#FF858585" VerticalAlignment="Top" Width="675" RadiusX="6" RadiusY="6"/>
-			<Grid x:Name="RightBody" Margin="0" Width="287" Height="212" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
 			<Border x:Name="TrackBorder" BorderThickness="1" HorizontalAlignment="Left" Height="212" VerticalAlignment="Top" Width="377"/>
 			<Border x:Name="WindDirectionBorder" BorderThickness="1" HorizontalAlignment="Left" Height="212" VerticalAlignment="Top" Width="377"/>
 <Grid x:Name="DataSide" Margin="0,13,0,12" HorizontalAlignment="Right">
@@ -189,7 +188,7 @@
 	</Rectangle.Fill>
 </Rectangle>
 		</Grid>
-		<Grid x:Name="Header" Margin="0" Width="675" Height="36" VerticalAlignment="Top" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+		<Grid x:Name="Header" Margin="0" Width="675" Height="36" VerticalAlignment="Top" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Opacity="0.025">
 			<Grid.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>
@@ -222,7 +221,7 @@
 					</LinearGradientBrush>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<TextBlock x:Name="TitleText" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Current Track Conditions" VerticalAlignment="Top" Foreground="#FFE0E0E0" FontSize="30.667" FontFamily="DIN 1451 Std Mittelschrift"/>
+			<TextBlock x:Name="TitleText" HorizontalAlignment="Center" TextWrapping="Wrap" Text="CURRENT TRACK CONDITIONS" VerticalAlignment="Top" Foreground="#FFE0E0E0" FontSize="24" FontFamily="DIN 1451 Std Mittelschrift" Margin="40.213,4,38.213,0" Width="596.574" TextAlignment="Center"/>
 			<Rectangle x:Name="Farbverlauf" HorizontalAlignment="Center" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="625" RenderTransformOrigin="0.5,0.5" Margin="0">
 				<Rectangle.RenderTransform>
 					<TransformGroup>

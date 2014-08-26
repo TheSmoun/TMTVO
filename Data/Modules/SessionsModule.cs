@@ -77,9 +77,6 @@ namespace TMTVO.Data.Modules
             ConfigurationSection splitTime = rootNode.GetConfigurationSection("SplitTimeInfo");
             foreach (Dictionary<string, object> dict in splitTime.GetMapList("Sectors"))
                 Track.Sectors.Add(float.Parse(dict.GetDictValue("SectorStartPct").Replace('.', ',')));
-
-            if (weatherWidget.Active)
-                Application.Current.Dispatcher.Invoke(weatherWidget.Tick);
         }
 
         public override void Reset()

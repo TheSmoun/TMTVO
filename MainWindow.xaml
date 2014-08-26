@@ -14,7 +14,7 @@
                     <Widget:TeamRadio x:Name="TeamRadio" Width="342" Height="76" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="1408,520,0,0" />
                     <Widget:RaceBar x:Name="RaceBar" Width="1920" Height="50" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,970,0,0" />
                     <Widget:LiveTimingWidget x:Name="LiveTiming" Width="310" Height="792" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="158,70,0,0" />
-                    <Widget:WeatherWidget x:Name="WeatherWidget" Width="675" Height="235" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="1045,755,0,0" Visibility="Hidden" />
+                    <Widget:WeatherWidget x:Name="WeatherWidget" Width="675" Height="235" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="1045,755,0,0" />
                     <Widget:ResultsWidget x:Name="ResultsWidget" Width="1152" Height="580" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="418,143,0,0"  />
                     <Image Source=".\trinitylogo2.png" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300" Height="110" Margin="30,865,0,0" Opacity="0.7" />
                     <Border x:Name="RaceControlBorder" Width="900" Height="150" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,110" />

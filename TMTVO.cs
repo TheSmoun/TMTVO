@@ -58,7 +58,7 @@ namespace TMTVO.Controller
             Api.AddModule(new DriverModule(iRControls, Window.ResultsWidget));
             Api.AddModule(new LiveStandingsModule(Window.LiveTiming, Window.RaceBar, Window.ResultsWidget));
             Api.AddModule(new LeftLaptimeModule(Window.LapTimerLeft));
-            Api.AddModule(new CameraModule(iRControls));
+            //Api.AddModule(new CameraModule(iRControls)); //TODO Fix Loop in CameraModule Tick void
             Api.AddModule(new TimeDeltaModule());
         }
     }
