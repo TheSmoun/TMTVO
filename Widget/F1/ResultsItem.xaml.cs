@@ -12,9 +12,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TMTVO.Widget;
 
-namespace TMTVO
+namespace TMTVO.Widget.F1
 {
 	/// <summary>
 	/// Interaktionslogik für ResultsItem.xaml

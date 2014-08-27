@@ -4,7 +4,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
-	x:Class="TMTVO.Widget.TeamRadio"
+	x:Class="TMTVO.Widget.F1.TeamRadio"
 	x:Name="UserControl" d:DesignHeight="480" RenderTransformOrigin="0.5,0.5" Height="72" Width="342" Loaded="UserControl_Loaded">
 	<UserControl.Resources>
 		<Storyboard x:Key="PfadAnimation1" RepeatBehavior="Forever">

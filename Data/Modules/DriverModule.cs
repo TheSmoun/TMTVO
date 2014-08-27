@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Media;
 using TMTVO.Api;
 using TMTVO.Widget;
+using TMTVO.Widget.F1;
 using Yaml;
 
 namespace TMTVO.Data.Modules

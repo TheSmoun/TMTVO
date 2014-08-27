@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using TMTVO.Data;
 using TMTVO.Data.Modules;
 
-namespace TMTVO.Widget
+namespace TMTVO.Widget.F1
 {
 	/// <summary>
 	/// Interaktionslogik für ResultsWidget.xaml

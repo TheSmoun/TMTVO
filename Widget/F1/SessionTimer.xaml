@@ -5,7 +5,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:pi="http://schemas.microsoft.com/prototyping/2010/interactivity"
 	mc:Ignorable="d"
-	x:Class="TMTVO.Widget.SessionTimer"
+	x:Class="TMTVO.Widget.F1.SessionTimer"
 	Width="410" Height="38">
     <UserControl.Resources>
         <Storyboard x:Key="FadeInLap">

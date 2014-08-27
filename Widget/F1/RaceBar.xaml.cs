@@ -15,7 +15,7 @@ using TMTVO.Data;
 using TMTVO.Data.Modules;
 using System.Windows.Media.Animation;
 
-namespace TMTVO.Widget
+namespace TMTVO.Widget.F1
 {
 	/// <summary>
 	/// Interaktionslogik für RaceBar.xaml

@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 using TMTVO.Data;
 using TMTVO.Data.Modules;
 
-namespace TMTVO.Widget
+namespace TMTVO.Widget.F1
 {
 	/// <summary>
 	/// Interaktionslogik für LapTimer.xaml
@@ -44,8 +44,8 @@ namespace TMTVO.Widget
         {
             Active = false;
             canUpdate = false;
-
-            gapVisible = posVisible = false;
+            gapVisible = false;
+            posVisible = false;
         }
 
         public void FadeIn(LiveStandingsItem driver)
@@ -59,7 +59,7 @@ namespace TMTVO.Widget
 
             this.DriversName.Text = driver.Driver.LastUpperName;
             this.DriversNumber.Text = driver.Driver.NumberPlateInt.ToString();
-            // TODO ClassColor
+            this.NumberPlate.Fill = new SolidColorBrush(driver.Driver.LicColor);
 
             Storyboard sb = FindResource("FadeIn") as Storyboard;
             sb.Begin();
@@ -103,7 +103,7 @@ namespace TMTVO.Widget
             updateCd.Elapsed += TimerElapsed;
             updateCd.Start();
 
-            float gap = -0.234f; // TODO get gap.
+            float gap = LapDriver.FastestLapTime - LapDriver.LastLapTime;
             if (gap >= 0)
             {
                 BackgroundGreen.Visibility = Visibility.Hidden;
@@ -145,9 +145,17 @@ namespace TMTVO.Widget
 
             int position = LapDriver.Position;
             if (position > 1)
+            {
                 BackgroundLeader.Visibility = Visibility.Hidden;
+                BackgroundNumber.Visibility = Visibility.Hidden;
+                One.Visibility = Visibility.Hidden;
+            }
             else
+            {
                 BackgroundLeader.Visibility = Visibility.Visible;
+                BackgroundNumber.Visibility = Visibility.Visible;
+                One.Visibility = Visibility.Visible;
+            }
 
             Position.Text = position.ToString();
 

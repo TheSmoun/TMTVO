@@ -4,7 +4,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
-	x:Class="TMTVO.Widget.WeatherWidget"
+	x:Class="TMTVO.Widget.F1.WeatherWidget"
 	x:Name="UserControl"
 	d:DesignWidth="640" d:DesignHeight="480" Width="675" Height="235" Loaded="UserControl_Loaded">
     <UserControl.Resources>
@@ -188,7 +188,7 @@
 	</Rectangle.Fill>
 </Rectangle>
 		</Grid>
-		<Grid x:Name="Header" Margin="0" Width="675" Height="36" VerticalAlignment="Top" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Opacity="0.025">
+		<Grid x:Name="Header" Margin="0" Width="675" Height="36" VerticalAlignment="Top" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Opacity="0">
 			<Grid.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>

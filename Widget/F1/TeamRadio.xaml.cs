@@ -15,7 +15,7 @@ using TMTVO.Controller;
 using TMTVO.Data;
 using TMTVO.Data.Modules;
 
-namespace TMTVO.Widget
+namespace TMTVO.Widget.F1
 {
 	/// <summary>
 	/// Interaktionslogik für TeamRadio.xaml

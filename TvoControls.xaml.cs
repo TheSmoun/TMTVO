@@ -16,6 +16,7 @@ using TMTVO.Api;
 using TMTVO.Data;
 using TMTVO.Data.Modules;
 using TMTVO.Widget;
+using TMTVO.Widget.F1;
 
 namespace TMTVO
 {
@@ -27,7 +28,7 @@ namespace TMTVO
         private TMTVO.Controller.TMTVO tmtvo;
         private F1TVOverlay window;
         private Timer t;
-        private SessionTimer.SessionMode sessionTimerMode = Widget.SessionTimer.SessionMode.TimeMode;
+        private SessionTimer.SessionMode sessionTimerMode = Widget.F1.SessionTimer.SessionMode.TimeMode;
         private int driverCount = 0;
         private Timer statusBarTimer;
 
@@ -157,13 +158,13 @@ namespace TMTVO
             switch (((ComboBox)sender).SelectedIndex)
             {
                 case 0:
-                    sessionTimerMode = Widget.SessionTimer.SessionMode.TimeMode;
+                    sessionTimerMode = Widget.F1.SessionTimer.SessionMode.TimeMode;
                     break;
                 case 1:
-                    sessionTimerMode = Widget.SessionTimer.SessionMode.LapMode;
+                    sessionTimerMode = Widget.F1.SessionTimer.SessionMode.LapMode;
                     break;
                 default:
-                    sessionTimerMode = Widget.SessionTimer.SessionMode.TimeMode;
+                    sessionTimerMode = Widget.F1.SessionTimer.SessionMode.TimeMode;
                     break;
             }
         }
