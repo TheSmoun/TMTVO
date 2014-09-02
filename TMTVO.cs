@@ -29,8 +29,7 @@ namespace TMTVO.Controller
         private static readonly int TICKS_PER_SECOND = 20;
 
         public F1TVOverlay Window { get; private set; }
-        public TvoControls TvoControls { get; private set; }
-        public iRacingControls iRControls { get; private set; }
+        public Controls Controls { get; private set; }
         public API Api { get; private set; }
         public IniFile Cars { get; private set; }
 
@@ -41,11 +40,10 @@ namespace TMTVO.Controller
             TMTVO t = TMTVO.Instance;
             t.Api = new API(TICKS_PER_SECOND);
             t.Window = new F1TVOverlay();
-            t.TvoControls = new TvoControls(t.Window, t);
-            t.iRControls = new iRacingControls(t.Api, t.Window, t);
+            t.Controls = new Controls(t.Api, t.Window, t);
 
             t.InitalizeModules();
-            t.TvoControls.Show();
+            t.Controls.Show();
             t.Cars = new IniFile(@"C:\Users\Simon\Documents\TMTVO\TMTVO\Data\Ini\cars.ini"); // TODO Pfad einstellen
             return t;
         }
@@ -55,10 +53,10 @@ namespace TMTVO.Controller
             Api.AddModule(new SessionsModule(Window.WeatherWidget));
             Api.AddModule(new SessionTimerModule(Window.SessionTimer, Window.LapsRemaining));
             Api.AddModule(new TeamRadioModule(Window.TeamRadio));
-            Api.AddModule(new DriverModule(iRControls, Window.ResultsWidget));
+            Api.AddModule(new DriverModule(Controls, Window.ResultsWidget));
             Api.AddModule(new LiveStandingsModule(Window.LiveTiming, Window.RaceBar, Window.ResultsWidget));
             Api.AddModule(new LeftLaptimeModule(Window.LapTimerLeft));
-            Api.AddModule(new CameraModule(iRControls));
+            Api.AddModule(new CameraModule(Controls));
             Api.AddModule(new TimeDeltaModule());
         }
     }

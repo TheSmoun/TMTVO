@@ -16,13 +16,13 @@ namespace TMTVO.Data.Modules
         public int WantedCamera { get; set; }
         public int FollowedDriver { get; set; }
 
-        private iRacingControls window;
+        private Controls controls;
 
-        public CameraModule(iRacingControls window) : base("CameraModule")
+        public CameraModule(Controls controls) : base("CameraModule")
         {
             Cameras = new List<Camera>();
-            this.window = window;
-            this.window.CameraModule = this;
+            this.controls = controls;
+            this.controls.CameraModule = this;
 
             CurrentCamera = 0;
             WantedCamera = 0;

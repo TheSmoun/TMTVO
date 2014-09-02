@@ -16,13 +16,13 @@ namespace TMTVO.Data.Modules
     {
         public List<Driver> Drivers { get; private set; }
 
-        private iRacingControls window;
+        private Controls controls;
 
-        public DriverModule(iRacingControls window, ResultsWidget results) : base("DriverModule")
+        public DriverModule(Controls controls, ResultsWidget results) : base("DriverModule")
         {
             Drivers = new List<Driver>();
-            this.window = window;
-            window.DriverModule = this;
+            this.controls = controls;
+            controls.DriverModule = this;
 
             results.DriverModule = this;
         }

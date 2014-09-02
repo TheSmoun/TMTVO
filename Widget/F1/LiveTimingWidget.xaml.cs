@@ -73,7 +73,7 @@ namespace TMTVO.Widget.F1
             changeModeTimer = new Timer(300);
             changeModeTimer.Elapsed += changeMode;
 
-            TvoControls tvoC = TMTVO.Controller.TMTVO.Instance.TvoControls;
+            Controls tvoC = TMTVO.Controller.TMTVO.Instance.Controls;
             prevPageButton = tvoC.TimingPrevPage;
             nextPageButton = tvoC.TimingNextPage;
             leaderPageButton = tvoC.TimingLeaderPage;
