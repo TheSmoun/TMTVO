@@ -27,13 +27,14 @@ namespace TMTVO
     public partial class iRacingControls : Window
     {
         private API api;
-        DateTime cameraUpdate = DateTime.Now;
-        DispatcherTimer updateTimer = new DispatcherTimer();
-
         private const int GWL_EXSTYLE = -20;
         private const int WS_EX_NOACTIVATE = 0x08000000;
         private F1TVOverlay mainWindow;
         private Controller.TMTVO tmtvo;
+        private DispatcherTimer updateTimer;
+        private bool autoCommit;
+        private bool cameraUpdate;
+        private bool driverUpdate;
 
         public CameraModule CameraModule { get; set; }
         public DriverModule DriverModule { get; set; }
@@ -48,6 +49,9 @@ namespace TMTVO
             this.api = api;
             this.mainWindow = mainWindow;
             this.tmtvo = t;
+            this.autoCommit = true;
+            this.driverUpdate = true;
+            this.cameraUpdate = true;
         }
 
         public void Reset()
@@ -74,76 +78,102 @@ namespace TMTVO
 
         private void controlsWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            updateTimer = new DispatcherTimer();
             updateTimer.Interval = new TimeSpan(0, 0, 0, 0, 250);
-            updateTimer.Tick += new EventHandler(updateControls);
+            updateTimer.Tick += updateControls;
             updateTimer.Start();
-            cameraUpdate = DateTime.MinValue;
             cameraSelectComboBox.Items.Clear();
             driverSelect.Items.Clear();
             updateControls(new object(), new EventArgs());
         }
 
-        public void UpdateCameras()
-        {
-            cameraSelectComboBox.Items.Clear();
-            Camera selected = null;
-            foreach (Camera cam in CameraModule.Cameras)
-            {
-                if (cam.Id == CameraModule.CurrentCamera)
-                    selected = cam;
-
-                cameraSelectComboBox.Items.Add(cam);
-            }
-
-            cameraSelectComboBox.SelectedItem = selected;
-        }
-
-        public void UpdateDrivers()
-        {
-            driverSelect.Items.Clear();
-            Driver selected = null;
-            foreach (Driver driver in DriverModule.Drivers)
-            {
-                if (driver.CarIndex == DriverModule.CamCarIndex)
-                    selected = driver;
-
-                driverSelect.Items.Add(driver);
-            }
-
-            driverSelect.SelectedItem = selected;
-        }
-
-        public void UpdateSelectedDriver(string number)
-        {
-            /*
-            Driver selected = null;
-            foreach (Driver driver in driverSelect.Items)
-                if (driver.Car.CarNumber == number)
-                    selected = driver;
-
-            Application.Current.Dispatcher.Invoke(new Action(() =>
-            {
-                driverSelect.SelectedItem = selected;
-            }));*/
-        }
-
-        public void UpdateSelectedCamera(int id)
-        {
-            /*
-            Camera selected = null;
-            foreach (Camera cam in cameraSelectComboBox.Items)
-                if (cam.Id == id)
-                    selected = cam;
-
-            Application.Current.Dispatcher.Invoke(new Action(() =>
-            {
-                cameraSelectComboBox.SelectedItem = selected;
-            }));*/
-        }
-
         private void updateControls(object sender, EventArgs e)
         {
-            
+            if (!api.IsConnected || CameraModule == null || DriverModule == null)
+                return;
+
+            bool oldAutoCommit = autoCommit;
+            autoCommit = false;
+
+            ComboBoxItem cboxitem;
+            if (cameraUpdate)
+            {
+                if (CameraModule.Cameras.Count > 0)
+                {
+                    cameraSelectComboBox.Items.Clear();
+                    foreach (Camera cam in CameraModule.Cameras)
+                    {
+                        cboxitem = new ComboBoxItem();
+                        cboxitem.Content = cam.Name;
+                        cboxitem.Tag = cam.Id;
+                        cameraSelectComboBox.Items.Add(cboxitem);
+                        if (cam.Id == CameraModule.CurrentCamera)
+                            cameraSelectComboBox.SelectedItem = cboxitem;
+                    }
+                }
+            }
+
+            if (driverUpdate)
+            {
+                driverSelect.Items.Clear();
+                IEnumerable<Driver> dQuery = DriverModule.Drivers.OrderBy(s => s.NumberPlateInt);
+
+                foreach (Driver driver in dQuery)
+                {
+                    cboxitem = new ComboBoxItem();
+                    cboxitem.Content = driver.Car.CarNumber + " " + driver.FullName;
+                    cboxitem.Tag = padCarNum(driver.Car.CarNumber);
+                    driverSelect.Items.Add(cboxitem);
+                    if (driver.CarIndex == CameraModule.FollowedDriver)
+                        driverSelect.SelectedItem = cboxitem;
+                }
+
+                cboxitem = new ComboBoxItem();
+                cboxitem.Content = "Most exiting";
+                cboxitem.Tag = -1;
+                driverSelect.Items.Add(cboxitem);
+
+                cboxitem = new ComboBoxItem();
+                cboxitem.Content = "Leader";
+                cboxitem.Tag = -2;
+                driverSelect.Items.Add(cboxitem);
+
+                cboxitem = new ComboBoxItem();
+                cboxitem.Content = "Crashes";
+                cboxitem.Tag = -3;
+                driverSelect.Items.Add(cboxitem);
+            }
+
+            if ((api != null) && api.IsConnected && (api.GetData("ReplayPlaySpeed") != null))
+            {
+                int playspeed = (int)api.GetData("ReplayPlaySpeed");
+                if (playspeed != 1)
+                    playButton.Content = "4";
+                else
+                    playButton.Content = ";";
+            }
+
+            autoCommit = oldAutoCommit;
+        }
+
+        public static int padCarNum(string input)
+        {
+            int num = Int32.Parse(input);
+            int zero = input.Length - num.ToString().Length;
+
+            int retVal = num;
+            int numPlace = 1;
+            if (num > 99)
+                numPlace = 3;
+            else if (num > 9)
+                numPlace = 2;
+            if (zero > 0)
+            {
+                numPlace += zero;
+                retVal = num + 1000 * numPlace;
+            }
+
+            return retVal;
         }
 
         private void addBookmark_Click(object sender, RoutedEventArgs e)
@@ -153,23 +183,39 @@ namespace TMTVO
 
         private void cameraSelectComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (autoCommit)
+                commit();
+        }
+
+        private void commit()
+        {
             if (driverSelect.SelectedItem == null || cameraSelectComboBox.SelectedItem == null)
                 return;
 
-            int driver = int.Parse(((Driver)driverSelect.SelectedItem).Car.CarNumber);
-            int camera = ((Camera)cameraSelectComboBox.SelectedItem).Id;
+            int driver = Convert.ToInt32(driverSelect.SelectedValue);
+            int camera = Convert.ToInt32(cameraSelectComboBox.SelectedValue);
 
             api.SwitchCamera(driver, camera);
         }
 
         private void commitButton_Click(object sender, RoutedEventArgs e)
         {
-
+            commit();
         }
 
         private void autoCommitButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Button btn = (Button)e.Source;
+            if (autoCommit)
+            {
+                btn.Content = "Auto apply";
+                autoCommit = false;
+            }
+            else
+            {
+                btn.Content = "Manual apply";
+                autoCommit = true;
+            }
         }
 
         private void addBookmark_Click_1(object sender, RoutedEventArgs e)
@@ -194,12 +240,27 @@ namespace TMTVO
 
         private void liveButton_Click(object sender, RoutedEventArgs e)
         {
-
+            api.ReplaySearch(ReplaySearchModeTypes.ToEnd, 0);
+            api.Play();
+            // TODO Trigger
         }
 
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (api.IsConnected)
+            {
+                int playspeed = (int)api.GetData("ReplayPlaySpeed");
+                if (playspeed != 1)
+                {
+                    api.Play();
+                    playButton.Content = "4";
+                }
+                else
+                {
+                    api.Pause();
+                    playButton.Content = ";";
+                }
+            }
         }
 
         private void prevDriver_Click(object sender, RoutedEventArgs e)
@@ -214,30 +275,54 @@ namespace TMTVO
 
         private void driver(int delta)
         {
-            LiveStandingsModule m = api.FindModule("LiveStandings") as LiveStandingsModule;
+            LiveStandingsModule lsm = Controller.TMTVO.Instance.Api.FindModule("LiveStandings") as LiveStandingsModule;
 
-            int position = m.FindDriver(((Driver)driverSelect.SelectedItem).CarIndex).Position + delta;
-
+            int pos = lsm.FindDriver(CameraModule.FollowedDriver).Position + delta;
             string nextPlate = "";
-            if (position < 1)
-                nextPlate = m.Items.Find(i => i.Position == m.Items.Count).Driver.Car.CarNumber;
-            else if (position > m.Items.Count)
-                nextPlate = m.Leader.Driver.Car.CarNumber;
-            else
-                nextPlate = m.Items.Find(i => i.Position == position).Driver.Car.CarNumber;
 
-            api.SwitchCamera(int.Parse(nextPlate), ((Camera)cameraSelectComboBox.SelectedItem).Id);
+            if (pos < 1)
+                nextPlate = lsm.FindDriverByPos(DriverModule.Drivers.Count).Driver.Car.CarNumber;
+            else if (pos > lsm.Items.Count)
+                nextPlate = lsm.Leader.Driver.Car.CarNumber;
+            else
+                nextPlate = lsm.FindDriverByPos(pos).Driver.Car.CarNumber;
+
+            if (autoCommit)
+                api.SwitchCamera(padCarNum(nextPlate), Convert.ToInt32(cameraSelectComboBox.SelectedValue));
         }
 
         private void uiCheckBox_Click(object sender, RoutedEventArgs e)
         {
-
+            //if (uiCheckBox.IsChecked == false)
+            //    SharedData.showSimUi = true;
+            //else
+            //    SharedData.showSimUi = false;
         }
 
         private void controlsWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = true;
             Hide();
+        }
+
+        private void driverSelect_DropDownOpened(object sender, EventArgs e)
+        {
+            driverUpdate = false;
+        }
+
+        private void driverSelect_DropDownClosed(object sender, EventArgs e)
+        {
+            driverUpdate = true;
+        }
+
+        private void cameraSelectComboBox_DropDownOpened(object sender, EventArgs e)
+        {
+            cameraUpdate = false;
+        }
+
+        private void cameraSelectComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            cameraUpdate = true;
         }
     }
 }

@@ -14,6 +14,7 @@ namespace TMTVO.Data.Modules
         public List<Camera> Cameras { get; private set; }
         public int CurrentCamera { get; set; }
         public int WantedCamera { get; set; }
+        public int FollowedDriver { get; set; }
 
         private iRacingControls window;
 
@@ -38,18 +39,13 @@ namespace TMTVO.Data.Modules
 
         public override void Update(ConfigurationSection rootNode, API api)
         {
-            int newIndex = (int)api.GetData("CamGroupNumber");
-            if (newIndex != CurrentCamera)
-            {
-                CurrentCamera = newIndex;
-                window.UpdateSelectedCamera(CurrentCamera);
-            }
+            FollowedDriver = (int)api.GetData("CamCarIdx");
+            CurrentCamera = (int)api.GetData("CamGroupNumber");
 
             List<Dictionary<string, object>> groups = rootNode.GetMapList("CameraInfo.Groups");
             if (groups.Count == Cameras.Count)
                 return;
 
-            bool added = false;
             foreach (Dictionary<string, object> dict in groups)
             {
                 int id = int.Parse(dict.GetDictValue("GroupNum"));
@@ -60,11 +56,7 @@ namespace TMTVO.Data.Modules
                 cam.Id = id;
                 cam.Name = dict.GetDictValue("GroupName");
                 Cameras.Add(cam);
-                added = true;
             }
-
-            if (added)
-                Application.Current.Dispatcher.Invoke(new Action(window.UpdateCameras));
         }
 
         public override void Reset()

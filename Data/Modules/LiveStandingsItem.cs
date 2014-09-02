@@ -213,9 +213,7 @@ namespace TMTVO.Data.Modules
 
                         if (CurrentLap.LapNumber > 0 && Laps.FindIndex(l => l.LapNumber.Equals(CurrentLap.LapNumber)) == -1 &&
                             (sessionTimer.SessionState != SessionState.Gridding || sessionTimer.SessionState != SessionState.Cooldown))
-                        {
                             Laps.Add(CurrentLap);
-                        }
 
                         CurrentLap = new Lap();
                         CurrentLap.LapNumber = ((int[])api.GetData("CarIdxLap"))[carIdx];
