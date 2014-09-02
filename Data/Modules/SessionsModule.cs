@@ -64,7 +64,7 @@ namespace TMTVO.Data.Modules
             else
                 Track.TrackType = TrackType.None;
 
-            Weather.Skies = (Skies)Enum.Parse(typeof(Skies), weekendInfo.GetString("TrackSkies"));
+            Weather.Skies = (Skies)Enum.Parse(typeof(Skies), weekendInfo.GetString("TrackSkies").Replace(" ", ""));
             string airTemp = weekendInfo.GetString("TrackAirTemp");
             Weather.AirTemp = float.Parse(airTemp.Substring(0, airTemp.Length - 2).Replace('.', ','));
             string trackTemp = weekendInfo.GetString("TrackSurfaceTemp");

@@ -40,6 +40,8 @@ namespace TMTVO.Data.Modules
         public bool PositionLost { get; set; }
         public bool LapTimeImproved { get; set; }
 
+        private int positionLive;
+
         public float GapLive
         {
             get
@@ -89,6 +91,33 @@ namespace TMTVO.Data.Modules
             PreviousLap = new Lap();
         }
 
+
+        public int PositionLive
+        {
+            get
+            {
+                return positionLive;
+            }
+            set
+            {
+                if (value == positionLive)
+                    return;
+
+                if (value < positionLive)
+                {
+                    PositionImproved = true;
+                    PositionLost = false;
+                }
+                else
+                {
+                    PositionLost = true;
+                    PositionImproved = false;
+                }
+
+                positionLive = value;
+            }
+        }
+
         public void Update(Dictionary<string, object> dict, API api)
         {
             double currTime = (double)api.GetData("SessionTime");
@@ -99,8 +128,8 @@ namespace TMTVO.Data.Modules
                 return;
 
             Position = int.Parse(dict.GetDictValue("Position"));
-            PositionImproved = Position < OldPosition || (OldPosition == 0 && Position != 0) && !first;
-            PositionLost = OldPosition < Position && !first;
+            //PositionImproved = Position < OldPosition || (OldPosition == 0 && Position != 0) && !first;
+            //PositionLost = OldPosition < Position && !first;
             ClassPosition = int.Parse(dict.GetDictValue("ClassPosition")) + 1;
             GapLaps = int.Parse(dict.GetDictValue("Lap"));
             GapTime = float.Parse(dict.GetDictValue("Time").Replace('.', ','));

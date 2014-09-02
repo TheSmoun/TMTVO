@@ -130,8 +130,8 @@ namespace TMTVO
                 SessionTimerModule sTModule = (SessionTimerModule)tmtvo.Api.FindModule("SessionTimer");
                 if (sTModule.SessionType == SessionType.LapRace || sTModule.SessionType == SessionType.TimeRace)
                 {
-                    RaceButtons.Visibility = Visibility.Visible;
-                    NormalButtons.Visibility = Visibility.Hidden;
+                    RaceButtons.Visibility = Visibility.Hidden; // TODO Change
+                    NormalButtons.Visibility = Visibility.Visible;
                 }
                 else
                 {

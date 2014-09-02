@@ -148,7 +148,7 @@ namespace TMTVO.Widget.F1
             {
                 RaceBarItem item = (RaceBarItem)items[j++];
                 int pos = j + (index * 5);
-                LiveStandingsItem stItem = Module.Items.Find(it => it.Position == pos);
+                LiveStandingsItem stItem = Module.Items.Find(it => it.PositionLive == pos);
                 if (stItem == null)
                 {
                     item.Show = false;
@@ -206,7 +206,7 @@ namespace TMTVO.Widget.F1
                                 gap = stItem.GapLive;
                             else
                             {
-                                LiveStandingsItem stItem2 = Module.Items.Find(it => it.Position == (j + (index * 5)) - 1);
+                                LiveStandingsItem stItem2 = Module.Items.Find(it => it.PositionLive == (j + (index * 5)) - 1);
                                 gap = stItem.GapTime - stItem2.GapTime;
                             }
 

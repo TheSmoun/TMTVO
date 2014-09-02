@@ -168,7 +168,7 @@ namespace TMTVO.Widget.F1
                 if (i > 1)
                     pos = i + (pageIndex * 21);
 
-                LiveStandingsItem item = Module.Items.Find(it => it.Position == pos);
+                LiveStandingsItem item = Module.Items.Find(it => it.PositionLive == pos);
                 LiveTimingItem current = node.Value;
                 current.Tick(item, Mode);
 
@@ -214,7 +214,7 @@ namespace TMTVO.Widget.F1
             {
                 int pos = i + (dummyPageIndex * 21);
 
-                LiveStandingsItem item = Module.Items.Find(it => it.Position == pos);
+                LiveStandingsItem item = Module.Items.Find(it => it.PositionLive == pos);
                 LiveTimingItem current = node.Value;
                 current.Tick(item, Mode);
 

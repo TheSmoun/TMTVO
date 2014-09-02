@@ -84,7 +84,11 @@ namespace TMTVO.Data.Modules
 
         private Driver parseDriver(Dictionary<string, object> dict)
         {
-            int spec = int.Parse((string)dict.GetDictValue("IsSpectator"));
+            object sspec = dict.GetDictValue("IsSpectator");
+            if (sspec == null)
+                return null;
+
+            int spec = int.Parse((string)sspec);
             if (spec != 0)
                 return null;
 

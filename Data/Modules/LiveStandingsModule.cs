@@ -74,6 +74,7 @@ namespace TMTVO.Data.Modules
                 item.Update(resultPosition, api);
             }
 
+            UpdateLivePositions();
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
                 if (liveTiming.Active)
@@ -82,6 +83,28 @@ namespace TMTVO.Data.Modules
                 if (raceBar.Active)
                     raceBar.Tick();
             }));
+        }
+
+        private void UpdateLivePositions()
+        {
+            int i = 1;
+            IEnumerable<LiveStandingsItem> query;
+
+            SessionTimerModule stm = TMTVO.Controller.TMTVO.Instance.Api.FindModule("SessionTimer") as SessionTimerModule;
+            
+
+            if (stm.SessionType == SessionType.LapRace || stm.SessionType == SessionType.TimeRace)
+            {
+                query = Items.OrderByDescending(s => s.CurrentTrackPct);
+                foreach (LiveStandingsItem si in query)
+                    si.PositionLive = i++;
+            }
+            else
+            {
+                query = Items.OrderBy(s => s.Position);
+                foreach (LiveStandingsItem si in query)
+                    si.PositionLive = si.Position;
+            }
         }
 
         public override void Reset()
