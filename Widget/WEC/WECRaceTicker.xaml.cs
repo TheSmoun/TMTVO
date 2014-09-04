@@ -7,20 +7,97 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TMTVO.Data.Modules;
 
 namespace TMTVO.Widget.WEC
 {
 	/// <summary>
 	/// Interaktionslogik für WECRaceTicker.xaml
 	/// </summary>
-	public partial class WECRaceTicker : UserControl
+	public partial class WECRaceTicker : UserControl, IWidget
 	{
+        public bool Active { get; private set; }
+        public LiveStandingsModule Module { get; set; }
+
+        Storyboard tickerStoryboard;
+        ThicknessAnimation tickerAnimation;
+
 		public WECRaceTicker()
 		{
 			this.InitializeComponent();
 		}
-	}
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Active = false;
+            tickerStoryboard = new Storyboard();
+            tickerAnimation = new ThicknessAnimation();
+            tickerAnimation.From = new Thickness(1700, 0, 0, 0);
+            tickerStoryboard.Children.Add(tickerAnimation);
+        }
+
+        public void FadeIn()
+        {
+            if (Active)
+                return;
+
+            Active = true;
+            Storyboard sb = FindResource("FadeIn") as Storyboard;
+            sb.Begin();
+            tickerStoryboard.Begin();
+        }
+
+        public void FadeOut()
+        {
+            if (!Active)
+                return;
+
+            Active = false;
+            Storyboard sb = FindResource("FadeOut") as Storyboard;
+            sb.Begin();
+            tickerStoryboard.Stop();
+        }
+
+        public void Tick()
+        {
+            ItemHostInner.Children.Clear();
+            
+            int margin = 0;
+            for (int i = 1; i <= Module.Items.Count; i++)
+            {
+                if (i > 1)
+                {
+                    WECRaceTickerSpacer spacer = new WECRaceTickerSpacer();
+                    spacer.Margin = new Thickness(margin, 0, 0, 0);
+                    margin += 11;
+                    ItemHostInner.Children.Add(spacer);
+                }
+
+                WECRaceTickerItem item = new WECRaceTickerItem();
+                if (!item.Update(Module.Items.Find(it => it.Position == i)))
+                {
+                    i--;
+                    continue;
+                }
+
+                item.Margin = new Thickness(margin, 0, 0, 0);
+                margin += 700;
+                ItemHostInner.Children.Add(item);
+
+                tickerAnimation.To = new Thickness(ItemHostInner.ActualWidth, 0, 0, 0);
+                tickerAnimation.RepeatBehavior = RepeatBehavior.Forever;
+                tickerAnimation.Duration = TimeSpan.FromMilliseconds(ItemHostInner.Children.Count / 2D * 2750D);
+            }
+        }
+
+        public enum WECTickerMode
+        {
+            Gap,
+            Interval
+        }
+    }
 }

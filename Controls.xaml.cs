@@ -113,8 +113,10 @@ namespace TMTVO
                 t = new Timer(50);
                 t.Elapsed += ShowTabs;
                 t.Start();
-
+                // TODO Load Theme
                 TabGrid.Visibility = Visibility.Visible;
+
+                ThemeSelector.IsEnabled = false;
             }
             else
             {
@@ -128,6 +130,8 @@ namespace TMTVO
 
                 tmtvo.Api.Stop();
                 TabGrid.Visibility = Visibility.Hidden;
+
+                ThemeSelector.IsEnabled = true;
             }
         }
 

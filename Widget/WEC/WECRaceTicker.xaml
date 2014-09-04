@@ -7,7 +7,7 @@
 	mc:Ignorable="d"
 	x:Class="TMTVO.Widget.WEC.WECRaceTicker"
 	x:Name="UserControl"
-	d:DesignWidth="640" d:DesignHeight="480" Height="112" Width="1821">
+	d:DesignWidth="640" d:DesignHeight="480" Height="112" Width="1821" Loaded="UserControl_Loaded">
 
 	<Grid x:Name="LayoutRoot" Width="1821" Height="112" ClipToBounds="True">
 		<Rectangle x:Name="TransparentBackground" HorizontalAlignment="Left" Height="112" RadiusY="10" RadiusX="10" VerticalAlignment="Top" Width="1821" Opacity="0.66">
@@ -18,7 +18,9 @@
 				</LinearGradientBrush>
 			</Rectangle.Fill>
 		</Rectangle>
-		<Grid x:Name="ItemHost" Margin="0" Width="1700" Height="112" HorizontalAlignment="Right" VerticalAlignment="Top" ClipToBounds="True" />
+		<Grid x:Name="ItemHost" Margin="0" Width="1700" Height="112" HorizontalAlignment="Right" VerticalAlignment="Top" ClipToBounds="True" >
+			<Grid x:Name="ItemHostInner" Height="112" HorizontalAlignment="Left" VerticalAlignment="Top" ClipToBounds="True" Margin="1700,0,0,0" />
+		</Grid>
 		<Path x:Name="TitleBackground" Data="M-1.8547823E-06,0.015625047 C67.347347,0.024416657 121.74978,0.12603757 202.04204,0.041999878 161.33336,27.66722 180.6667,94.333715 150.00028,112.00034 116.49979,112.00033 49.916757,112.08367 -0.12500208,112.12534 z" HorizontalAlignment="Left" Height="112.11" Margin="-0.125,0.015,0,-0.125" Stretch="Fill" VerticalAlignment="Top" Width="202.167">
 			<Path.Effect>
 				<DropShadowEffect BlurRadius="7" Direction="352" Color="#FF5B5B5B" ShadowDepth="4"/>

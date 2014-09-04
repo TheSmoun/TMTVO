@@ -17,12 +17,12 @@
 						<Button x:Name="WeatherToggle" Content="Weather" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,5,103,0" Click="WeatherToggle_Click" />
 						<Button x:Name="DriverInfo" Content="Driver Info" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="103,5,0,0" Click="WeatherToggle_Click" />
 						<CheckBox x:Name="TeamRadioEnabled" Content="Team Radio" Checked="TeamRadioEnabled_Checked" Unchecked="TeamRadioEnabled_Unchecked" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,43,103,0" />
-						<ComboBox x:Name="TimingMode_Copy" Grid.Row="0" Height="24" Width="100" HorizontalAlignment="Center" Margin="103,40,0,0" SelectionChanged="TimingMode_SelectionChanged" VerticalAlignment="Top">
+						<ComboBox x:Name="TimingMode_Copy" Grid.Row="0" Height="25" Width="100" HorizontalAlignment="Center" Margin="103,40,0,0" SelectionChanged="TimingMode_SelectionChanged" VerticalAlignment="Top">
 							<ComboBoxItem x:Name="LastName1" Content="NameOnly" IsSelected="True" />
 							<ComboBoxItem x:Name="Gap1" Content="BestLast" />
 							<ComboBoxItem x:Name="Time1" Content="QualiTime" />
 						</ComboBox>
-						<ComboBox x:Name="SessionTimerMode" Grid.Row="0" Height="24" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,309,0" SelectionChanged="SessionTimerMode_SelectionChanged">
+						<ComboBox x:Name="SessionTimerMode" Grid.Row="0" Height="25" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,309,0" SelectionChanged="SessionTimerMode_SelectionChanged">
 							<ComboBoxItem x:Name="TimeMode" Content="Time Mode" IsSelected="True" />
 							<ComboBoxItem x:Name="LapMode" Content="Lap Mode" />
 						</ComboBox>
@@ -115,5 +115,10 @@
 		</StatusBar>
 		<Button x:Name="StartStop" Content="Start" HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" Margin="0,10,10,0" Click="StartStopButton_Click">
 		</Button>
+		<ComboBox x:Name="ThemeSelector" HorizontalAlignment="Right" VerticalAlignment="Top" Width="120" Margin="0,10,95,0" SelectedIndex="0">
+			<ComboBoxItem Content="F1 TV Overlay" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+			<!--<ComboBoxItem Content="WEC TV Overlay" HorizontalAlignment="Left" Width="118"/>
+			<ComboBoxItem Content="TM TV Overlay" HorizontalAlignment="Left" Width="118"/>-->
+		</ComboBox>
 	</Grid>
 </Window>
