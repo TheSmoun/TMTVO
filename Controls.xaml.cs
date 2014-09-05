@@ -578,5 +578,23 @@ namespace TMTVO
         {
             cameraUpdate = true;
         }
+
+        private void RevMeter_Click(object sender, RoutedEventArgs e)
+        {
+            if (f1Window.RevMeterWidget.Active)
+                f1Window.RevMeterWidget.FadeOut();
+            else
+            {
+                int carIdx = CameraModule.FollowedDriver;
+                if (carIdx == -1)
+                    return;
+
+                LiveStandingsItem driver = ((LiveStandingsModule)tmtvo.Api.FindModule("LiveStandings")).FindDriver(carIdx);
+                if (driver == null)
+                    return;
+
+                f1Window.RevMeterWidget.FadeIn(driver);
+            }
+        }
     }
 }

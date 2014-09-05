@@ -10,14 +10,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TMTVO.Data.Modules;
 
 namespace TMTVO.Widget.F1
 {
 	/// <summary>
 	/// Interaktionslogik für RevMeter.xaml
 	/// </summary>
-	public partial class RevMeter : UserControl
+	public partial class RevMeter : UserControl, IWidget
 	{
+        public bool Active { get; private set; }
+        public LiveStandingsItem Driver { get; private set; }
+
 		public RevMeter()
 		{
 			this.InitializeComponent();
@@ -52,18 +56,39 @@ namespace TMTVO.Widget.F1
             else if (speed == 288)
                 SpeedRotation.Angle = -180;
             else if (speed > 0 && speed < 287)
-                SpeedRotation.Angle = 0; // TODO Rechnen.
+                SpeedRotation.Angle = -59F + (59F + 180F) * (speed / 287F);
             else if (speed >= 360)
                 SpeedRotation.Angle = -117;
             else if (speed > 289 && speed < 360)
-                SpeedRotation.Angle = 0; // TODO Rechnen.
+                SpeedRotation.Angle = -180 - (59F + 180F) * (speed / 287F);
 
-            Speed.Text = speed.ToString();
+            Speed.Text = speed.ToString("0");
         }
 
-        public void SetRpm(int rpm)
+        public void FadeIn(LiveStandingsItem driver)
         {
-            RPM.Text = rpm.ToString();
+            if (Active || driver == null)
+                return;
+
+            Driver = driver;
+            Active = true;
+            LayoutRoot.Visibility = Visibility.Visible; // TODO
         }
-	}
+
+        public void FadeOut()
+        {
+            if (!Active)
+                return;
+
+            Active = false;
+            LayoutRoot.Visibility = Visibility.Hidden; // TODO;
+        }
+
+        public void Tick()
+        {
+            SetSpeed((int)(Driver.Speed * 3.6F));
+            RPM.Text = ((float[])Controller.TMTVO.Instance.Api.GetData("CarIdxRPM"))[Driver.Driver.CarIndex].ToString("0");
+            // TODO Rest
+        }
+    }
 }

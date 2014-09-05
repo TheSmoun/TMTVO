@@ -23,7 +23,7 @@ namespace TMTVO.Widget.F1
 	/// </summary>
 	public partial class LapTimerLeft : UserControl, ILapTimer
 	{
-        protected static readonly float roadPreviewTime = 0.05F;
+        protected static readonly float roadPreviewTime = 0.02F;
         protected static readonly float ovalPreviewTime = 0.002F;
 
         private Timer updateCd;
@@ -135,7 +135,7 @@ namespace TMTVO.Widget.F1
             if (!Active || LapDriver.CurrentLap.Time < 0.100)
                 return;
 
-            SectorComplete(seconds);
+            SectorComplete(LapDriver.LastLapTime);
 
             int position = LapDriver.Position;
             if (position > 1)
@@ -183,6 +183,8 @@ namespace TMTVO.Widget.F1
                 }));
             }
         }
+
+        private float oldSeconds = 0;
 
         public void Tick()
         {
@@ -234,9 +236,12 @@ namespace TMTVO.Widget.F1
                         ShowGap("+0.000"); // TODO Fix this
                     }));
 
+                    oldSeconds = seconds;
                     return;
                 }
-                else if (LapDriver.PrevTrackPct > sector && LapDriver.PrevTrackPct < sector + LapTimerLeft.roadPreviewTime) // TODO Fix for first sector
+                else if ((LapDriver.PrevTrackPct > sector && LapDriver.PrevTrackPct < sector + LapTimerLeft.roadPreviewTime) ||
+                    (LapDriver.PrevTrackPct > 0.0F && LapDriver.PrevTrackPct < 0.0F + LapTimerLeft.roadPreviewTime) ||
+                    seconds < oldSeconds) // TODO fix this
                 {
                     Application.Current.Dispatcher.Invoke(new Action(() =>
                     {
@@ -246,9 +251,12 @@ namespace TMTVO.Widget.F1
                             SectorComplete(seconds);
                     }));
 
+                    oldSeconds = seconds;
                     return;
                 }
             }
+
+            oldSeconds = seconds;
         }
 
         public void ShowGap(string gap)

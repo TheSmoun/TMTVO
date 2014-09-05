@@ -8,6 +8,7 @@ using TMTVO.Api;
 using TMTVO.Data;
 using TMTVO.Data.Ini;
 using TMTVO.Data.Modules;
+using TMTVO;
 
 namespace TMTVO.Controller
 {
@@ -58,6 +59,7 @@ namespace TMTVO.Controller
             Api.AddModule(new LeftLaptimeModule(Window.LapTimerLeft));
             Api.AddModule(new CameraModule(Controls));
             Api.AddModule(new TimeDeltaModule());
+            Api.AddModule(new RevMeterModule(Window.RevMeterWidget));
         }
     }
 }
