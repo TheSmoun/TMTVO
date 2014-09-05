@@ -202,17 +202,17 @@ namespace TMTVO
             f1Window.LiveTiming.ChangeMode((LiveTimingItemMode)((ComboBox)sender).SelectedIndex);
         }
 
-        /*private void ShowHideLeftTimer_Click(object sender, RoutedEventArgs e)
+        private void ShowHideLeftTimer_Click(object sender, RoutedEventArgs e)
         {
-            if (window.LapTimerLeft.Active)
+            if (f1Window.LapTimerLeft.Active)
             {
-                ShowHideLeftTimer.Content = "Show LapTimer L";
-                window.LapTimerLeft.FadeOut();
-                DriversLeft.IsEnabled = true;
+                //ShowHideLeftTimer.Content = "Show LapTimer L";
+                f1Window.LapTimerLeft.FadeOut();
+                //DriversLeft.IsEnabled = true;
             }
             else
             {
-                int carIdx = DriversLeft.SelectedIndex;
+                int carIdx = /*DriversLeft.SelectedIndex;*/ CameraModule.FollowedDriver;
                 if (carIdx == -1)
                     return;
 
@@ -220,11 +220,11 @@ namespace TMTVO
                 if (driver == null)
                     return;
 
-                ShowHideLeftTimer.Content = "Hide LapTimer L";
-                window.LapTimerLeft.FadeIn(driver);
-                DriversLeft.IsEnabled = false;
+                //ShowHideLeftTimer.Content = "Hide LapTimer L";
+                f1Window.LapTimerLeft.FadeIn(driver);
+                //DriversLeft.IsEnabled = false;
             }
-        }*/
+        }
 
         private void RaceBarToggle_Click(object sender, RoutedEventArgs e)
         {

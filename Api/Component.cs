@@ -8,6 +8,6 @@ namespace TMTVO.Api
 {
     public interface Component
     {
-        void Update(Dictionary<string, object> dict, API api);
+        void Update(Dictionary<string, object> dict, API api, Module caller);
     }
 }

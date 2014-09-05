@@ -15,7 +15,7 @@
 					<Grid>
 						<Button x:Name="SessionTimer" Grid.Row="0" Content="Session Timer" Height="25" Width="100" Click="SessionTimer_Click" HorizontalAlignment="Center" Margin="0,5,309,0" VerticalAlignment="Top" />
 						<Button x:Name="WeatherToggle" Content="Weather" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,5,103,0" Click="WeatherToggle_Click" />
-						<Button x:Name="DriverInfo" Content="Driver Info" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="103,5,0,0" Click="WeatherToggle_Click" />
+						<Button x:Name="DriverInfo" Content="Driver Info" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="103,5,0,0" Click="ShowHideLeftTimer_Click" />
 						<CheckBox x:Name="TeamRadioEnabled" Content="Team Radio" Checked="TeamRadioEnabled_Checked" Unchecked="TeamRadioEnabled_Unchecked" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,43,103,0" />
 						<ComboBox x:Name="TimingMode_Copy" Grid.Row="0" Height="25" Width="100" HorizontalAlignment="Center" Margin="103,40,0,0" SelectionChanged="TimingMode_SelectionChanged" VerticalAlignment="Top">
 							<ComboBoxItem x:Name="LastName1" Content="NameOnly" IsSelected="True" />

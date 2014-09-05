@@ -13,7 +13,7 @@ namespace TMTVO.Widget
     {
         LiveStandingsItem LapDriver { get; }
         void FadeIn(LiveStandingsItem driver);
-        void SectorComplete();
-        void LapComplete();
+        void SectorComplete(float seconds);
+        void LapComplete(float seconds);
     }
 }

@@ -118,7 +118,13 @@ namespace TMTVO.Data.Modules
             }
         }
 
-        public void Update(Dictionary<string, object> dict, API api)
+        private double prevtime = 0;
+        private double currentime = 0;
+        private float Prevspeed;
+        internal double CurrentSessionTime { get; set; }
+        public double Begin { get; set; }
+
+        public void Update(Dictionary<string, object> dict, API api, Module caller)
         {
             double currTime = (double)api.GetData("SessionTime");
             OldPosition = Position;
@@ -146,54 +152,54 @@ namespace TMTVO.Data.Modules
             InPits = (((bool[])api.GetData("CarIdxOnPitRoad"))[carIdx] || surfaceType == SurfaceType.InPitStall || surfaceType == SurfaceType.NotInWorld);
             Surface = surfaceType;
 
-            // TODO Fix this hole thing
-            SessionTimerModule sessionTimer = api.FindModule("SessionTimer") as SessionTimerModule;
-            SessionsModule sessions = api.FindModule("Sessions") as SessionsModule;
-            LiveStandingsModule standings = api.FindModule("LiveStandings") as LiveStandingsModule;
+            Track track = ((SessionsModule)Controller.TMTVO.Instance.Api.FindModule("Sessions")).Track;
 
-            if (CurrentLap == null)
-                CurrentLap = new Lap();
+            SessionTimerModule m = (SessionTimerModule)Controller.TMTVO.Instance.Api.FindModule("SessionTimer");
+            SessionType sessionType = m.SessionType;
+            SessionState sessionState = m.SessionState;
+            int finishLine = m.LapsTotal + 1;
 
-            double timeOffset = 0;
-            if ((currTime - (double)api.GetData("ReplaySessionTime")) < 2)
-                        timeOffset = ((int)api.GetData("ReplayFrameNum") - currTime * 60);
+            SurfaceType surface = (SurfaceType)((int[])api.GetData("CarIdxTrackSurface"))[Driver.CarIndex];
+            int lapNumber = ((int[])api.GetData("CarIdxLap"))[Driver.CarIndex];
+            float trackPct = ((float[])api.GetData("CarIdxLapDistPct"))[Driver.CarIndex];
 
-            double curpos = (double)((float[])api.GetData("CarIdxLapDistPct"))[carIdx];
+            if (currentime >= prevtime)
+                currentime = (double)api.GetData("SessionTime");
+
+            double timeoffset = 0;
+            if (((double)api.GetData("SessionTime") - (double)api.GetData("ReplaySessionTime")) < 2)
+                timeoffset = (int)api.GetData("ReplayFrameNum") - ((double)api.GetData("SessionTime") * 60);
 
             double prevpos = PrevTrackPct;
             double prevupdate = PrevTrackPctUpdate;
+            float curpos = ((float[])api.GetData("CarIdxLapDistPct"))[Driver.CarIndex];
 
-            CurrentLap.ReplayPos = (int)(((double)api.GetData("SessionTime") * 60) + timeOffset);
+            CurrentLap.ReplayPos = (int)(((double)api.GetData("SessionTime") * 60) + timeoffset);
 
-            double now = currTime - ((curpos / (1 + curpos - prevpos)) * (currTime - prevTime));
-            if (currTime > prevupdate && curpos != prevpos)
+            if (currentime > prevupdate && curpos != prevpos)
             {
                 float speed = 0;
 
                 if (curpos < 0.1 && prevpos > 0.9)
-                    speed = (float)((((curpos - prevpos) + 1) * (double)sessions.Track.Length) / (currTime - prevupdate));
+                    speed = (float)((((curpos - prevpos) + 1) * (double)track.Length) / (currentime - prevupdate));
                 else
-                    speed = (float)(((curpos - prevpos) * (double)sessions.Track.Length) / (currTime - prevupdate));
+                    speed = (float)(((curpos - prevpos) * (double)track.Length) / (currentime - prevupdate));
 
-                if (Math.Abs(PrevSpeed - speed) < 1 && (curpos - prevpos) >= 0)
+                if (Math.Abs(Prevspeed - speed) < 1 && (curpos - prevpos) >= 0)
                     Speed = speed;
 
-                PrevSpeed = speed;
+                Prevspeed = speed;
                 PrevTrackPct = curpos;
-                PrevTrackPctUpdate = currTime;
+                PrevTrackPctUpdate = currentime;
 
-                int lapNumber = ((int[])api.GetData("CarIdxLap"))[carIdx];
-
-                if (!Finished && surfaceType != SurfaceType.NotInWorld)
-                    CurrentTrackPct = lapNumber + curpos - 1;
+                if (Finished == false && surface != SurfaceType.NotInWorld)
+                    CurrentTrackPct = lapNumber + trackPct - 1;
 
                 if (curpos < 0.1 && prevpos > 0.9 && !Finished)
                 {
-                    if (sessionTimer.SessionType != SessionType.LapRace && sessionTimer.SessionType != SessionType.TimeRace)
-                        Finished = true;
-
-                    if (surfaceType != SurfaceType.NotInWorld && speed > 0)
+                    if (surface != SurfaceType.NotInWorld && speed > 0)
                     {
+                        Double now = currentime - ((curpos / (1 + curpos - prevpos)) * (currentime - prevtime));
 
                         Sector sector = new Sector();
                         sector.Number = Sector;
@@ -202,68 +208,77 @@ namespace TMTVO.Data.Modules
                         sector.Begin = SectorBegin;
 
                         CurrentLap.Sectors.Add(sector);
-                        CurrentLap.Time = (float)(now - LapBegin);
-                        CurrentLap.ClassPosition = ClassPosition;
-                        if (sessionTimer.SessionType == SessionType.LapRace || sessionTimer.SessionType == SessionType.TimeRace)
+                        CurrentLap.Time = (float)(now - Begin);
+                        // TODO CurrentLap.ClassPosition = SharedData.Sessions.CurrentSession.getClassPosition(driver.Driver);
+                        if (sessionType == SessionType.LapRace || sessionType == SessionType.TimeRace)
                             CurrentLap.Gap = (float)GapLive;
                         else
-                            CurrentLap.Gap = CurrentLap.Time - standings.Leader.FastestLapTime;
+                        {
+                            LiveStandingsItem leader = ((LiveStandingsModule)caller).Leader;
+                            if (leader != null)
+                                CurrentLap.Gap = CurrentLap.Time - leader.FastestLapTime;
+                        }
+
                         CurrentLap.GapLaps = 0;
 
 
                         if (CurrentLap.LapNumber > 0 && Laps.FindIndex(l => l.LapNumber.Equals(CurrentLap.LapNumber)) == -1 &&
-                            (sessionTimer.SessionState != SessionState.Gridding || sessionTimer.SessionState != SessionState.Cooldown))
+                            (sessionState != SessionState.Gridding || sessionState != SessionState.Cooldown))
                             Laps.Add(CurrentLap);
 
                         CurrentLap = new Lap();
-                        CurrentLap.LapNumber = ((int[])api.GetData("CarIdxLap"))[carIdx];
+                        CurrentLap.LapNumber = lapNumber;
                         CurrentLap.Gap = PreviousLap.Gap;
                         CurrentLap.GapLaps = PreviousLap.GapLaps;
-                        CurrentLap.ReplayPos = (int)(((double)api.GetData("SessionTime") * 60) + timeOffset);
-                        CurrentLap.SessionTime = now;
+                        CurrentLap.ReplayPos = (int)(((double)api.GetData("SessionTime") * 60) + timeoffset);
+                        CurrentLap.SessionTime = (double)api.GetData("SessionTime");
                         SectorBegin = now;
                         Sector = 0;
-                        LapBegin = now;
+                        Begin = now;
 
-                        if (sessionTimer.SessionFlags == SessionFlag.Yellow && Position == 1)
-                            sessionTimer.CautionLaps++;
+                        // caution lap calc
+                        //if (m.SessionFlags.FlagSet(SessionFlag.Yellow) && Position == 1)
+                        //    SharedData.Sessions.CurrentSession.CautionLaps++;
 
-                        if (ClassPosition == 1 && CurrentLap.LapNumber > 1)
-                            ClassLapsLed++;
+                        // class laps led
+                        //if (SharedData.Sessions.CurrentSession.getClassLeader(driver.Driver.CarClassName).Driver.CarIdx == driver.Driver.CarIdx && driver.CurrentLap.LapNum > 1)
+                        //    driver.ClassLapsLed = driver.ClassLapsLed + 1;
                     }
                 }
 
-                if (sessions.Track.Sectors.Count > 0 && Driver.CarIndex >= 0)
+                if (track.Sectors.Count > 0 && Driver.CarIndex >= 0)
                 {
-                    for (int j = 0; j < sessions.Track.Sectors.Count; j++)
+                    for (int j = 0; j < track.Sectors.Count; j++)
                     {
-                        if (curpos > sessions.Track.Sectors[j] && j > Sector)
+                        if (curpos > track.Sectors[j] && j > Sector)
                         {
-                            double now2 = currTime - ((curpos - sessions.Track.Sectors[j]) * (curpos - prevpos));
+                            double now = currentime - ((curpos - track.Sectors[j]) * (curpos - prevpos));
                             Sector sector = new Sector();
                             sector.Number = Sector;
-                            sector.Time = (float)(now2 - SectorBegin);
+                            sector.Time = (float)(now - SectorBegin);
                             sector.Speed = Speed;
                             sector.Begin = SectorBegin;
                             CurrentLap.Sectors.Add(sector);
-                            SectorBegin = now2;
+                            SectorBegin = now;
                             Sector = j;
                         }
                     }
                 }
 
-                if (CurrentLap.LapNumber + CurrentLap.GapLaps >= sessionTimer.LapsTotal && surfaceType != SurfaceType.NotInWorld &&
-                    (sessionTimer.SessionType == SessionType.LapRace || sessionTimer.SessionType == SessionType.TimeRace) && !Finished)
+                if (CurrentLap.LapNumber + CurrentLap.GapLaps >= finishLine && surface != SurfaceType.NotInWorld &&
+                    (sessionType == SessionType.LapRace || sessionType == SessionType.TimeRace) && !Finished)
                 {
+                    ((LiveStandingsModule)caller).UpdatePosition();
                     CurrentTrackPct = (Math.Floor(CurrentTrackPct) + 0.0064) - (0.0001 * Position);
                     Finished = true;
-                }                  
+                }
+
+                if (Driver.CarIndex >= 0)
+                    Surface = surface;
             }
 
-            CurrentLap.Time = (float)(now - LapBegin);
-            prevTime = currTime;
-            // TODO Fix up to here
-            first = false;
+            prevtime = currentime;
+            CurrentSessionTime = currentime;
         }
 
         public string FastestLapTimeSting

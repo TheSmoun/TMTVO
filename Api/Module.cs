@@ -41,7 +41,7 @@ namespace TMTVO.Api
         public void UpdateComponents()
         {
             foreach (Component c in components) {
-                c.Update(null, null);
+                c.Update(null, null, null);
             }
         }
 

@@ -81,10 +81,6 @@ namespace TMTVO.Data.Modules
                 }
             }
 
-            if (!sessionTimer.Active)
-                return;
-
-            this.TimeRemaining = (int)(double)api.Sdk.GetData("SessionTimeRemain");
             SessionFlag newFlag = (SessionFlag)Enum.Parse(typeof(SessionFlag), ((int)api.Sdk.GetData("SessionFlags")).ToString(), true);
             if (newFlag.FlagSet(SessionFlag.White) && !SessionFlags.FlagSet(SessionFlag.White))
                 Application.Current.Dispatcher.Invoke(new Action(() =>
@@ -94,6 +90,10 @@ namespace TMTVO.Data.Modules
 
             SessionFlags = newFlag;
 
+            if (!sessionTimer.Active)
+                return;
+
+            this.TimeRemaining = (int)(double)api.Sdk.GetData("SessionTimeRemain");
             int lapsRemain = (int)api.Sdk.GetData("SessionLapsRemain");
             if (lapsRemain <= 5 && lapsRemain > 1)
                 Application.Current.Dispatcher.Invoke(new Action(() =>

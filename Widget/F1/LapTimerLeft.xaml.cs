@@ -23,7 +23,7 @@ namespace TMTVO.Widget.F1
 	/// </summary>
 	public partial class LapTimerLeft : UserControl, ILapTimer
 	{
-        protected static readonly float roadPreviewTime = 0.005F;
+        protected static readonly float roadPreviewTime = 0.05F;
         protected static readonly float ovalPreviewTime = 0.002F;
 
         private Timer updateCd;
@@ -93,7 +93,7 @@ namespace TMTVO.Widget.F1
             LapDriver = null;
         }
 
-        public void SectorComplete()
+        public void SectorComplete(float seconds)
         {
             if (!Active)
                 return;
@@ -103,7 +103,8 @@ namespace TMTVO.Widget.F1
             updateCd.Elapsed += TimerElapsed;
             updateCd.Start();
 
-            float gap = LapDriver.FastestLapTime - LapDriver.LastLapTime;
+            float gap = LapDriver.FastestLapTime - LapDriver.LastLapTime; // TODO Fix this
+            BackgroundRed.Visibility = Visibility.Hidden;
             if (gap >= 0)
             {
                 BackgroundGreen.Visibility = Visibility.Hidden;
@@ -115,9 +116,6 @@ namespace TMTVO.Widget.F1
                 GapTime.Text = gap.ToString("0.000");
             }
 
-
-            float seconds = LapDriver.CurrentLap.Time;
-
             float s = seconds % 60;
             int m = (int)(seconds / 60);
 
@@ -128,20 +126,16 @@ namespace TMTVO.Widget.F1
             if (s < 10 && m != 0)
                 sbu.Append("0");
 
-            sbu.Append(s.ToString("0.000"));
+            sbu.Append(s.ToString("0.000").Replace(',', '.'));
             TimeText.Text = sbu.ToString();
-
-            gapVisible = true;
-            Storyboard sb = FindResource("ShowGap") as Storyboard;
-            sb.Begin();
         }
 
-        public void LapComplete()
+        public void LapComplete(float seconds)
         {
             if (!Active || LapDriver.CurrentLap.Time < 0.100)
                 return;
 
-            SectorComplete();
+            SectorComplete(seconds);
 
             int position = LapDriver.Position;
             if (position > 1)
@@ -172,15 +166,21 @@ namespace TMTVO.Widget.F1
             if (gapVisible)
             {
                 gapVisible = false;
-                Storyboard sb = FindResource("HideGap") as Storyboard;
-                sb.Begin();
+                Application.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    Storyboard sb = FindResource("HideGap") as Storyboard;
+                    sb.Begin();
+                }));
             }
 
             if (posVisible)
             {
                 posVisible = false;
-                Storyboard sb = FindResource("HideNumber") as Storyboard;
-                sb.Begin();
+                Application.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    Storyboard sb = FindResource("HideNumber") as Storyboard;
+                    sb.Begin();
+                }));
             }
         }
 
@@ -189,12 +189,20 @@ namespace TMTVO.Widget.F1
             if (!canUpdate)
                 return;
 
-            float seconds = LapDriver.CurrentLap.Time;
-            if (seconds < 0)
+            float seconds = (float)(LapDriver.CurrentSessionTime - LapDriver.Begin);
+            if (seconds <= 0)
                 return;
 
             float s = seconds % 60;
             int m = (int)(seconds / 60);
+            if (m > 20)
+            {
+                Application.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    TimeText.Text = "0.0    ";
+                }));
+                return;
+            }
 
             StringBuilder sb = new StringBuilder();
             if (m != 0)
@@ -216,24 +224,44 @@ namespace TMTVO.Widget.F1
             for (int i = 0; i < Sectors.Count; i++)
             {
                 float sector = Sectors[i];
-                if (sector < 0.1F)
-                    continue;
+                if (sector == 0.0F)
+                    sector = 1F;
 
-                if (LapDriver.PrevTrackPct <= sector - LapTimerLeft.roadPreviewTime && LapDriver.CurrentTrackPct > sector - LapTimerLeft.roadPreviewTime)
+                if (LapDriver.PrevTrackPct > sector - LapTimerLeft.roadPreviewTime && LapDriver.PrevTrackPct < sector)
                 {
                     Application.Current.Dispatcher.Invoke(new Action(() =>
                     {
-                        BackgroundRed.Visibility = Visibility.Visible;
-                    
-                    // TOTO Set sector text
-
-                        Storyboard sb1 = FindResource("ShowGap") as Storyboard;
-                        sb1.Begin();
+                        ShowGap("+0.000"); // TODO Fix this
                     }));
+
+                    return;
+                }
+                else if (LapDriver.PrevTrackPct > sector && LapDriver.PrevTrackPct < sector + LapTimerLeft.roadPreviewTime) // TODO Fix for first sector
+                {
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        if (sector == 1F)
+                            LapComplete(seconds);
+                        else
+                            SectorComplete(seconds);
+                    }));
+
+                    return;
                 }
             }
+        }
 
-            // TODO Call sector- and lap-complete-methods.
+        public void ShowGap(string gap)
+        {
+            if (gapVisible)
+                return;
+
+            gapVisible = true;
+            BackgroundRed.Visibility = Visibility.Visible;
+
+            GapTime.Text = gap;
+            Storyboard sb = FindResource("ShowGap") as Storyboard;
+            sb.Begin();
         }
     }
 }

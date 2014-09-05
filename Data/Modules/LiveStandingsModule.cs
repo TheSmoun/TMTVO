@@ -71,7 +71,7 @@ namespace TMTVO.Data.Modules
                     Items.Add(item);
                 }
 
-                item.Update(resultPosition, api);
+                item.Update(resultPosition, api, this);
             }
 
             UpdateLivePositions();
@@ -105,6 +105,28 @@ namespace TMTVO.Data.Modules
                 foreach (LiveStandingsItem si in query)
                     si.PositionLive = si.Position;
             }
+        }
+
+        public void UpdatePosition()
+        {
+            int i = 1;
+            IEnumerable<LiveStandingsItem> query;
+            SessionTimerModule stm = TMTVO.Controller.TMTVO.Instance.Api.FindModule("SessionTimer") as SessionTimerModule;
+            if (stm.SessionType == SessionType.LapRace || stm.SessionType == SessionType.TimeRace)
+            {
+                query = Items.OrderByDescending(s => s.CurrentTrackPct);
+                foreach (LiveStandingsItem si in query)
+                    si.PositionLive = i++;
+            }
+            else
+            {
+                query = Items.OrderBy(s => s.Position);
+                foreach (LiveStandingsItem si in query)
+                    si.PositionLive = si.Position;
+
+            }
+
+            //CheckPitStatus();
         }
 
         public override void Reset()
