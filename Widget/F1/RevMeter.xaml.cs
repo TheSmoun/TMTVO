@@ -28,27 +28,7 @@ namespace TMTVO.Widget.F1
 			this.InitializeComponent();
 		}
 
-        public void SetBrake(float brakePct)
-        {
-            if (brakePct <= 0)
-                BrakeRotation.Angle = -51;
-            else if (brakePct >= 1)
-                BrakeRotation.Angle = 90;
-            else
-                BrakeRotation.Angle = 141 * brakePct - 51;
-        }
-
-        public void SetThrottle(float throttlePct)
-        {
-            if (throttlePct <= 0)
-                ThrottleRotation.Angle = 50;
-            else if (throttlePct >= 1)
-                ThrottleRotation.Angle = -88;
-            else
-                ThrottleRotation.Angle = 138 * (1 - throttlePct) - 88;
-        }
-
-        public void SetSpeed(int speed)
+        private void setSpeed(int speed)
         {
             if (speed <= 180)
                 SpeedGrid.Visibility = Visibility.Hidden;
@@ -84,7 +64,7 @@ namespace TMTVO.Widget.F1
             Speed.Text = speed.ToString("0");
         }
 
-        public void SetRev(int rev)
+        private void setRev(int rev)
         {
             if (rev <= 9000)
                 RevGrid.Visibility = Visibility.Hidden;
@@ -154,8 +134,8 @@ namespace TMTVO.Widget.F1
                 return;
             }
 
-            SetSpeed((int)(Driver.Speed * 3.6F));
-            SetRev((int)rpm);
+            setSpeed((int)(Driver.Speed * 3.6F));
+            setRev((int)rpm);
 
             int gear = ((int[])Controller.TMTVO.Instance.Api.GetData("CarIdxGear"))[Driver.Driver.CarIndex];
             if (gear == -1)
