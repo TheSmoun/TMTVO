@@ -84,9 +84,49 @@ namespace TMTVO.Widget.F1
             Speed.Text = speed.ToString("0");
         }
 
+        public void SetRev(int rev)
+        {
+            if (rev <= 9000)
+                RevGrid.Visibility = Visibility.Hidden;
+            else
+                RevGrid.Visibility = Visibility.Visible;
+
+            if (rev <= 0)
+            {
+                RevGrid1Rotation.Angle = -47;
+                RevGridRotation.Angle = 28;
+            }
+            else if (rev == 9000)
+            {
+                RevGrid1Rotation.Angle = 94;
+                RevGridRotation.Angle = 28;
+            }
+            else if (rev > 0 && rev < 9000)
+            {
+                RevGridRotation.Angle = 27;
+                RevGrid1Rotation.Angle = -47F + 141F * (rev / 9000F);
+            }
+            else if (rev > 9000 && rev < 18000)
+            {
+                RevGrid1Rotation.Angle = 94;
+                RevGridRotation.Angle = 28 + 139F * ((rev - 9000) / 9000F);
+            }
+            else if (rev >= 18000)
+            {
+                RevGrid1Rotation.Angle = 94;
+                RevGridRotation.Angle = 167;
+            }
+
+            RPM.Text = rev.ToString("0");
+        }
+
         public void FadeIn(LiveStandingsItem driver)
         {
             if (Active || driver == null)
+                return;
+
+            float rpm = ((float[])Controller.TMTVO.Instance.Api.GetData("CarIdxRPM"))[driver.Driver.CarIndex];
+            if (rpm < 0)
                 return;
 
             Driver = driver;
@@ -110,13 +150,22 @@ namespace TMTVO.Widget.F1
             float rpm = ((float[])Controller.TMTVO.Instance.Api.GetData("CarIdxRPM"))[Driver.Driver.CarIndex];
             if (rpm < 0)
             {
-                FadeOut();
+                Application.Current.Dispatcher.Invoke(new Action(FadeOut));
                 return;
             }
 
             SetSpeed((int)(Driver.Speed * 3.6F));
-            RPM.Text = rpm.ToString("0");
-            Gear.Text = ((int[])Controller.TMTVO.Instance.Api.GetData("CarIdxGear"))[Driver.Driver.CarIndex].ToString("0");
+            SetRev((int)rpm);
+
+            int gear = ((int[])Controller.TMTVO.Instance.Api.GetData("CarIdxGear"))[Driver.Driver.CarIndex];
+            if (gear == -1)
+                Gear.Text = "R";
+            else if (gear == 0)
+                Gear.Text = "N";
+            else if (gear > 0)
+                Gear.Text = gear.ToString("0");
+            else
+                Application.Current.Dispatcher.Invoke(new Action(FadeOut));
         }
     }
 }
