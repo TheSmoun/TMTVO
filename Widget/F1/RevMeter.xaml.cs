@@ -7,6 +7,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -49,18 +50,36 @@ namespace TMTVO.Widget.F1
 
         public void SetSpeed(int speed)
         {
+            if (speed <= 180)
+                SpeedGrid.Visibility = Visibility.Hidden;
+            else
+                SpeedGrid.Visibility = Visibility.Visible;
+
             if (speed <= 0)
-                SpeedRotation.Angle = -59;
-            else if (speed == 287)
-                SpeedRotation.Angle = 180;
-            else if (speed == 288)
-                SpeedRotation.Angle = -180;
-            else if (speed > 0 && speed < 287)
-                SpeedRotation.Angle = -59F + (59F + 180F) * (speed / 287F);
+            {
+                SpeedGrid1Rotation.Angle = -57;
+                SpeedGridRotation.Angle = 27;
+            }
+            else if (speed == 180)
+            {
+                SpeedGrid1Rotation.Angle = 94;
+                SpeedGridRotation.Angle = 27;
+            }
+            else if (speed > 0 && speed < 180)
+            {
+                SpeedGridRotation.Angle = 27;
+                SpeedGrid1Rotation.Angle = -57F + 151F * (speed / 180F);
+            }
+            else if (speed > 180 && speed < 360)
+            {
+                SpeedGrid1Rotation.Angle = 94;
+                SpeedGridRotation.Angle = 27 + 153F * ((speed - 180) / 180F);
+            }
             else if (speed >= 360)
-                SpeedRotation.Angle = -117;
-            else if (speed > 289 && speed < 360)
-                SpeedRotation.Angle = -180 - (59F + 180F) * (speed / 287F);
+            {
+                SpeedGrid1Rotation.Angle = 94;
+                SpeedGridRotation.Angle = 180;
+            }
 
             Speed.Text = speed.ToString("0");
         }
@@ -72,7 +91,8 @@ namespace TMTVO.Widget.F1
 
             Driver = driver;
             Active = true;
-            LayoutRoot.Visibility = Visibility.Visible; // TODO
+            Storyboard sb = FindResource("FadeIn") as Storyboard;
+            sb.Begin();
         }
 
         public void FadeOut()
@@ -81,14 +101,22 @@ namespace TMTVO.Widget.F1
                 return;
 
             Active = false;
-            LayoutRoot.Visibility = Visibility.Hidden; // TODO;
+            Storyboard sb = FindResource("FadeOut") as Storyboard;
+            sb.Begin();
         }
 
         public void Tick()
         {
+            float rpm = ((float[])Controller.TMTVO.Instance.Api.GetData("CarIdxRPM"))[Driver.Driver.CarIndex];
+            if (rpm < 0)
+            {
+                FadeOut();
+                return;
+            }
+
             SetSpeed((int)(Driver.Speed * 3.6F));
-            RPM.Text = ((float[])Controller.TMTVO.Instance.Api.GetData("CarIdxRPM"))[Driver.Driver.CarIndex].ToString("0");
-            // TODO Rest
+            RPM.Text = rpm.ToString("0");
+            Gear.Text = ((int[])Controller.TMTVO.Instance.Api.GetData("CarIdxGear"))[Driver.Driver.CarIndex].ToString("0");
         }
     }
 }
