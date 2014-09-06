@@ -38,8 +38,6 @@
 				</TransformGroup>
 			</Path.RenderTransform>
 		</Path>
-		<Path x:Name="Throllte" Data="M106.80945,219.13392 L92.589305,239.01873 C54.132001,207.68554 43.806718,146.39313 70.80636,105.0599 100.09403,60.223975 164.37024,39.341285 221.18172,80.857026 216.09841,87.023709 212.68704,90.941431 205.87475,99.429403 170.37514,76.013849 121.82956,73.813435 90.829585,116.47977 61.163473,157.14631 89.310312,207.84242 106.80945,219.13392 z" HorizontalAlignment="Left" Height="181.053" Margin="55.69,58.447,0,0" Stretch="Fill" Stroke="#FF5F5F5F" VerticalAlignment="Top" Width="165.977" RenderTransformOrigin="0.408,0.463" StrokeThickness="2"/>
-		<Path x:Name="Brake" Data="M222.87021,236.49818 C213.23726,225.31065 217.73264,230.73989 207.45749,216.59095 211.79222,210.99729 232.33988,196.00467 232.02151,161.14684 231.70489,126.48013 217.35534,110.41689 207.93913,102.08379 219.01678,89.086564 215.16375,93.528965 223.03042,84.315428 233.02328,91.983223 259.75866,116.65244 256.58494,162.62754 253.62909,205.44663 237.03381,224.99699 222.87021,236.49818 z" HorizontalAlignment="Left" Height="154.167" Margin="206.5,83.333,0,0" Stretch="Fill" StrokeThickness="2" VerticalAlignment="Top" Width="51.26" Fill="#4B000000" Stroke="#FF646464"/>
 		<Path x:Name="RevPath" Data="M158.49971,27.833326 C251.8329,32.500302 290.83386,108.49968 287.16717,158.83281 286.49976,215.16601 258.83302,252.49914 217.8329,275.49902 214.49956,269.27671 211.16586,260.05478 207.83252,253.83247 236.49914,237.49924 263.4997,202.83274 262.833,160.16615 262.83303,100.16661 216.16594,53.167159 157.16605,52.500197 92.832529,53.16686 48.83174,108.50006 49.498399,154.83299 47.831737,206.16622 76.165199,234.16591 103.49867,254.1658 99.387546,259.94355 93.609458,265.7213&#xA;89.498335,271.49904 26.497923,226.16595 25.267507,169.00861 25.49814,155.49965 30.165301,60.500154 117.49874,26.833665 158.49971,27.833326 z" HorizontalAlignment="Left" Height="248.689" Margin="25.483,27.811,0,0" Stretch="Fill" Stroke="#FF5F5F5F" VerticalAlignment="Top" Width="262.92"/>
 		<Grid x:Name="Pcts" Margin="26,28,25,9">
 			<Grid.OpacityMask>
@@ -48,44 +46,6 @@
 					<GradientStop Offset="0.672"/>
 				</RadialGradientBrush>
 			</Grid.OpacityMask>
-			<Grid x:Name="BrakeGrid" HorizontalAlignment="Left" Height="208" VerticalAlignment="Top" Width="208" Margin="27,28,0,0" RenderTransformOrigin="0.5,0.5" OpacityMask="{Binding Fill, ElementName=BrakePath, Mode=Default}" Visibility="Hidden">
-				<Ellipse x:Name="Brakepct" HorizontalAlignment="Left" Height="208" VerticalAlignment="Top" Width="208" RenderTransformOrigin="0.5,0.5">
-					<Ellipse.RenderTransform>
-						<TransformGroup>
-							<ScaleTransform/>
-							<SkewTransform/>
-							<RotateTransform x:Name="BrakeRotation" Angle="90"/>
-							<TranslateTransform/>
-						</TransformGroup>
-					</Ellipse.RenderTransform>
-					<Ellipse.Fill>
-						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-							<GradientStop Color="#00000000" Offset="1"/>
-							<GradientStop Color="Red" Offset="0.5"/>
-							<GradientStop Color="#00FF0000" Offset="0.499"/>
-						</LinearGradientBrush>
-					</Ellipse.Fill>
-				</Ellipse>
-			</Grid>
-			<Grid x:Name="ThrottleGrid" HorizontalAlignment="Left" Height="208" VerticalAlignment="Top" Width="208" Margin="27,28,0,0" RenderTransformOrigin="0.5,0.5" OpacityMask="{Binding Data, ElementName=ThrottlePath}" Visibility="Hidden" d:IsHidden="True">
-				<Ellipse x:Name="ThrottlePct" HorizontalAlignment="Left" Height="208" Stroke="#FF5F5F5F" VerticalAlignment="Top" Width="208" RenderTransformOrigin="0.5,0.5">
-					<Ellipse.RenderTransform>
-						<TransformGroup>
-							<ScaleTransform/>
-							<SkewTransform/>
-							<RotateTransform x:Name="ThrottleRotation" Angle="-88"/>
-							<TranslateTransform/>
-						</TransformGroup>
-					</Ellipse.RenderTransform>
-					<Ellipse.Fill>
-						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-							<GradientStop Color="#00000000" Offset="1"/>
-							<GradientStop Color="Lime" Offset="0.5"/>
-							<GradientStop Color="#0000FF17" Offset="0.499"/>
-						</LinearGradientBrush>
-					</Ellipse.Fill>
-				</Ellipse>
-			</Grid>
 			<Grid x:Name="SpeedGridOuter">
 				<Grid>
 					<Grid.OpacityMask>
