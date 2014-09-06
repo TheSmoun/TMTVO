@@ -157,12 +157,12 @@ namespace TMTVO.Widget.F1
 
                 item.Show = true;
 
-                if (stItem.Position == 1)
+                if (stItem.PositionLive == 1)
                     item.NumberLeader.Visibility = Visibility.Visible;
                 else
                     item.NumberLeader.Visibility = Visibility.Hidden;
 
-                item.Position.Text = stItem.Position.ToString();
+                item.Position.Text = stItem.PositionLive.ToString();
                 item.ClassColorLeader.Color = stItem.Driver.LicColor; // TODO ClassColor
                 item.ClassColorNormal.Color = stItem.Driver.LicColor;
 
@@ -176,7 +176,7 @@ namespace TMTVO.Widget.F1
                         checkPits(item, stItem);
 
                         item.ThreeLetterCode.Text = stItem.Driver.ThreeLetterCode;
-                        if (stItem.Position == 1)
+                        if (stItem.PositionLive == 1)
                             item.GapText.Text = "Leader";
                         else
                         {
@@ -197,7 +197,7 @@ namespace TMTVO.Widget.F1
                         checkPits(item, stItem);
 
                         item.ThreeLetterCode.Text = stItem.Driver.ThreeLetterCode;
-                        if (stItem.Position == 1)
+                        if (stItem.PositionLive == 1)
                             item.GapText.Text = "Interval";
                         else
                         {
