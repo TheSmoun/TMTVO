@@ -78,7 +78,7 @@ namespace TMTVO.Widget.WEC
                 }
 
                 WECRaceTickerItem item = new WECRaceTickerItem();
-                if (!item.Update(Module.Items.Find(it => it.Position == i)))
+                if (!item.Update(Module.Items.Find(it => it.PositionLive == i)))
                 {
                     i--;
                     continue;

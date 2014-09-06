@@ -40,14 +40,14 @@ namespace TMTVO.Data.Modules
 
         public LiveStandingsItem FindDriverByPos(int position)
         {
-            return Items.Find(i => i.Position == position);
+            return Items.Find(i => i.PositionLive == position);
         }
 
         public LiveStandingsItem Leader
         {
             get
             {
-                return Items.Find(i => i.Position == 1);
+                return Items.Find(i => i.PositionLive == 1);
             }
         }
 
@@ -85,15 +85,13 @@ namespace TMTVO.Data.Modules
             }));
         }
 
-        private void UpdateLivePositions()
+        public void UpdateLivePositions()
         {
             int i = 1;
             IEnumerable<LiveStandingsItem> query;
 
             SessionTimerModule stm = TMTVO.Controller.TMTVO.Instance.Api.FindModule("SessionTimer") as SessionTimerModule;
-            
-
-            if (stm.SessionType == SessionType.LapRace || stm.SessionType == SessionType.TimeRace)
+            if ((stm.SessionType == SessionType.LapRace || stm.SessionType == SessionType.TimeRace) && stm.SessionState == SessionState.Racing)
             {
                 query = Items.OrderByDescending(s => s.CurrentTrackPct);
                 foreach (LiveStandingsItem si in query)
@@ -105,28 +103,6 @@ namespace TMTVO.Data.Modules
                 foreach (LiveStandingsItem si in query)
                     si.PositionLive = si.Position;
             }
-        }
-
-        public void UpdatePosition()
-        {
-            int i = 1;
-            IEnumerable<LiveStandingsItem> query;
-            SessionTimerModule stm = TMTVO.Controller.TMTVO.Instance.Api.FindModule("SessionTimer") as SessionTimerModule;
-            if (stm.SessionType == SessionType.LapRace || stm.SessionType == SessionType.TimeRace)
-            {
-                query = Items.OrderByDescending(s => s.CurrentTrackPct);
-                foreach (LiveStandingsItem si in query)
-                    si.PositionLive = i++;
-            }
-            else
-            {
-                query = Items.OrderBy(s => s.Position);
-                foreach (LiveStandingsItem si in query)
-                    si.PositionLive = si.Position;
-
-            }
-
-            //CheckPitStatus();
         }
 
         public override void Reset()

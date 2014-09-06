@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iRSDKSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -494,7 +495,7 @@ namespace TMTVO
 
         private void liveButton_Click(object sender, RoutedEventArgs e)
         {
-            api.ReplaySearch(ReplaySearchModeTypes.ToEnd, 0);
+            api.ReplaySearch(Api.ReplaySearchModeTypes.ToEnd, 0);
             api.Play();
             // TODO Trigger
         }
@@ -531,7 +532,7 @@ namespace TMTVO
         {
             LiveStandingsModule lsm = Controller.TMTVO.Instance.Api.FindModule("LiveStandings") as LiveStandingsModule;
 
-            int pos = lsm.FindDriver(CameraModule.FollowedDriver).Position + delta;
+            int pos = lsm.FindDriver(CameraModule.FollowedDriver).PositionLive + delta;
             string nextPlate = "";
 
             if (pos < 1)
@@ -547,10 +548,17 @@ namespace TMTVO
 
         private void uiCheckBox_Click(object sender, RoutedEventArgs e)
         {
-            //if (uiCheckBox.IsChecked == false)
-            //    SharedData.showSimUi = true;
-            //else
-            //    SharedData.showSimUi = false;
+            if (uiCheckBox.IsChecked == false)
+            {
+                int currentCamState = (int)api.GetData("CamCameraState");
+                if ((currentCamState & 0x0008) == 0)
+                    api.Sdk.BroadcastMessage(BroadcastMessageTypes.CamSetState, (currentCamState | 0x0008), 0);
+            }
+            else
+            {
+
+                //SharedData.showSimUi = false;
+            }
         }
 
         private void controlsWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)

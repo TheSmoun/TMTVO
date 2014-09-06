@@ -137,7 +137,7 @@ namespace TMTVO.Widget.F1
 
             SectorComplete(LapDriver.LastLapTime);
 
-            int position = LapDriver.Position;
+            int position = LapDriver.PositionLive;
             if (position > 1)
             {
                 BackgroundLeader.Visibility = Visibility.Hidden;

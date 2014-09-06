@@ -51,7 +51,7 @@ namespace TMTVO.Data.Modules
                     TimeDelta delta = ((TimeDeltaModule)TMTVO.Controller.TMTVO.Instance.Api.FindModule("TimeDelta")).TimeDelta;
                     LiveStandingsModule standings = ((LiveStandingsModule)TMTVO.Controller.TMTVO.Instance.Api.FindModule("LiveStandings"));
 
-                    return (float)delta.GetDelta(this.Driver.CarIndex, standings.FindDriverByPos(Position - 1).Driver.CarIndex).TotalSeconds;
+                    return (float)delta.GetDelta(this.Driver.CarIndex, standings.FindDriverByPos(PositionLive - 1).Driver.CarIndex).TotalSeconds;
                 }
                 else
                 {
@@ -192,7 +192,7 @@ namespace TMTVO.Data.Modules
                 PrevTrackPct = curpos;
                 PrevTrackPctUpdate = currentime;
 
-                if (Finished == false && surface != SurfaceType.NotInWorld)
+                if (!Finished && surface != SurfaceType.NotInWorld)
                     CurrentTrackPct = lapNumber + trackPct - 1;
 
                 if (curpos < 0.1 && prevpos > 0.9 && !Finished)
@@ -268,7 +268,7 @@ namespace TMTVO.Data.Modules
                 if (CurrentLap.LapNumber + CurrentLap.GapLaps >= finishLine && surface != SurfaceType.NotInWorld &&
                     (sessionType == SessionType.LapRace || sessionType == SessionType.TimeRace) && !Finished)
                 {
-                    ((LiveStandingsModule)caller).UpdatePosition();
+                    ((LiveStandingsModule)caller).UpdateLivePositions();
                     CurrentTrackPct = (Math.Floor(CurrentTrackPct) + 0.0064) - (0.0001 * Position);
                     Finished = true;
                 }
