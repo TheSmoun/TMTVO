@@ -355,7 +355,7 @@
 					</LinearGradientBrush>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<TextBlock x:Name="P" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="68.96" Margin="-13.364,1.164,-25.596,-7.664" FontSize="30.667" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="Red" RenderTransformOrigin="0.5,0.5" Text="P" Opacity="0.495">
+			<TextBlock x:Name="P" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="68.96" Margin="-13.364,1.414,-25.596,-9.914" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="Red" RenderTransformOrigin="0.5,0.5" Text="P" Opacity="0.495">
 				<TextBlock.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>

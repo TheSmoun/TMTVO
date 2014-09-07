@@ -6,8 +6,9 @@
 	xmlns:ec="http://schemas.microsoft.com/expression/2010/controls"
 	mc:Ignorable="d"
 	x:Class="TMTVO.Widget.F1.RevMeter"
+    xmlns:l="clr-namespace:TMTVO"
 	x:Name="UserControl"
-	d:DesignWidth="640" d:DesignHeight="480" Width="315" Height="301">
+	d:DesignWidth="640" d:DesignHeight="480" Width="315" Height="301" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <Storyboard x:Key="FadeIn">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LayoutRoot">
@@ -20,6 +21,209 @@
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="GearPlus">
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="88.5,0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="56.5,9,120.5,0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear_1">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="120.5,9,56.5,0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="88.5,0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear_3">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="56.5,9,120.5,0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="26,14,151,0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear_2">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="26,14,151,0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="0,14,177,0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear_4">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="151,14,26,0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="120.5,9,56.5,0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear_4_Dummy">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="177,14,0,0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="151,14,26,0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear_2_Dummy">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="0,14,177,0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Gear_2">
+        		<EasingColorKeyFrame KeyTime="0" Value="#7F8F8F8F"/>
+        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#008F8F8F"/>
+        	</ColorAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontSize)" Storyboard.TargetName="Gear_4">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="24"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="32"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Gear_4">
+        		<EasingColorKeyFrame KeyTime="0" Value="#7F8F8F8F"/>
+        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFB8B8B8"/>
+        	</ColorAnimationUsingKeyFrames>
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Gear_1">
+        		<EasingColorKeyFrame KeyTime="0" Value="#FFB8B8B8"/>
+        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="White"/>
+        	</ColorAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontSize)" Storyboard.TargetName="Gear_1">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="32"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="45.333"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontSize)" Storyboard.TargetName="Gear">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="45.333"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="32"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Gear">
+        		<EasingColorKeyFrame KeyTime="0" Value="White"/>
+        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFB8B8B8"/>
+        	</ColorAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontSize)" Storyboard.TargetName="Gear_3">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="32"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="24"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Gear_3">
+        		<EasingColorKeyFrame KeyTime="0" Value="#FFB8B8B8"/>
+        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#7F8F8F8F"/>
+        	</ColorAnimationUsingKeyFrames>
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Gear_4_Dummy">
+        		<EasingColorKeyFrame KeyTime="0" Value="#008F8F8F"/>
+        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#7F8F8F8F"/>
+        	</ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ResetGears">
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="88.5,0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear_1">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="120.5,9,56.5,0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear_3">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="56.5,9,120.5,0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear_2">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="26,14,151,0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear_4">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="151,14,26,0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear_4_Dummy">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="177,14,0,0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear_2_Dummy">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="0,14,177,0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Gear_4_Dummy">
+        		<EasingColorKeyFrame KeyTime="0" Value="#008F8F8F"/>
+        	</ColorAnimationUsingKeyFrames>
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Gear_2_Dummy">
+        		<EasingColorKeyFrame KeyTime="0" Value="#008F8F8F"/>
+        	</ColorAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontSize)" Storyboard.TargetName="Gear">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="45.333"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Gear">
+        		<EasingColorKeyFrame KeyTime="0" Value="White"/>
+        	</ColorAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontSize)" Storyboard.TargetName="Gear_1">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="32"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Gear_1">
+        		<EasingColorKeyFrame KeyTime="0" Value="#FFB8B8B8"/>
+        	</ColorAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontSize)" Storyboard.TargetName="Gear_3">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="32"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Gear_3">
+        		<EasingColorKeyFrame KeyTime="0" Value="#FFB8B8B8"/>
+        	</ColorAnimationUsingKeyFrames>
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Gear_2">
+        		<EasingColorKeyFrame KeyTime="0" Value="#7F8F8F8F"/>
+        	</ColorAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontSize)" Storyboard.TargetName="Gear_2">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="24"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Gear_4">
+        		<EasingColorKeyFrame KeyTime="0" Value="#7F8F8F8F"/>
+        	</ColorAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontSize)" Storyboard.TargetName="Gear_4">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="24"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontSize)" Storyboard.TargetName="Gear_4_Dummy">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="24"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontSize)" Storyboard.TargetName="Gear_2_Dummy">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="24"/>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="GearMinus">
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="88.5,0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="120.5,9,56.5,0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear_1">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="120.5,9,56.5,0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="151,14,26,0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear_3">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="56.5,9,120.5,0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="88.5,0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear_2">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="26,14,151,0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="56.5,9,120.5,0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear_4">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="151,14,26,0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="171,14,0,0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear_4_Dummy">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="177,14,0,0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear_2_Dummy">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="0,14,177,0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="26,14,151,0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Gear_2_Dummy">
+        		<EasingColorKeyFrame KeyTime="0" Value="#008F8F8F"/>
+        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#7F8F8F8F"/>
+        	</ColorAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontSize)" Storyboard.TargetName="Gear_2">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="24"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="32"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Gear_2">
+        		<EasingColorKeyFrame KeyTime="0" Value="#7F8F8F8F"/>
+        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFB8B8B8"/>
+        	</ColorAnimationUsingKeyFrames>
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Gear_3">
+        		<EasingColorKeyFrame KeyTime="0" Value="#FFB8B8B8"/>
+        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="White"/>
+        	</ColorAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontSize)" Storyboard.TargetName="Gear_3">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="32"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="45.333"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Gear">
+        		<EasingColorKeyFrame KeyTime="0" Value="White"/>
+        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFB8B8B8"/>
+        	</ColorAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontSize)" Storyboard.TargetName="Gear">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="45.333"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="32"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Gear_1">
+        		<EasingColorKeyFrame KeyTime="0" Value="#FFB8B8B8"/>
+        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#7F8F8F8F"/>
+        	</ColorAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontSize)" Storyboard.TargetName="Gear_1">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="32"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="24"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Gear_4">
+        		<EasingColorKeyFrame KeyTime="0" Value="#7F8F8F8F"/>
+        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#008F8F8F"/>
+        	</ColorAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
     <UserControl.Foreground>
@@ -39,6 +243,51 @@
 			</Path.RenderTransform>
 		</Path>
 		<Path x:Name="RevPath" Data="M158.49971,27.833326 C251.8329,32.500302 290.83386,108.49968 287.16717,158.83281 286.49976,215.16601 258.83302,252.49914 217.8329,275.49902 214.49956,269.27671 211.16586,260.05478 207.83252,253.83247 236.49914,237.49924 263.4997,202.83274 262.833,160.16615 262.83303,100.16661 216.16594,53.167159 157.16605,52.500197 92.832529,53.16686 48.83174,108.50006 49.498399,154.83299 47.831737,206.16622 76.165199,234.16591 103.49867,254.1658 99.387546,259.94355 93.609458,265.7213&#xA;89.498335,271.49904 26.497923,226.16595 25.267507,169.00861 25.49814,155.49965 30.165301,60.500154 117.49874,26.833665 158.49971,27.833326 z" HorizontalAlignment="Left" Height="248.689" Margin="25.483,27.811,0,0" Stretch="Fill" Stroke="#FF5F5F5F" VerticalAlignment="Top" Width="262.92"/>
+		<Grid x:Name="Gears" Margin="56.5,123,56.5,106">
+			<TextBlock x:Name="Gear" HorizontalAlignment="Center" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" FontSize="45.333" Margin="88.5,0" TextAlignment="Center" Height="58" Padding="0" Width="25" FontFamily="DIN 1451 Std Mittelschrift" Foreground="White">
+				<TextBlock.Effect>
+					<DropShadowEffect BlurRadius="6" ShadowDepth="2"/>
+				</TextBlock.Effect>
+			</TextBlock>
+			<TextBlock x:Name="Gear_1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" FontSize="32" Margin="120.5,9,56.5,0" TextAlignment="Center" Height="58" Padding="0" Width="25" FontFamily="DIN 1451 Std Mittelschrift" Foreground="#FFB8B8B8">
+				<TextBlock.Effect>
+					<DropShadowEffect BlurRadius="6" ShadowDepth="2"/>
+				</TextBlock.Effect>
+			</TextBlock>
+			<TextBlock x:Name="Gear_3" HorizontalAlignment="Center" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" FontSize="32" Margin="56.5,9,120.5,0" TextAlignment="Center" Height="58" Padding="0" Width="25" FontFamily="DIN 1451 Std Mittelschrift" Foreground="#FFB8B8B8">
+				<TextBlock.Effect>
+					<DropShadowEffect BlurRadius="6" ShadowDepth="2"/>
+				</TextBlock.Effect>
+			</TextBlock>
+			<TextBlock x:Name="Gear_2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" FontSize="24" Margin="26,14,151,0" TextAlignment="Center" Height="58" Padding="0" Width="25" FontFamily="DIN 1451 Std Mittelschrift" Foreground="#7F8F8F8F" RenderTransformOrigin="0.5,0.5">
+				<TextBlock.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform/>
+						<RotateTransform/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</TextBlock.RenderTransform>
+				<TextBlock.Effect>
+					<DropShadowEffect BlurRadius="6" ShadowDepth="2"/>
+				</TextBlock.Effect>
+			</TextBlock>
+			<TextBlock x:Name="Gear_4" HorizontalAlignment="Center" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" FontSize="24" Margin="151,14,26,0" TextAlignment="Center" Height="58" Padding="0" Width="25" FontFamily="DIN 1451 Std Mittelschrift" Foreground="#7F8F8F8F">
+				<TextBlock.Effect>
+					<DropShadowEffect BlurRadius="6" ShadowDepth="2"/>
+				</TextBlock.Effect>
+			</TextBlock>
+			<TextBlock x:Name="Gear_4_Dummy" HorizontalAlignment="Center" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" FontSize="24" Margin="177,14,0,0" TextAlignment="Center" Height="58" Padding="0" Width="25" FontFamily="DIN 1451 Std Mittelschrift" Foreground="#008F8F8F">
+				<TextBlock.Effect>
+					<DropShadowEffect BlurRadius="6" ShadowDepth="2"/>
+				</TextBlock.Effect>
+			</TextBlock>
+			<TextBlock x:Name="Gear_2_Dummy" HorizontalAlignment="Center" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" FontSize="24" Margin="0,14,177,0" TextAlignment="Center" Height="58" Padding="0" Width="25" FontFamily="DIN 1451 Std Mittelschrift" Foreground="#008F8F8F">
+				<TextBlock.Effect>
+					<DropShadowEffect BlurRadius="6" ShadowDepth="2"/>
+				</TextBlock.Effect>
+			</TextBlock>
+		</Grid>
 		<Grid x:Name="Pcts" Margin="26,28,25,9">
 			<Grid.OpacityMask>
 				<RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="1" RadiusY="1">
@@ -300,11 +549,6 @@
 			</Grid>
 		</Grid>
 		<TextBlock x:Name="RPM" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Height="30" FontFamily="DIN 1451 Std Mittelschrift" Margin="112,181,0,0" TextAlignment="Center" FontSize="26.667" Foreground="#FF999999"><Run Text="12119"/></TextBlock>
-		<TextBlock x:Name="Speed" TextWrapping="Wrap" Margin="108,232,0,0" Height="50" Width="100" Foreground="#FF69F0E4" FontSize="45.333" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="DIN 1451 Std Mittelschrift"><Run Text="241"/></TextBlock>
-		<TextBlock x:Name="Gear" HorizontalAlignment="Center" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" FontSize="45.333" Margin="145,123,145,0" TextAlignment="Center" Height="58" Padding="0" Width="25" FontFamily="DIN 1451 Std Mittelschrift">
-			<TextBlock.Foreground>
-				<SolidColorBrush Color="White"/>
-			</TextBlock.Foreground>
-		</TextBlock>
-	</Grid>
+        <TextBlock x:Name="Speed" TextWrapping="Wrap" Margin="108,232,0,0" Height="50" Width="100" Foreground="#FF69F0E4" FontSize="45.333" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="DIN 1451 Std Mittelschrift"><Run Text="241"/></TextBlock>
+    </Grid>
 </UserControl>

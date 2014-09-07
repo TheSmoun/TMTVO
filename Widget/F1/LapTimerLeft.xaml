@@ -189,11 +189,6 @@
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
-	<UserControl.Triggers>
-		<EventTrigger RoutedEvent="FrameworkElement.Loaded">
-			<BeginStoryboard Storyboard="{StaticResource HideNumber}"/>
-		</EventTrigger>
-	</UserControl.Triggers>
 
     <Grid x:Name="LayoutRoot" Width="417" HorizontalAlignment="Left" Height="108">
 		<Grid x:Name="Difference" Margin="8.334,71.998,0,0" Width="280" Height="36" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Opacity="0">

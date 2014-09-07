@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,6 +12,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TMTVO.Data;
 using TMTVO.Data.Modules;
 
 namespace TMTVO.Widget.F1
@@ -20,13 +22,48 @@ namespace TMTVO.Widget.F1
 	/// </summary>
 	public partial class RevMeter : UserControl, IWidget
 	{
+        private static readonly Dictionary<int, string> gears = new Dictionary<int, string>()
+        {
+            {-1, "R"},
+            {0, "N"},
+            {1, "1"},
+            {2, "2"},
+            {3, "3"},
+            {4, "4"},
+            {5, "5"},
+            {6, "6"},
+            {7, "7"}
+        };
+
         public bool Active { get; private set; }
         public LiveStandingsItem Driver { get; private set; }
+
+        private Timer neutralCooldown;
+        private int currentGear;
+        private int prevGear;
+        private bool canUpdateGear;
 
 		public RevMeter()
 		{
 			this.InitializeComponent();
 		}
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Active = false;
+            Driver = null;
+            canUpdateGear = true;
+            prevGear = -1;
+            currentGear = 0;
+            neutralCooldown = new Timer(250);
+            neutralCooldown.Elapsed += neutralCooldown_Elapsed;
+        }
+
+        private void neutralCooldown_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            neutralCooldown.Stop();
+            canUpdateGear = true;
+        }
 
         private void setSpeed(int speed)
         {
@@ -100,6 +137,62 @@ namespace TMTVO.Widget.F1
             RPM.Text = rev.ToString("0");
         }
 
+        private void updateGear()
+        {
+            if (prevGear > currentGear)
+                Application.Current.Dispatcher.Invoke(new Action(shiftUp));
+            else if (prevGear < currentGear)
+                Application.Current.Dispatcher.Invoke(new Action(shiftDown));
+            else
+                Application.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    sb_Completed(null, null);
+                }));
+
+            currentGear = prevGear;
+        }
+
+        private void shiftUp()
+        {
+            if (prevGear >= 7)
+                return;
+
+            canUpdateGear = false;
+            Storyboard sb = FindResource("GearPlus") as Storyboard;
+            sb.Completed += sb_Completed;
+            sb.Begin();
+        }
+
+        private void shiftDown()
+        {
+            if (prevGear <= -1)
+                return;
+
+            canUpdateGear = false;
+            Storyboard sb = FindResource("GearMinus") as Storyboard;
+            sb.Completed += sb_Completed;
+            sb.Begin();
+        }
+
+        private void sb_Completed(object sender, EventArgs e)
+        {
+            Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                Storyboard sb = FindResource("ResetGears") as Storyboard;
+                sb.Begin();
+
+                Gear.Text = gears.GetGearValue(prevGear);
+                Gear_1.Text = gears.GetGearValue(prevGear + 1);
+                Gear_2.Text = gears.GetGearValue(prevGear - 2);
+                Gear_3.Text = gears.GetGearValue(prevGear - 1);
+                Gear_4.Text = gears.GetGearValue(prevGear + 2);
+                Gear_4_Dummy.Text = gears.GetGearValue(prevGear + 3);
+                Gear_2_Dummy.Text = gears.GetGearValue(prevGear - 3);
+            }));
+
+            canUpdateGear = true;
+        }
+
         public void FadeIn(LiveStandingsItem driver)
         {
             if (Active || driver == null)
@@ -136,16 +229,16 @@ namespace TMTVO.Widget.F1
 
             setSpeed((int)(Driver.Speed * 3.6F));
             setRev((int)rpm);
+            prevGear = ((int[])Controller.TMTVO.Instance.Api.GetData("CarIdxGear"))[Driver.Driver.CarIndex];
 
-            int gear = ((int[])Controller.TMTVO.Instance.Api.GetData("CarIdxGear"))[Driver.Driver.CarIndex];
-            if (gear == -1)
-                Gear.Text = "R";
-            else if (gear == 0)
-                Gear.Text = "N";
-            else if (gear > 0)
-                Gear.Text = gear.ToString("0");
-            else
-                Application.Current.Dispatcher.Invoke(new Action(FadeOut));
+            if (prevGear == 0 && canUpdateGear)
+            {
+                canUpdateGear = false;
+                neutralCooldown.Start();
+            }
+
+            if (canUpdateGear)
+                updateGear();
         }
     }
 }

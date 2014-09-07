@@ -50,6 +50,15 @@ namespace TMTVO.Data
             return null;
         }
 
+        internal static string GetGearValue(this Dictionary<int, string> dict, int key)
+        {
+            string value = null;
+            if (dict.TryGetValue(key, out value))
+                return value;
+
+            return string.Empty;
+        }
+
         internal static bool FlagSet(this SessionFlag value, SessionFlag flag)
         {
             return (value & flag) == flag;
