@@ -21,7 +21,7 @@
         </Storyboard>
     </UserControl.Resources>
 
-    <Grid x:Name="RaceBarItems" Height="36" Width="320" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" Opacity="0">
+    <Grid x:Name="RaceBarItems" Height="36" Width="300" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center">
 		<Grid.RenderTransform>
 			<TransformGroup>
 				<ScaleTransform/>
@@ -30,7 +30,7 @@
 				<TranslateTransform/>
 			</TransformGroup>
 		</Grid.RenderTransform>
-		<Rectangle x:Name="BackgroundBlack" Fill="Black" HorizontalAlignment="Right" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0">
+		<Rectangle x:Name="BackgroundBlack" Fill="Black" HorizontalAlignment="Right" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.5,0.5" Margin="0">
 			<Rectangle.Stroke>
 				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 					<LinearGradientBrush.RelativeTransform>
@@ -46,7 +46,7 @@
 				</LinearGradientBrush>
 			</Rectangle.Stroke>
 		</Rectangle>
-		<Rectangle x:Name="NumberNormal" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="75" Margin="0.5,0.5,0,-0.5">
+		<Rectangle x:Name="NumberNormal" HorizontalAlignment="Left" Height="34" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="56" Margin="1,1,0,0">
 			<Rectangle.Fill>
 				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 					<LinearGradientBrush.RelativeTransform>
@@ -76,7 +76,7 @@
 				</LinearGradientBrush>
 			</Rectangle.Stroke>
 		</Rectangle>
-		<Rectangle x:Name="NumberLeader" HorizontalAlignment="Left" Height="35" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="75" Margin="0.5,0.5,0,-0.5">
+		<Rectangle x:Name="NumberLeader" HorizontalAlignment="Left" Height="34" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="56" Margin="1,1,0,0">
 			<Rectangle.Fill>
 				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 					<LinearGradientBrush.RelativeTransform>
@@ -106,7 +106,7 @@
 				</LinearGradientBrush>
 			</Rectangle.Stroke>
 		</Rectangle>
-		<Rectangle x:Name="Farbverlauf" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" Margin="0">
+		<Rectangle x:Name="Farbverlauf" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.5,0.5" Margin="0">
 			<Rectangle.Fill>
 				<RadialGradientBrush Center="200,35" GradientOrigin="329,62" MappingMode="Absolute" RadiusY="38" RadiusX="303">
 					<RadialGradientBrush.RelativeTransform>
@@ -126,7 +126,7 @@
 				<SolidColorBrush Color="Black" Opacity="0"/>
 			</Rectangle.Stroke>
 		</Rectangle>
-		<TextBlock x:Name="Position" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="68.96" Margin="-2.375,-0.501,0,-5.999" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="22">
+		<TextBlock x:Name="Position" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="68.96" Margin="-7.125,0.999,0,-9.499" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="22">
 			<TextBlock.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>
@@ -136,7 +136,7 @@
 				</TransformGroup>
 			</TextBlock.RenderTransform>
         </TextBlock>
-		<TextBlock x:Name="ThreeLetterCode" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="72" Margin="86.623,-0.501,0,-5.999" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="ALO">
+		<TextBlock x:Name="ThreeLetterCode" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="72" Margin="73.123,0.999,0,-9.499" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="ALO">
 			<TextBlock.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>
@@ -146,7 +146,7 @@
 				</TransformGroup>
 			</TextBlock.RenderTransform>
         </TextBlock>
-		<TextBlock x:Name="GapText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="163.46" Margin="147.436,-0.501,0,-5.999" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Right" LineHeight="48" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="+38.547">
+		<TextBlock x:Name="GapText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="163.46" Margin="118.686,0.916,0,-9.416" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Right" LineHeight="48" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="+38.547">
 			<TextBlock.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>
@@ -156,7 +156,7 @@
 				</TransformGroup>
 			</TextBlock.RenderTransform>
         </TextBlock>
-		<TextBlock x:Name="PitText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="138.21" Margin="172.686,-0.501,0,-5.999" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" UseLayoutRounding="False" Foreground="Red" RenderTransformOrigin="0.5,0.5" Text="In Pit">
+		<TextBlock x:Name="PitText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="138.21" Margin="153.436,0.916,0,-9.416" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" UseLayoutRounding="False" Foreground="Red" RenderTransformOrigin="0.5,0.5" Text="In Pit">
 			<TextBlock.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>
@@ -166,15 +166,17 @@
 				</TransformGroup>
 			</TextBlock.RenderTransform>
 		</TextBlock>
-        <TextBlock x:Name="DriverName" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="223.666" Margin="87.79,-0.501,0,-5.999" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="GROSSMANN" TextAlignment="Center" TextTrimming="CharacterEllipsis">
-        	<TextBlock.RenderTransform>
-        		<TransformGroup>
-        			<ScaleTransform/>
-        			<SkewTransform AngleX="32"/>
-        			<RotateTransform/>
-        			<TranslateTransform/>
-        		</TransformGroup>
-        	</TextBlock.RenderTransform>
-        </TextBlock>
+		<Viewbox HorizontalAlignment="Left" VerticalAlignment="Center" Height="44.5" Width="223.666" Margin="81.29,1,-4.956,-9.5">
+			<TextBlock x:Name="DriverName" TextWrapping="Wrap" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="GROSSMANN" TextAlignment="Center" Height="44.5" Width="223.666" HorizontalAlignment="Center" Margin="0">
+				<TextBlock.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform AngleX="32"/>
+						<RotateTransform/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</TextBlock.RenderTransform>
+			</TextBlock>
+		</Viewbox>
     </Grid>
 </UserControl>

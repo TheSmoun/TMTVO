@@ -237,7 +237,7 @@
 					</LinearGradientBrush>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<TextBlock x:Name="Position" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="68.96" Margin="-9.035,1.497,0,-7.997" FontSize="30.667" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="#FFE9E9E9" RenderTransformOrigin="0.5,0.5" Text="00">
+			<TextBlock x:Name="Position" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="68.96" Margin="-7.535,1.247,0,-9.747" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="#FFE9E9E9" RenderTransformOrigin="0.5,0.5" Text="00">
 				<TextBlock.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -247,17 +247,19 @@
 					</TransformGroup>
 				</TextBlock.RenderTransform>
 			</TextBlock>
-            <TextBlock x:Name="ThreeLetterCode" HorizontalAlignment="Left" Text="HAM" VerticalAlignment="Center" Height="44.5" Width="188.75" Margin="66.313,0.497,0,-8.997" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" UseLayoutRounding="False" Foreground="#FFE9E9E9" RenderTransformOrigin="0.5,0.5" FontSize="30.667" FontWeight="Bold" TextTrimming="CharacterEllipsis">
-                <TextBlock.RenderTransform>
-					<TransformGroup>
-						<ScaleTransform/>
-						<SkewTransform AngleX="32"/>
-						<RotateTransform/>
-						<TranslateTransform/>
-					</TransformGroup>
-				</TextBlock.RenderTransform>
-			</TextBlock>
-			<TextBlock x:Name="GapText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="163.46" Margin="89.107,0.164,0,-8.664" FontSize="30.667" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Right" LineHeight="48" UseLayoutRounding="False" Foreground="#FFE9E9E9" RenderTransformOrigin="0.5,0.5" Text="0:00:000">
+			<Viewbox HorizontalAlignment="Left" VerticalAlignment="Center" Height="44.5" Width="188.75" Margin="70.313,1.497,0,-9.997" Stretch="Fill" StretchDirection="DownOnly">
+				<TextBlock x:Name="ThreeLetterCode" Text="HAM" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" UseLayoutRounding="False" Foreground="#FFE9E9E9" RenderTransformOrigin="0.5,0.5" FontSize="29.333" FontWeight="Bold" Height="44.5" Width="188.75">
+					<TextBlock.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform/>
+							<SkewTransform AngleX="32"/>
+							<RotateTransform/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</TextBlock.RenderTransform>
+				</TextBlock>
+			</Viewbox>
+			<TextBlock x:Name="GapText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="163.46" Margin="89.107,1.414,0,-9.914" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Right" LineHeight="48" UseLayoutRounding="False" Foreground="#FFE9E9E9" RenderTransformOrigin="0.5,0.5" Text="0:00:000">
 				<TextBlock.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
