@@ -43,6 +43,9 @@ namespace TMTVO.Widget.F1
         private int prevGear;
         private bool canUpdateGear;
 
+        private bool pushToPass;
+        private bool prevPushToPass;
+
 		public RevMeter()
 		{
 			this.InitializeComponent();
@@ -53,6 +56,8 @@ namespace TMTVO.Widget.F1
             Active = false;
             Driver = null;
             canUpdateGear = true;
+            pushToPass = false;
+            prevPushToPass = false;
             prevGear = -1;
             currentGear = 0;
             neutralCooldown = new Timer(250);
@@ -98,7 +103,24 @@ namespace TMTVO.Widget.F1
                 SpeedGridRotation.Angle = 180;
             }
 
+            if (speed <= 100)
+            {
+                Speed.Opacity = 0F;
+                SpeedLow.Opacity = 1f;
+            }
+            else if (speed >= 200)
+            {
+                Speed.Opacity = 1F;
+                SpeedLow.Opacity = 0f;
+            }
+            else
+            {
+                Speed.Opacity = 0F + ((speed - 100F) / 100F);
+                SpeedLow.Opacity = 1f;
+            }
+
             Speed.Text = speed.ToString("0");
+            SpeedLow.Text = speed.ToString("0");
         }
 
         private void setRev(int rev)
@@ -218,6 +240,26 @@ namespace TMTVO.Widget.F1
             sb.Begin();
         }
 
+        private void fadeInP2P()
+        {
+            if (pushToPass)
+                return;
+
+            pushToPass = true;
+            Storyboard sb = FindResource("P2pActivated") as Storyboard;
+            sb.Begin();
+        }
+
+        private void fadeOutP2P()
+        {
+            if (!pushToPass)
+                return;
+
+            pushToPass = false;
+            Storyboard sb = FindResource("P2pDisabled") as Storyboard;
+            sb.Begin();
+        }
+
         public void Tick()
         {
             float rpm = ((float[])Controller.TMTVO.Instance.Api.GetData("CarIdxRPM"))[Driver.Driver.CarIndex];
@@ -230,6 +272,12 @@ namespace TMTVO.Widget.F1
             setSpeed((int)(Driver.Speed * 3.6F));
             setRev((int)rpm);
             prevGear = ((int[])Controller.TMTVO.Instance.Api.GetData("CarIdxGear"))[Driver.Driver.CarIndex];
+
+            prevPushToPass = false;                                                                                             // TODO get Push to pass value
+            if (prevPushToPass && !pushToPass)
+                Application.Current.Dispatcher.Invoke(new Action(fadeInP2P));
+            else if (!prevPushToPass && pushToPass)
+                Application.Current.Dispatcher.Invoke(new Action(fadeOutP2P));
 
             if (prevGear == 0 && canUpdateGear)
             {
