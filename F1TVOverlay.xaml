@@ -11,7 +11,7 @@
                     <Widget:LapsRemainingWidget x:Name="LapsRemaining" Width="320" Height="36" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="798,106,0,0" />
                     <Border x:Name="RPMMeter" BorderThickness="0" Width="360" Height="400" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="180,0,0,230" />
                     <Widget:LapTimerLeft x:Name="LapTimerLeft" Width="430" Height="108" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="370,863,0,0" />
-                    <Widget:TeamRadio x:Name="TeamRadio" Width="342" Height="76" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="1408,520,0,0" />
+                    <Widget:TeamRadio x:Name="TeamRadio" Width="342" Height="76" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="1458,520,0,0" />
                     <Widget:RaceBar x:Name="RaceBar" Width="1920" Height="50" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,970,0,0" />
                     <Widget:LiveTimingWidget x:Name="LiveTiming" Width="310" Height="792" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="158,70,0,0" />
                     <Widget:WeatherWidget x:Name="WeatherWidget" Width="675" Height="235" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="1045,755,0,0" />
