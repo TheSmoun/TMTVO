@@ -50,15 +50,19 @@ namespace TMTVO.Widget.F1
             this.State = SessionTimerState.Normal;
 		}
 
-        public void FadeIn(SessionMode mode)
+        public void FadeIn()
         {
             if (Active)
                 return;
 
+            SessionMode mode = SessionMode.TimeMode;
+            if (Module.SessionState == SessionState.Racing && Module.SessionType == SessionType.LapRace)
+                mode = SessionMode.LapMode;
+
             if (mode == SessionMode.LapMode)
             {
                 SwitchToLap();
-                UpdateLaps(1, Module.LapsTotal);
+                UpdateLaps(0, Module.LapsTotal);
             }
             else
             {
@@ -223,6 +227,8 @@ namespace TMTVO.Widget.F1
                 return;
 
             Mode = SessionMode.TimeMode;
+            SessionTimerLap.Opacity = 0F;
+            SessionTimerTime.Opacity = 1F;
         }
 
         public void SwitchToLap()
@@ -231,6 +237,8 @@ namespace TMTVO.Widget.F1
                 return;
 
             Mode = SessionMode.LapMode;
+            SessionTimerLap.Opacity = 1F;
+            SessionTimerTime.Opacity = 0F;
         }
 
         public void ChequeredFlag()
@@ -318,10 +326,17 @@ namespace TMTVO.Widget.F1
         public void Tick()
         {
             string sType = "";
-            if (SessionTypeToString.TryGetValue(Module.SessionType, out sType))
+            if ((Module.SessionType == SessionType.LapRace || Module.SessionType == SessionType.TimeRace) && Module.SessionState == SessionState.Warmup)
+                LapText2.Text = "W";
+            else if (SessionTypeToString.TryGetValue(Module.SessionType, out sType))
                 LapText2.Text = sType;
             else
                 LapText2.Text = "-";
+
+            if (Module.SessionState == SessionState.Racing && Module.SessionType == SessionType.LapRace && Mode == SessionMode.TimeMode)
+                SwitchToLap();
+            else
+                SwitchToTime();
 
             this.UpdateTime(Module.TimeRemaining);
             this.UpdateLaps(Module.LapsDriven, Module.LapsTotal);

@@ -6,7 +6,7 @@
 	xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:pi="http://schemas.microsoft.com/prototyping/2010/interactivity"
 	mc:Ignorable="d"
 	x:Class="TMTVO.Widget.F1.SessionTimer"
-	Width="410" Height="38">
+	Width="410" Height="36">
     <UserControl.Resources>
         <Storyboard x:Key="FadeInLap">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SessionTimerLap">
@@ -266,7 +266,7 @@
 			</TransformGroup>
 		</Grid.RenderTransform>
 
-		<Grid x:Name="SessionTimerAll" Width="220" HorizontalAlignment="Left">
+		<Grid x:Name="SessionTimerAll" Width="220" HorizontalAlignment="Left" Height="36">
 
 			<Grid x:Name="SessionTimerLap" Margin="0" RenderTransformOrigin="0.5,0.5" Width="220" Height="36" Opacity="0">
 				<Grid.RenderTransform>
@@ -335,14 +335,6 @@
 					</Rectangle.Stroke>
 				</Rectangle>
 				<Rectangle x:Name="LapBackground1" Fill="Black" HorizontalAlignment="Right" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="127.188" RenderTransformOrigin="0.5,0.5" Margin="0,0,12,0">
-					<Rectangle.RenderTransform>
-						<TransformGroup>
-							<ScaleTransform/>
-							<SkewTransform AngleX="-32"/>
-							<RotateTransform/>
-							<TranslateTransform/>
-						</TransformGroup>
-					</Rectangle.RenderTransform>
 					<Rectangle.Stroke>
 						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 							<LinearGradientBrush.RelativeTransform>
@@ -357,6 +349,14 @@
 							<GradientStop Color="#FF666666"/>
 						</LinearGradientBrush>
 					</Rectangle.Stroke>
+					<Rectangle.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform/>
+							<SkewTransform AngleX="-32"/>
+							<RotateTransform/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</Rectangle.RenderTransform>
 				</Rectangle>
 				<Rectangle x:Name="LapBackgroundYellow" HorizontalAlignment="Right" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="127.188" RenderTransformOrigin="0.5,0.5" Margin="0,0,12,0" Opacity="0">
 					<Rectangle.Fill>
@@ -446,8 +446,8 @@
 						<SolidColorBrush Color="Black" Opacity="0"/>
 					</Rectangle.Stroke>
 				</Rectangle>
-				<TextBlock x:Name="LapText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="68.96" Margin="13.5,-1.501,0,-4.999" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White"><Run Text="Lap"/></TextBlock>
-				<TextBlock x:Name="LapsText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="127.54" Margin="78.793,-0.666,0,-5.834" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Text="14 / 56" Foreground="White"/>
+				<TextBlock x:Name="LapText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="68.96" Margin="13.5,0.999,0,-9.499" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White"><Run Text="Lap"/></TextBlock>
+				<TextBlock x:Name="LapsText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="127.54" Margin="78.793,0.834,0,-9.334" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" UseLayoutRounding="False" Text="14 / 56" Foreground="White"/>
 				<Rectangle x:Name="LapBackgroundCh" HorizontalAlignment="Right" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="127.188" RenderTransformOrigin="0.5,0.5" Margin="0,0,12,0" Opacity="0">
 					<Rectangle.Fill>
 						<DrawingBrush Stretch="None" TileMode="Tile" Viewport="0,0,20,20" ViewportUnits="Absolute">
@@ -647,8 +647,8 @@
 						</LinearGradientBrush>
 					</Rectangle.Stroke>
 				</Rectangle>
-				<TextBlock x:Name="LapText2" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="68.96" Margin="4.833,-0.666,0,-5.834" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Text="OP" Foreground="#FFF9F9F9"/>
-				<TextBlock x:Name="LapsText2" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="150.207" Margin="59.793,-0.666,0,-5.834" FontSize="33.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Text="24:00:00" Foreground="#FFF9F9F9"/>
+				<TextBlock x:Name="LapText2" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="68.96" Margin="4.833,0.998,0,-9.498" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Text="OP" Foreground="#FFF9F9F9"/>
+				<TextBlock x:Name="LapsText2" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="150.207" Margin="59.793,0.665,0,-9.165" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" UseLayoutRounding="False" Text="24:00:00" Foreground="#FFF9F9F9"/>
 				<Rectangle x:Name="Farbverlauf2" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="196" RenderTransformOrigin="0.5,0.5" Margin="12,0,0,0">
 					<Rectangle.RenderTransform>
 						<TransformGroup>
@@ -753,7 +753,7 @@
 
     	</Grid>
 
-		<Grid x:Name="SafetyCar" HorizontalAlignment="Right" Width="210" Opacity="0" RenderTransformOrigin="0.5,0.5">
+		<Grid x:Name="SafetyCar" HorizontalAlignment="Right" Width="210" RenderTransformOrigin="0.5,0.5" Height="36" Opacity="0">
 			<Grid.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>
@@ -814,7 +814,7 @@
 					<SolidColorBrush Color="Black" Opacity="0"/>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<TextBlock x:Name="SCText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="180" Margin="12.667,-0.333,0,-6.167" FontSize="30.667" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" UseLayoutRounding="False" Foreground="White" Text="SAFETY CAR"/>
+			<TextBlock x:Name="SCText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="180" Margin="12.667,0.917,0,-9.417" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" UseLayoutRounding="False" Foreground="White" Text="SAFETY CAR"/>
 		</Grid>
 		<Rectangle x:Name="FadeInColorSC" Fill="White" HorizontalAlignment="Right" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="210" RenderTransformOrigin="0.5,0.5" Margin="0" Opacity="0">
 			<Rectangle.RenderTransform>

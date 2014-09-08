@@ -22,13 +22,9 @@
 							<ComboBoxItem x:Name="Gap1" Content="BestLast" />
 							<ComboBoxItem x:Name="Time1" Content="QualiTime" />
 						</ComboBox>
-						<ComboBox x:Name="SessionTimerMode" Grid.Row="0" Height="25" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,309,0" SelectionChanged="SessionTimerMode_SelectionChanged">
-							<ComboBoxItem x:Name="TimeMode" Content="Time Mode" IsSelected="True" />
-							<ComboBoxItem x:Name="LapMode" Content="Lap Mode" />
-						</ComboBox>
 						<Button x:Name="ResultsButton" Click="ResultsButton_Click" Content="Results" Width="100" Height="25" Margin="309,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" />
 						<Button x:Name="TrackMap" Click="ResultsButton_Click" Content="Track Map" Width="100" Height="25" Margin="309,40,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" />
-						<Button x:Name="RevMeter" Content="Rev Meter" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="103,70,0,0" Click="RevMeter_Click" />
+						<Button x:Name="RevMeter" Content="Rev Meter" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,40,309,0" Click="RevMeter_Click" />
 					</Grid>
 				</TabItem>
 				<TabItem x:Name="Camera" Header="Camera Controls">

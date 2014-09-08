@@ -35,7 +35,6 @@ namespace TMTVO
         private Controller.TMTVO tmtvo;
         private F1TVOverlay f1Window;
         private Timer t;
-        private SessionTimer.SessionMode sessionTimerMode = TMTVO.Widget.F1.SessionTimer.SessionMode.TimeMode;
         private int driverCount = 0;
         private Timer statusBarTimer;
         private API api;
@@ -161,23 +160,7 @@ namespace TMTVO
             if (f1Window.SessionTimer.Active)
                 f1Window.SessionTimer.FadeOut();
             else
-                f1Window.SessionTimer.FadeIn(sessionTimerMode);
-        }
-
-        private void SessionTimerMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            switch (((ComboBox)sender).SelectedIndex)
-            {
-                case 0:
-                    sessionTimerMode = Widget.F1.SessionTimer.SessionMode.TimeMode;
-                    break;
-                case 1:
-                    sessionTimerMode = Widget.F1.SessionTimer.SessionMode.LapMode;
-                    break;
-                default:
-                    sessionTimerMode = Widget.F1.SessionTimer.SessionMode.TimeMode;
-                    break;
-            }
+                f1Window.SessionTimer.FadeIn();
         }
 
         private void TeamRadioEnabled_Checked(object sender, RoutedEventArgs e)
