@@ -8,9 +8,177 @@
 	x:Class="TMTVO.SpeedCompareWidget"
 	x:Name="UserControl"
 	d:DesignWidth="640" d:DesignHeight="480" Width="555" Height="203">
+	<UserControl.Resources>
+		<Storyboard x:Key="FadeIn">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="Body">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Body">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="Body">
+				<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="DriverLeft">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="DriverRight">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock1">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock2">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="line">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="HeaderBar">
+				<EasingThicknessKeyFrame KeyTime="0" Value="9.657,0,8.823,0"/>
+				<EasingThicknessKeyFrame KeyTime="0:0:0.4" Value="9.657,0,8.823,166"/>
+			</ThicknessAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="HeaderBar">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LayoutRoot">
+				<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="HeaderBar">
+				<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="Driver1">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.05"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="Driver1">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.5"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.05"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Driver1">
+				<EasingThicknessKeyFrame KeyTime="0" Value="0,0,267.862,-3.583"/>
+				<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="0,0,402,-3.583"/>
+				<EasingThicknessKeyFrame KeyTime="0:0:0.5" Value="0,0,267.862,-3.583"/>
+			</ThicknessAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="FadeInColor">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.05"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="FadeInColor">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.5"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.05"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FadeInColor">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="FadeInColor">
+				<EasingThicknessKeyFrame KeyTime="0" Value="0"/>
+				<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="-68,0,0,0"/>
+				<EasingThicknessKeyFrame KeyTime="0:0:0.5" Value="0"/>
+			</ThicknessAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="Driver2">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.05"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="Driver2">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.5"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.05"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="FadeInColor2">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.05"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="FadeInColor2">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.5"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.05"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FadeInColor2">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Driver2">
+				<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="Driver2">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-54"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="FadeInColor2">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-54"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="FadeInColor2">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.756"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="FadeOut">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LayoutRoot">
+				<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+	</UserControl.Resources>
+	<UserControl.Triggers>
+		<EventTrigger RoutedEvent="FrameworkElement.Loaded">
+			<BeginStoryboard Storyboard="{StaticResource FadeIn}"/>
+			<BeginStoryboard Storyboard="{StaticResource FadeOut}"/>
+		</EventTrigger>
+	</UserControl.Triggers>
 
-	<Grid x:Name="LayoutRoot" Width="555" Height="203">
-		<Grid x:Name="Body" Margin="15,11,15,0" Width="525" HorizontalAlignment="Center" VerticalAlignment="Top" Height="192">
+	<Grid x:Name="LayoutRoot" Width="555" Height="203" Opacity="0">
+		<Grid x:Name="Body" Margin="15,11,15,0" Width="525" HorizontalAlignment="Center" VerticalAlignment="Top" Height="192" RenderTransformOrigin="0.5,0.5">
+			<Grid.RenderTransform>
+				<TransformGroup>
+					<ScaleTransform/>
+					<SkewTransform/>
+					<RotateTransform/>
+					<TranslateTransform/>
+				</TransformGroup>
+			</Grid.RenderTransform>
 			<Rectangle x:Name="BackgroundBody" HorizontalAlignment="Left" Height="192" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="525" Stroke="#FF666666">
 				<Rectangle.Fill>
 					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -255,10 +423,10 @@
 				<TextBlock x:Name="Speed_Copy" TextWrapping="Wrap" Margin="80.25,47.012,80.25,0" Height="50" Width="100" Foreground="#FF69F0E4" FontSize="45.333" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="DIN 1451 Std Mittelschrift" Opacity="0"><Run Text="241"/></TextBlock>
 				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="km/h" VerticalAlignment="Top" Foreground="White" Margin="111.74,34.062,111.74,0" FontFamily="DiM" FontSize="16"/>
 			</Grid>
-			<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontSize="16" FontFamily="DIN 1451 Std Mittelschrift" Text="0&#xD;&#xA;" Margin="258.66,165,258.66,0" Height="24.5"/>
-			<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontSize="16" FontFamily="DIN 1451 Std Mittelschrift" Text="18000&#xA;" Margin="240,61.5,240,0" Height="24.5" Width="45" TextAlignment="Center"/>
-			<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontSize="16" FontFamily="DIN 1451 Std Mittelschrift" Text="RPM&#xA;" Margin="0,30,0,0" Height="24.5" Width="45" TextAlignment="Center"/>
-			<Line Y1="100.33367" X2="191.664" Y2="99.999997" HorizontalAlignment="Center" Height="1" Margin="225.75,121.762,225.75,0" Stretch="Fill" VerticalAlignment="Top" Width="73.5" Stroke="#FF5F5F5F" X1="1" Fill="Red" RenderTransformOrigin="0.5,0.5">
+			<TextBlock x:Name="textBlock" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontSize="16" FontFamily="DIN 1451 Std Mittelschrift" Text="0&#xD;&#xA;" Margin="258.66,165,258.66,0" Height="24.5"/>
+			<TextBlock x:Name="textBlock1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontSize="16" FontFamily="DIN 1451 Std Mittelschrift" Text="18000&#xA;" Margin="240,61.5,240,0" Height="24.5" Width="45" TextAlignment="Center"/>
+			<TextBlock x:Name="textBlock2" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontSize="16" FontFamily="DIN 1451 Std Mittelschrift" Text="RPM&#xA;" Margin="0,30,0,0" Height="24.5" Width="45" TextAlignment="Center"/>
+			<Line x:Name="line" Y1="100.33367" X2="191.664" Y2="99.999997" HorizontalAlignment="Center" Height="1" Margin="225.75,121.762,225.75,0" Stretch="Fill" VerticalAlignment="Top" Width="73.5" Stroke="#FF5F5F5F" X1="1" Fill="Red" RenderTransformOrigin="0.5,0.5">
 				<Line.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -269,8 +437,24 @@
 				</Line.RenderTransform>
 			</Line>
 		</Grid>
-		<Grid x:Name="HeaderBar" Margin="9.657,0,8.823,167" Height="36">
-			<Grid x:Name="Driver1" Margin="0,0,267.862,-3.583">
+		<Grid x:Name="HeaderBar" Margin="9.657,0,8.823,167" Height="36" RenderTransformOrigin="0.5,0.5">
+			<Grid.RenderTransform>
+				<TransformGroup>
+					<ScaleTransform/>
+					<SkewTransform/>
+					<RotateTransform/>
+					<TranslateTransform/>
+				</TransformGroup>
+			</Grid.RenderTransform>
+			<Grid x:Name="Driver1" Margin="0,0,267.862,-3.583" RenderTransformOrigin="0.5,0.5">
+				<Grid.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform/>
+						<RotateTransform/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Grid.RenderTransform>
 				<Rectangle x:Name="BackgroundBlack1" Fill="Black" HorizontalAlignment="Right" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="268" RenderTransformOrigin="0.5,0.5">
 					<Rectangle.RenderTransform>
 						<TransformGroup>
@@ -348,7 +532,15 @@
 				</TextBlock>
 				<TextBlock x:Name="DriversName1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="DRIVER1" VerticalAlignment="Top" Foreground="White" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Margin="69,0.583,0,0" Width="185.607" TextTrimming="CharacterEllipsis"/>
 			</Grid>
-			<Grid x:Name="Driver2" Margin="267.862,0,0,-3.583">
+			<Grid x:Name="Driver2" Margin="267.862,0,0,-3.583" RenderTransformOrigin="0.5,0.5">
+				<Grid.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform/>
+						<RotateTransform/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Grid.RenderTransform>
 				<Rectangle x:Name="BackgroundBlack2" Fill="Black" HorizontalAlignment="Right" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="268" RenderTransformOrigin="0.5,0.5">
 					<Rectangle.RenderTransform>
 						<TransformGroup>
@@ -426,6 +618,54 @@
 				</TextBlock>
 				<TextBlock x:Name="DriversName2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="DRIVER2" VerticalAlignment="Top" Foreground="White" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Margin="69,0.583,0,0" Width="185.607" TextTrimming="CharacterEllipsis"/>
 			</Grid>
+			<Rectangle x:Name="FadeInColor" Fill="White" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="268" RenderTransformOrigin="0.5,0.5" Margin="0" Opacity="0">
+				<Rectangle.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform AngleX="-32"/>
+						<RotateTransform/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Rectangle.RenderTransform>
+				<Rectangle.Stroke>
+					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+						<LinearGradientBrush.RelativeTransform>
+							<TransformGroup>
+								<ScaleTransform CenterY="0.5" CenterX="0.5"/>
+								<SkewTransform CenterY="0.5" CenterX="0.5"/>
+								<RotateTransform Angle="21.038" CenterY="0.5" CenterX="0.5"/>
+								<TranslateTransform/>
+							</TransformGroup>
+						</LinearGradientBrush.RelativeTransform>
+						<GradientStop Color="Black" Offset="1"/>
+						<GradientStop Color="#FF666666"/>
+					</LinearGradientBrush>
+				</Rectangle.Stroke>
+			</Rectangle>
+			<Rectangle x:Name="FadeInColor2" Fill="White" HorizontalAlignment="Right" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="268" RenderTransformOrigin="0.5,0.5" Margin="0" Opacity="0">
+				<Rectangle.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform AngleX="-32"/>
+						<RotateTransform/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Rectangle.RenderTransform>
+				<Rectangle.Stroke>
+					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+						<LinearGradientBrush.RelativeTransform>
+							<TransformGroup>
+								<ScaleTransform CenterY="0.5" CenterX="0.5"/>
+								<SkewTransform CenterY="0.5" CenterX="0.5"/>
+								<RotateTransform Angle="21.038" CenterY="0.5" CenterX="0.5"/>
+								<TranslateTransform/>
+							</TransformGroup>
+						</LinearGradientBrush.RelativeTransform>
+						<GradientStop Color="Black" Offset="1"/>
+						<GradientStop Color="#FF666666"/>
+					</LinearGradientBrush>
+				</Rectangle.Stroke>
+			</Rectangle>
 		</Grid>
 	</Grid>
 </UserControl>
