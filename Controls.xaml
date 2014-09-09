@@ -100,7 +100,12 @@
 							<ComboBoxItem Content="Interval" />
 							<ComboBoxItem Content="Name" />
 						</ComboBox>
-						<Button x:Name="DriverProgress" Content="Driver Progress" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,40,0,0" Click="WeatherToggle_Click" />
+						<Button x:Name="DriverProgress" Content="Driver Progress" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,40,156,0" Click="WeatherToggle_Click" />
+						<Button x:Name="SpeedCompare" Content="Speed Comp" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="156,40,0,0" Click="SpeedCompare_Click" />
+						<ComboBox x:Name="SpeedCompMode" Height="25" Width="100" HorizontalAlignment="Center" Margin="373,40,0,0" VerticalAlignment="Top">
+							<ComboBoxItem Content="To Next" IsSelected="True" />
+							<ComboBoxItem Content="To Prev" />
+						</ComboBox>
 					</Grid>
 				</TabItem>
 			</TabControl>

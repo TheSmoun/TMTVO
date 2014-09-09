@@ -59,7 +59,7 @@ namespace TMTVO.Controller
             Api.AddModule(new LeftLaptimeModule(Window.LapTimerLeft));
             Api.AddModule(new CameraModule(Controls));
             Api.AddModule(new TimeDeltaModule());
-            Api.AddModule(new RevMeterModule(Window.RevMeterWidget));
+            Api.AddModule(new RevMeterModule(Window.RevMeterWidget, Window.SpeedCompareWidget));
         }
     }
 }

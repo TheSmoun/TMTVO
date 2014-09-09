@@ -12,16 +12,21 @@ namespace TMTVO.Data.Modules
     public class RevMeterModule : Module
     {
         private RevMeter widget;
+        private SpeedCompareWidget sWidget;
 
-        public RevMeterModule(RevMeter widget) : base("RevMeter")
+        public RevMeterModule(RevMeter widget, SpeedCompareWidget sWidget) : base("RevMeter")
         {
             this.widget = widget;
+            this.sWidget = sWidget;
         }
 
         public override void Update(ConfigurationSection rootNode, API api)
         {
             if (widget.Active)
                 Application.Current.Dispatcher.Invoke(new Action(widget.Tick));
+
+            if (sWidget.Active)
+                Application.Current.Dispatcher.Invoke(new Action(sWidget.Tick));
         }
 
         public override void Reset()

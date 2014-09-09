@@ -587,5 +587,38 @@ namespace TMTVO
                 f1Window.RevMeterWidget.FadeIn(driver);
             }
         }
+
+        private void SpeedCompare_Click(object sender, RoutedEventArgs e)
+        {
+            if (f1Window.SpeedCompareWidget.Active)
+                f1Window.SpeedCompareWidget.FadeOut();
+            else
+            {
+                LiveStandingsModule m = (LiveStandingsModule)tmtvo.Api.FindModule("LiveStandings");
+
+                LiveStandingsItem driver1 = null;
+                LiveStandingsItem driver2 = null;
+
+                int carIdx = CameraModule.FollowedDriver;
+                if (carIdx == -1)
+                    return;
+
+                if (SpeedCompMode.SelectedIndex == 0)
+                {
+                    driver1 = m.FindDriver(carIdx);
+                    driver2 = m.FindDriverByPos(driver1.PositionLive + 1);
+                }
+                else
+                {
+                    driver2 = m.FindDriver(carIdx);
+                    driver1 = m.FindDriverByPos(driver2.PositionLive - 1);
+                }
+
+                if (driver1 == null || driver2 == null)
+                    return;
+
+                f1Window.SpeedCompareWidget.FadeIn(driver1, driver2);
+            }
+        }
     }
 }
