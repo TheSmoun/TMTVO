@@ -223,7 +223,7 @@ namespace TMTVO.Widget.F1
 
         public void SwitchToTime()
         {
-            if (Mode == SessionMode.TimeMode || Active)
+            if (Mode == SessionMode.TimeMode)
                 return;
 
             Mode = SessionMode.TimeMode;
@@ -233,7 +233,7 @@ namespace TMTVO.Widget.F1
 
         public void SwitchToLap()
         {
-            if (Mode == SessionMode.LapMode || Active)
+            if (Mode == SessionMode.LapMode)
                 return;
 
             Mode = SessionMode.LapMode;
