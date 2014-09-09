@@ -335,7 +335,7 @@ namespace TMTVO.Widget.F1
 
             if (Module.SessionState == SessionState.Racing && Module.SessionType == SessionType.LapRace && Mode == SessionMode.TimeMode)
                 SwitchToLap();
-            else
+            else if (Module.SessionType != SessionType.LapRace && Mode == SessionMode.LapMode)
                 SwitchToTime();
 
             this.UpdateTime(Module.TimeRemaining);

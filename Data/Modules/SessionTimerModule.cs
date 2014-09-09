@@ -82,7 +82,7 @@ namespace TMTVO.Data.Modules
             }
 
             SessionFlag newFlag = (SessionFlag)Enum.Parse(typeof(SessionFlag), ((int)api.Sdk.GetData("SessionFlags")).ToString(), true);
-            if (newFlag.FlagSet(SessionFlag.White) && !SessionFlags.FlagSet(SessionFlag.White))
+            if (newFlag.FlagSet(SessionFlag.White))
                 Application.Current.Dispatcher.Invoke(new Action(() =>
                 {
                     lapsRemaining.FadeIn(1);
@@ -95,10 +95,10 @@ namespace TMTVO.Data.Modules
 
             this.TimeRemaining = (int)(double)api.Sdk.GetData("SessionTimeRemain");
             int lapsRemain = (int)api.Sdk.GetData("SessionLapsRemain");
-            if (lapsRemain <= 5 && lapsRemain > 1)
+            if (lapsRemain + 1 <= 5 && lapsRemain + 1 > 0)
                 Application.Current.Dispatcher.Invoke(new Action(() =>
                 {
-                    lapsRemaining.FadeIn(lapsRemain);
+                    lapsRemaining.FadeIn(lapsRemain + 1);
                 }));
 
             this.LapsDriven = LapsTotal - lapsRemain;
@@ -112,9 +112,7 @@ namespace TMTVO.Data.Modules
                     TimeTotal = (int)float.Parse(time);
             }
 
-            Application.Current.Dispatcher.Invoke(new Action(() => {
-                sessionTimer.Tick();
-            }));
+            Application.Current.Dispatcher.Invoke(new Action(sessionTimer.Tick));
         }
 
         public override void Reset()
