@@ -92,7 +92,8 @@ namespace TMTVO.Widget.F1
 
         private void sb_Completed(object sender, EventArgs e)
         {
-            ((Grid)this.Parent).Children.Remove(this);
+            if (Parent != null)
+                ((Grid)this.Parent).Children.Remove(this);
         }
 
         private void setSpeeds(int speed1, int speed2)

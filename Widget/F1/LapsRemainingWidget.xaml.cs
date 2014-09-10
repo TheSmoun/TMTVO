@@ -79,7 +79,8 @@ namespace TMTVO.Widget.F1
 
         private void sb_Completed(object sender, EventArgs e)
         {
-            ((Grid)this.Parent).Children.Remove(this);
+            if (Parent != null)
+                ((Grid)this.Parent).Children.Remove(this);
         }
 
         public void Tick()

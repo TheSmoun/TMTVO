@@ -240,7 +240,8 @@ namespace TMTVO.Widget.F1
 
         private void sb_Completed2(object sender, EventArgs e)
         {
-            ((Grid)this.Parent).Children.Remove(this);
+            if (Parent != null)
+                ((Grid)this.Parent).Children.Remove(this);
         }
 
         private void fadeInP2P()

@@ -144,13 +144,17 @@ namespace TMTVO
 
         public void LapsRemainingFadeIn(int remaining)
         {
-            MyCanvas.Children.Add(LapsRemaining);
+            if (!MyCanvas.Children.Contains(LapsRemaining))
+                MyCanvas.Children.Add(LapsRemaining);
+
             LapsRemaining.FadeIn(remaining);
         }
 
         public void LapTimerLeftFadeIn(LiveStandingsItem driver)
         {
-            MyCanvas.Children.Add(LapTimerLeft);
+            if (!MyCanvas.Children.Contains(LapTimerLeft))
+                MyCanvas.Children.Add(LapTimerLeft);
+
             LapTimerLeft.FadeIn(driver);
         }
 
@@ -161,7 +165,9 @@ namespace TMTVO
 
         public void LiveTimingWidgetFadeIn()
         {
-            MyCanvas.Children.Add(LiveTimingWidget);
+            if (!MyCanvas.Children.Contains(LiveTimingWidget))
+                MyCanvas.Children.Add(LiveTimingWidget);
+
             LiveTimingWidget.FadeIn();
         }
 
@@ -172,7 +178,9 @@ namespace TMTVO
 
         public void RaceBarFadeIn()
         {
-            MyCanvas.Children.Add(RaceBar);
+            if (!MyCanvas.Children.Contains(RaceBar))
+                MyCanvas.Children.Add(RaceBar);
+
             RaceBar.FadeIn();
         }
 
@@ -183,13 +191,17 @@ namespace TMTVO
 
         public void ResultsFadeIn(int ms, ResultsWidget.ResultsMode mode)
         {
-            MyCanvas.Children.Add(ResultsWidget);
+            if (!MyCanvas.Children.Contains(ResultsWidget))
+                MyCanvas.Children.Add(ResultsWidget);
+
             ResultsWidget.Show(ms, mode);
         }
 
         public void RevMeterFadeIn(LiveStandingsItem driver)
         {
-            MyCanvas.Children.Add(RevMeter);
+            if (!MyCanvas.Children.Contains(RevMeter))
+                MyCanvas.Children.Add(RevMeter);
+
             RevMeter.FadeIn(driver);
         }
 
@@ -200,7 +212,9 @@ namespace TMTVO
 
         public void SessionTimerFadeIn()
         {
-            MyCanvas.Children.Add(SessionTimer);
+            if (!MyCanvas.Children.Contains(SessionTimer))
+                MyCanvas.Children.Add(SessionTimer);
+
             SessionTimer.FadeIn();
         }
 

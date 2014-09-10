@@ -45,11 +45,6 @@ namespace TMTVO.Widget.F1
             posVisible = false;
 		}
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         public void FadeIn(LiveStandingsItem driver)
         {
             if (Active)
@@ -98,7 +93,8 @@ namespace TMTVO.Widget.F1
 
         private void sb_Completed(object sender, EventArgs e)
         {
-            ((Grid)this.Parent).Children.Remove(this);
+            if (Parent != null)
+                ((Grid)this.Parent).Children.Remove(this);
         }
 
         public void SectorComplete(float seconds)
