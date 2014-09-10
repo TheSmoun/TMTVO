@@ -96,6 +96,8 @@ namespace TMTVO.Widget.F1
                 sb = FindResource("FadeOutLap") as Storyboard;
             else
                 sb = FindResource("FadeOutTime") as Storyboard;
+
+            sb.Completed += sb_Completed;
             sb.Begin();
 
             if (State == SessionTimerState.SafetyCar)
@@ -103,6 +105,11 @@ namespace TMTVO.Widget.F1
                 sb = FindResource("SafetyCarFadeOut") as Storyboard;
                 sb.Begin();
             }
+        }
+
+        private void sb_Completed(object sender, EventArgs e)
+        {
+            ((Canvas)this.Parent).Children.Remove(this);
         }
 
         public void YellowFlag()

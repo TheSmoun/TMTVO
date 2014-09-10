@@ -29,12 +29,8 @@ namespace TMTVO.Widget.F1
 		public WeatherWidget()
 		{
 			this.InitializeComponent();
-		}
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
             Active = false;
-        }
+		}
 
         public void FadeIn()
         {
@@ -61,7 +57,13 @@ namespace TMTVO.Widget.F1
 
             Active = false;
             Storyboard sb = FindResource("FadeOut") as Storyboard;
+            sb.Completed += sb_Completed;
             sb.Begin();
+        }
+
+        private void sb_Completed(object sender, EventArgs e)
+        {
+            ((Canvas)this.Parent).Children.Remove(this);
         }
 
         public void Tick() { }

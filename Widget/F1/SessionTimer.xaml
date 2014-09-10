@@ -8,7 +8,7 @@
 	x:Class="TMTVO.Widget.F1.SessionTimer"
 	Width="410" Height="36">
     <UserControl.Resources>
-        <Storyboard x:Key="FadeInLap">
+        <Storyboard x:Key="FadeInLap" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SessionTimerLap">
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
@@ -61,7 +61,7 @@
         		<EasingPointKeyFrame KeyTime="0:0:0.3" Value="0.5,0.5"/>
         	</PointAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="FadeInTime">
+        <Storyboard x:Key="FadeInTime" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="SessionTimerTime">
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.05"/>
@@ -105,7 +105,7 @@
         		<DiscreteObjectKeyFrame KeyTime="0:0:0.2" Value="{x:Static HorizontalAlignment.Stretch}"/>
         	</ObjectAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="Yellow">
+        <Storyboard x:Key="Yellow" Timeline.DesiredFrameRate="30">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(RadialGradientBrush.RadiusX)" Storyboard.TargetName="LapBackgroundYellow">
                 <EasingDoubleKeyFrame KeyTime="0" Value="20"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="20"/>
@@ -145,13 +145,13 @@
             	<EasingColorKeyFrame KeyTime="0:0:3" Value="#FFFFEA00"/>
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="Red">
+        <Storyboard x:Key="Red" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LapBackgroundRed">
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1"/>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="SafetyCarFadeIn">
+        <Storyboard x:Key="SafetyCarFadeIn" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="SafetyCar">
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.05"/>
@@ -206,7 +206,7 @@
         		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="SafetyCarFadeOut">
+        <Storyboard x:Key="SafetyCarFadeOut" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SafetyCar">
         		<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
@@ -215,7 +215,7 @@
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="FadeOutLap">
+        <Storyboard x:Key="FadeOutLap" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SessionTimerLap">
         		<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
@@ -224,7 +224,7 @@
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="FadeOutTime">
+        <Storyboard x:Key="FadeOutTime" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SessionTimerTime">
         		<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
@@ -233,7 +233,7 @@
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="YellowFadeOutLap">
+        <Storyboard x:Key="YellowFadeOutLap" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LapBackgroundYellow">
         		<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
@@ -243,13 +243,13 @@
         		<EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
         	</ColorAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="RedFadeOutLap">
+        <Storyboard x:Key="RedFadeOutLap" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LapBackgroundRed">
         		<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="YellowFadeOutTime">
+        <Storyboard x:Key="YellowFadeOutTime" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="TimeBackgroundYellow">
         		<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
@@ -259,13 +259,13 @@
         		<EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
         	</ColorAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="RedFadeOutTime">
+        <Storyboard x:Key="RedFadeOutTime" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="TimeBackgroundRed">
         		<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="YellowFadeInTime">
+        <Storyboard x:Key="YellowFadeInTime" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="TimeBackgroundYellow">
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1"/>
@@ -302,7 +302,7 @@
         		<EasingColorKeyFrame KeyTime="0:0:2.5" Value="#FFFFEA00"/>
         	</ColorAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="RedFadeInTime">
+        <Storyboard x:Key="RedFadeInTime" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="TimeBackgroundRed">
         		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>

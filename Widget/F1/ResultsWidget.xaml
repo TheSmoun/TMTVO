@@ -7,14 +7,14 @@
 	mc:Ignorable="d"
 	x:Class="TMTVO.Widget.F1.ResultsWidget"
 	x:Name="UserControl"
-	d:DesignWidth="640" d:DesignHeight="480" Height="580" Width="1152" Loaded="UserControl_Loaded">
+	d:DesignWidth="640" d:DesignHeight="480" Height="580" Width="1152">
     <UserControl.Resources>
-        <Storyboard x:Key="FadeOutPos">
+        <Storyboard x:Key="FadeOutPos" Timeline.DesiredFrameRate="30">
             <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Positions">
                 <EasingThicknessKeyFrame KeyTime="0:0:0.5" Value="0,0,0,432"/>
             </ThicknessAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="FadeInHeader">
+        <Storyboard x:Key="FadeInHeader" Timeline.DesiredFrameRate="30">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FadeInColor">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
@@ -111,12 +111,12 @@
             	<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="SetMargin">
+        <Storyboard x:Key="SetMargin" Timeline.DesiredFrameRate="30">
         	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Positions">
         		<EasingThicknessKeyFrame KeyTime="0" Value="0"/>
         	</ThicknessAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="FadeOut">
+        <Storyboard x:Key="FadeOut" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Header">
         		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
         	</DoubleAnimationUsingKeyFrames>

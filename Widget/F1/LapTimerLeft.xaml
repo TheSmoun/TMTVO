@@ -6,9 +6,9 @@
 	mc:Ignorable="d"
 	x:Class="TMTVO.Widget.F1.LapTimerLeft"
 	x:Name="UserControl"
-	d:DesignWidth="640" d:DesignHeight="480" Width="417" Height="108" Loaded="UserControl_Loaded">
+	d:DesignWidth="640" d:DesignHeight="480" Width="417" Height="108">
     <UserControl.Resources>
-        <Storyboard x:Key="FadeIn">
+        <Storyboard x:Key="FadeIn" Timeline.DesiredFrameRate="30">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="Time">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.35" Value="1.05"/>
@@ -90,7 +90,7 @@
             	<DiscreteObjectKeyFrame KeyTime="0:0:0.05" Value="{x:Static Visibility.Visible}"/>
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="FadeOut">
+        <Storyboard x:Key="FadeOut" Timeline.DesiredFrameRate="30">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Time">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
@@ -100,7 +100,7 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="ShowGap">
+        <Storyboard x:Key="ShowGap" Timeline.DesiredFrameRate="30">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="Difference">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1.05"/>
@@ -137,7 +137,7 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="ShowNumber">
+        <Storyboard x:Key="ShowNumber" Timeline.DesiredFrameRate="30">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="Number">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1.05"/>
@@ -176,13 +176,13 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="HideGap">
+        <Storyboard x:Key="HideGap" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Difference">
         		<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="HideNumber">
+        <Storyboard x:Key="HideNumber" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Number">
         		<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>

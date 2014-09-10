@@ -28,12 +28,8 @@ namespace TMTVO.Widget.F1
 		public TeamRadio()
 		{
 			this.InitializeComponent();
-		}
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
             Active = false;
-        }
+		}
 
         public void StartsSpeaking(string LastNameDriver, string driverNumber, Color classColor)
         {
@@ -52,7 +48,13 @@ namespace TMTVO.Widget.F1
         {
             Active = false;
             Storyboard sb = FindResource("FadeOut") as Storyboard;
+            sb.Completed += sb_Completed;
             sb.Begin();
+        }
+
+        private void sb_Completed(object sender, EventArgs e)
+        {
+            ((Canvas)this.Parent).Children.Remove(this);
         }
 
         public void SetClubColor(Brush brush)
@@ -68,7 +70,7 @@ namespace TMTVO.Widget.F1
             {
                 Driver driver = ((DriverModule)Controller.TMTVO.Instance.Api.FindModule("DriverModule")).Drivers.Find(d => d.CarIndex == Module.SpeekingCarIndex);
                 if (driver != null)
-                    StartsSpeaking(driver.LastUpperName, driver.Car.CarNumber, driver.LicColor);
+                    Controller.TMTVO.Instance.Window.TeamRadioFadeIn(driver);
             }
             else if (Module.SpeekingCarIndex != -1)
             {

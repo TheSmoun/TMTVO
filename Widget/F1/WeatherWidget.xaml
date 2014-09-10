@@ -6,9 +6,9 @@
 	mc:Ignorable="d"
 	x:Class="TMTVO.Widget.F1.WeatherWidget"
 	x:Name="UserControl"
-	d:DesignWidth="640" d:DesignHeight="480" Width="675" Height="235" Loaded="UserControl_Loaded">
+	d:DesignWidth="640" d:DesignHeight="480" Width="675" Height="235">
     <UserControl.Resources>
-        <Storyboard x:Key="FadeIn">
+        <Storyboard x:Key="FadeIn" Timeline.DesiredFrameRate="30">
             <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Body">
                 <EasingThicknessKeyFrame KeyTime="0" Value="0,0,0,95"/>
                 <EasingThicknessKeyFrame KeyTime="0:0:0.1" Value="0,0,0,95"/>
@@ -116,7 +116,7 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:5" Value="33"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="FadeOut">
+        <Storyboard x:Key="FadeOut" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Body">
         		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
         	</DoubleAnimationUsingKeyFrames>

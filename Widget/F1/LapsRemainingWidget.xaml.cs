@@ -33,10 +33,7 @@ namespace TMTVO.Widget.F1
         public LapsRemainingWidget()
         {
             this.InitializeComponent();
-        }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
             coolDown = new Timer(CD_MS_INTERVAL);
             showed = new bool[5] { false, false, false, false, false };
             coolDown.Elapsed += TimerElapsed;
@@ -76,7 +73,13 @@ namespace TMTVO.Widget.F1
 
             Active = false;
             Storyboard sb = FindResource("FadeOut") as Storyboard;
+            sb.Completed += sb_Completed;
             sb.Begin();
+        }
+
+        private void sb_Completed(object sender, EventArgs e)
+        {
+            ((Canvas)this.Parent).Children.Remove(this);
         }
 
         public void Tick()

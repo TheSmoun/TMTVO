@@ -8,7 +8,7 @@
 	x:Name="UserControl"
 	d:DesignWidth="640" d:DesignHeight="480" Width="305" Height="36">
     <UserControl.Resources>
-        <Storyboard x:Key="PositionImproved">
+        <Storyboard x:Key="PositionImproved" Timeline.DesiredFrameRate="30">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FadeInColor">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
@@ -51,19 +51,19 @@
                 <EasingColorKeyFrame KeyTime="0:0:4" Value="#FFE9E9E9"/>
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="TimeImproved">
+        <Storyboard x:Key="TimeImproved" Timeline.DesiredFrameRate="30">
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="GapText">
                 <EasingColorKeyFrame KeyTime="0" Value="#FF0D9300"/>
                 <EasingColorKeyFrame KeyTime="0:0:3.5" Value="#FF0D9300"/>
                 <EasingColorKeyFrame KeyTime="0:0:4" Value="#FFE9E9E9"/>
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="FadeOut">
+        <Storyboard x:Key="FadeOut" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LayoutRoot">
         		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="FadeIn">
+        <Storyboard x:Key="FadeIn" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FadeInColor">
         		<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
@@ -115,7 +115,7 @@
         		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="FadeInElement">
+        <Storyboard x:Key="FadeInElement" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ThreeLetterCode">
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
@@ -125,7 +125,7 @@
         		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="FadeOutElement">
+        <Storyboard x:Key="FadeOutElement" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ThreeLetterCode">
         		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
         	</DoubleAnimationUsingKeyFrames>

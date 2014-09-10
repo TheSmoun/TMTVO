@@ -33,7 +33,7 @@ namespace TMTVO
         public DriverModule DriverModule { get; set; }
 
         private Controller.TMTVO tmtvo;
-        private F1TVOverlay f1Window;
+        internal F1TVOverlay f1Window;
         private Timer t;
         private int driverCount = 0;
         private Timer statusBarTimer;
@@ -45,7 +45,7 @@ namespace TMTVO
         private bool cameraUpdate;
         private bool driverUpdate;
 
-        public Controls(API api, F1TVOverlay window, Controller.TMTVO tmtvo)
+        public Controls(API api, Controller.TMTVO tmtvo)
         {
             this.api = api;
             this.autoCommit = true;
@@ -53,7 +53,6 @@ namespace TMTVO
             this.cameraUpdate = true;
 
             this.tmtvo = tmtvo;
-            this.f1Window = window;
             InitializeComponent();
 
             statusBarTimer = new Timer(1000);
@@ -158,9 +157,9 @@ namespace TMTVO
         private void SessionTimer_Click(object sender, RoutedEventArgs e)
         {
             if (f1Window.SessionTimer.Active)
-                f1Window.SessionTimer.FadeOut();
+                f1Window.SessionTimerFadeOut();
             else
-                f1Window.SessionTimer.FadeIn();
+                f1Window.SessionTimerFadeIn();
         }
 
         private void TeamRadioEnabled_Checked(object sender, RoutedEventArgs e)
@@ -175,28 +174,25 @@ namespace TMTVO
 
         private void ShowHideTiming_Click(object sender, RoutedEventArgs e)
         {
-            if (f1Window.LiveTiming.Active)
-                f1Window.LiveTiming.FadeOut();
+            if (f1Window.LiveTimingWidget.Active)
+                f1Window.LiveTimingWidgetFadeOut();
             else
-                f1Window.LiveTiming.FadeIn();
+                f1Window.LiveTimingWidgetFadeIn();
         }
 
         private void TimingMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            f1Window.LiveTiming.ChangeMode((LiveTimingItemMode)((ComboBox)sender).SelectedIndex);
+            if (f1Window != null)
+                f1Window.LiveTimingWidget.ChangeMode((LiveTimingItemMode)((ComboBox)sender).SelectedIndex);
         }
 
         private void ShowHideLeftTimer_Click(object sender, RoutedEventArgs e)
         {
             if (f1Window.LapTimerLeft.Active)
-            {
-                //ShowHideLeftTimer.Content = "Show LapTimer L";
-                f1Window.LapTimerLeft.FadeOut();
-                //DriversLeft.IsEnabled = true;
-            }
+                f1Window.LapTimerLeftFadeOut();
             else
             {
-                int carIdx = /*DriversLeft.SelectedIndex;*/ CameraModule.FollowedDriver;
+                int carIdx = CameraModule.FollowedDriver;
                 if (carIdx == -1)
                     return;
 
@@ -204,23 +200,22 @@ namespace TMTVO
                 if (driver == null)
                     return;
 
-                //ShowHideLeftTimer.Content = "Hide LapTimer L";
-                f1Window.LapTimerLeft.FadeIn(driver);
-                //DriversLeft.IsEnabled = false;
+                f1Window.LapTimerLeftFadeIn(driver);
             }
         }
 
         private void RaceBarToggle_Click(object sender, RoutedEventArgs e)
         {
             if (f1Window.RaceBar.Active)
-                f1Window.RaceBar.FadeOut();
+                f1Window.RaceBarFadeOut();
             else
-                f1Window.RaceBar.FadeIn();
+                f1Window.RaceBarFadeIn();
         }
 
         private void RaceBartModeBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            f1Window.RaceBar.Mode = (RaceBar.RaceBarMode)((ComboBox)sender).SelectedIndex;
+            if (f1Window != null)
+                f1Window.RaceBar.Mode = (RaceBar.RaceBarMode)((ComboBox)sender).SelectedIndex;
         }
 
         private void updateStatusBar(object sender, ElapsedEventArgs e)
@@ -250,45 +245,45 @@ namespace TMTVO
             {
                 case SessionType.LapRace:
                 case SessionType.TimeRace:
-                    f1Window.ResultsWidget.Show(ResultsWidget.MS_PER_PAGE, ResultsWidget.ResultsMode.Race);
+                    f1Window.ResultsFadeIn(ResultsWidget.MS_PER_PAGE, ResultsWidget.ResultsMode.Race);
                     break;
                 default:
-                    f1Window.ResultsWidget.Show(ResultsWidget.MS_PER_PAGE, ResultsWidget.ResultsMode.Practice);
+                    f1Window.ResultsFadeIn(ResultsWidget.MS_PER_PAGE, ResultsWidget.ResultsMode.Practice);
                     break;
             }
         }
 
         private void TimingPrevPage_Click(object sender, RoutedEventArgs e)
         {
-            f1Window.LiveTiming.PrevPage();
+            f1Window.LiveTimingWidget.PrevPage();
         }
 
         private void TimingNextPage_Click(object sender, RoutedEventArgs e)
         {
-            f1Window.LiveTiming.NextPage();
+            f1Window.LiveTimingWidget.NextPage();
         }
 
         private void TimingLeaderPage_Click(object sender, RoutedEventArgs e)
         {
-            f1Window.LiveTiming.LeaderPage();
+            f1Window.LiveTimingWidget.LeaderPage();
         }
 
         private void WeatherToggle_Click(object sender, RoutedEventArgs e)
         {
             if (f1Window.WeatherWidget.Active)
-                f1Window.WeatherWidget.FadeOut();
+                f1Window.WeatherFadeOut();
             else
-                f1Window.WeatherWidget.FadeIn();
+                f1Window.WeatherFadeIn();
         }
 
         private void LiveTimingLeaderOnly_Checked(object sender, RoutedEventArgs e)
         {
-            f1Window.LiveTiming.FadeOutPage();
+            f1Window.LiveTimingWidget.FadeOutPage();
         }
 
         private void LiveTimingLeaderOnly_Unchecked(object sender, RoutedEventArgs e)
         {
-            f1Window.LiveTiming.FadeInPage();
+            f1Window.LiveTimingWidget.FadeInPage();
         }
 
         public void Reset()
@@ -572,8 +567,8 @@ namespace TMTVO
 
         private void RevMeter_Click(object sender, RoutedEventArgs e)
         {
-            if (f1Window.RevMeterWidget.Active)
-                f1Window.RevMeterWidget.FadeOut();
+            if (f1Window.RevMeter.Active)
+                f1Window.RevMeterFadeOut();
             else
             {
                 int carIdx = CameraModule.FollowedDriver;
@@ -584,14 +579,14 @@ namespace TMTVO
                 if (driver == null)
                     return;
 
-                f1Window.RevMeterWidget.FadeIn(driver);
+                f1Window.RevMeterFadeIn(driver);
             }
         }
 
         private void SpeedCompare_Click(object sender, RoutedEventArgs e)
         {
             if (f1Window.SpeedCompareWidget.Active)
-                f1Window.SpeedCompareWidget.FadeOut();
+                f1Window.SpeedCompFadeOut();
             else
             {
                 LiveStandingsModule m = (LiveStandingsModule)tmtvo.Api.FindModule("LiveStandings");
@@ -617,7 +612,7 @@ namespace TMTVO
                 if (driver1 == null || driver2 == null)
                     return;
 
-                f1Window.SpeedCompareWidget.FadeIn(driver1, driver2);
+                f1Window.SpeedCompFadeIn(driver1, driver2);
             }
         }
     }

@@ -86,7 +86,13 @@ namespace TMTVO.Widget.F1
 
             Active = false;
             Storyboard sb = FindResource("FadeOut") as Storyboard;
+            sb.Completed += sb_Completed;
             sb.Begin();
+        }
+
+        private void sb_Completed(object sender, EventArgs e)
+        {
+            ((Canvas)this.Parent).Children.Remove(this);
         }
 
         private void setSpeeds(int speed1, int speed2)

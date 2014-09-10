@@ -38,10 +38,7 @@ namespace TMTVO.Widget.F1
 		public ResultsWidget()
 		{
 			this.InitializeComponent();
-		}
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
             Active = false;
             pageIndex = 0;
 
@@ -50,7 +47,7 @@ namespace TMTVO.Widget.F1
 
             pageCooldown = new Timer(PAGE_SWITCH_COOLDOWN);
             pageCooldown.Elapsed += FadeNewPageIn;
-        }
+		}
 
         private void SwitchPage(object sender, ElapsedEventArgs e)
         {
@@ -206,7 +203,13 @@ namespace TMTVO.Widget.F1
         public void FadeOut()
         {
             Storyboard sb = FindResource("FadeOut") as Storyboard;
+            sb.Completed += sb_Completed;
             sb.Begin();
+        }
+
+        private void sb_Completed(object sender, EventArgs e)
+        {
+            ((Canvas)this.Parent).Children.Remove(this);
         }
 
         public void Tick()

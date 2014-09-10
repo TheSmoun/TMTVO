@@ -39,10 +39,7 @@ namespace TMTVO.Widget.F1
 		public RaceBar()
 		{
 			this.InitializeComponent();
-		}
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
             Active = false;
             Live = false;
             pageIndex = 0;
@@ -55,7 +52,7 @@ namespace TMTVO.Widget.F1
             pageCooldown.Elapsed += FadeNewPageIn;
 
             Mode = RaceBarMode.Gap;
-        }
+		}
 
         public void FadeIn()
         {
@@ -81,10 +78,16 @@ namespace TMTVO.Widget.F1
             Active = false;
 
             Storyboard sb = FindResource("FadeAllOut") as Storyboard;
+            sb.Completed += sb_Completed;
             sb.Begin();
 
             pageTimer.Stop();
             pageCooldown.Stop();
+        }
+
+        private void sb_Completed(object sender, EventArgs e)
+        {
+            ((Canvas)this.Parent).Children.Remove(this);
         }
 
         public void Tick()

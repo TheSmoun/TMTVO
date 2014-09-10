@@ -40,12 +40,13 @@ namespace TMTVO.Controller
         {
             TMTVO t = TMTVO.Instance;
             t.Api = new API(TICKS_PER_SECOND);
+            t.Controls = new Controls(t.Api, t);
             t.Window = new F1TVOverlay();
-            t.Controls = new Controls(t.Api, t.Window, t);
+            t.Controls.f1Window = t.Window;
 
             t.InitalizeModules();
             t.Controls.Show();
-            t.Cars = new IniFile(@"C:\Users\Simon\Documents\TMTVO\TMTVO\Data\Ini\cars.ini"); // TODO Pfad einstellen
+            t.Cars = new IniFile(Environment.CurrentDirectory + @"\cars.ini"); // TODO Pfad einstellen
             return t;
         }
 
@@ -55,11 +56,11 @@ namespace TMTVO.Controller
             Api.AddModule(new SessionTimerModule(Window.SessionTimer, Window.LapsRemaining));
             Api.AddModule(new TeamRadioModule(Window.TeamRadio));
             Api.AddModule(new DriverModule(Controls, Window.ResultsWidget));
-            Api.AddModule(new LiveStandingsModule(Window.LiveTiming, Window.RaceBar, Window.ResultsWidget));
+            Api.AddModule(new LiveStandingsModule(Window.LiveTimingWidget, Window.RaceBar, Window.ResultsWidget));
             Api.AddModule(new LeftLaptimeModule(Window.LapTimerLeft));
             Api.AddModule(new CameraModule(Controls));
             Api.AddModule(new TimeDeltaModule());
-            Api.AddModule(new RevMeterModule(Window.RevMeterWidget, Window.SpeedCompareWidget));
+            Api.AddModule(new RevMeterModule(Window.RevMeter, Window.SpeedCompareWidget));
         }
     }
 }

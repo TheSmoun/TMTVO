@@ -8,21 +8,21 @@
 	x:Class="TMTVO.Widget.F1.RevMeter"
     xmlns:l="clr-namespace:TMTVO"
 	x:Name="UserControl"
-	d:DesignWidth="640" d:DesignHeight="480" Width="315" Height="301" Loaded="UserControl_Loaded">
+	d:DesignWidth="640" d:DesignHeight="480" Width="315" Height="301">
     <UserControl.Resources>
-        <Storyboard x:Key="FadeIn">
+        <Storyboard x:Key="FadeIn" Timeline.DesiredFrameRate="30">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LayoutRoot">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="FadeOut">
+        <Storyboard x:Key="FadeOut" Timeline.DesiredFrameRate="30">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LayoutRoot">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="GearPlus">
+        <Storyboard x:Key="GearPlus" Timeline.DesiredFrameRate="30">
         	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear">
         		<EasingThicknessKeyFrame KeyTime="0" Value="88.5,0"/>
         		<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="56.5,9,120.5,0"/>
@@ -91,7 +91,7 @@
         		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#7F8F8F8F"/>
         	</ColorAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="ResetGears">
+        <Storyboard x:Key="ResetGears" Timeline.DesiredFrameRate="30">
         	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear">
         		<EasingThicknessKeyFrame KeyTime="0" Value="88.5,0"/>
         	</ThicknessAnimationUsingKeyFrames>
@@ -156,7 +156,7 @@
         		<EasingDoubleKeyFrame KeyTime="0" Value="24"/>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="GearMinus">
+        <Storyboard x:Key="GearMinus" Timeline.DesiredFrameRate="30">
         	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Gear">
         		<EasingThicknessKeyFrame KeyTime="0" Value="88.5,0"/>
         		<EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="120.5,9,56.5,0"/>
@@ -225,13 +225,13 @@
         		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#008F8F8F"/>
         	</ColorAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="P2pActivated">
+        <Storyboard x:Key="P2pActivated" Timeline.DesiredFrameRate="30">
         	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="P2PPath">
         		<EasingColorKeyFrame KeyTime="0" Value="#FF0CFF00"/>
         		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF09B800"/>
         	</ColorAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="P2pDisabled">
+        <Storyboard x:Key="P2pDisabled" Timeline.DesiredFrameRate="30">
         	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="P2PPath">
         		<EasingColorKeyFrame KeyTime="0" Value="#FF09B800"/>
         		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#991B1B1B"/>

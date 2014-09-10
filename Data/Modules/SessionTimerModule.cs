@@ -85,7 +85,7 @@ namespace TMTVO.Data.Modules
             if (newFlag.FlagSet(SessionFlag.White))
                 Application.Current.Dispatcher.Invoke(new Action(() =>
                 {
-                    lapsRemaining.FadeIn(1);
+                    Controller.TMTVO.Instance.Window.LapsRemainingFadeIn(1);
                 }));
 
             SessionFlags = newFlag;
@@ -98,7 +98,7 @@ namespace TMTVO.Data.Modules
             if (lapsRemain + 1 <= 5 && lapsRemain + 1 > 0)
                 Application.Current.Dispatcher.Invoke(new Action(() =>
                 {
-                    lapsRemaining.FadeIn(lapsRemain + 1);
+                    Controller.TMTVO.Instance.Window.LapsRemainingFadeIn(lapsRemain + 1);
                 }));
 
             this.LapsDriven = LapsTotal - lapsRemain;

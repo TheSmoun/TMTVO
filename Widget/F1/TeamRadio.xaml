@@ -5,9 +5,9 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
 	x:Class="TMTVO.Widget.F1.TeamRadio"
-	x:Name="UserControl" d:DesignHeight="480" RenderTransformOrigin="0.5,0.5" Height="72" Width="290" Loaded="UserControl_Loaded">
+	x:Name="UserControl" d:DesignHeight="480" RenderTransformOrigin="0.5,0.5" Height="72" Width="290">
     <UserControl.Resources>
-        <Storyboard x:Key="FadeIn">
+        <Storyboard x:Key="FadeIn" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FirstRow">
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
@@ -105,7 +105,7 @@
         		<EasingDoubleKeyFrame KeyTime="0:0:0.35" Value="1"/>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="FadeOut">
+        <Storyboard x:Key="FadeOut" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FirstRow">
         		<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
@@ -115,7 +115,7 @@
         		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="PfadAnimation" RepeatBehavior="Forever">
+        <Storyboard x:Key="PfadAnimation" RepeatBehavior="Forever" Timeline.DesiredFrameRate="30">
         	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Speech1">
         		<EasingThicknessKeyFrame KeyTime="0" Value="0.5,4.625,-157.334,4.625"/>
         	</ThicknessAnimationUsingKeyFrames>

@@ -49,10 +49,7 @@ namespace TMTVO.Widget.F1
 		public RevMeter()
 		{
 			this.InitializeComponent();
-		}
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
             Active = false;
             Driver = null;
             canUpdateGear = true;
@@ -62,7 +59,7 @@ namespace TMTVO.Widget.F1
             currentGear = 0;
             neutralCooldown = new Timer(250);
             neutralCooldown.Elapsed += neutralCooldown_Elapsed;
-        }
+		}
 
         private void neutralCooldown_Elapsed(object sender, ElapsedEventArgs e)
         {
@@ -237,7 +234,13 @@ namespace TMTVO.Widget.F1
 
             Active = false;
             Storyboard sb = FindResource("FadeOut") as Storyboard;
+            sb.Completed += sb_Completed2;
             sb.Begin();
+        }
+
+        private void sb_Completed2(object sender, EventArgs e)
+        {
+            ((Canvas)this.Parent).Children.Remove(this);
         }
 
         private void fadeInP2P()

@@ -8,7 +8,7 @@
 	x:Name="UserControl"
 	d:DesignWidth="640" d:DesignHeight="480" Width="884" Height="105">
     <UserControl.Resources>
-        <Storyboard x:Key="ShowOne">
+        <Storyboard x:Key="ShowOne" Timeline.DesiredFrameRate="30">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="RaceControlSingle">
         		<EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1.05"/>
@@ -88,7 +88,7 @@
         		<DiscreteObjectKeyFrame KeyTime="0:0:0.05" Value="{x:Static Visibility.Visible}"/>
         	</ObjectAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="ShowTwo"/>
+        <Storyboard x:Key="ShowTwo" Timeline.DesiredFrameRate="30"/>
     </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot" Width="884">

@@ -6,9 +6,9 @@
 	mc:Ignorable="d"
 	x:Class="TMTVO.Widget.F1.LapsRemainingWidget"
 	x:Name="UserControl"
-	d:DesignWidth="640" d:DesignHeight="480" Height="36" Width="320" Loaded="UserControl_Loaded">
+	d:DesignWidth="640" d:DesignHeight="480" Height="36" Width="320">
     <UserControl.Resources>
-        <Storyboard x:Key="FadeIn">
+        <Storyboard x:Key="FadeIn" Timeline.DesiredFrameRate="30">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="InnerGrid">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
@@ -47,7 +47,7 @@
                 <EasingThicknessKeyFrame KeyTime="0:0:0.4" Value="0"/>
             </ThicknessAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="FadeOut">
+        <Storyboard x:Key="FadeOut" Timeline.DesiredFrameRate="30">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="InnerGrid">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
             </DoubleAnimationUsingKeyFrames>

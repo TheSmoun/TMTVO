@@ -38,14 +38,16 @@ namespace TMTVO.Widget.F1
 		public LapTimerLeft()
 		{
 			this.InitializeComponent();
-		}
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
             Active = false;
             canUpdate = false;
             gapVisible = false;
             posVisible = false;
+		}
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            
         }
 
         public void FadeIn(LiveStandingsItem driver)
@@ -74,6 +76,7 @@ namespace TMTVO.Widget.F1
             this.canUpdate = true;
 
             Storyboard sb = FindResource("FadeOut") as Storyboard;
+            sb.Completed += sb_Completed;
             sb.Begin();
 
             if (gapVisible)
@@ -91,6 +94,11 @@ namespace TMTVO.Widget.F1
             }
 
             LapDriver = null;
+        }
+
+        private void sb_Completed(object sender, EventArgs e)
+        {
+            ((Canvas)this.Parent).Children.Remove(this);
         }
 
         public void SectorComplete(float seconds)

@@ -49,10 +49,7 @@ namespace TMTVO.Widget.F1
 		public LiveTimingWidget()
 		{
 			this.InitializeComponent();
-		}
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
             canUpdateButtons = true;
             dummyActive = false;
             PageSwitcherInnerDummy.Visibility = Visibility.Hidden;
@@ -114,7 +111,7 @@ namespace TMTVO.Widget.F1
                 item.Position.Text = (i++).ToString();
                 Dummies.AddLast(item);
             }
-        }
+		}
 
         public void ChangeMode(LiveTimingItemMode newMode)
         {
@@ -156,7 +153,13 @@ namespace TMTVO.Widget.F1
             leaderPageButton.IsEnabled = false;
 
             Storyboard sb = FindResource("FadeOut") as Storyboard;
+            sb.Completed += sb_Completed;
             sb.Begin();
+        }
+
+        private void sb_Completed(object sender, EventArgs e)
+        {
+            ((Canvas)this.Parent).Children.Remove(this);
         }
 
         public void Tick()
