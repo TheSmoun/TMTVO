@@ -70,17 +70,15 @@ namespace TMTVO.Api
                     continue;
                 }
 
-                Application.Current.Dispatcher.Invoke(new Action(TMTVO.Controller.TMTVO.Instance.Controls.UpdateWindow));
-
                 long end = Environment.TickCount;
                 long time = end - start;
                 int sleepTime = (int)(maxDelay - time);
 
                 if (time > 0)
-                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                     {
-                        TMTVO.Controller.TMTVO.Instance.Controls.FpsItem.Content = (1000F / ((float)time)).ToString("0.0") + " FPS";
-                        TMTVO.Controller.TMTVO.Instance.Controls.MsItem.Content = time + " ms";
+                        Controller.TMTVO.Instance.Controls.FpsItem.Content = (1000F / ((float)time)).ToString("0.0") + " FPS";
+                        Controller.TMTVO.Instance.Controls.MsItem.Content = time + " ms";
                     }));
 
                 if (sleepTime <= 0)
@@ -129,7 +127,7 @@ namespace TMTVO.Api
             foreach (Module m in modules)
                 m.Reset();
 
-            TMTVO.Controller.TMTVO.Instance.Controls.Reset();
+            Controller.TMTVO.Instance.Controls.Reset();
         }
 
         public void Start()

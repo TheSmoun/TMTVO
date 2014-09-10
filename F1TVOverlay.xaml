@@ -3,13 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Widget="clr-namespace:TMTVO.Widget.F1"
         Title="TV Overlay" Height="1080" Width="1920" AllowsTransparency="True" WindowStyle="None" ShowInTaskbar="True" Topmost="True" ResizeMode="CanMinimize" Background="#00000000" Name="Overlay" WindowStartupLocation="CenterScreen" WindowState="Maximized" Closing="Overlay_Closing">
-    <Grid>
-        <Canvas Name="MyVBCanvas">
-            <Viewbox Name="MyViewbox" Stretch="UniformToFill">
-                <Canvas Name="MyCanvas" Width="1920" Height="1080">
-                    <Image Source=".\trinitylogo2.png" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300" Height="110" Margin="30,865,0,0" Opacity="0.7" />
-                </Canvas>
-            </Viewbox>
-        </Canvas>
+    <Grid x:Name="MyCanvas">
+        <Image Source=".\trinitylogo2.png" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300" Height="110" Margin="30,865,0,0" Opacity="0.7" />
     </Grid>
 </Window>

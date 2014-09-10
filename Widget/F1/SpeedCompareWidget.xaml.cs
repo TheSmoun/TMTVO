@@ -92,7 +92,7 @@ namespace TMTVO.Widget.F1
 
         private void sb_Completed(object sender, EventArgs e)
         {
-            ((Canvas)this.Parent).Children.Remove(this);
+            ((Grid)this.Parent).Children.Remove(this);
         }
 
         private void setSpeeds(int speed1, int speed2)
@@ -189,7 +189,7 @@ namespace TMTVO.Widget.F1
             float rpm2 = rpms[driver2.Driver.CarIndex];
             if (rpm1 < 0 || rpm2 < 0)
             {
-                Application.Current.Dispatcher.Invoke(new Action(FadeOut));
+                Application.Current.Dispatcher.BeginInvoke(new Action(FadeOut));
                 return;
             }
 

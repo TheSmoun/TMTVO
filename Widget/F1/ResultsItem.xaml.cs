@@ -58,10 +58,7 @@ namespace TMTVO.Widget.F1
         {
             int time = (int)obj;
             Thread.Sleep(time);
-            Application.Current.Dispatcher.Invoke(new Action(() =>
-            {
-                FadeIn();
-            }));
+            Application.Current.Dispatcher.BeginInvoke(new Action(FadeIn));
         }
 
         public void Tick()

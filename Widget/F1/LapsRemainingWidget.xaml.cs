@@ -42,7 +42,7 @@ namespace TMTVO.Widget.F1
         private void TimerElapsed(object sender, ElapsedEventArgs e)
         {
             coolDown.Stop();
-            Application.Current.Dispatcher.Invoke(new Action(FadeOut));
+            Application.Current.Dispatcher.BeginInvoke(new Action(FadeOut));
         }
 
         public void FadeIn(int remaining)
@@ -79,7 +79,7 @@ namespace TMTVO.Widget.F1
 
         private void sb_Completed(object sender, EventArgs e)
         {
-            ((Canvas)this.Parent).Children.Remove(this);
+            ((Grid)this.Parent).Children.Remove(this);
         }
 
         public void Tick()

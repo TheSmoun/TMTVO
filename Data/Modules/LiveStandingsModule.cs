@@ -75,7 +75,7 @@ namespace TMTVO.Data.Modules
             }
 
             UpdateLivePositions();
-            Application.Current.Dispatcher.Invoke(new Action(() =>
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 if (liveTiming.Active)
                     liveTiming.Tick();

@@ -159,11 +159,11 @@ namespace TMTVO.Widget.F1
         private void updateGear()
         {
             if (prevGear > currentGear)
-                Application.Current.Dispatcher.Invoke(new Action(shiftUp));
+                Application.Current.Dispatcher.BeginInvoke(new Action(shiftUp));
             else if (prevGear < currentGear)
-                Application.Current.Dispatcher.Invoke(new Action(shiftDown));
+                Application.Current.Dispatcher.BeginInvoke(new Action(shiftDown));
             else
-                Application.Current.Dispatcher.Invoke(new Action(() =>
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     sb_Completed(null, null);
                 }));
@@ -195,7 +195,7 @@ namespace TMTVO.Widget.F1
 
         private void sb_Completed(object sender, EventArgs e)
         {
-            Application.Current.Dispatcher.Invoke(new Action(() =>
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 Storyboard sb = FindResource("ResetGears") as Storyboard;
                 sb.Begin();
@@ -240,7 +240,7 @@ namespace TMTVO.Widget.F1
 
         private void sb_Completed2(object sender, EventArgs e)
         {
-            ((Canvas)this.Parent).Children.Remove(this);
+            ((Grid)this.Parent).Children.Remove(this);
         }
 
         private void fadeInP2P()
@@ -278,9 +278,9 @@ namespace TMTVO.Widget.F1
 
             prevPushToPass = false;                                                                                             // TODO get Push to pass value
             if (prevPushToPass && !pushToPass)
-                Application.Current.Dispatcher.Invoke(new Action(fadeInP2P));
+                Application.Current.Dispatcher.BeginInvoke(new Action(fadeInP2P));
             else if (!prevPushToPass && pushToPass)
-                Application.Current.Dispatcher.Invoke(new Action(fadeOutP2P));
+                Application.Current.Dispatcher.BeginInvoke(new Action(fadeOutP2P));
 
             if (prevGear == 0 && canUpdateGear)
             {

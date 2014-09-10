@@ -148,11 +148,6 @@ namespace TMTVO
             LapsRemaining.FadeIn(remaining);
         }
 
-        public void LapsRemainingFadeOut()
-        {
-            LapsRemaining.FadeOut();
-        }
-
         public void LapTimerLeftFadeIn(LiveStandingsItem driver)
         {
             MyCanvas.Children.Add(LapTimerLeft);

@@ -54,14 +54,14 @@ namespace TMTVO.Widget.F1
             int i = ((pageIndex + 1) * 12 < Module.Items.Count) ? pageIndex + 1 : 0;
             if (pageIndex >= i)
             {
-                Application.Current.Dispatcher.Invoke(new Action(() =>
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     FadeOut();
                 }));
                 return;
             }
 
-            Application.Current.Dispatcher.Invoke(new Action(() =>
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 Storyboard sb = FindResource("FadeOutPos") as Storyboard;
                 sb.Begin();
@@ -91,7 +91,7 @@ namespace TMTVO.Widget.F1
 
         private void LoadPage()
         {
-            Application.Current.Dispatcher.Invoke(new Action(() =>
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 LoadPage(pageIndex);
                 FadeInPositions();
@@ -209,7 +209,7 @@ namespace TMTVO.Widget.F1
 
         private void sb_Completed(object sender, EventArgs e)
         {
-            ((Canvas)this.Parent).Children.Remove(this);
+            ((Grid)this.Parent).Children.Remove(this);
         }
 
         public void Tick()

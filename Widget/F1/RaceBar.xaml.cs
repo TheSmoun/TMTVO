@@ -87,7 +87,7 @@ namespace TMTVO.Widget.F1
 
         private void sb_Completed(object sender, EventArgs e)
         {
-            ((Canvas)this.Parent).Children.Remove(this);
+            ((Grid)this.Parent).Children.Remove(this);
         }
 
         public void Tick()
@@ -101,7 +101,7 @@ namespace TMTVO.Widget.F1
             if (oldPageIndex == i)
                 return;
 
-            Application.Current.Dispatcher.Invoke(new Action(() =>
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 foreach (UIElement elem in RaceBarBackground.Children)
                     ((RaceBarItem)elem).FadeOut();
@@ -122,7 +122,7 @@ namespace TMTVO.Widget.F1
             }
             else
             {
-                Application.Current.Dispatcher.Invoke(new Action(() =>
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     foreach (UIElement elem in RaceBarBackground.Children)
                         ((RaceBarItem)elem).FadeIn();
@@ -132,7 +132,7 @@ namespace TMTVO.Widget.F1
 
         private void LoadPage()
         {
-            Application.Current.Dispatcher.Invoke(new Action(() =>
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 LoadPage(pageIndex);
                 foreach (UIElement elem in RaceBarBackground.Children)

@@ -23,10 +23,10 @@ namespace TMTVO.Data.Modules
         public override void Update(ConfigurationSection rootNode, API api)
         {
             if (widget.Active)
-                Application.Current.Dispatcher.Invoke(new Action(widget.Tick));
+                Application.Current.Dispatcher.BeginInvoke(new Action(widget.Tick));
 
             if (sWidget.Active)
-                Application.Current.Dispatcher.Invoke(new Action(sWidget.Tick));
+                Application.Current.Dispatcher.BeginInvoke(new Action(sWidget.Tick));
         }
 
         public override void Reset()

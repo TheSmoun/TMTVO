@@ -60,21 +60,6 @@ namespace TMTVO
             statusBarTimer.Start();
         }
 
-        public void UpdateWindow()
-        {
-            /*if (driverCount == DriverModule.Drivers.Count)
-                return;
-
-            int selIdx = DriversLeft.SelectedIndex;
-            DriversLeft.Items.Clear();
-            for (int carIdx = 0; carIdx < DriverModule.Drivers.Count; carIdx++)
-            {
-                DriversLeft.Items.Add(DriverModule.Drivers.Find(d => d.CarIndex == carIdx));
-            }
-
-            driverCount = DriverModule.Drivers.Count;*/
-        }
-
         public void UpdateLaunchButton(API api)
         {
             if (!api.IsConnected && f1Window.Visibility == Visibility.Visible)

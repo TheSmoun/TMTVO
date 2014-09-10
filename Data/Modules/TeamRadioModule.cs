@@ -29,7 +29,7 @@ namespace TMTVO.Data.Modules
         {
             SpeekingCarIndex= (int)api.GetData("RadioTransmitCarIdx");
             if (canShowTeamRadio)
-                Application.Current.Dispatcher.Invoke(new Action(() =>
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     teamRadio.Tick();
                 }));
@@ -46,7 +46,7 @@ namespace TMTVO.Data.Modules
                 if (!value && teamRadio.Active)
                     teamRadio.FadeOut();
                 else if (value && SpeekingCarIndex != -1)
-                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                     {
                         teamRadio.Tick();
                     }));

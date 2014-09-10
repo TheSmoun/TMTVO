@@ -98,7 +98,7 @@ namespace TMTVO.Widget.F1
 
         private void sb_Completed(object sender, EventArgs e)
         {
-            ((Canvas)this.Parent).Children.Remove(this);
+            ((Grid)this.Parent).Children.Remove(this);
         }
 
         public void SectorComplete(float seconds)
@@ -174,7 +174,7 @@ namespace TMTVO.Widget.F1
             if (gapVisible)
             {
                 gapVisible = false;
-                Application.Current.Dispatcher.Invoke(new Action(() =>
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     Storyboard sb = FindResource("HideGap") as Storyboard;
                     sb.Begin();
@@ -184,7 +184,7 @@ namespace TMTVO.Widget.F1
             if (posVisible)
             {
                 posVisible = false;
-                Application.Current.Dispatcher.Invoke(new Action(() =>
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     Storyboard sb = FindResource("HideNumber") as Storyboard;
                     sb.Begin();
@@ -207,7 +207,7 @@ namespace TMTVO.Widget.F1
             int m = (int)(seconds / 60);
             if (m > 20)
             {
-                Application.Current.Dispatcher.Invoke(new Action(() =>
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     TimeText.Text = "0.0    ";
                 }));
@@ -224,7 +224,7 @@ namespace TMTVO.Widget.F1
             sb.Append(s.ToString("0.0").Replace(',', '.'));
             sb.Append("    ");
 
-            Application.Current.Dispatcher.Invoke(new Action(() =>
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 if (canUpdate)
                     TimeText.Text = sb.ToString();
@@ -239,7 +239,7 @@ namespace TMTVO.Widget.F1
 
                 if (LapDriver.PrevTrackPct > sector - LapTimerLeft.roadPreviewTime && LapDriver.PrevTrackPct < sector)
                 {
-                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                     {
                         ShowGap("+0.000"); // TODO Fix this
                     }));
@@ -251,7 +251,7 @@ namespace TMTVO.Widget.F1
                     (LapDriver.PrevTrackPct > 0.0F && LapDriver.PrevTrackPct < 0.0F + LapTimerLeft.roadPreviewTime) ||
                     seconds < oldSeconds) // TODO fix this
                 {
-                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                     {
                         if (sector == 1F)
                             LapComplete(seconds);

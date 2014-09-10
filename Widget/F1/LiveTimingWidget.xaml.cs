@@ -133,7 +133,7 @@ namespace TMTVO.Widget.F1
             changeModeTimer.Stop();
             Mode = newMode;
             foreach (LiveTimingItem i in Items)
-                Application.Current.Dispatcher.Invoke(new Action(i.FadeInElements));
+                Application.Current.Dispatcher.BeginInvoke(new Action(i.FadeInElements));
         }
 
         public void FadeIn()
@@ -159,7 +159,7 @@ namespace TMTVO.Widget.F1
 
         private void sb_Completed(object sender, EventArgs e)
         {
-            ((Canvas)this.Parent).Children.Remove(this);
+            ((Grid)this.Parent).Children.Remove(this);
         }
 
         public void Tick()
@@ -230,7 +230,7 @@ namespace TMTVO.Widget.F1
         public void NextPage()
         {
             canUpdateButtons = false;
-            Application.Current.Dispatcher.Invoke(new Action(() =>
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 nextPageButton.IsEnabled = false;
                 prevPageButton.IsEnabled = false;
@@ -279,7 +279,7 @@ namespace TMTVO.Widget.F1
         public void PrevPage()
         {
             canUpdateButtons = false;
-            Application.Current.Dispatcher.Invoke(new Action(() =>
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 nextPageButton.IsEnabled = false;
                 prevPageButton.IsEnabled = false;
@@ -304,7 +304,7 @@ namespace TMTVO.Widget.F1
         internal void LeaderPage()
         {
             canUpdateButtons = false;
-            Application.Current.Dispatcher.Invoke(new Action(() =>
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 nextPageButton.IsEnabled = false;
                 prevPageButton.IsEnabled = false;
@@ -328,7 +328,7 @@ namespace TMTVO.Widget.F1
 
         private void LoadPage(int npi)
         {
-            Application.Current.Dispatcher.Invoke(new Action(() =>
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 FadeInPositions(npi);
             }));
@@ -343,7 +343,7 @@ namespace TMTVO.Widget.F1
         private void NeutralizePage(object sender, ElapsedEventArgs e)
         {
             neutralizeTimer.Stop();
-            Application.Current.Dispatcher.Invoke(new Action(() =>
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 Storyboard sb = FindResource("NeutralizePage") as Storyboard;
                 sb.Begin();
