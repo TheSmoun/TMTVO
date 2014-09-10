@@ -225,7 +225,9 @@ namespace TMTVO
 
         public void SpeedCompFadeIn(LiveStandingsItem driver1, LiveStandingsItem driver2)
         {
-            MyCanvas.Children.Add(SpeedCompareWidget);
+            if (!MyCanvas.Children.Contains(SpeedCompareWidget))
+                MyCanvas.Children.Add(SpeedCompareWidget);
+
             SpeedCompareWidget.FadeIn(driver1, driver2);
         }
 
@@ -236,7 +238,9 @@ namespace TMTVO
 
         public void TeamRadioFadeIn(Driver driver)
         {
-            MyCanvas.Children.Add(TeamRadio);
+            if (!MyCanvas.Children.Contains(TeamRadio))
+                MyCanvas.Children.Add(TeamRadio);
+
             TeamRadio.StartsSpeaking(driver.LastUpperName, driver.Car.CarNumber, driver.LicColor);
         }
 
@@ -247,7 +251,9 @@ namespace TMTVO
 
         public void WeatherFadeIn()
         {
-            MyCanvas.Children.Add(WeatherWidget);
+            if (!MyCanvas.Children.Contains(WeatherWidget))
+                MyCanvas.Children.Add(WeatherWidget);
+
             WeatherWidget.FadeIn();
         }
 
