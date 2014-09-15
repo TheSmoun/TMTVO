@@ -301,16 +301,17 @@
 					</TransformGroup>
 				</TextBlock.RenderTransform>
 			</TextBlock>
-			<TextBlock x:Name="DriverName" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="34.167" Width="241.166" Margin="123.948,0.83,-5.114,1.003" FontSize="30.667" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="GROSSMANN" TextTrimming="CharacterEllipsis">
-				<TextBlock.RenderTransform>
+			<Viewbox HorizontalAlignment="Left" VerticalAlignment="Center" Height="34.167" Width="221.666" Margin="121.948,0.83,0,1.003" Stretch="Fill" StretchDirection="DownOnly" RenderTransformOrigin="0.5,0.5">
+				<Viewbox.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
 						<SkewTransform AngleX="32"/>
 						<RotateTransform/>
 						<TranslateTransform/>
 					</TransformGroup>
-				</TextBlock.RenderTransform>
-			</TextBlock>
+				</Viewbox.RenderTransform>
+				<TextBlock x:Name="DriverName" TextWrapping="Wrap" FontSize="30.667" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="ALLMANNSBERGER" TextTrimming="CharacterEllipsis" Height="34.167"/>
+			</Viewbox>
 		</Grid>
 		<Grid x:Name="TeamCarItem" Margin="388,0,0,0" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top" Height="36" Width="345" Opacity="0">
 			<Grid.RenderTransform>
@@ -401,7 +402,9 @@
 					<SolidColorBrush Color="Black" Opacity="0"/>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<TextBlock x:Name="TeamCarName" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontFamily="DIN 1451 Std Mittelschrift" FontSize="30.667" Margin="13.001,0.336,0,0" Width="321.333" Text="BMW Z4 GT3" TextTrimming="CharacterEllipsis" Height="34.998"/>
+			<Viewbox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13.001,0.336,0,0" Width="321.333" Height="34.998" Stretch="Fill" StretchDirection="DownOnly">
+				<TextBlock x:Name="TeamCarName" TextWrapping="Wrap" Foreground="White" FontFamily="DIN 1451 Std Mittelschrift" FontSize="30.667" Text="BMW Z4 GT3" TextTrimming="CharacterEllipsis" Height="34.998"/>
+			</Viewbox>
 		</Grid>
 		<Grid x:Name="TimeItem" Height="36" Width="243" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Margin="753,0,0,0" VerticalAlignment="Top" Opacity="0">
 			<Grid.RenderTransform>

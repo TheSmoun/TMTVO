@@ -153,7 +153,7 @@
 	</UserControl.Triggers>
 
 	<Grid x:Name="TeamRadioNormal" Height="72" Width="290">
-		<Grid x:Name="FirstRow" Margin="11,0,0,0" RenderTransformOrigin="0.5,0.5" Width="270" Height="36" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0">
+		<Grid x:Name="FirstRow" Margin="11,0,0,0" RenderTransformOrigin="0.5,0.5" Width="270" Height="36" HorizontalAlignment="Left" VerticalAlignment="Top">
 			<Grid.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>
@@ -237,16 +237,18 @@
 					</TransformGroup>
 				</TextBlock.RenderTransform>
 			</TextBlock>
-			<TextBlock x:Name="DriversName" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="36" Width="183.126" Margin="71.95,1.582,0,-1.582" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="R GROSJEAN" TextTrimming="CharacterEllipsis">
-				<TextBlock.RenderTransform>
-					<TransformGroup>
-						<ScaleTransform/>
-						<SkewTransform/>
-						<RotateTransform/>
-						<TranslateTransform/>
-					</TransformGroup>
-				</TextBlock.RenderTransform>
-			</TextBlock>
+			<Viewbox HorizontalAlignment="Left" VerticalAlignment="Center" Height="36" Width="188.376" Margin="67.7,1.582,0,-1.582" Stretch="Fill" StretchDirection="DownOnly">
+				<TextBlock x:Name="DriversName" TextWrapping="Wrap" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="WAN" TextTrimming="CharacterEllipsis" Height="36">
+					<TextBlock.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform/>
+							<SkewTransform/>
+							<RotateTransform/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</TextBlock.RenderTransform>
+				</TextBlock>
+			</Viewbox>
 		</Grid>
 		<Grid x:Name="SecondRow" Margin="11,36,0,0" Width="270" Height="36" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Opacity="0">
 			<Grid.RenderTransform>

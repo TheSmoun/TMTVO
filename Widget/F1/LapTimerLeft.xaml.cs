@@ -32,6 +32,8 @@ namespace TMTVO.Widget.F1
         private bool gapVisible;
         private bool posVisible;
 
+        public LiveStandingsModule Module { get; set; }
+
         public LiveStandingsItem LapDriver { get; private set; }
         public bool Active { get; private set; }
 
@@ -97,7 +99,7 @@ namespace TMTVO.Widget.F1
                 ((Grid)this.Parent).Children.Remove(this);
         }
 
-        public void SectorComplete(float seconds)
+        public void SectorComplete(float seconds, int index)
         {
             if (!Active)
                 return;
@@ -107,7 +109,15 @@ namespace TMTVO.Widget.F1
             updateCd.Elapsed += TimerElapsed;
             updateCd.Start();
 
-            float gap = LapDriver.FastestLapTime - LapDriver.LastLapTime; // TODO Fix this
+            if (Module.Leader == null)
+                return;
+
+            float gap = -1;
+            if (index == 0)
+                gap = seconds - Module.Leader.FastestLapTime;
+            else
+                gap = seconds - Module.Leader.FastestLap.GetTimeUntilSector(index);
+
             BackgroundRed.Visibility = Visibility.Hidden;
             if (gap >= 0)
             {
@@ -139,7 +149,7 @@ namespace TMTVO.Widget.F1
             if (!Active || LapDriver.CurrentLap.Time < 0.100)
                 return;
 
-            SectorComplete(LapDriver.LastLapTime);
+            SectorComplete(LapDriver.LastLapTime, 0);
 
             int position = LapDriver.PositionLive;
             if (position > 1)
@@ -235,9 +245,13 @@ namespace TMTVO.Widget.F1
 
                 if (LapDriver.PrevTrackPct > sector - LapTimerLeft.roadPreviewTime && LapDriver.PrevTrackPct < sector)
                 {
+                    if (Module.Leader == null)
+                        break;
+
+                    float leadTime = Module.Leader.FastestLap.GetTimeUntilSector(i);
                     Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                     {
-                        ShowGap("+0.000"); // TODO Fix this
+                        ShowGap(leadTime.ConvertToTimeString());
                     }));
 
                     oldSeconds = seconds;
@@ -250,9 +264,9 @@ namespace TMTVO.Widget.F1
                     Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                     {
                         if (sector == 1F)
-                            LapComplete(seconds);
+                            LapComplete(oldSeconds > seconds ? oldSeconds : seconds);
                         else
-                            SectorComplete(seconds);
+                            SectorComplete(oldSeconds > seconds ? oldSeconds : seconds, i);
                     }));
 
                     oldSeconds = seconds;

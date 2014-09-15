@@ -166,17 +166,16 @@
 				</TransformGroup>
 			</TextBlock.RenderTransform>
 		</TextBlock>
-		<Viewbox HorizontalAlignment="Left" VerticalAlignment="Center" Height="44.5" Width="223.666" Margin="81.29,1,-4.956,-9.5">
-			<TextBlock x:Name="DriverName" TextWrapping="Wrap" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="GROSSMANN" TextAlignment="Center" Height="44.5" Width="223.666" HorizontalAlignment="Center" Margin="0">
-				<TextBlock.RenderTransform>
-					<TransformGroup>
-						<ScaleTransform/>
-						<SkewTransform AngleX="32"/>
-						<RotateTransform/>
-						<TranslateTransform/>
-					</TransformGroup>
-				</TextBlock.RenderTransform>
-			</TextBlock>
+		<Viewbox VerticalAlignment="Center" Height="44.5" Margin="69.917,1,12.917,-9.5" RenderTransformOrigin="0.5,0.5" Stretch="Fill" StretchDirection="DownOnly">
+			<Viewbox.RenderTransform>
+				<TransformGroup>
+					<ScaleTransform/>
+					<SkewTransform AngleX="32"/>
+					<RotateTransform/>
+					<TranslateTransform/>
+				</TransformGroup>
+			</Viewbox.RenderTransform>
+			<TextBlock x:Name="DriverName" TextWrapping="Wrap" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="ALLMANNSBERGER" TextAlignment="Center" Height="44.5" Margin="0"/>
 		</Viewbox>
     </Grid>
 </UserControl>

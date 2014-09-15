@@ -24,5 +24,17 @@ namespace TMTVO.Data
         {
             Sectors = new List<Sector>();
         }
+
+        public float GetTimeUntilSector(int index)
+        {
+            if (index >= Sectors.Count || index < 0)
+                return -1;
+
+            float time = 0;
+            for (int i = 0; i < index; i++)
+                time += Sectors[i].Time;
+
+            return time;
+        }
     }
 }

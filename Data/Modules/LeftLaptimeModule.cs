@@ -14,9 +14,10 @@ namespace TMTVO.Data.Modules
     {
         private LapTimerLeft lapTimer;
 
-        public LeftLaptimeModule(LapTimerLeft lapTimer) : base( "LeftLapTimer")
+        public LeftLaptimeModule(LapTimerLeft lapTimer) : base("LeftLapTimer")
         {
             this.lapTimer = lapTimer;
+            this.lapTimer.Module = (LiveStandingsModule)Controller.TMTVO.Instance.Api.FindModule("LiveStandings");
         }
 
         public override void Update(ConfigurationSection rootNode, API api)

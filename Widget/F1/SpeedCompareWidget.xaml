@@ -524,7 +524,9 @@
 						</TransformGroup>
 					</TextBlock.RenderTransform>
 				</TextBlock>
-				<TextBlock x:Name="DriversName1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="DRIVER1" VerticalAlignment="Top" Foreground="White" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Margin="69,0.583,0,0" Width="185.607" TextTrimming="CharacterEllipsis"/>
+				<Viewbox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="69,0.583,0,0" Width="185.607" Stretch="Fill" StretchDirection="DownOnly" RenderTransformOrigin="0.5,0.5">
+					<TextBlock x:Name="DriversName1" TextWrapping="Wrap" Text="ALLMANNSBERGER" Foreground="White" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" TextTrimming="CharacterEllipsis" Height="35.2"/>
+				</Viewbox>
 			</Grid>
 			<Grid x:Name="Driver2" Margin="267.862,0,0,-3.583" RenderTransformOrigin="0.5,0.5">
 				<Grid.RenderTransform>
@@ -610,7 +612,9 @@
 						</TransformGroup>
 					</TextBlock.RenderTransform>
 				</TextBlock>
-				<TextBlock x:Name="DriversName2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="DRIVER2" VerticalAlignment="Top" Foreground="White" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Margin="69,0.583,0,0" Width="185.607" TextTrimming="CharacterEllipsis"/>
+				<Viewbox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="69,0.583,0,0" Width="185.607" Stretch="Fill" StretchDirection="DownOnly">
+					<TextBlock x:Name="DriversName2" TextWrapping="Wrap" Text="DRIVER2" Foreground="White" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" TextTrimming="CharacterEllipsis" Height="35.2"/>
+				</Viewbox>
 			</Grid>
 			<Rectangle x:Name="FadeInColor" Fill="White" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="268" RenderTransformOrigin="0.5,0.5" Margin="0" Opacity="0">
 				<Rectangle.RenderTransform>

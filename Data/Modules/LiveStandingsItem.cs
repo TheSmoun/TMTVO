@@ -295,5 +295,18 @@ namespace TMTVO.Data.Modules
                 return sb.ToString().Replace(',', '.');
             }
         }
+
+        public Lap FastestLap
+        {
+            get
+            {
+                Lap l = null;
+                for (int i = 0; i < Laps.Count; i++)
+                    if (l == null || Laps[i].Time < l.Time)
+                        l = Laps[i];
+
+                return l;
+            }
+        }
     }
 }
