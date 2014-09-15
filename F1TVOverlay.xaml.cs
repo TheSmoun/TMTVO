@@ -282,5 +282,15 @@ namespace TMTVO
         {
             WeatherWidget.FadeOut();
         }
+
+        private void Overlay_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            double skale = ActualWidth / 1920D;
+
+            GridTransformation.ScaleX = skale;
+            GridTransformation.ScaleY = skale;
+
+            Height = 1080D * skale;
+        }
     }
 }

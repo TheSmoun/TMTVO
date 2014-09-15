@@ -99,6 +99,7 @@ namespace TMTVO
                 t.Start();
                 // TODO Load Theme
                 TabGrid.Visibility = Visibility.Visible;
+                CanResize.Visibility = Visibility.Hidden;
 
                 ThemeSelector.IsEnabled = false;
             }
@@ -107,6 +108,7 @@ namespace TMTVO
                 StartStop.Content = "Start";
                 tmtvo.Api.Run = false;
                 f1Window.Visibility = Visibility.Hidden;
+                CanResize.Visibility = Visibility.Visible;
 
                 foreach (object o in f1Window.MyCanvas.Children)
                     if (o is IWidget && ((IWidget)o).Active)
@@ -616,6 +618,16 @@ namespace TMTVO
 
             if (f1Window.DriverInfo.Active)
                 f1Window.DriverInfo.SwitchMode((DriverInfo.DriverInfoMode)DriverInfoMode.SelectedIndex);
+        }
+
+        private void CanResize_Checked(object sender, RoutedEventArgs e)
+        {
+            // TODO Implement
+        }
+
+        private void CanResize_Unchecked(object sender, RoutedEventArgs e)
+        {
+            // TODO Implement
         }
     }
 }

@@ -126,5 +126,6 @@
 			<!--<ComboBoxItem Content="WEC TV Overlay" HorizontalAlignment="Left" Width="118"/>
 			<ComboBoxItem Content="TM TV Overlay" HorizontalAlignment="Left" Width="118"/>-->
 		</ComboBox>
+		<CheckBox x:Name="CanResize" Content="Can Resize" Margin="213,13,0,0" Height="16" Checked="CanResize_Checked" Unchecked="CanResize_Unchecked" HorizontalAlignment="Left" VerticalAlignment="Top" Width="74" />
 	</Grid>
 </Window>
