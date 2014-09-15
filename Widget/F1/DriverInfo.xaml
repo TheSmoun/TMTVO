@@ -161,6 +161,119 @@
         		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="FadeInFastestLap">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="FastestTimeGrid">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.45" Value="1.05"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.55" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="FastestTimeGrid">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="0.5"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.45" Value="1.05"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.55" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="FadeInColor_Copy2">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.45" Value="1.05"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.55" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="FadeInColor_Copy2">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="0.5"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.45" Value="1.05"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.55" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FadeInColor_Copy2">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="1"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.55" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FastestTimeGrid">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.45" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="FastestTimeGrid">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="-29.75"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.45" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="FadeInColor_Copy2">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="-29.75"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.45" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="FadeInColor_Copy2">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="0.833"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.45" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="FadeOutFastestLap">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FastestTimeGrid">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="FadeInGap">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="GapTimeGrid">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.05"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="GapTimeGrid">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.5"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.05"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="FadeInColor_Copy3">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.05"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="FadeInColor_Copy3">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.5"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.05"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FadeInColor_Copy3">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="GapTimeGrid">
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="GapTimeGrid">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-42.5"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="FadeInColor_Copy3">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-42.5"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="FadeInColor_Copy3">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.19"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="FadeOutGap">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="GapTimeGrid">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot" Height="72" Width="640">
@@ -514,8 +627,8 @@
 				</LinearGradientBrush>
 			</Rectangle.Stroke>
 		</Rectangle>
-		<Grid x:Name="PracticeTimeGrids" Margin="375,0,72.5,0" Opacity="0">
-			<Grid x:Name="FastestTimeGrid" Margin="22.5,0,0,0" RenderTransformOrigin="0.5,0.5" Width="170" Height="36" HorizontalAlignment="Left" VerticalAlignment="Top">
+		<Grid x:Name="PracticeTimeGrids" Margin="375,0,72.5,0">
+			<Grid x:Name="FastestTimeGrid" Margin="22.5,0,0,0" RenderTransformOrigin="0.5,0.5" Width="170" Height="36" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0">
 				<Grid.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -587,7 +700,31 @@
 					</TextBlock.RenderTransform>
 				</TextBlock>
 			</Grid>
-			<Grid x:Name="GapTimeGrid" RenderTransformOrigin="0.5,0.5" Width="170" Height="36" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+			<Rectangle x:Name="FadeInColor_Copy2" Fill="White" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.5,0.5" Margin="32.5,0,0,0" Opacity="0">
+				<Rectangle.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform AngleX="-32"/>
+						<RotateTransform/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Rectangle.RenderTransform>
+				<Rectangle.Stroke>
+					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+						<LinearGradientBrush.RelativeTransform>
+							<TransformGroup>
+								<ScaleTransform CenterY="0.5" CenterX="0.5"/>
+								<SkewTransform CenterY="0.5" CenterX="0.5"/>
+								<RotateTransform Angle="21.038" CenterY="0.5" CenterX="0.5"/>
+								<TranslateTransform/>
+							</TransformGroup>
+						</LinearGradientBrush.RelativeTransform>
+						<GradientStop Color="Black" Offset="1"/>
+						<GradientStop Color="#FF666666"/>
+					</LinearGradientBrush>
+				</Rectangle.Stroke>
+			</Rectangle>
+			<Grid x:Name="GapTimeGrid" RenderTransformOrigin="0.5,0.5" Width="170" Height="36" HorizontalAlignment="Left" VerticalAlignment="Bottom" Opacity="0">
 				<Grid.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -659,6 +796,30 @@
 					</TextBlock.RenderTransform>
 				</TextBlock>
 			</Grid>
+			<Rectangle x:Name="FadeInColor_Copy3" Fill="White" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Bottom" Width="150" RenderTransformOrigin="0.5,0.5" Margin="10,0,0,0" Opacity="0">
+				<Rectangle.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform AngleX="-32"/>
+						<RotateTransform/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Rectangle.RenderTransform>
+				<Rectangle.Stroke>
+					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+						<LinearGradientBrush.RelativeTransform>
+							<TransformGroup>
+								<ScaleTransform CenterY="0.5" CenterX="0.5"/>
+								<SkewTransform CenterY="0.5" CenterX="0.5"/>
+								<RotateTransform Angle="21.038" CenterY="0.5" CenterX="0.5"/>
+								<TranslateTransform/>
+							</TransformGroup>
+						</LinearGradientBrush.RelativeTransform>
+						<GradientStop Color="Black" Offset="1"/>
+						<GradientStop Color="#FF666666"/>
+					</LinearGradientBrush>
+				</Rectangle.Stroke>
+			</Rectangle>
 		</Grid>
 		<Grid x:Name="RaceTimeGrids" Margin="375,0,27,0" Opacity="0">
 			<Grid x:Name="BestTimeGrid" Margin="22.5,0,-8.5,0" RenderTransformOrigin="0.5,0.5" Width="225" Height="36" HorizontalAlignment="Left" VerticalAlignment="Top">

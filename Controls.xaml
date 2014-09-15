@@ -20,11 +20,11 @@
 						<ComboBox x:Name="DriverInfoMode" Grid.Row="0" Height="25" Width="100" HorizontalAlignment="Center" Margin="103,40,0,0" SelectionChanged="DriverInfoMode_SelectionChanged" VerticalAlignment="Top">
 							<ComboBoxItem x:Name="NameOnly" Content="NameOnly" IsSelected="True" />
                             <ComboBoxItem x:Name="PositionOnly" Content="Position Only" />
-                            <ComboBoxItem x:Name="FastestLapTimeOnly" Content="Fastest Time Only" IsEnabled="False" />
-                            <ComboBoxItem x:Name="FastestLapTimeWithGap" Content="Fastest Time Gap" IsEnabled="False" />
+                            <ComboBoxItem x:Name="FastestLapTimeOnly" Content="Fastest Time Only" />
+                            <ComboBoxItem x:Name="FastestLapTimeWithGap" Content="Fastest Time Gap" />
 							<ComboBoxItem x:Name="Improvements" Content="Improvements" IsEnabled="False" />
-                            <ComboBoxItem x:Name="QualiTimeOnly" Content="Quali Time Only" IsEnabled="False" />
-                            <ComboBoxItem x:Name="QualiTimeWithGap" Content="Quali Time Gap" IsEnabled="False" />
+                            <ComboBoxItem x:Name="QualiTimeOnly" Content="Quali Time Only" />
+                            <ComboBoxItem x:Name="QualiTimeWithGap" Content="Quali Time Gap" />
 						</ComboBox>
 						<Button x:Name="ResultsButton" Click="ResultsButton_Click" Content="Results" Width="100" Height="25" Margin="309,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" />
 						<Button x:Name="TrackMap" Click="ResultsButton_Click" Content="Track Map" Width="100" Height="25" Margin="309,40,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" />

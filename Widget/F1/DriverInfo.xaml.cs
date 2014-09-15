@@ -115,7 +115,7 @@ namespace TMTVO.Widget.F1
             sb.Begin();
 
             if (gActive)
-                (FindResource("FadeoutGap") as Storyboard).Begin();
+                (FindResource("FadeOutGap") as Storyboard).Begin();
 
             if (fActive)
                 (FindResource("FadeOutFastestLap") as Storyboard).Begin();
@@ -145,6 +145,22 @@ namespace TMTVO.Widget.F1
 
             if (newMode == DriverInfoMode.NameOnly && (mode == DriverInfoMode.PositionOnly || mode == DriverInfoMode.QualiTimeOnly || mode == DriverInfoMode.QualiTimeWithGap || mode == DriverInfoMode.Improvements || mode == DriverInfoMode.FastestLapTimeOnly || mode == DriverInfoMode.FastestLapTimeWithGap))
                 (FindResource("FadeOutPosition") as Storyboard).Begin();
+
+            if ((mode == DriverInfoMode.NameOnly || mode == DriverInfoMode.PositionOnly || mode == DriverInfoMode.Improvements)
+                && (newMode == DriverInfoMode.FastestLapTimeOnly || newMode == DriverInfoMode.FastestLapTimeWithGap || newMode == DriverInfoMode.QualiTimeOnly || newMode == DriverInfoMode.QualiTimeWithGap))
+                (FindResource("FadeInFastestLap") as Storyboard).Begin();
+
+            if (((newMode == DriverInfoMode.NameOnly || newMode == DriverInfoMode.PositionOnly || newMode == DriverInfoMode.Improvements)
+                && (mode == DriverInfoMode.FastestLapTimeOnly || mode == DriverInfoMode.FastestLapTimeWithGap || mode == DriverInfoMode.QualiTimeOnly || mode == DriverInfoMode.QualiTimeWithGap)))
+                (FindResource("FadeOutFastestLap") as Storyboard).Begin();
+
+            if ((mode == DriverInfoMode.NameOnly || mode == DriverInfoMode.PositionOnly || mode == DriverInfoMode.QualiTimeOnly || mode == DriverInfoMode.FastestLapTimeOnly || mode == DriverInfoMode.Improvements)
+                && (newMode == DriverInfoMode.FastestLapTimeWithGap || newMode == DriverInfoMode.QualiTimeWithGap))
+                (FindResource("FadeInGap") as Storyboard).Begin();
+
+            if ((newMode == DriverInfoMode.NameOnly || newMode == DriverInfoMode.PositionOnly || newMode == DriverInfoMode.QualiTimeOnly || newMode == DriverInfoMode.FastestLapTimeOnly || newMode == DriverInfoMode.Improvements)
+                && (mode == DriverInfoMode.FastestLapTimeWithGap || mode == DriverInfoMode.QualiTimeWithGap))
+                (FindResource("FadeOutGap") as Storyboard).Begin();
 
             // TODO Implement Rest
 
