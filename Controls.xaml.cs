@@ -600,5 +600,22 @@ namespace TMTVO
                 f1Window.SpeedCompFadeIn(driver1, driver2);
             }
         }
+
+        private void DriverInfo_Click(object sender, RoutedEventArgs e)
+        {
+            if (f1Window.DriverInfo.Active)
+                f1Window.DriverInfoFadeOut();
+            else
+                f1Window.DriverInfoFadeIn((DriverInfo.DriverInfoMode)DriverInfoMode.SelectedIndex);
+        }
+
+        private void DriverInfoMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (f1Window == null)
+                return;
+
+            if (f1Window.DriverInfo.Active)
+                f1Window.DriverInfo.SwitchMode((DriverInfo.DriverInfoMode)DriverInfoMode.SelectedIndex);
+        }
     }
 }

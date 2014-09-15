@@ -15,12 +15,16 @@
 					<Grid>
 						<Button x:Name="SessionTimer" Grid.Row="0" Content="Session Timer" Height="25" Width="100" Click="SessionTimer_Click" HorizontalAlignment="Center" Margin="0,5,309,0" VerticalAlignment="Top" />
 						<Button x:Name="WeatherToggle" Content="Weather" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,5,103,0" Click="WeatherToggle_Click" />
-						<Button x:Name="DriverInfo" Content="Driver Info" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="103,5,0,0" Click="ShowHideLeftTimer_Click" />
+						<Button x:Name="DriverInfo" Content="Driver Info" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="103,5,0,0" Click="DriverInfo_Click" />
 						<CheckBox x:Name="TeamRadioEnabled" Content="Team Radio" Checked="TeamRadioEnabled_Checked" Unchecked="TeamRadioEnabled_Unchecked" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,43,103,0" />
-						<ComboBox x:Name="TimingMode_Copy" Grid.Row="0" Height="25" Width="100" HorizontalAlignment="Center" Margin="103,40,0,0" SelectionChanged="TimingMode_SelectionChanged" VerticalAlignment="Top">
-							<ComboBoxItem x:Name="LastName1" Content="NameOnly" IsSelected="True" />
-							<ComboBoxItem x:Name="Gap1" Content="BestLast" />
-							<ComboBoxItem x:Name="Time1" Content="QualiTime" />
+						<ComboBox x:Name="DriverInfoMode" Grid.Row="0" Height="25" Width="100" HorizontalAlignment="Center" Margin="103,40,0,0" SelectionChanged="DriverInfoMode_SelectionChanged" VerticalAlignment="Top">
+							<ComboBoxItem x:Name="NameOnly" Content="NameOnly" IsSelected="True" />
+                            <ComboBoxItem x:Name="PositionOnly" Content="Position Only" />
+                            <ComboBoxItem x:Name="FastestLapTimeOnly" Content="Fastest Time Only" IsEnabled="False" />
+                            <ComboBoxItem x:Name="FastestLapTimeWithGap" Content="Fastest Time Gap" IsEnabled="False" />
+							<ComboBoxItem x:Name="Improvements" Content="Improvements" IsEnabled="False" />
+                            <ComboBoxItem x:Name="QualiTimeOnly" Content="Quali Time Only" IsEnabled="False" />
+                            <ComboBoxItem x:Name="QualiTimeWithGap" Content="Quali Time Gap" IsEnabled="False" />
 						</ComboBox>
 						<Button x:Name="ResultsButton" Click="ResultsButton_Click" Content="Results" Width="100" Height="25" Margin="309,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" />
 						<Button x:Name="TrackMap" Click="ResultsButton_Click" Content="Track Map" Width="100" Height="25" Margin="309,40,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" />

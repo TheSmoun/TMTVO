@@ -54,7 +54,12 @@ namespace TMTVO.Data.Modules
                     {
                         Driver driver = parseDriver(dict);
                         if (driver != null)
+                        {
                             Drivers.Add(driver);
+                            LiveStandingsModule m = Controller.TMTVO.Instance.Api.FindModule("LiveStandings") as LiveStandingsModule;
+                            if (!m.ContainsItem(carIdx))
+                                m.Items.Add(new LiveStandingsItem(driver));
+                        }
                     }
                 }
             }

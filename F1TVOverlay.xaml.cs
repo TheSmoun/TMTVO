@@ -50,6 +50,7 @@ namespace TMTVO
             {"W", Colors.LightGray}
         };
 
+        public DriverInfo DriverInfo { get; private set; }
         public LapsRemainingWidget LapsRemaining { get; private set; }
         public LapTimerLeft LapTimerLeft { get; private set; }
         public LiveTimingWidget LiveTimingWidget { get; private set; }
@@ -64,6 +65,13 @@ namespace TMTVO
         public F1TVOverlay()
         {
             InitializeComponent();
+
+            this.DriverInfo = new DriverInfo();
+            this.DriverInfo.Width = 640;
+            this.DriverInfo.Height = 72;
+            this.DriverInfo.HorizontalAlignment = HorizontalAlignment.Left;
+            this.DriverInfo.VerticalAlignment = VerticalAlignment.Top;
+            this.DriverInfo.Margin = new Thickness(370, 899, 0, 0);
 
             this.LapsRemaining = new LapsRemainingWidget();
             this.LapsRemaining.Width = 320;
@@ -140,6 +148,19 @@ namespace TMTVO
         {
             e.Cancel = true;
             Visibility = Visibility.Hidden;
+        }
+
+        public void DriverInfoFadeIn(DriverInfo.DriverInfoMode mode)
+        {
+            if (!MyCanvas.Children.Contains(DriverInfo))
+                MyCanvas.Children.Add(DriverInfo);
+
+            DriverInfo.FadeIn(mode);
+        }
+
+        public void DriverInfoFadeOut()
+        {
+            DriverInfo.FadeOut();
         }
 
         public void LapsRemainingFadeIn(int remaining)
