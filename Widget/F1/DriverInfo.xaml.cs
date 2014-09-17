@@ -25,6 +25,7 @@ namespace TMTVO.Widget.F1
 
         private CameraModule cameraModule;
         private LiveStandingsModule standingsModule;
+        private SessionTimerModule sessionTimer;
         private DriverInfoMode mode;
 
         private LiveStandingsItem driver;
@@ -47,6 +48,9 @@ namespace TMTVO.Widget.F1
 
             if (standingsModule == null)
                 standingsModule = Controller.TMTVO.Instance.Api.FindModule("LiveStandings") as LiveStandingsModule;
+
+            if (sessionTimer == null)
+                sessionTimer = Controller.TMTVO.Instance.Api.FindModule("SessionTimer") as SessionTimerModule;
 
             if (Active)
                 return;
@@ -96,9 +100,13 @@ namespace TMTVO.Widget.F1
                 fActive = true;
             }
 
-            if (mode == DriverInfoMode.FastestLapTimeWithGap)
+            if (mode == DriverInfoMode.FastestLapTimeWithGap || mode == DriverInfoMode.QualiTimeWithGap)
             {
-                Gap.Text = "+" + (driver.FastestLapTime - standingsModule.Leader.FastestLapTime).ConvertToTimeString();
+                if (mode == DriverInfoMode.FastestLapTimeWithGap)
+                    Gap.Text = "+" + (driver.FastestLapTime - standingsModule.Leader.FastestLapTime).ConvertToTimeString();
+                else
+                    Gap.Text = "+" + (GridModule.FindDriverStatic(camIndex).QualiTime - GridModule.GetLeader().QualiTime).ConvertToTimeString();
+
                 (FindResource("FadeInGap") as Storyboard).Begin();
                 gActive = true;
             }
@@ -141,26 +149,44 @@ namespace TMTVO.Widget.F1
         public void SwitchMode(DriverInfoMode newMode)
         {
             if (mode == DriverInfoMode.NameOnly && (newMode == DriverInfoMode.PositionOnly || newMode == DriverInfoMode.QualiTimeOnly || newMode == DriverInfoMode.QualiTimeWithGap || newMode == DriverInfoMode.Improvements || newMode == DriverInfoMode.FastestLapTimeOnly || newMode == DriverInfoMode.FastestLapTimeWithGap))
+            {
                 (FindResource("FadeInPosition") as Storyboard).Begin();
+                pActive = true;
+            }
 
             if (newMode == DriverInfoMode.NameOnly && (mode == DriverInfoMode.PositionOnly || mode == DriverInfoMode.QualiTimeOnly || mode == DriverInfoMode.QualiTimeWithGap || mode == DriverInfoMode.Improvements || mode == DriverInfoMode.FastestLapTimeOnly || mode == DriverInfoMode.FastestLapTimeWithGap))
+            {
                 (FindResource("FadeOutPosition") as Storyboard).Begin();
+                pActive = false;
+            }
 
             if ((mode == DriverInfoMode.NameOnly || mode == DriverInfoMode.PositionOnly || mode == DriverInfoMode.Improvements)
                 && (newMode == DriverInfoMode.FastestLapTimeOnly || newMode == DriverInfoMode.FastestLapTimeWithGap || newMode == DriverInfoMode.QualiTimeOnly || newMode == DriverInfoMode.QualiTimeWithGap))
+            {
                 (FindResource("FadeInFastestLap") as Storyboard).Begin();
+                fActive = true;
+            }
 
             if (((newMode == DriverInfoMode.NameOnly || newMode == DriverInfoMode.PositionOnly || newMode == DriverInfoMode.Improvements)
                 && (mode == DriverInfoMode.FastestLapTimeOnly || mode == DriverInfoMode.FastestLapTimeWithGap || mode == DriverInfoMode.QualiTimeOnly || mode == DriverInfoMode.QualiTimeWithGap)))
+            {
                 (FindResource("FadeOutFastestLap") as Storyboard).Begin();
+                fActive = false;
+            }
 
             if ((mode == DriverInfoMode.NameOnly || mode == DriverInfoMode.PositionOnly || mode == DriverInfoMode.QualiTimeOnly || mode == DriverInfoMode.FastestLapTimeOnly || mode == DriverInfoMode.Improvements)
                 && (newMode == DriverInfoMode.FastestLapTimeWithGap || newMode == DriverInfoMode.QualiTimeWithGap))
+            {
                 (FindResource("FadeInGap") as Storyboard).Begin();
+                gActive = true;
+            }
 
             if ((newMode == DriverInfoMode.NameOnly || newMode == DriverInfoMode.PositionOnly || newMode == DriverInfoMode.QualiTimeOnly || newMode == DriverInfoMode.FastestLapTimeOnly || newMode == DriverInfoMode.Improvements)
                 && (mode == DriverInfoMode.FastestLapTimeWithGap || mode == DriverInfoMode.QualiTimeWithGap))
+            {
                 (FindResource("FadeOutGap") as Storyboard).Begin();
+                gActive = false;
+            }
 
             // TODO Implement Rest
 
@@ -200,7 +226,20 @@ namespace TMTVO.Widget.F1
 
             if (gActive)
             {
-                Gap.Text = "+" + (driver.FastestLapTime - standingsModule.Leader.FastestLapTime).ConvertToTimeString();
+                if (mode == DriverInfoMode.FastestLapTimeWithGap)
+                {
+                    if ((sessionTimer.SessionType == SessionType.LapRace || sessionTimer.SessionType == SessionType.TimeRace) && (sessionTimer.SessionState == SessionState.Racing || sessionTimer.SessionState == SessionState.Checkered || sessionTimer.SessionState == SessionState.Cooldown))
+                        if (driver.GapLaps == 0)
+                            Gap.Text = "+" + driver.GapTime.ConvertToTimeString();
+                        else if (driver.GapLive == 1)
+                            Gap.Text = "+1 Lap";
+                        else Gap.Text = "+" + driver.GapLaps.ToString("0") + " Laps";
+                    else
+                        Gap.Text = "+" + (driver.FastestLapTime - standingsModule.Leader.FastestLapTime).ConvertToTimeString();
+
+                }
+                else
+                    Gap.Text = "+" + (GridModule.FindDriverStatic(driver).QualiTime - GridModule.GetLeader().QualiTime).ConvertToTimeString();
             }
 
             if (bActive)

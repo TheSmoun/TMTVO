@@ -50,6 +50,11 @@ namespace TMTVO.Data.Modules
             return instance.GridPositions.Find(g => g.CarIndex == carIndex);
         }
 
+        public static GridItem GetLeader()
+        {
+            return instance.GridPositions.Find(g => g.Position == 1);
+        }
+
         public override void Update(ConfigurationSection rootNode, API api)
         {
             List<Dictionary<string, object>> qualiResults = rootNode.GetMapList("QualifyResultsInfo.Results");

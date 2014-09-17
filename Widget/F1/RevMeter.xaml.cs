@@ -36,7 +36,6 @@ namespace TMTVO.Widget.F1
         };
 
         public bool Active { get; private set; }
-        public LiveStandingsItem Driver { get; private set; }
 
         private Timer neutralCooldown;
         private int currentGear;
@@ -46,12 +45,14 @@ namespace TMTVO.Widget.F1
         private bool pushToPass;
         private bool prevPushToPass;
 
+        private CameraModule cam;
+        private LiveStandingsModule standings;
+
 		public RevMeter()
 		{
 			this.InitializeComponent();
 
             Active = false;
-            Driver = null;
             canUpdateGear = true;
             pushToPass = false;
             prevPushToPass = false;
@@ -212,16 +213,23 @@ namespace TMTVO.Widget.F1
             canUpdateGear = true;
         }
 
-        public void FadeIn(LiveStandingsItem driver)
+        public void FadeIn()
         {
-            if (Active || driver == null)
+            if (cam == null)
+                cam = Controller.TMTVO.Instance.Api.FindModule("CameraModule") as CameraModule;
+
+            if (standings == null)
+                standings = Controller.TMTVO.Instance.Api.FindModule("LiveStandings") as LiveStandingsModule;
+
+            int carIdx = cam.FollowedDriver;
+
+            if (Active || carIdx < 0)
                 return;
 
-            float rpm = ((float[])Controller.TMTVO.Instance.Api.GetData("CarIdxRPM"))[driver.Driver.CarIndex];
+            float rpm = ((float[])Controller.TMTVO.Instance.Api.GetData("CarIdxRPM"))[carIdx];
             if (rpm < 0)
                 return;
 
-            Driver = driver;
             Active = true;
             Storyboard sb = FindResource("FadeIn") as Storyboard;
             sb.Begin();
@@ -266,16 +274,30 @@ namespace TMTVO.Widget.F1
 
         public void Tick()
         {
-            float rpm = ((float[])Controller.TMTVO.Instance.Api.GetData("CarIdxRPM"))[Driver.Driver.CarIndex];
+            int carIdx = cam.FollowedDriver;
+            if (carIdx < 0)
+            {
+                Application.Current.Dispatcher.Invoke(new Action(FadeOut));
+                return;
+            }
+
+            float rpm = ((float[])Controller.TMTVO.Instance.Api.GetData("CarIdxRPM"))[carIdx];
             if (rpm < 0)
             {
                 Application.Current.Dispatcher.Invoke(new Action(FadeOut));
                 return;
             }
 
-            setSpeed((int)(Driver.SpeedKmh));
+            LiveStandingsItem d = standings.FindDriver(carIdx);
+            if (d == null)
+            {
+                Application.Current.Dispatcher.Invoke(new Action(FadeOut));
+                return;
+            }
+
+            setSpeed((int)(d.SpeedKmh));
             setRev((int)rpm);
-            prevGear = ((int[])Controller.TMTVO.Instance.Api.GetData("CarIdxGear"))[Driver.Driver.CarIndex];
+            prevGear = ((int[])Controller.TMTVO.Instance.Api.GetData("CarIdxGear"))[carIdx];
 
             prevPushToPass = false;                                                                                             // TODO get Push to pass value
             if (prevPushToPass && !pushToPass)

@@ -218,12 +218,12 @@ namespace TMTVO
             ResultsWidget.Show(ms, mode);
         }
 
-        public void RevMeterFadeIn(LiveStandingsItem driver)
+        public void RevMeterFadeIn()
         {
             if (!MyCanvas.Children.Contains(RevMeter))
                 MyCanvas.Children.Add(RevMeter);
 
-            RevMeter.FadeIn(driver);
+            RevMeter.FadeIn();
         }
 
         public void RevMeterFadeOut()

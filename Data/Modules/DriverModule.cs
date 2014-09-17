@@ -89,6 +89,9 @@ namespace TMTVO.Data.Modules
                         driver.CarIndex = int.Parse((string)kv.Value);
                         break;
                     case "UserName":
+                        if (((string)kv.Value).StartsWith("Pace Car"))
+                            return null;
+
                         driver.FullName = (string)kv.Value;
                         break;
                     case "Initials":

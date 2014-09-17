@@ -580,7 +580,7 @@ namespace TMTVO
                 if (driver == null)
                     return;
 
-                f1Window.RevMeterFadeIn(driver);
+                f1Window.RevMeterFadeIn();
             }
         }
 
