@@ -194,7 +194,7 @@ namespace TMTVO.Widget.F1
                 return;
             }
 
-            setSpeeds((int)(driver1.Speed * 3.6F), (int)(driver2.Speed * 3.6F));
+            setSpeeds((int)(driver1.SpeedKmh), (int)(driver2.SpeedKmh));
             setRevs((int)rpm1, (int)rpm2);
 
             int[] gears = (int[])Controller.TMTVO.Instance.Api.GetData("CarIdxGear");

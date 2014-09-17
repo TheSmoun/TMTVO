@@ -273,7 +273,7 @@ namespace TMTVO.Widget.F1
                 return;
             }
 
-            setSpeed((int)(Driver.Speed * 3.6F));
+            setSpeed((int)(Driver.SpeedKmh));
             setRev((int)rpm);
             prevGear = ((int[])Controller.TMTVO.Instance.Api.GetData("CarIdxGear"))[Driver.Driver.CarIndex];
 

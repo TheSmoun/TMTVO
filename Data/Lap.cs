@@ -12,6 +12,20 @@ namespace TMTVO.Data
         public float Time { get; set; }
         public double Begin { get; set; }
         public float Speed { get; set; }
+        public float SpeedKmh
+        {
+            get
+            {
+                return Speed * 3.6F;
+            }
+        }
+        public float SpeedMph
+        {
+            get
+            {
+                return Speed * 2.23693629F;
+            }
+        }
         public int Position { get; set; }
         public int ClassPosition { get; set; }
         public float Gap { get; set; }

@@ -29,6 +29,20 @@ namespace TMTVO.Data.Modules
         public bool InPits { get; private set; }
         public bool Finished { get; private set; }
         public float Speed { get; private set; }
+        public float SpeedKmh
+        {
+            get
+            {
+                return Speed * 3.6F;
+            }
+        }
+        public float SpeedMph
+        {
+            get
+            {
+                return Speed * 2.23693629F;
+            }
+        }
         public double PrevSpeed { get; private set; }
         public double CurrentTrackPct { get; private set; }
         public double PrevTrackPct { get; private set; }
