@@ -53,6 +53,13 @@ namespace TMTVO.Data.Modules
         public bool PositionImproved { get; set; }
         public bool PositionLost { get; set; }
         public bool LapTimeImproved { get; set; }
+        public int PositionImprovements
+        {
+            get
+            {
+                return GridModule.FindDriverStatic(this).Position - PositionLive;
+            }
+        }
 
         private int positionLive;
 

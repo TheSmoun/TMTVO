@@ -66,6 +66,9 @@ namespace TMTVO.Data
 
         internal static string ConvertToTimeString(this float seconds)
         {
+            if (seconds == 0)
+                return "No Time";
+
             int min = (int)(seconds / 60);
             float sectime = seconds % 60;
             StringBuilder sb = new StringBuilder();
