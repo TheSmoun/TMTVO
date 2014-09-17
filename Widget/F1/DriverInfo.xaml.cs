@@ -91,7 +91,7 @@ namespace TMTVO.Widget.F1
 
             if (mode == DriverInfoMode.FastestLapTimeOnly || mode == DriverInfoMode.FastestLapTimeWithGap || mode == DriverInfoMode.QualiTimeOnly || mode == DriverInfoMode.QualiTimeWithGap)
             {
-                FastestTime.Text = ((mode == DriverInfoMode.QualiTimeOnly || mode == DriverInfoMode.QualiTimeWithGap) ? /* TODO QualiTime */driver.FastestLapTime : driver.FastestLapTime).ConvertToTimeString();
+                FastestTime.Text = ((mode == DriverInfoMode.QualiTimeOnly || mode == DriverInfoMode.QualiTimeWithGap) ? GridModule.FindDriverStatic(camIndex).QualiTime : driver.FastestLapTime).ConvertToTimeString();
                 (FindResource("FadeInFastestLap") as Storyboard).Begin();
                 fActive = true;
             }
@@ -193,7 +193,10 @@ namespace TMTVO.Widget.F1
             }
 
             if (fActive)
-                FastestTime.Text = driver.FastestLapTime.ConvertToTimeString();
+                if (mode == DriverInfoMode.FastestLapTimeOnly || mode == DriverInfoMode.FastestLapTimeWithGap)
+                    FastestTime.Text = driver.FastestLapTime.ConvertToTimeString();
+                else if (mode == DriverInfoMode.QualiTimeOnly || mode == DriverInfoMode.QualiTimeWithGap)
+                    FastestTime.Text = GridModule.FindDriverStatic(driver).QualiTime.ConvertToTimeString();
 
             if (gActive)
             {

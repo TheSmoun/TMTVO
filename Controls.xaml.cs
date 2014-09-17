@@ -374,6 +374,20 @@ namespace TMTVO
             }
 
             autoCommit = oldAutoCommit;
+
+            SessionTimerModule stm = api.FindModule("SessionTimer") as SessionTimerModule;
+            if (stm.SessionType == SessionType.LapRace || stm.SessionType == SessionType.TimeRace)
+            {
+                QualiTimeOnly.IsEnabled = true;
+                QualiTimeWithGap.IsEnabled = true;
+                Improvements.IsEnabled = true;
+            }
+            else
+            {
+                QualiTimeOnly.IsEnabled = false;
+                QualiTimeWithGap.IsEnabled = false;
+                Improvements.IsEnabled = false;
+            }
         }
 
         public static int padCarNum(string input)

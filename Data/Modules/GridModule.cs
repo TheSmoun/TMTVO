@@ -35,17 +35,17 @@ namespace TMTVO.Data.Modules
             return GridPositions.Find(g => g.CarIndex == carIndex);
         }
 
-        public static GridItem FindDriver(Driver driver)
+        public static GridItem FindDriverStatic(Driver driver)
         {
             return instance.GridPositions.Find(g => g.CarIndex == driver.CarIndex);
         }
 
-        public static GridItem FindDriver(LiveStandingsItem driver)
+        public static GridItem FindDriverStatic(LiveStandingsItem driver)
         {
             return instance.GridPositions.Find(g => g.CarIndex == driver.Driver.CarIndex);
         }
 
-        public static GridItem FindDriver(int carIndex)
+        public static GridItem FindDriverStatic(int carIndex)
         {
             return instance.GridPositions.Find(g => g.CarIndex == carIndex);
         }

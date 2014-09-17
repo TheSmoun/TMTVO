@@ -61,6 +61,7 @@ namespace TMTVO.Controller
             Api.AddModule(new CameraModule(Controls));
             Api.AddModule(new TimeDeltaModule());
             Api.AddModule(new RevMeterModule(Window.RevMeter, Window.SpeedCompareWidget));
+            Api.AddModule(new GridModule());
         }
     }
 }
