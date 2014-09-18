@@ -779,7 +779,7 @@
 					<TransformGroup>
 						<ScaleTransform/>
 						<SkewTransform/>
-						<RotateTransform Angle="90"/>
+						<RotateTransform x:Name="ImpAngle" Angle="90"/>
 						<TranslateTransform/>
 					</TransformGroup>
 				</ed:RegularPolygon.RenderTransform>

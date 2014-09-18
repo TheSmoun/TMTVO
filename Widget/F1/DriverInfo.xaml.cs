@@ -96,7 +96,26 @@ namespace TMTVO.Widget.F1
                 BestTime.Text = driver.FastestLapTime.ConvertToTimeString();
                 LastTime.Text = driver.LastLapTime.ConvertToTimeString();
 
-                // TODO Improvements.
+                int improvement = GridModule.FindDriverStatic(camIndex).Position - driver.PositionLive;
+                if (improvement < 0)
+                {
+                    Improvement.Text = (-improvement).ToString("0");
+                    ImpAngle.Angle = lostAngle;
+                    ImpTriangle.Fill = lostBrush;
+                }
+                else if (improvement == 0)
+                {
+                    Improvement.Text = "0";
+                    ImpAngle.Angle = neutralAngle;
+                    ImpTriangle.Fill = neutralBrush;
+                }
+                else
+                {
+                    Improvement.Text = improvement.ToString("0");
+                    ImpAngle.Angle = improvedAngle;
+                    ImpTriangle.Fill = improvedBrush;
+                }
+
                 (FindResource("FadeInImprovements") as Storyboard).Begin();
                 bActive = true;
             }
@@ -137,7 +156,7 @@ namespace TMTVO.Widget.F1
                 (FindResource("FadeOutFastestLap") as Storyboard).Begin();
 
             if (bActive)
-                (FindResource("FadeoutImprovements") as Storyboard).Begin();
+                (FindResource("FadeOutImprovements") as Storyboard).Begin();
 
             if (pActive)
                 (FindResource("FadeOutPosition") as Storyboard).Begin();
@@ -204,7 +223,7 @@ namespace TMTVO.Widget.F1
 
             if (mode != DriverInfoMode.Improvements && newMode == DriverInfoMode.Improvements)
             {
-                (FindResource("FadeoutImprovements") as Storyboard).Begin();
+                (FindResource("FadeOutImprovements") as Storyboard).Begin();
                 bActive = false;
             }
 
@@ -265,7 +284,25 @@ namespace TMTVO.Widget.F1
                 BestTime.Text = driver.FastestLapTime.ConvertToTimeString();
                 LastTime.Text = driver.LastLapTime.ConvertToTimeString();
 
-                // TODO Improvement
+                int improvement = GridModule.FindDriverStatic(driver).Position - driver.PositionLive;
+                if (improvement < 0)
+                {
+                    Improvement.Text = (-improvement).ToString("0");
+                    ImpAngle.Angle = lostAngle;
+                    ImpTriangle.Fill = lostBrush;
+                }
+                else if (improvement == 0)
+                {
+                    Improvement.Text = "0";
+                    ImpAngle.Angle = neutralAngle;
+                    ImpTriangle.Fill = neutralBrush;
+                }
+                else
+                {
+                    Improvement.Text = improvement.ToString("0");
+                    ImpAngle.Angle = improvedAngle;
+                    ImpTriangle.Fill = improvedBrush;
+                }
             }
         }
 
