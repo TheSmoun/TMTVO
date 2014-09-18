@@ -21,6 +21,14 @@ namespace TMTVO.Widget.F1
     /// </summary>
     public partial class DriverInfo : UserControl, IWidget
     {
+        private static readonly SolidColorBrush improvedBrush = new SolidColorBrush(Color.FromRgb(0x24, 0x9B, 0x21));       // #249B21
+        private static readonly SolidColorBrush neutralBrush = new SolidColorBrush(Color.FromRgb(0xFF, 0xFF, 0xFF));        // #FFFFFF
+        private static readonly SolidColorBrush lostBrush = new SolidColorBrush(Color.FromRgb(0xFF, 0x0, 0x0));             // #FF0000
+
+        private static readonly float improvedAngle = 0;
+        private static readonly float neutralAngle = 90;
+        private static readonly float lostAngle = 180;
+
         public bool Active { get; private set; }
 
         private CameraModule cameraModule;
@@ -188,7 +196,17 @@ namespace TMTVO.Widget.F1
                 gActive = false;
             }
 
-            // TODO Implement Rest
+            if (newMode == DriverInfoMode.Improvements && mode != DriverInfoMode.Improvements)
+            {
+                (FindResource("FadeInImprovements") as Storyboard).Begin();
+                bActive = true;
+            }
+
+            if (mode != DriverInfoMode.Improvements && newMode == DriverInfoMode.Improvements)
+            {
+                (FindResource("FadeoutImprovements") as Storyboard).Begin();
+                bActive = false;
+            }
 
             mode = newMode;
         }
