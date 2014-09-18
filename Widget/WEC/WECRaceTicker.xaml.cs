@@ -73,7 +73,7 @@ namespace TMTVO.Widget.WEC
                 {
                     WECRaceTickerSpacer spacer = new WECRaceTickerSpacer();
                     spacer.Margin = new Thickness(margin, 0, 0, 0);
-                    margin += 11;
+                    margin += (int)spacer.ActualWidth;
                     ItemHostInner.Children.Add(spacer);
                 }
 
@@ -85,7 +85,7 @@ namespace TMTVO.Widget.WEC
                 }
 
                 item.Margin = new Thickness(margin, 0, 0, 0);
-                margin += 700;
+                margin += (int)item.ActualWidth;
                 ItemHostInner.Children.Add(item);
 
                 tickerAnimation.To = new Thickness(ItemHostInner.ActualWidth, 0, 0, 0);
