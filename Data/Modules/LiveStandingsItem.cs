@@ -213,7 +213,7 @@ namespace TMTVO.Data.Modules
                 PrevTrackPct = curpos;
                 PrevTrackPctUpdate = currentime;
 
-                if (!Finished && surface != SurfaceType.NotInWorld)
+                if (!Finished /* && surface != SurfaceType.NotInWorld */)
                     CurrentTrackPct = lapNumber + trackPct - 1;
 
                 if (curpos < 0.1 && prevpos > 0.9 && !Finished)
@@ -286,11 +286,11 @@ namespace TMTVO.Data.Modules
                     }
                 }
 
-                if (CurrentLap.LapNumber + CurrentLap.GapLaps >= finishLine && surface != SurfaceType.NotInWorld &&
+                if (CurrentLap.LapNumber + CurrentLap.GapLaps >= finishLine /* && surface != SurfaceType.NotInWorld */ &&
                     (sessionType == SessionType.LapRace || sessionType == SessionType.TimeRace) && !Finished)
                 {
-                    ((LiveStandingsModule)caller).UpdateLivePositions();
                     CurrentTrackPct = (Math.Floor(CurrentTrackPct) + 0.0064) - (0.0001 * Position);
+                    ((LiveStandingsModule)caller).UpdateLivePositions();
                     Finished = true;
                 }
 

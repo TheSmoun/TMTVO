@@ -81,12 +81,18 @@ namespace TMTVO.Widget.F1
 
             if (mode != DriverInfoMode.NameOnly)
             {
-                if (driver.PositionLive == 1)
+                int position = 0;
+                if (mode == DriverInfoMode.QualiTimeOnly || mode == DriverInfoMode.QualiTimeWithGap)
+                    position = GridModule.FindDriverStatic(driver).Position;
+                else
+                    position = driver.PositionLive;
+
+                if (position == 1)
                     BackgroundLeader.Visibility = Visibility.Visible;
                 else
                     BackgroundLeader.Visibility = Visibility.Hidden;
 
-                Position.Text = driver.PositionLive.ToString("0");
+                Position.Text = position.ToString("0");
                 (FindResource("FadeInPosition") as Storyboard).Begin();
                 pActive = true;
             }
@@ -221,7 +227,7 @@ namespace TMTVO.Widget.F1
                 bActive = true;
             }
 
-            if (mode != DriverInfoMode.Improvements && newMode == DriverInfoMode.Improvements)
+            if (newMode != DriverInfoMode.Improvements && mode == DriverInfoMode.Improvements)
             {
                 (FindResource("FadeOutImprovements") as Storyboard).Begin();
                 bActive = false;
@@ -247,12 +253,18 @@ namespace TMTVO.Widget.F1
 
             if (pActive)
             {
-                if (driver.PositionLive == 1)
+                int position = 0;
+                if (mode == DriverInfoMode.QualiTimeOnly || mode == DriverInfoMode.QualiTimeWithGap)
+                    position = GridModule.FindDriverStatic(driver).Position;
+                else
+                    position = driver.PositionLive;
+
+                if (position == 1)
                     BackgroundLeader.Visibility = Visibility.Visible;
                 else
                     BackgroundLeader.Visibility = Visibility.Hidden;
 
-                Position.Text = driver.PositionLive.ToString("0");
+                Position.Text = position.ToString("0");
             }
 
             if (fActive)
