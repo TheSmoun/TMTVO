@@ -26,7 +26,7 @@ namespace TMTVO.Widget.F1
         private static readonly SolidColorBrush lostBrush = new SolidColorBrush(Color.FromRgb(0xFF, 0x0, 0x0));             // #FF0000
 
         private static readonly float improvedAngle = 0;
-        private static readonly float neutralAngle = 90;
+        private static readonly float neutralAngle = -90;
         private static readonly float lostAngle = 180;
 
         public bool Active { get; private set; }

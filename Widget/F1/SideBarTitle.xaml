@@ -1,0 +1,98 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="TMTVO.SideBarTitle"
+	x:Name="UserControl"
+	d:DesignWidth="640" d:DesignHeight="480" Height="36" Width="280">
+
+	<Grid x:Name="LayoutRoot" Width="280" Height="36">
+		<Grid x:Name="MainBody" Margin="10,-3.914,10,-0.086">
+			<Rectangle x:Name="BackgroundGrey" Fill="#FF292E39" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="260" RenderTransformOrigin="0.5,0.5" Margin="0,3.914,0,0">
+				<Rectangle.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform AngleX="-32"/>
+						<RotateTransform/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Rectangle.RenderTransform>
+				<Rectangle.Stroke>
+					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+						<LinearGradientBrush.RelativeTransform>
+							<TransformGroup>
+								<ScaleTransform CenterY="0.5" CenterX="0.5"/>
+								<SkewTransform CenterY="0.5" CenterX="0.5"/>
+								<RotateTransform Angle="19.179" CenterY="0.5" CenterX="0.5"/>
+								<TranslateTransform/>
+							</TransformGroup>
+						</LinearGradientBrush.RelativeTransform>
+						<GradientStop Color="Black" Offset="1"/>
+						<GradientStop Color="#FF666666"/>
+					</LinearGradientBrush>
+				</Rectangle.Stroke>
+			</Rectangle>
+			<Rectangle x:Name="Farbverlauf2" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="260" RenderTransformOrigin="0.5,0.5" Margin="0,3.914,0,0">
+				<Rectangle.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform AngleX="-32"/>
+						<RotateTransform/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Rectangle.RenderTransform>
+				<Rectangle.Fill>
+					<RadialGradientBrush Center="200,35" GradientOrigin="329,62" MappingMode="Absolute" RadiusY="38" RadiusX="303">
+						<RadialGradientBrush.RelativeTransform>
+							<TransformGroup>
+								<ScaleTransform CenterY="0.5" CenterX="0.5"/>
+								<SkewTransform CenterY="0.5" CenterX="0.5"/>
+								<RotateTransform CenterY="0.5" CenterX="0.5"/>
+								<TranslateTransform/>
+							</TransformGroup>
+						</RadialGradientBrush.RelativeTransform>
+						<GradientStop Offset="0.741"/>
+						<GradientStop Color="#3FFFFFFF" Offset="0.767"/>
+						<GradientStop Offset="1"/>
+					</RadialGradientBrush>
+				</Rectangle.Fill>
+				<Rectangle.Stroke>
+					<SolidColorBrush Color="Black" Opacity="0"/>
+				</Rectangle.Stroke>
+			</Rectangle>
+			<Rectangle x:Name="Shine" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="260" RenderTransformOrigin="0.5,0.5" Margin="0,3.914,0,0">
+				<Rectangle.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform AngleX="-32"/>
+						<RotateTransform/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Rectangle.RenderTransform>
+				<Rectangle.Fill>
+					<RadialGradientBrush Center="220,57" GradientOrigin="180,94" MappingMode="Absolute" RadiusY="38" RadiusX="248">
+						<RadialGradientBrush.RelativeTransform>
+							<TransformGroup>
+								<ScaleTransform CenterY="0.5" CenterX="0.5"/>
+								<SkewTransform CenterY="0.5" CenterX="0.5"/>
+								<RotateTransform CenterY="0.5" CenterX="0.5"/>
+								<TranslateTransform/>
+							</TransformGroup>
+						</RadialGradientBrush.RelativeTransform>
+						<GradientStop Offset="0.741"/>
+						<GradientStop Color="#88FFFFFF" Offset="0.767"/>
+						<GradientStop Offset="1"/>
+					</RadialGradientBrush>
+				</Rectangle.Fill>
+				<Rectangle.Stroke>
+					<SolidColorBrush Color="#00000000" Opacity="0"/>
+				</Rectangle.Stroke>
+			</Rectangle>
+			<Viewbox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4.75,0,0,0" Width="245" Height="40" Stretch="Fill" StretchDirection="DownOnly">
+				<TextBlock x:Name="TitleBox" TextWrapping="Wrap" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Foreground="White" Text="Battle FOR 4th" Margin="6,6,0,-2"/>
+			</Viewbox>
+		</Grid>
+	</Grid>
+</UserControl>
