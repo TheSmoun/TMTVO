@@ -45,12 +45,17 @@ namespace TMTVO
         private bool cameraUpdate;
         private bool driverUpdate;
 
+        private bool canUpdateDO1;
+        private bool canUpdateDO2;
+
         public Controls(API api, Controller.TMTVO tmtvo)
         {
             this.api = api;
             this.autoCommit = true;
             this.driverUpdate = true;
             this.cameraUpdate = true;
+            this.canUpdateDO1 = true;
+            this.canUpdateDO2 = true;
 
             this.tmtvo = tmtvo;
             InitializeComponent();
@@ -388,6 +393,58 @@ namespace TMTVO
                 QualiTimeWithGap.IsEnabled = false;
                 Improvements.IsEnabled = false;
             }
+
+            if (canUpdateDO1)
+            {
+                int tag = int.Parse(DriverOverviewDriver1.SelectedValue.ToString());
+
+                DriverOverviewDriver1.Items.Clear();
+
+                ComboBoxItem item = new ComboBoxItem();
+                item.Tag = -1;
+                item.Content = "No Driver";
+
+                DriverOverviewDriver1.Items.Add(item);
+                if ((int)item.Tag == tag)
+                    DriverOverviewDriver1.SelectedItem = item;
+
+                IEnumerable<Driver> dQuery = DriverModule.Drivers.OrderBy(s => s.NumberPlateInt);
+                foreach (Driver driver in dQuery)
+                {
+                    item = new ComboBoxItem();
+                    item.Content = driver.Car.CarNumber + " " + driver.FullName;
+                    item.Tag = driver.CarIndex;
+                    DriverOverviewDriver1.Items.Add(item);
+                    if ((int)item.Tag == tag)
+                        DriverOverviewDriver1.SelectedItem = item;
+                }
+            }
+
+            if (canUpdateDO2)
+            {
+                int tag = int.Parse(DriverOverviewDriver2.SelectedValue.ToString());
+
+                DriverOverviewDriver2.Items.Clear();
+
+                ComboBoxItem item = new ComboBoxItem();
+                item.Tag = -1;
+                item.Content = "No Driver";
+
+                DriverOverviewDriver2.Items.Add(item);
+                if ((int)item.Tag == tag)
+                    DriverOverviewDriver2.SelectedItem = item;
+
+                IEnumerable<Driver> dQuery = DriverModule.Drivers.OrderBy(s => s.NumberPlateInt);
+                foreach (Driver driver in dQuery)
+                {
+                    item = new ComboBoxItem();
+                    item.Content = driver.Car.CarNumber + " " + driver.FullName;
+                    item.Tag = driver.CarIndex;
+                    DriverOverviewDriver2.Items.Add(item);
+                    if ((int)item.Tag == tag)
+                        DriverOverviewDriver2.SelectedItem = item;
+                }
+            }
         }
 
         public static int padCarNum(string input)
@@ -642,6 +699,40 @@ namespace TMTVO
         private void CanResize_Unchecked(object sender, RoutedEventArgs e)
         {
             // TODO Implement
+        }
+
+        private void DriverOverview_Click(object sender, RoutedEventArgs e)
+        {
+            if (f1Window.SideBar.Active && f1Window.SideBar.Mode == SideBarWidget.SideBarMode.DriverOverView)
+                f1Window.SideBarFadeOut();
+            else if (!f1Window.SideBar.Active)
+            {
+                LiveStandingsModule lsm = ((LiveStandingsModule)tmtvo.Api.FindModule("LiveStandings"));
+
+                int carIdx1 = int.Parse(DriverOverviewDriver1.SelectedValue.ToString());
+                int carIdx2 = int.Parse(DriverOverviewDriver2.SelectedValue.ToString());
+                f1Window.SideBarFadeInDriverOverview(lsm.FindDriver(carIdx1), lsm.FindDriver(carIdx2));
+            }
+        }
+
+        private void DriverOverviewDriver1_DropDownOpened(object sender, EventArgs e)
+        {
+            canUpdateDO1 = false;
+        }
+
+        private void DriverOverviewDriver1_DropDownClosed(object sender, EventArgs e)
+        {
+            canUpdateDO1 = true;
+        }
+
+        private void DriverOverviewDriver2_DropDownOpened(object sender, EventArgs e)
+        {
+            canUpdateDO2 = false;
+        }
+
+        private void DriverOverviewDriver2_DropDownClosed(object sender, EventArgs e)
+        {
+            canUpdateDO2 = true;
         }
     }
 }

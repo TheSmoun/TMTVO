@@ -110,7 +110,14 @@
 							<ComboBoxItem Content="To Next" IsSelected="True" />
 							<ComboBoxItem Content="To Prev" />
 						</ComboBox>
-					</Grid>
+                        <Button x:Name="DriverOverview" Content="Driver Overview" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,70,0,0" Click="DriverOverview_Click" />
+                        <ComboBox x:Name="DriverOverviewDriver1" Height="25" Width="150" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,70,276,0" SelectedValuePath="Tag" DropDownOpened="DriverOverviewDriver1_DropDownOpened" DropDownClosed="DriverOverviewDriver1_DropDownClosed">
+                            <ComboBoxItem Content="No Driver" Tag="-1" IsSelected="True" />
+                        </ComboBox>
+                        <ComboBox x:Name="DriverOverviewDriver2" Height="25" Width="150" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,70,-276,0" SelectedValuePath="Tag" DropDownOpened="DriverOverviewDriver2_DropDownOpened"  DropDownClosed="DriverOverviewDriver2_DropDownClosed">
+                            <ComboBoxItem Content="No Driver" Tag="-1" IsSelected="True" />
+                        </ComboBox>
+                    </Grid>
 				</TabItem>
 			</TabControl>
 		</Grid>

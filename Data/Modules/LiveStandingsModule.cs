@@ -17,10 +17,11 @@ namespace TMTVO.Data.Modules
         private LiveTimingWidget liveTiming;
         private ResultsWidget results;
         private DriverInfo driverInfo;
+        private SideBarWidget sideBar;
 
         public List<LiveStandingsItem> Items { get; private set; }
 
-        public LiveStandingsModule(LiveTimingWidget liveTiming, RaceBar raceBar, ResultsWidget results, DriverInfo driverInfo) : base("LiveStandings")
+        public LiveStandingsModule(LiveTimingWidget liveTiming, RaceBar raceBar, ResultsWidget results, DriverInfo driverInfo, SideBarWidget sideBar) : base("LiveStandings")
         {
             Items = new List<LiveStandingsItem>();
 
@@ -34,6 +35,7 @@ namespace TMTVO.Data.Modules
             this.results.Module = this;
 
             this.driverInfo = driverInfo;
+            this.sideBar = sideBar;
         }
 
         public LiveStandingsItem FindDriver(int CarIndex)
@@ -93,6 +95,9 @@ namespace TMTVO.Data.Modules
 
                 if (driverInfo.Active)
                     driverInfo.Tick();
+
+                if (sideBar.Active)
+                    sideBar.Tick();
             }));
         }
 

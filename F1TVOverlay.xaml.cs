@@ -58,6 +58,7 @@ namespace TMTVO
         public ResultsWidget ResultsWidget { get; private set; }
         public RevMeter RevMeter { get; private set; }
         public SessionTimer SessionTimer { get; private set; }
+        public SideBarWidget SideBar { get; private set; }
         public SpeedCompareWidget SpeedCompareWidget { get; private set; }
         public TeamRadio TeamRadio { get; private set; }
         public WeatherWidget WeatherWidget { get; private set; }
@@ -121,6 +122,13 @@ namespace TMTVO
             this.SessionTimer.HorizontalAlignment = HorizontalAlignment.Left;
             this.SessionTimer.VerticalAlignment = VerticalAlignment.Top;
             this.SessionTimer.Margin = new Thickness(860, 70, 0, 0);
+
+            this.SideBar = new SideBarWidget();
+            this.SideBar.Width = 280;
+            this.SideBar.Height = 792;
+            this.SideBar.HorizontalAlignment = HorizontalAlignment.Left;
+            this.SideBar.VerticalAlignment = VerticalAlignment.Top;
+            this.SideBar.Margin = new Thickness(158, 70, 0, 0);
 
             this.SpeedCompareWidget = new SpeedCompareWidget();
             this.SpeedCompareWidget.Width = 555;
@@ -242,6 +250,19 @@ namespace TMTVO
         public void SessionTimerFadeOut()
         {
             SessionTimer.FadeOut();
+        }
+
+        public void SideBarFadeInDriverOverview(LiveStandingsItem driver1, LiveStandingsItem driver2)
+        {
+            if (!MyCanvas.Children.Contains(SideBar))
+                MyCanvas.Children.Add(SideBar);
+
+            SideBar.FadeInDriverOverview(driver1, driver2);
+        }
+
+        public void SideBarFadeOut()
+        {
+            SideBar.FadeOut();
         }
 
         public void SpeedCompFadeIn(LiveStandingsItem driver1, LiveStandingsItem driver2)

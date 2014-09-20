@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -49,7 +50,18 @@ namespace TMTVO
 
             TitleText.Text = title;
             Tick();
-            (FindResource("FadeIn") as Storyboard).Begin();
+
+            Thread t = new Thread(fadeInLater);
+            t.Start(delay);
+        }
+
+        private void fadeInLater(object obj)
+        {
+            Thread.Sleep((int)obj);
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                (FindResource("FadeIn") as Storyboard).Begin();
+            }));
         }
 
         public void FadeOut()

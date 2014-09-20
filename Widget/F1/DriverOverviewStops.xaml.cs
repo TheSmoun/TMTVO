@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using TMTVO.Data.Modules;
 using TMTVO.Data;
 using TMTVO.Widget;
+using System.Threading;
 
 namespace TMTVO
 {
@@ -51,7 +52,17 @@ namespace TMTVO
             Active = true;
             Tick();
 
-            (FindResource("FadeIn") as Storyboard).Begin();
+            Thread t = new Thread(fadeInLater);
+            t.Start(delay);
+        }
+
+        private void fadeInLater(object obj)
+        {
+            Thread.Sleep((int)obj);
+            Application.Current.Dispatcher.BeginInvoke(new Action(() => 
+            {
+                (FindResource("FadeIn") as Storyboard).Begin();
+            }));
         }
 
         public void FadeOut()
