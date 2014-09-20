@@ -67,7 +67,7 @@ namespace TMTVO.Data.Modules
         {
             get
             {
-                if (Position > 1 && Speed > 1)
+                if (PositionLive > 1 && Speed > 1)
                 {
                     TimeDelta delta = ((TimeDeltaModule)TMTVO.Controller.TMTVO.Instance.Api.FindModule("TimeDelta")).TimeDelta;
                     LiveStandingsModule standings = ((LiveStandingsModule)TMTVO.Controller.TMTVO.Instance.Api.FindModule("LiveStandings"));
