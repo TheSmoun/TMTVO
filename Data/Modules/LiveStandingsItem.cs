@@ -179,6 +179,8 @@ namespace TMTVO.Data.Modules
             SessionType sessionType = m.SessionType;
             SessionState sessionState = m.SessionState;
             int finishLine = m.LapsTotal + 1;
+            if (finishLine < 0)
+                finishLine = int.MaxValue;
 
             SurfaceType surface = (SurfaceType)((int[])api.GetData("CarIdxTrackSurface"))[Driver.CarIndex];
             int lapNumber = ((int[])api.GetData("CarIdxLap"))[Driver.CarIndex];
@@ -213,7 +215,7 @@ namespace TMTVO.Data.Modules
                 PrevTrackPct = curpos;
                 PrevTrackPctUpdate = currentime;
 
-                if (!Finished /* && surface != SurfaceType.NotInWorld */)
+                if (!Finished)
                     CurrentTrackPct = lapNumber + trackPct - 1;
 
                 if (curpos < 0.1 && prevpos > 0.9 && !Finished)
@@ -286,11 +288,11 @@ namespace TMTVO.Data.Modules
                     }
                 }
 
-                if (CurrentLap.LapNumber + CurrentLap.GapLaps >= finishLine /* && surface != SurfaceType.NotInWorld */ &&
+                if (CurrentLap.LapNumber + CurrentLap.GapLaps >= finishLine && surface != SurfaceType.NotInWorld &&
                     (sessionType == SessionType.LapRace || sessionType == SessionType.TimeRace) && !Finished)
                 {
-                    CurrentTrackPct = (Math.Floor(CurrentTrackPct) + 0.0064) - (0.0001 * Position);
                     ((LiveStandingsModule)caller).UpdateLivePositions();
+                    CurrentTrackPct = (Math.Floor(CurrentTrackPct) + 0.0064) - (0.0001 * Position);
                     Finished = true;
                 }
 

@@ -15,9 +15,12 @@ namespace TMTVO.Data.Modules
 
         public TimeDelta TimeDelta { get; private set; }
 
+        private float trackLength;
+
         public TimeDeltaModule() : base("TimeDelta")
         {
             TimeDelta = null;
+            trackLength = -1F;
         }
 
         public override void Update(ConfigurationSection rootNode, API api)
@@ -26,8 +29,11 @@ namespace TMTVO.Data.Modules
             if (track == null)
                 return;
 
-            if (TimeDelta == null)
+            if (TimeDelta == null || track.Length != trackLength)
+            {
                 TimeDelta = new TimeDelta(track.Length, deltaDistance, drivers);
+                trackLength = track.Length;
+            }
 
             TimeDelta.Update(api.CurrentTime, (float[])api.GetData("CarIdxLapDistPct"));
         }
