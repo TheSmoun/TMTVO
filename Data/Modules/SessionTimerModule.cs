@@ -90,9 +90,6 @@ namespace TMTVO.Data.Modules
 
             SessionFlags = newFlag;
 
-            if (!sessionTimer.Active)
-                return;
-
             this.TimeRemaining = (int)(double)api.Sdk.GetData("SessionTimeRemain");
             int lapsRemain = (int)api.Sdk.GetData("SessionLapsRemain");
             if (lapsRemain + 1 <= 5 && lapsRemain + 1 > 0)

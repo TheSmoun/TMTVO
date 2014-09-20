@@ -27,7 +27,7 @@ namespace TMTVO.Data.Modules
 
         public override void Update(ConfigurationSection rootNode, API api)
         {
-            SpeekingCarIndex= (int)api.GetData("RadioTransmitCarIdx");
+            SpeekingCarIndex = (int)api.GetData("RadioTransmitCarIdx");
             if (canShowTeamRadio)
                 Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
