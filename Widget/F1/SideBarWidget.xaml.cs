@@ -87,8 +87,10 @@ namespace TMTVO
             this.FirstPos = pos;
             this.Count = count;
 
+            Active = true;
+            Mode = SideBarMode.BattleForPosition;
             SideBarTitle title = new SideBarTitle();
-            string t = "Battle for ";
+            string t = "BATTLE FOR ";
             if (pos == 1)
                 t += "1st";
             else if (pos == 2)
@@ -98,6 +100,7 @@ namespace TMTVO
             else
                 t += pos.ToString("0") + "th";
 
+            title.VerticalAlignment = VerticalAlignment.Top;
             LayoutRoot.Children.Add(title);
             elements.Add(title);
             title.FadeIn(t);
@@ -113,6 +116,7 @@ namespace TMTVO
                     break;
 
                 BattleElement e = new BattleElement(this, module);
+                e.VerticalAlignment = VerticalAlignment.Top;
                 elements.Add(e);
                 LayoutRoot.Children.Add(e);
                 e.Margin = new Thickness(0, j * 36, 0, 0);

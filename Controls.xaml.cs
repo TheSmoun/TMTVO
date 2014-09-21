@@ -47,6 +47,7 @@ namespace TMTVO
 
         private bool canUpdateDO1;
         private bool canUpdateDO2;
+        private bool canUpdateFp;
 
         public Controls(API api, Controller.TMTVO tmtvo)
         {
@@ -56,6 +57,7 @@ namespace TMTVO
             this.cameraUpdate = true;
             this.canUpdateDO1 = true;
             this.canUpdateDO2 = true;
+            this.canUpdateFp = true;
 
             this.tmtvo = tmtvo;
             InitializeComponent();
@@ -445,6 +447,26 @@ namespace TMTVO
                         DriverOverviewDriver2.SelectedItem = item;
                 }
             }
+
+            if (canUpdateFp)
+            {
+                int tag = 1;
+                if (FirstPos.SelectedValue != null)
+                    tag = int.Parse(FirstPos.SelectedValue.ToString());
+
+                FirstPos.Items.Clear();
+
+                ComboBoxItem item;
+                for (int i = 1; i <= DriverModule.Drivers.Count; i++)
+                {
+                    item = new ComboBoxItem();
+                    item.Tag = i;
+                    item.Content = i.ToString();
+                    FirstPos.Items.Add(item);
+                    if ((int)item.Tag == tag)
+                        FirstPos.SelectedItem = item;
+                }
+            }
         }
 
         public static int padCarNum(string input)
@@ -733,6 +755,24 @@ namespace TMTVO
         private void DriverOverviewDriver2_DropDownClosed(object sender, EventArgs e)
         {
             canUpdateDO2 = true;
+        }
+
+        private void FirstPos_DropDownOpened(object sender, EventArgs e)
+        {
+            canUpdateFp = false;
+        }
+
+        private void FirstPos_DropDownClosed(object sender, EventArgs e)
+        {
+            canUpdateFp = true;
+        }
+
+        private void Battle_For_Pos_Click(object sender, RoutedEventArgs e)
+        {
+            if (f1Window.SideBar.Active && f1Window.SideBar.Mode == SideBarWidget.SideBarMode.BattleForPosition)
+                f1Window.SideBarFadeOut();
+            else if (!f1Window.SideBar.Active)
+                f1Window.SideBarFadeInBattleForPos(int.Parse(FirstPos.SelectedValue.ToString()), int.Parse(NumberOfPositions.SelectedValue.ToString()));
         }
     }
 }

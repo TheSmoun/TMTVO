@@ -260,6 +260,14 @@ namespace TMTVO
             SideBar.FadeInDriverOverview(driver1, driver2);
         }
 
+        public void SideBarFadeInBattleForPos(int firstPos, int count)
+        {
+            if (!MyCanvas.Children.Contains(SideBar))
+                MyCanvas.Children.Add(SideBar);
+
+            SideBar.FadeInBattleForPos(firstPos, count);
+        }
+
         public void SideBarFadeOut()
         {
             SideBar.FadeOut();

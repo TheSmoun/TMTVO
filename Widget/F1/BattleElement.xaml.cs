@@ -75,16 +75,24 @@ namespace TMTVO
                 return;
             }
 
+            if (Driver.PositionLive == 1)
+                NumberLeader.Visibility = Visibility.Visible;
+            else
+                NumberLeader.Visibility = Visibility.Hidden;
+
             Position.Text = Driver.PositionLive.ToString("0");
+            ThreeLetterCode.Text = Driver.Driver.ThreeLetterCode;
+            ClassColorNormal.Color = ClassColorLeader.Color = Driver.Driver.LicColor;
+
             if (Driver.PositionLive > widget.FirstPos)
             {
                 float gap = 0;
-                LiveStandingsItem nextDriver = module.FindDriverByPos(Driver.PositionLive - 1);
-                if (nextDriver != null)
-                    gap = Driver.GapLive - nextDriver.GapLive;
+                gap =  Driver.GapLive;
 
                 GapText.Text = gap.ConvertToTimeString();
             }
+            else
+                GapText.Text = string.Empty;
         }
 
         public void Reset()
