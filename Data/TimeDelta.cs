@@ -10,9 +10,6 @@ namespace TMTVO.Data
 {
     public class TimeDelta
     {
-        public Thread Thread { get; private set; }
-
-        private API api;
         private int maxCars = 64;
         private float splitDistance = 20;
         private double[][] splits = new double[0][];
@@ -26,10 +23,8 @@ namespace TMTVO.Data
         private double lapStartTime;
         private int arraySize;
 
-        public TimeDelta(float length, float splitDist, int drivers, API api)
+        public TimeDelta(float length, float splitDist, int drivers)
         {
-            this.api = api;
-
             this.splitDistance = splitDist;
             maxCars = drivers;
             arraySize = (int)Math.Round(length / splitDistance);
@@ -44,15 +39,6 @@ namespace TMTVO.Data
             splitPointer = new int[maxCars];
             for (int i = 0; i < maxCars; i++)
                 splits[i] = new double[arraySize];
-
-            Thread = new Thread(run);
-            Thread.Start();
-        }
-
-        private void run(object obj)
-        {
-            while (api.Run)
-                Update(api.CurrentTime, (float[])api.GetData("CarIdxLapDistPct"));
         }
 
         public void SaveBestLap(int caridx)

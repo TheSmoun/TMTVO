@@ -13,7 +13,6 @@ namespace TMTVO.Data.Modules
     {
         public List<Camera> Cameras { get; private set; }
         public int CurrentCamera { get; set; }
-        public int WantedCamera { get; set; }
         public int FollowedDriver { get; set; }
 
         private Controls controls;
@@ -25,7 +24,6 @@ namespace TMTVO.Data.Modules
             this.controls.CameraModule = this;
 
             CurrentCamera = 0;
-            WantedCamera = 0;
         }
 
         public Camera FindCamera(int id)
@@ -63,7 +61,6 @@ namespace TMTVO.Data.Modules
         {
             Cameras.Clear();
             CurrentCamera = 0;
-            WantedCamera = 0;
         }
     }
 }

@@ -21,6 +21,7 @@ namespace TMTVO.Api
             get { return Sdk.IsConnected(); }
         }
 
+        private Mutex mutex;
         private readonly int ticksPerSecond;
         private readonly List<Module> modules;
         private Thread thread;
@@ -28,6 +29,7 @@ namespace TMTVO.Api
 
         public API(int ticksPerSecond)
         {
+            mutex = new Mutex();
             this.ticksPerSecond = ticksPerSecond;
             this.thread = new Thread(StartThread);
 
@@ -55,6 +57,7 @@ namespace TMTVO.Api
 
             while (Run)
             {
+                mutex.WaitOne();
                 long start = Environment.TickCount;
 
                 if (Sdk.IsConnected())
@@ -96,6 +99,7 @@ namespace TMTVO.Api
                         Console.WriteLine(e);
                     }
                 }
+                mutex.ReleaseMutex();
             }
         }
 

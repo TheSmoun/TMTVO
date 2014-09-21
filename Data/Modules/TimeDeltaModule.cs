@@ -31,14 +31,11 @@ namespace TMTVO.Data.Modules
 
             if (TimeDelta == null || track.Length != trackLength)
             {
-                TimeDelta = new TimeDelta(track.Length, deltaDistance, drivers, api);
+                TimeDelta = new TimeDelta(track.Length, deltaDistance, drivers);
                 trackLength = track.Length;
             }
 
-            if (!TimeDelta.Thread.IsAlive)
-                TimeDelta.Thread.Start();
-
-            //TimeDelta.Update(api.CurrentTime, (float[])api.GetData("CarIdxLapDistPct"));
+            TimeDelta.Update(api.CurrentTime, (float[])api.GetData("CarIdxLapDistPct"));
         }
 
         public override void Reset()

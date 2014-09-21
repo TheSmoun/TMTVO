@@ -85,7 +85,7 @@ namespace TMTVO.Widget.F1
 
         public void Tick()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

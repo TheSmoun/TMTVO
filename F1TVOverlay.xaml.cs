@@ -63,9 +63,14 @@ namespace TMTVO
         public TeamRadio TeamRadio { get; private set; }
         public WeatherWidget WeatherWidget { get; private set; }
 
+        private DispatcherTimer timer;
+        private List<IWidget> widgets;
+
         public F1TVOverlay()
         {
             InitializeComponent();
+
+            widgets = new List<IWidget>();
 
             this.DriverInfo = new DriverInfo();
             this.DriverInfo.Width = 640;
@@ -150,6 +155,36 @@ namespace TMTVO
             this.WeatherWidget.HorizontalAlignment = HorizontalAlignment.Center;
             this.WeatherWidget.VerticalAlignment = VerticalAlignment.Top;
             this.WeatherWidget.Margin = new Thickness(1045, 755, 0, 0);
+
+            widgets.Add(DriverInfo);
+            widgets.Add(LapsRemaining);
+            widgets.Add(LapTimerLeft);
+            widgets.Add(LiveTimingWidget);
+            widgets.Add(RaceBar);
+            widgets.Add(ResultsWidget);
+            widgets.Add(RevMeter);
+            widgets.Add(SessionTimer);
+            widgets.Add(SideBar);
+            widgets.Add(SpeedCompareWidget);
+            widgets.Add(TeamRadio);
+            widgets.Add(WeatherWidget);
+
+            timer = new DispatcherTimer();
+            timer.Tick += timer_Tick;
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 20);
+            timer.Start();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (!Controller.TMTVO.Instance.Api.Run)
+                return;
+
+            foreach (var item in widgets)
+            {
+                if (item.Active)
+                    item.Tick();
+            }
         }
 
         private void Overlay_Closing(object sender, System.ComponentModel.CancelEventArgs e)

@@ -109,7 +109,7 @@ namespace TMTVO.Data.Modules
                     TimeTotal = (int)float.Parse(time);
             }
 
-            Application.Current.Dispatcher.BeginInvoke(new Action(sessionTimer.Tick));
+            //Application.Current.Dispatcher.BeginInvoke(new Action(sessionTimer.Tick));
         }
 
         public override void Reset()
