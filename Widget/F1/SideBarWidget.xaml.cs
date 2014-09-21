@@ -21,9 +21,13 @@ namespace TMTVO
 	public partial class SideBarWidget : UserControl, IWidget
 	{
         public bool Active { get; private set; }
-        public SideBarMode Mode;
+        public int FirstPos { get; private set; }
+        public int Count { get; private set; }
+        public SideBarMode Mode { get; private set; }
 
         private List<ISideBarElement> elements;
+        private LiveStandingsModule module;
+
 
 		public SideBarWidget()
 		{
@@ -78,6 +82,46 @@ namespace TMTVO
             last.FadeIn("LAST", driver, 75 + i * 125);
         }
 
+        public void FadeInBattleForPos(int pos, int count)
+        {
+            this.FirstPos = pos;
+            this.Count = count;
+
+            SideBarTitle title = new SideBarTitle();
+            string t = "Battle for ";
+            if (pos == 1)
+                t += "1st";
+            else if (pos == 2)
+                t += " 2nd";
+            else if (pos == 3)
+                t += " 3rd";
+            else
+                t += pos.ToString("0") + "th";
+
+            LayoutRoot.Children.Add(title);
+            elements.Add(title);
+            title.FadeIn(t);
+
+            if (module == null)
+                 module = (LiveStandingsModule)Controller.TMTVO.Instance.Api.FindModule("LiveStandings");
+
+            int j = 1;
+            for (int i = pos; i < pos + count; i++)
+            {
+                LiveStandingsItem item = module.FindDriverByPos(i);
+                if (item == null)
+                    break;
+
+                BattleElement e = new BattleElement(this, module);
+                elements.Add(e);
+                LayoutRoot.Children.Add(e);
+                e.Margin = new Thickness(0, j * 36, 0, 0);
+                e.FadeIn(item, j * 25);
+
+                j++;
+            }
+        }
+
         public void FadeOut()
         {
             if (!Active)
@@ -90,6 +134,16 @@ namespace TMTVO
 
         public void Tick()
         {
+            if (Mode == SideBarMode.BattleForPosition)
+            {
+                int j = 1;
+                for (int i = FirstPos; i < FirstPos + Count; i++)
+                {
+                    BattleElement e = elements[j++] as BattleElement;
+                    e.Driver = module.FindDriverByPos(i);
+                }
+            }
+
             foreach (ISideBarElement e in elements)
                 e.Tick();
         }
