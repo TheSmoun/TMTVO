@@ -39,6 +39,7 @@ namespace TMTVO.Widget
             if (driver1 == null && driver2 == null)
                 return;
 
+            module = (LiveStandingsModule)Controller.TMTVO.Instance.Api.FindModule("LiveStandings");
             this.Mode = SideBarMode.DriverOverView;
             Active = true;
             if (driver1 != null)
@@ -86,8 +87,9 @@ namespace TMTVO.Widget
             this.FirstPos = pos;
             this.Count = count;
 
-            Active = true;
+            module = (LiveStandingsModule)Controller.TMTVO.Instance.Api.FindModule("LiveStandings");
             Mode = SideBarMode.BattleForPosition;
+            Active = true;
             SideBarTitle title = new SideBarTitle();
             string t = "BATTLE FOR ";
             if (pos == 1)
@@ -103,9 +105,6 @@ namespace TMTVO.Widget
             LayoutRoot.Children.Add(title);
             elements.Add(title);
             title.FadeIn(t);
-
-            if (module == null)
-                module = (LiveStandingsModule)TMTVO.Controller.TMTVO.Instance.Api.FindModule("LiveStandings");
 
             int j = 1;
             for (int i = pos; i < pos + count; i++)

@@ -34,7 +34,6 @@ namespace TMTVO.Widget
         private bool posVisible;
 
         public LiveStandingsModule Module { get; set; }
-
         public LiveStandingsItem LapDriver { get; private set; }
         public bool Active { get; private set; }
 
@@ -53,6 +52,7 @@ namespace TMTVO.Widget
             if (Active)
                 return;
 
+            this.Module = (LiveStandingsModule)Controller.TMTVO.Instance.Api.FindModule("LiveStandings");
             this.LapDriver = driver;
             this.Active = true;
             this.canUpdate = true;

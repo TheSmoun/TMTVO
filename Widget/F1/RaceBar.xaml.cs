@@ -59,6 +59,7 @@ namespace TMTVO.Widget
             if (Active)
                 return;
 
+            Module = (LiveStandingsModule)Controller.TMTVO.Instance.Api.FindModule("LiveStandings");
             Active = true;
             pageIndex = 0;
             oldPageIndex = 0;

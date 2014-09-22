@@ -63,7 +63,7 @@ namespace TMTVO.Widget
 
         public void Tick()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

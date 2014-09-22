@@ -37,6 +37,7 @@ namespace TMTVO.Widget
             if (Active)
                 return;
 
+            Module = (SessionsModule)Controller.TMTVO.Instance.Api.FindModule("Sessions");
             Active = true;
 
             SkiesValue.Text = Module.Weather.Skies.GetStringValue();

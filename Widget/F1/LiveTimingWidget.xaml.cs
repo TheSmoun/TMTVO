@@ -138,6 +138,8 @@ namespace TMTVO.Widget
 
         public void FadeIn()
         {
+            Module = (LiveStandingsModule)Controller.TMTVO.Instance.Api.FindModule("LiveStandings");
+
             pageIndex = 0;
             Active = true;
             Storyboard sb = FindResource("FadeIn") as Storyboard;

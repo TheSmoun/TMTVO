@@ -55,6 +55,7 @@ namespace TMTVO.Widget
             if (Active)
                 return;
 
+            Module = (SessionTimerModule)Controller.TMTVO.Instance.Api.FindModule("SessionTimer");
             SessionMode mode = SessionMode.TimeMode;
             if (Module.SessionState == SessionState.Racing && Module.SessionType == SessionType.LapRace)
                 mode = SessionMode.LapMode;
