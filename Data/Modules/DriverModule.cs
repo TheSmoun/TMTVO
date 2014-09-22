@@ -7,7 +7,6 @@ using System.Windows;
 using System.Windows.Media;
 using TMTVO.Api;
 using TMTVO.Widget;
-using TMTVO.Widget.F1;
 using Yaml;
 
 namespace TMTVO.Data.Modules
@@ -18,13 +17,11 @@ namespace TMTVO.Data.Modules
 
         private Controls controls;
 
-        public DriverModule(Controls controls, ResultsWidget results) : base("DriverModule")
+        public DriverModule(Controls controls) : base("DriverModule")
         {
             Drivers = new List<Driver>();
             this.controls = controls;
             controls.DriverModule = this;
-
-            results.DriverModule = this;
         }
 
         public Driver FindDriver(int CarIdx)

@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using TMTVO.Data;
 using TMTVO.Data.Modules;
 
-namespace TMTVO.Widget
+namespace TMTVO.Widget.F1
 {
     public interface ILapTimer : IWidget
     {

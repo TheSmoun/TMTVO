@@ -6,16 +6,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using TMTVO.Api;
 using TMTVO.Widget;
-using TMTVO.Widget.F1;
 using Yaml;
 
 namespace TMTVO.Data.Modules
 {
     public class SessionTimerModule : Module
     {
-        private SessionTimer sessionTimer;
-        private LapsRemainingWidget lapsRemaining;
-
         public int TimeTotal { get; private set; }
         public int LapsTotal { get; private set; }
         public int LapsDriven { get; private set; }
@@ -25,11 +21,8 @@ namespace TMTVO.Data.Modules
         public SessionState SessionState { get; private set; }
         public int CautionLaps { get; set; }
 
-        public SessionTimerModule(SessionTimer sessionTimer, LapsRemainingWidget lapsRemaining) : base("SessionTimer")
+        public SessionTimerModule() : base("SessionTimer")
         {
-            this.sessionTimer = sessionTimer;
-            sessionTimer.Module = this;
-            this.lapsRemaining = lapsRemaining;
             this.TimeTotal = 0;
             CautionLaps = 0;
         }
@@ -108,8 +101,6 @@ namespace TMTVO.Data.Modules
                 else
                     TimeTotal = (int)float.Parse(time);
             }
-
-            //Application.Current.Dispatcher.BeginInvoke(new Action(sessionTimer.Tick));
         }
 
         public override void Reset()

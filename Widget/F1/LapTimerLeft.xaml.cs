@@ -15,8 +15,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TMTVO.Data;
 using TMTVO.Data.Modules;
+using TMTVO.Widget.F1;
 
-namespace TMTVO.Widget.F1
+namespace TMTVO.Widget
 {
 	/// <summary>
 	/// Interaktionslogik für LapTimer.xaml

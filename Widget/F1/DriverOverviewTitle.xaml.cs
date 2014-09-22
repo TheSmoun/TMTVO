@@ -13,9 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TMTVO.Data.Modules;
-using TMTVO.Widget;
 
-namespace TMTVO
+namespace TMTVO.Widget
 {
 	/// <summary>
 	/// Interaktionslogik für DriverOverviewTitle.xaml

@@ -5,7 +5,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
 	mc:Ignorable="d"
-	x:Class="TMTVO.ImprovementElement"
+	x:Class="TMTVO.Widget.ImprovementElement"
 	x:Name="UserControl"
 	d:DesignWidth="640" d:DesignHeight="480" Width="222" Height="36">
 

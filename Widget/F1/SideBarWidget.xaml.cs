@@ -11,9 +11,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TMTVO.Data.Modules;
-using TMTVO.Widget;
 
-namespace TMTVO
+namespace TMTVO.Widget
 {
 	/// <summary>
 	/// Interaktionslogik für SideBarWidget.xaml
@@ -106,7 +105,7 @@ namespace TMTVO
             title.FadeIn(t);
 
             if (module == null)
-                 module = (LiveStandingsModule)Controller.TMTVO.Instance.Api.FindModule("LiveStandings");
+                module = (LiveStandingsModule)TMTVO.Controller.TMTVO.Instance.Api.FindModule("LiveStandings");
 
             int j = 1;
             for (int i = pos; i < pos + count; i++)

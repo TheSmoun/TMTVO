@@ -1,4 +1,5 @@
-﻿using System;
+﻿using TMTVO.Widget;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,8 +19,6 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using TMTVO.Data;
 using TMTVO.Data.Modules;
-using TMTVO.Widget;
-using TMTVO.Widget.F1;
 
 namespace TMTVO
 {
@@ -198,7 +197,7 @@ namespace TMTVO
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            if (!Controller.TMTVO.Instance.Api.Run)
+            if (!TMTVO.Controller.TMTVO.Instance.Api.Run)
                 return;
 
             foreach (var item in widgets)
@@ -376,6 +375,12 @@ namespace TMTVO
             GridTransformation.ScaleY = skale;
 
             Height = 1080D * skale;
+        }
+
+        public void FadeAllOut()
+        {
+            foreach (IWidget widget in widgets)
+                widget.FadeOut();
         }
     }
 }

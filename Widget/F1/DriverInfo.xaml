@@ -5,7 +5,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
 	mc:Ignorable="d"
-	x:Class="TMTVO.Widget.F1.DriverInfo"
+	x:Class="TMTVO.Widget.DriverInfo"
 	x:Name="UserControl"
 	d:DesignWidth="640" d:DesignHeight="480" Height="72" Width="640">
     <UserControl.Resources>

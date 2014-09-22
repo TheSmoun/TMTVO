@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using TMTVO.Data;
 using TMTVO.Data.Modules;
 
-namespace TMTVO.Widget.F1
+namespace TMTVO.Widget
 {
 	/// <summary>
 	/// Interaktionslogik für WeatherWidget.xaml

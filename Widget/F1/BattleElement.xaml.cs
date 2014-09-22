@@ -14,9 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TMTVO.Data;
 using TMTVO.Data.Modules;
-using TMTVO.Widget;
 
-namespace TMTVO
+namespace TMTVO.Widget
 {
 	/// <summary>
 	/// Interaktionslogik für BattleElement.xaml

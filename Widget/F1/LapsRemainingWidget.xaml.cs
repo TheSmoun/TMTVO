@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TMTVO.Widget.F1
+namespace TMTVO.Widget
 {
     /// <summary>
     /// Interaktionslogik für LapsRemainingWidget.xaml

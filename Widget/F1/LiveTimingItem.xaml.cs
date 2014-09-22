@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TMTVO.Data.Modules;
 
-namespace TMTVO.Widget.F1
+namespace TMTVO.Widget
 {
     /// <summary>
     /// Interaktionslogik für LiveStandingsItem.xaml

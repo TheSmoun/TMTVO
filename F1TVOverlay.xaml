@@ -1,8 +1,7 @@
 ﻿<Window x:Class="TMTVO.F1TVOverlay"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:Widget="clr-namespace:TMTVO.Widget.F1"
-        Title="TV Overlay" Height="1080" Width="1920" AllowsTransparency="True" WindowStyle="None" ShowInTaskbar="True" Topmost="True" ResizeMode="CanMinimize" Background="#00000000" Name="Overlay" WindowState="Maximized" WindowStartupLocation="CenterScreen" Closing="Overlay_Closing" SizeChanged="Overlay_SizeChanged">
+        Title="TV Overlay" Height="1080" Width="1920" AllowsTransparency="True" WindowStyle="None" ShowInTaskbar="True" Topmost="True" ResizeMode="CanMinimize" Background="#00000000" Name="OverlayWindow" WindowState="Maximized" WindowStartupLocation="CenterScreen" Closing="Overlay_Closing" SizeChanged="Overlay_SizeChanged">
     <Grid x:Name="MyCanvas" RenderTransformOrigin="0.5,0.5">
     	<Grid.RenderTransform>
     		<TransformGroup>

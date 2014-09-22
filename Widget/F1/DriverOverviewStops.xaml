@@ -5,7 +5,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
 	mc:Ignorable="d"
-	x:Class="TMTVO.DriverOverviewStops"
+	x:Class="TMTVO.Widget.DriverOverviewStops"
 	x:Name="UserControl"
 	d:DesignWidth="640" d:DesignHeight="480" Height="36" Width="280">
     <UserControl.Resources>
@@ -142,17 +142,17 @@
 					</LinearGradientBrush>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<ed:RegularPolygon x:Name="ImpTriangle" Fill="White" HorizontalAlignment="Left" Height="15" InnerRadius="1" Margin="28,10.5,0,10.5" PointCount="3" Stretch="Fill" VerticalAlignment="Center" Width="17" RenderTransformOrigin="0.5,0.5">
-				<ed:RegularPolygon.RenderTransform>
-					<TransformGroup>
-						<ScaleTransform/>
-						<SkewTransform/>
-						<RotateTransform x:Name="ImpAngle" Angle="-90"/>
-						<TranslateTransform/>
-					</TransformGroup>
-				</ed:RegularPolygon.RenderTransform>
-			</ed:RegularPolygon>
-			<TextBlock x:Name="Improved" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="68.96" Margin="38.357,1.247,0,-9.747" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" UseLayoutRounding="False" Foreground="#FFE9E9E9" RenderTransformOrigin="0.5,0.5" Text="5"/>
+            <ed:RegularPolygon x:Name="ImpTriangle" Fill="White" HorizontalAlignment="Left" Height="15" InnerRadius="1" Margin="28,10.5,0,10.5" PointCount="3" Stretch="Fill" VerticalAlignment="Center" Width="17" RenderTransformOrigin="0.5,0.5">
+                <ed:RegularPolygon.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform x:Name="ImpAngle" Angle="-90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </ed:RegularPolygon.RenderTransform>
+            </ed:RegularPolygon>
+            <TextBlock x:Name="Improved" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="68.96" Margin="38.357,1.247,0,-9.747" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" UseLayoutRounding="False" Foreground="#FFE9E9E9" RenderTransformOrigin="0.5,0.5" Text="5"/>
 			<Viewbox HorizontalAlignment="Right" VerticalAlignment="Center" Height="44.5" Width="122.667" Margin="0,1.497,13,-9.997" Stretch="Fill" StretchDirection="DownOnly" RenderTransformOrigin="0.5,0.5">
 				<TextBlock x:Name="Gap" Text="1:55:345" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" UseLayoutRounding="False" Foreground="#FFE9E9E9" RenderTransformOrigin="0.5,0.5" FontSize="29.333" Height="44.5"/>
 			</Viewbox>

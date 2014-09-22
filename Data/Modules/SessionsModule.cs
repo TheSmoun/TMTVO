@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using TMTVO.Api;
 using TMTVO.Widget;
-using TMTVO.Widget.F1;
 using Yaml;
 
 namespace TMTVO.Data.Modules
@@ -22,13 +21,8 @@ namespace TMTVO.Data.Modules
             }
         }
 
-        private WeatherWidget weatherWidget;
-
-        public SessionsModule(WeatherWidget weatherWidget) : base("Sessions")
+        public SessionsModule() : base("Sessions")
         {
-            this.weatherWidget = weatherWidget;
-            this.weatherWidget.Module = this;
-
             Track = new Track();
             Track.Weather = new Weather();
             Track.Sectors = new List<float>();

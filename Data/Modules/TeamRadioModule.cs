@@ -6,33 +6,24 @@ using System.Threading.Tasks;
 using System.Windows;
 using TMTVO.Api;
 using TMTVO.Widget;
-using TMTVO.Widget.F1;
 using Yaml;
 
 namespace TMTVO.Data.Modules
 {
     public class TeamRadioModule : Module
     {
-        private TeamRadio teamRadio;
         public int SpeekingCarIndex { get; private set; }
         private bool canShowTeamRadio;
 
-        public TeamRadioModule(TeamRadio teamRadio) : base("TeamRadio")
+        public TeamRadioModule() : base("TeamRadio")
         {
-            this.teamRadio = teamRadio;
             this.SpeekingCarIndex = -1;
             this.CanShowTeamRadio = false;
-            teamRadio.Module = this;
         }
 
         public override void Update(ConfigurationSection rootNode, API api)
         {
             SpeekingCarIndex = (int)api.GetData("RadioTransmitCarIdx");
-            //if (canShowTeamRadio)
-                //Application.Current.Dispatcher.BeginInvoke(new Action(() =>
-                //{
-                //    teamRadio.Tick();
-                //}));
         }
 
         public bool CanShowTeamRadio
@@ -43,7 +34,7 @@ namespace TMTVO.Data.Modules
                 if (value == canShowTeamRadio)
                     return;
 
-                if (!value && teamRadio.Active)
+                /*if (!value && teamRadio.Active)
                     teamRadio.FadeOut();
                 else if (value && SpeekingCarIndex != -1)
                     Application.Current.Dispatcher.BeginInvoke(new Action(() =>
@@ -51,7 +42,7 @@ namespace TMTVO.Data.Modules
                         teamRadio.Tick();
                     }));
 
-                canShowTeamRadio = value;
+                canShowTeamRadio = value;*/
             }
         }
 

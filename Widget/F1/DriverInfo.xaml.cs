@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using TMTVO.Data;
 using TMTVO.Data.Modules;
 
-namespace TMTVO.Widget.F1
+namespace TMTVO.Widget
 {
     /// <summary>
     /// Interaktionslogik für DriverInfo.xaml
@@ -52,13 +52,13 @@ namespace TMTVO.Widget.F1
         public void FadeIn(DriverInfoMode mode)
         {
             if (cameraModule == null)
-                cameraModule = Controller.TMTVO.Instance.Api.FindModule("CameraModule") as CameraModule;
+                cameraModule = TMTVO.Controller.TMTVO.Instance.Api.FindModule("CameraModule") as CameraModule;
 
             if (standingsModule == null)
-                standingsModule = Controller.TMTVO.Instance.Api.FindModule("LiveStandings") as LiveStandingsModule;
+                standingsModule = TMTVO.Controller.TMTVO.Instance.Api.FindModule("LiveStandings") as LiveStandingsModule;
 
             if (sessionTimer == null)
-                sessionTimer = Controller.TMTVO.Instance.Api.FindModule("SessionTimer") as SessionTimerModule;
+                sessionTimer = TMTVO.Controller.TMTVO.Instance.Api.FindModule("SessionTimer") as SessionTimerModule;
 
             if (Active)
                 return;

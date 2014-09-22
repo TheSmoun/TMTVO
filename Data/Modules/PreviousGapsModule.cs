@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using TMTVO.Api;
 using TMTVO.Widget;
-using TMTVO.Widget.F1;
 using Yaml;
 
 namespace TMTVO.Data.Modules
@@ -14,7 +13,7 @@ namespace TMTVO.Data.Modules
     {
         private Dictionary<Tuple<int, int>, LinkedList<float>> previousGaps;
 
-        public PreviousGapsModule(PreviousGaps prevGaps) : base("PreviousGaps")
+        public PreviousGapsModule() : base("PreviousGaps")
         {
             previousGaps = new Dictionary<Tuple<int, int>, LinkedList<float>>();
         }

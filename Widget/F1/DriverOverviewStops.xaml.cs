@@ -13,10 +13,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TMTVO.Data.Modules;
 using TMTVO.Data;
-using TMTVO.Widget;
 using System.Threading;
 
-namespace TMTVO
+namespace TMTVO.Widget
 {
 	/// <summary>
 	/// Interaktionslogik für DriverOverviewStops.xaml

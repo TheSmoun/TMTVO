@@ -15,7 +15,7 @@ using TMTVO.Controller;
 using TMTVO.Data;
 using TMTVO.Data.Modules;
 
-namespace TMTVO.Widget.F1
+namespace TMTVO.Widget
 {
 	/// <summary>
 	/// Interaktionslogik für TeamRadio.xaml
@@ -69,13 +69,13 @@ namespace TMTVO.Widget.F1
                 FadeOut();
             else if (Module.SpeekingCarIndex != -1 && !Active)
             {
-                Driver driver = ((DriverModule)Controller.TMTVO.Instance.Api.FindModule("DriverModule")).Drivers.Find(d => d.CarIndex == Module.SpeekingCarIndex);
+                Driver driver = ((DriverModule)TMTVO.Controller.TMTVO.Instance.Api.FindModule("DriverModule")).Drivers.Find(d => d.CarIndex == Module.SpeekingCarIndex);
                 if (driver != null)
-                    Controller.TMTVO.Instance.Window.TeamRadioFadeIn(driver);
+                    TMTVO.Controller.TMTVO.Instance.Window.TeamRadioFadeIn(driver);
             }
             else if (Module.SpeekingCarIndex != -1)
             {
-                Driver driver = ((DriverModule)Controller.TMTVO.Instance.Api.FindModule("DriverModule")).Drivers.Find(d => d.CarIndex == Module.SpeekingCarIndex);
+                Driver driver = ((DriverModule)TMTVO.Controller.TMTVO.Instance.Api.FindModule("DriverModule")).Drivers.Find(d => d.CarIndex == Module.SpeekingCarIndex);
                 if (driver != null)
                 {
                     DriversNumber.Text = driver.Car.CarNumber;
