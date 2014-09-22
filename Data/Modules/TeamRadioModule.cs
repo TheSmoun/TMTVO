@@ -31,18 +31,18 @@ namespace TMTVO.Data.Modules
             get { return canShowTeamRadio; }
             set
             {
-                if (value == canShowTeamRadio)
+                /*if (value == canShowTeamRadio)
                     return;
 
-                /*if (!value && teamRadio.Active)
+                if (!value && teamRadio.Active)
                     teamRadio.FadeOut();
                 else if (value && SpeekingCarIndex != -1)
                     Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                     {
                         teamRadio.Tick();
                     }));
-
-                canShowTeamRadio = value;*/
+                */
+                canShowTeamRadio = value;
             }
         }
 
