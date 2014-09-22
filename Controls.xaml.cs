@@ -35,8 +35,6 @@ namespace TMTVO
         private Controller.TMTVO tmtvo;
         internal F1TVOverlay f1Window;
         private Timer t;
-        private int driverCount = 0;
-        private Timer statusBarTimer;
         private API api;
         private const int GWL_EXSTYLE = -20;
         private const int WS_EX_NOACTIVATE = 0x08000000;
@@ -61,10 +59,6 @@ namespace TMTVO
 
             this.tmtvo = tmtvo;
             InitializeComponent();
-
-            statusBarTimer = new Timer(1000);
-            statusBarTimer.Elapsed += updateStatusBar;
-            statusBarTimer.Start();
         }
 
         public void UpdateLaunchButton(API api)
@@ -98,7 +92,6 @@ namespace TMTVO
             {
                 StartStop.Content = "Stop";
                 tmtvo.Api.Run = true;
-                tmtvo.Api.Start();
                 f1Window.Show();
                 f1Window.Visibility = Visibility.Visible;
                 t = new Timer(50);
@@ -121,7 +114,6 @@ namespace TMTVO
                     if (o is IWidget && ((IWidget)o).Active)
                         ((IWidget)o).FadeOut();
 
-                tmtvo.Api.Stop();
                 TabGrid.Visibility = Visibility.Hidden;
 
                 ThemeSelector.IsEnabled = true;
@@ -212,15 +204,12 @@ namespace TMTVO
                 f1Window.RaceBar.Mode = (RaceBar.RaceBarMode)((ComboBox)sender).SelectedIndex;
         }
 
-        private void updateStatusBar(object sender, ElapsedEventArgs e)
+        public void updateStatusBar(object sender, ElapsedEventArgs e)
         {
-            Application.Current.Dispatcher.Invoke(new Action(() =>
-            {
-                if (tmtvo.Api.IsConnected)
-                    StatusText.Content = "iRacing connected.";
-                else
-                    StatusText.Content = "iRacing not connected.";
-            }));
+            if (tmtvo.Api.IsConnected)
+                StatusText.Content = "iRacing connected.";
+            else
+                StatusText.Content = "iRacing not connected.";
         }
 
         private void RaceBarLive_Checked(object sender, RoutedEventArgs e)
@@ -307,6 +296,8 @@ namespace TMTVO
             updateTimer = new DispatcherTimer();
             updateTimer.Interval = new TimeSpan(0, 0, 0, 0, 250);
             updateTimer.Tick += updateControls;
+            updateTimer.Tick += api.Connect;
+            updateTimer.Tick += api.UpdateControls;
             updateTimer.Start();
             cameraSelectComboBox.Items.Clear();
             driverSelect.Items.Clear();
@@ -508,7 +499,8 @@ namespace TMTVO
             int driver = Convert.ToInt32(driverSelect.SelectedValue);
             int camera = Convert.ToInt32(cameraSelectComboBox.SelectedValue);
 
-            api.SwitchCamera(driver, camera);
+            if (api.IsConnected)
+                api.SwitchCamera(driver, camera);
         }
 
         private void commitButton_Click(object sender, RoutedEventArgs e)
@@ -594,7 +586,7 @@ namespace TMTVO
             string nextPlate = "";
 
             if (pos < 1)
-                nextPlate = lsm.FindDriverByPos(DriverModule.Drivers.Count).Driver.Car.CarNumber;
+                nextPlate = lsm.FindLastDriver().Driver.Car.CarNumber;
             else if (pos > lsm.Items.Count)
                 nextPlate = lsm.Leader.Driver.Car.CarNumber;
             else

@@ -25,30 +25,16 @@ namespace TMTVO.Api
         private readonly int ticksPerSecond;
         private readonly List<Module> modules;
         private Thread thread;
-        private System.Timers.Timer windowUpdater;
+        private int nextConnectTry;
+        private long time;
 
         public API(int ticksPerSecond)
         {
             mutex = new Mutex();
             this.ticksPerSecond = ticksPerSecond;
-            this.thread = new Thread(StartThread);
-
-            windowUpdater = new System.Timers.Timer(500);
-            windowUpdater.Elapsed += UpdateWindows;
-            windowUpdater.Start();
 
             modules = new List<Module>();
             Sdk = new iRacingSDK();
-
-            Sdk.Startup();
-        }
-
-        private void UpdateWindows(object sender, ElapsedEventArgs e)
-        {
-            Application.Current.Dispatcher.Invoke(new Action(() =>
-            {
-                TMTVO.Controller.TMTVO.Instance.Controls.UpdateLaunchButton(this);
-            }));
         }
 
         private void RunApi()
@@ -69,20 +55,14 @@ namespace TMTVO.Api
                 {
                     Sdk.Shutdown();
                     ResetModules();
-                    Sdk.Startup();
-                    continue;
+                    Run = false;
+                    return;
                 }
 
                 long end = Environment.TickCount;
                 long time = end - start;
+                this.time = time;
                 int sleepTime = (int)(maxDelay - time);
-
-                if (time > 0)
-                    Application.Current.Dispatcher.BeginInvoke(new Action(() =>
-                    {
-                        Controller.TMTVO.Instance.Controls.FpsItem.Content = (1000F / ((float)time)).ToString("0.0") + " FPS";
-                        Controller.TMTVO.Instance.Controls.MsItem.Content = time + " ms";
-                    }));
 
                 if (sleepTime <= 0)
                 {
@@ -134,31 +114,6 @@ namespace TMTVO.Api
             Controller.TMTVO.Instance.Controls.Reset();
         }
 
-        public void Start()
-        {
-            try
-            {
-                thread.Start();
-            }
-            catch (ThreadStateException)
-            {
-#pragma warning disable
-                thread.Resume();
-            }
-        }
-
-        private void StartThread(object obj)
-        {
-            RunApi();
-        }
-
-        public void Stop()
-        {
-#pragma warning disable
-            thread.Suspend();
-            ResetModules();
-        }
-
         public void HideUI()
         {
             // TODO Implement
@@ -194,7 +149,6 @@ namespace TMTVO.Api
             Sdk.BroadcastMessage(BroadcastMessageTypes.ReplaySetPlaySpeed, 1, 0);
         }
 
-
         public object GetData(string key)
         {
             return Sdk.GetData(key);
@@ -203,6 +157,38 @@ namespace TMTVO.Api
         public Module FindModule(string name)
         {
             return modules.Find(m => m.Name == name);
+        }
+
+        public void Connect(object sender, EventArgs e)
+        {
+            if (!IsConnected)
+            {
+                if (Environment.TickCount > nextConnectTry)
+                {
+                    Sdk.Startup();
+                    nextConnectTry = Environment.TickCount + 1000;
+                }
+            }
+            else
+            {
+                if (thread == null || !thread.IsAlive)
+                {
+                    thread = new Thread(new ThreadStart(RunApi));
+                    thread.IsBackground = true;
+                    thread.Start();
+                }
+            }
+        }
+
+        public void UpdateControls(object sender, EventArgs e)
+        {
+            Controller.TMTVO.Instance.Controls.FpsItem.Content = Controller.TMTVO.Instance.Window.CurrentFps + " FPS";
+
+            if (time > 0)
+                Controller.TMTVO.Instance.Controls.MsItem.Content = time + " ms";
+
+            TMTVO.Controller.TMTVO.Instance.Controls.UpdateLaunchButton(this);
+            TMTVO.Controller.TMTVO.Instance.Controls.updateStatusBar(null, null);
         }
     }
 }

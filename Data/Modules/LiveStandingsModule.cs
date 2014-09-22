@@ -48,6 +48,18 @@ namespace TMTVO.Data.Modules
             return Items.Find(i => i.PositionLive == position);
         }
 
+        public LiveStandingsItem FindLastDriver()
+        {
+            LiveStandingsItem item = null;
+            foreach (LiveStandingsItem i in Items)
+            {
+                if (item == null || i.PositionLive > item.PositionLive)
+                    item = i;
+            }
+
+            return item;
+        }
+
         public bool ContainsItem(int index)
         {
             return Items.Find(i => i.Driver.CarIndex == index) != null;

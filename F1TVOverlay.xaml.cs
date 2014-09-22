@@ -50,6 +50,9 @@ namespace TMTVO
             {"W", Colors.LightGray}
         };
 
+        public int CurrentFps { get; private set; }
+        private int fps;
+
         public DriverInfo DriverInfo { get; private set; }
         public LapsRemainingWidget LapsRemaining { get; private set; }
         public LapTimerLeft LapTimerLeft { get; private set; }
@@ -64,11 +67,18 @@ namespace TMTVO
         public WeatherWidget WeatherWidget { get; private set; }
 
         private DispatcherTimer timer;
+        private DispatcherTimer fpsTimer;
         private List<IWidget> widgets;
 
         public F1TVOverlay()
         {
             InitializeComponent();
+
+            CompositionTarget.Rendering += CompositionTarget_Rendering;
+            fpsTimer = new DispatcherTimer();
+            fpsTimer.Interval = TimeSpan.FromSeconds(1);
+            fpsTimer.Tick += fpsTimer_Tick;
+            fpsTimer.Start();
 
             widgets = new List<IWidget>();
 
@@ -173,6 +183,17 @@ namespace TMTVO
             timer.Tick += timer_Tick;
             timer.Interval = new TimeSpan(0, 0, 0, 0, 20);
             timer.Start();
+        }
+
+        private void fpsTimer_Tick(object sender, EventArgs e)
+        {
+            CurrentFps = fps;
+            fps = 0;
+        }
+
+        private void CompositionTarget_Rendering(object sender, EventArgs e)
+        {
+            ++fps;
         }
 
         private void timer_Tick(object sender, EventArgs e)
