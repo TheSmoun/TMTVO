@@ -27,6 +27,9 @@ namespace TMTVO.Widget
 
         private SideBarWidget widget;
         private LiveStandingsModule module;
+        private BattleElementMode mode;
+
+        private System.Timers.Timer cooldownTimer;
 
         public BattleElement(SideBarWidget widget, LiveStandingsModule module)
         {
@@ -34,6 +37,20 @@ namespace TMTVO.Widget
 
             this.widget = widget;
             this.module = module;
+            this.mode = BattleElementMode.Default;
+            cooldownTimer = new System.Timers.Timer(5000);
+            cooldownTimer.AutoReset = true;
+            cooldownTimer.Elapsed += cooldownTimer_Elapsed;
+        }
+
+        private void cooldownTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                ImpTriangle.Visibility = LostTriangle.Visibility = Visibility.Hidden;
+                GapText.Visibility = Visibility.Visible;
+                mode = BattleElementMode.Default;
+            }));
         }
 
         internal void FadeIn(LiveStandingsItem item, int delay)
@@ -92,12 +109,36 @@ namespace TMTVO.Widget
             }
             else
                 GapText.Text = string.Empty;
+
+            if (Driver.PositionImprovedBattleFor && mode != BattleElementMode.PositionImproved)
+            {
+                mode = BattleElementMode.PositionImproved;
+                ImpTriangle.Visibility = Visibility.Visible;
+                GapText.Visibility = Visibility.Hidden;
+                Driver.PositionImprovedBattleFor = false;
+                cooldownTimer.Start();
+            }
+            else if (Driver.PositionLostBattleFor && mode != BattleElementMode.PositionLost)
+            {
+                mode = BattleElementMode.PositionLost;
+                LostTriangle.Visibility = Visibility.Visible;
+                GapText.Visibility = Visibility.Hidden;
+                Driver.PositionLostBattleFor = false;
+                cooldownTimer.Start();
+            }
         }
 
         public void Reset()
         {
             Active = false;
             Driver = null;
+        }
+
+        public enum BattleElementMode
+        {
+            PositionImproved,
+            PositionLost,
+            Default
         }
     }
 }

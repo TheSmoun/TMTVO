@@ -27,7 +27,6 @@ namespace TMTVO.Widget
         private List<ISideBarElement> elements;
         private LiveStandingsModule module;
 
-
 		public SideBarWidget()
 		{
 			this.InitializeComponent();
@@ -88,6 +87,9 @@ namespace TMTVO.Widget
             this.Count = count;
 
             module = (LiveStandingsModule)Controller.TMTVO.Instance.Api.FindModule("LiveStandings");
+            foreach (LiveStandingsItem item in module.Items)
+                item.PositionImprovedBattleFor = item.PositionLostBattleFor = false;
+
             Mode = SideBarMode.BattleForPosition;
             Active = true;
             SideBarTitle title = new SideBarTitle();

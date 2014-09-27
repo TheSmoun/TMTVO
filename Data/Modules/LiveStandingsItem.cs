@@ -50,8 +50,12 @@ namespace TMTVO.Data.Modules
         public int Sector { get; private set; }
         public double SectorBegin { get; private set; }
         public SurfaceType Surface { get; private set; }
-        public bool PositionImproved { get; set; }
-        public bool PositionLost { get; set; }
+        public bool PositionImprovedBattleFor { get; set; }
+        public bool PositionLostBattleFor { get; set; }
+        public bool PositionImprovedRaceBar { get; set; }
+        public bool PositionLostRaceBar { get; set; }
+        public bool PositionImprovedTiming { get; set; }
+        public bool PositionLostTiming { get; set; }
         public bool LapTimeImproved { get; set; }
         public int PositionImprovements
         {
@@ -126,13 +130,13 @@ namespace TMTVO.Data.Modules
 
                 if (value < positionLive)
                 {
-                    PositionImproved = true;
-                    PositionLost = false;
+                    PositionImprovedBattleFor = PositionImprovedRaceBar = PositionImprovedTiming = true;
+                    PositionLostBattleFor = PositionLostRaceBar = PositionLostTiming = false;
                 }
                 else
                 {
-                    PositionLost = true;
-                    PositionImproved = false;
+                    PositionLostBattleFor = PositionLostRaceBar = PositionLostTiming = true;
+                    PositionImprovedBattleFor = PositionImprovedRaceBar = PositionImprovedTiming = false;
                 }
 
                 positionLive = value;
@@ -155,8 +159,6 @@ namespace TMTVO.Data.Modules
                 return;
 
             Position = int.Parse(dict.GetDictValue("Position"));
-            //PositionImproved = Position < OldPosition || (OldPosition == 0 && Position != 0) && !first;
-            //PositionLost = OldPosition < Position && !first;
             ClassPosition = int.Parse(dict.GetDictValue("ClassPosition")) + 1;
             GapLaps = int.Parse(dict.GetDictValue("Lap"));
             GapTime = float.Parse(dict.GetDictValue("Time").Replace('.', ','));

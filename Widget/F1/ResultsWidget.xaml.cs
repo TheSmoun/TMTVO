@@ -81,7 +81,9 @@ namespace TMTVO.Widget
             Mode = mode;
             pageIndex = 0;
             pageTimer.Interval = (double)msPerPage;
-            
+            Module = Controller.TMTVO.Instance.Api.FindModule("LiveStandings") as LiveStandingsModule;
+            DriverModule = Controller.TMTVO.Instance.Api.FindModule("DriverModule") as DriverModule;
+
             Storyboard sb = FindResource("FadeInHeader") as Storyboard;
             sb.Begin();
 
@@ -215,7 +217,7 @@ namespace TMTVO.Widget
 
         public void Tick()
         {
-            throw new NotImplementedException();
+            
         }
 
         public enum ResultsMode

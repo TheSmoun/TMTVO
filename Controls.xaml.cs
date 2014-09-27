@@ -93,9 +93,6 @@ namespace TMTVO
                 tmtvo.Api.Run = true;
                 f1Window.Show();
                 f1Window.Visibility = Visibility.Visible;
-                t = new Timer(50);
-                t.Elapsed += ShowTabs;
-                t.Start();
                 // TODO Load Theme
                 TabGrid.Visibility = Visibility.Visible;
                 CanResize.Visibility = Visibility.Hidden;
@@ -114,29 +111,23 @@ namespace TMTVO
                         ((IWidget)o).FadeOut();
 
                 TabGrid.Visibility = Visibility.Hidden;
-
                 ThemeSelector.IsEnabled = true;
             }
         }
 
-        private void ShowTabs(object sender, ElapsedEventArgs e)
+        private void ShowTabs(object sender, EventArgs e)
         {
-            Application.Current.Dispatcher.Invoke(new Action(() =>
+            SessionTimerModule sTModule = (SessionTimerModule)tmtvo.Api.FindModule("SessionTimer");
+            if (sTModule.SessionType == SessionType.LapRace || sTModule.SessionType == SessionType.TimeRace)
             {
-                SessionTimerModule sTModule = (SessionTimerModule)tmtvo.Api.FindModule("SessionTimer");
-                if (sTModule.SessionType == SessionType.LapRace || sTModule.SessionType == SessionType.TimeRace)
-                {
-                    Race.Visibility = Visibility.Visible;
-                    Practice.Visibility = Visibility.Hidden;
-                }
-                else
-                {
-                    Race.Visibility = Visibility.Hidden;
-                    Practice.Visibility = Visibility.Visible;
-                }
-            }));
-
-            t.Stop();
+                Race.Visibility = Visibility.Visible;
+                Practice.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                Race.Visibility = Visibility.Hidden;
+                Practice.Visibility = Visibility.Visible;
+            }
         }
 
         private void SessionTimer_Click(object sender, RoutedEventArgs e)
@@ -223,7 +214,7 @@ namespace TMTVO
 
         private void ResultsButton_Click(object sender, RoutedEventArgs e)
         {
-            switch (f1Window.SessionTimer.Module.SessionType)
+            switch ((Controller.TMTVO.Instance.Api.FindModule("SessionTimer") as SessionTimerModule).SessionType)
             {
                 case SessionType.LapRace:
                 case SessionType.TimeRace:
@@ -297,6 +288,7 @@ namespace TMTVO
             updateTimer.Tick += updateControls;
             updateTimer.Tick += api.Connect;
             updateTimer.Tick += api.UpdateControls;
+            updateTimer.Tick += ShowTabs;
             updateTimer.Start();
             cameraSelectComboBox.Items.Clear();
             driverSelect.Items.Clear();

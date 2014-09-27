@@ -185,13 +185,13 @@ namespace TMTVO.Widget
             LayoutRoot.Visibility = Visibility.Visible;
 
             UpdateWidget();
-            if (Item.PositionImproved)
+            if (Item.PositionImprovedTiming)
                 PositionImproved();
             else if (Item.LapTimeImproved)
                 LapTimeImproved();
 
             OldCarIdx = item.Driver.CarIndex;
-            Item.PositionImproved = Item.LapTimeImproved = Item.PositionLost = false;
+            Item.PositionImprovedTiming = Item.LapTimeImproved = Item.PositionLostTiming = false;
         }
 
         public void UpdateDiff()
