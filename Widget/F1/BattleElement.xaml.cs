@@ -39,7 +39,7 @@ namespace TMTVO.Widget
             this.module = module;
             this.mode = BattleElementMode.Default;
             cooldownTimer = new System.Timers.Timer(5000);
-            cooldownTimer.AutoReset = true;
+            cooldownTimer.AutoReset = false;
             cooldownTimer.Elapsed += cooldownTimer_Elapsed;
         }
 
@@ -114,6 +114,7 @@ namespace TMTVO.Widget
             {
                 mode = BattleElementMode.PositionImproved;
                 ImpTriangle.Visibility = Visibility.Visible;
+                LostTriangle.Visibility = Visibility.Hidden;
                 GapText.Visibility = Visibility.Hidden;
                 Driver.PositionImprovedBattleFor = false;
                 cooldownTimer.Start();
@@ -122,6 +123,7 @@ namespace TMTVO.Widget
             {
                 mode = BattleElementMode.PositionLost;
                 LostTriangle.Visibility = Visibility.Visible;
+                ImpTriangle.Visibility = Visibility.Hidden;
                 GapText.Visibility = Visibility.Hidden;
                 Driver.PositionLostBattleFor = false;
                 cooldownTimer.Start();

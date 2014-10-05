@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using TMTVO.Api;
 using Yaml;
 
@@ -16,11 +17,22 @@ namespace TMTVO.Data.Modules
         public TimeDelta TimeDelta { get; private set; }
 
         private float trackLength;
+        private Timer cooldown;
+        private bool canUpdate;
 
         public TimeDeltaModule() : base("TimeDelta")
         {
             TimeDelta = null;
             trackLength = -1F;
+            cooldown = new Timer(10000);
+            cooldown.Elapsed += cooldown_Elapsed;
+            cooldown.Start();
+            canUpdate = true;
+        }
+
+        private void cooldown_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            canUpdate = true;
         }
 
         public override void Update(ConfigurationSection rootNode, API api)
@@ -35,7 +47,11 @@ namespace TMTVO.Data.Modules
                 trackLength = track.Length;
             }
 
-            TimeDelta.Update(api.CurrentTime, (float[])api.GetData("CarIdxLapDistPct"));
+            if (canUpdate)
+            {
+                TimeDelta.Update(api.CurrentTime, (float[])api.GetData("CarIdxLapDistPct"));
+                canUpdate = false;
+            }
         }
 
         public override void Reset()
