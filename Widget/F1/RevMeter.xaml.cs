@@ -230,6 +230,13 @@ namespace TMTVO.Widget
             if (rpm < 0)
                 return;
 
+            prevGear = ((int[])Controller.TMTVO.Instance.Api.GetData("CarIdxGear"))[carIdx];
+            if (canUpdateGear)
+            {
+                sb_Completed(null, null);
+                currentGear = prevGear;
+            }
+
             Active = true;
             Storyboard sb = FindResource("FadeIn") as Storyboard;
             sb.Begin();

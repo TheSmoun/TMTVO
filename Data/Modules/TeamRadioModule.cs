@@ -13,7 +13,7 @@ namespace TMTVO.Data.Modules
     public class TeamRadioModule : Module
     {
         public int SpeekingCarIndex { get; private set; }
-        private bool canShowTeamRadio;
+        public bool CanShowTeamRadio { get; set; }
 
         public TeamRadioModule() : base("TeamRadio")
         {
@@ -24,26 +24,6 @@ namespace TMTVO.Data.Modules
         public override void Update(ConfigurationSection rootNode, API api)
         {
             SpeekingCarIndex = (int)api.GetData("RadioTransmitCarIdx");
-        }
-
-        public bool CanShowTeamRadio
-        {
-            get { return canShowTeamRadio; }
-            set
-            {
-                /*if (value == canShowTeamRadio)
-                    return;
-
-                if (!value && teamRadio.Active)
-                    teamRadio.FadeOut();
-                else if (value && SpeekingCarIndex != -1)
-                    Application.Current.Dispatcher.BeginInvoke(new Action(() =>
-                    {
-                        teamRadio.Tick();
-                    }));
-                */
-                canShowTeamRadio = value;
-            }
         }
 
         public override void Reset()

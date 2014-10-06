@@ -65,15 +65,18 @@ namespace TMTVO.Widget
 
         public void Tick()
         {
-            if (Module.SpeekingCarIndex == -1 && Active)
+            if (Module == null)
+                Module = Controller.TMTVO.Instance.Api.FindModule("TeamRadio") as TeamRadioModule;
+
+            if ((Module.SpeekingCarIndex == -1 || !Module.CanShowTeamRadio) && Active)
                 FadeOut();
-            else if (Module.SpeekingCarIndex != -1 && !Active)
+            else if (Module.SpeekingCarIndex != -1 && !Active && Module.CanShowTeamRadio)
             {
                 Driver driver = ((DriverModule)TMTVO.Controller.TMTVO.Instance.Api.FindModule("DriverModule")).Drivers.Find(d => d.CarIndex == Module.SpeekingCarIndex);
                 if (driver != null)
                     TMTVO.Controller.TMTVO.Instance.Window.TeamRadioFadeIn(driver);
             }
-            else if (Module.SpeekingCarIndex != -1)
+            else if (Module.SpeekingCarIndex != -1 && Module.CanShowTeamRadio)
             {
                 Driver driver = ((DriverModule)TMTVO.Controller.TMTVO.Instance.Api.FindModule("DriverModule")).Drivers.Find(d => d.CarIndex == Module.SpeekingCarIndex);
                 if (driver != null)
@@ -82,6 +85,8 @@ namespace TMTVO.Widget
                     DriversName.Text = driver.LastUpperName;
                     NumberPlate.Fill = new SolidColorBrush(driver.LicColor);
                 }
+                else
+                    FadeOut();
             }
         }
     }

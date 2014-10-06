@@ -50,8 +50,6 @@ namespace TMTVO
         };
 
         public int CurrentFps { get; private set; }
-        private int fps;
-
         public DriverInfo DriverInfo { get; private set; }
         public LapsRemainingWidget LapsRemaining { get; private set; }
         public LapTimerLeft LapTimerLeft { get; private set; }
@@ -68,6 +66,7 @@ namespace TMTVO
         private DispatcherTimer timer;
         private DispatcherTimer fpsTimer;
         private List<IWidget> widgets;
+        private int fps;
 
         public F1TVOverlay()
         {
@@ -202,7 +201,7 @@ namespace TMTVO
 
             foreach (var item in widgets)
             {
-                if (item.Active)
+                if (item.Active || item == TeamRadio)
                     item.Tick();
             }
         }
