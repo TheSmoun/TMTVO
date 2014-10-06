@@ -84,6 +84,35 @@ namespace TMTVO.Widget
             Module = Controller.TMTVO.Instance.Api.FindModule("LiveStandings") as LiveStandingsModule;
             DriverModule = Controller.TMTVO.Instance.Api.FindModule("DriverModule") as DriverModule;
 
+            SessionTimerModule stm = Controller.TMTVO.Instance.Api.FindModule("SessionTimer") as SessionTimerModule;
+            SessionsModule sm = Controller.TMTVO.Instance.Api.FindModule("Sessions") as SessionsModule;
+
+            Race_Title.Text = sm.Track.DisplayName;
+            
+            switch (stm.SessionType)
+            {
+                case SessionType.LapRace:
+                    Announcement.Text = "Race Classification after " + stm.LapsTotal + " Laps";
+                    break;
+                case SessionType.TimeRace:
+                    Announcement.Text = "Race Classification";
+                    break;
+                case SessionType.Qualifying:
+                    Announcement.Text = "Qualifying Classification";
+                    break;
+                case SessionType.Practice:
+                    Announcement.Text = "Practice Classification";
+                    break;
+                case SessionType.TimeTrial:
+                    Announcement.Text = "TimeTrial Classification";
+                    break;
+                default:
+                    Announcement.Text = "ERROR!";
+                    break;
+            }
+
+            Sof.Text = DriverModule.SOF.ToString() + " SoF";
+
             Storyboard sb = FindResource("FadeInHeader") as Storyboard;
             sb.Begin();
 
