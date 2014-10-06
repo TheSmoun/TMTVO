@@ -186,7 +186,7 @@ namespace TMTVO.Widget
 
         private int getPoints(int pos) // (SOF/16)*(1-((x-1)/(y-1))) x=pos, y=count
         {
-            return (int)Math.Floor((DriverModule.GetStrengthOfField() / 16F) * (1 - ((pos - 1F) / (DriverModule.Drivers.Count - 1F))));
+            return (int)Math.Floor((DriverModule.SOF / 16F) * (1 - ((pos - 1F) / (DriverModule.DriversCount - 1F))));
         }
 
         private void FadeInPositions()

@@ -29,13 +29,39 @@ namespace TMTVO.Data.Modules
             return Drivers.Find(d => d.CarIndex == CarIdx);
         }
 
-        public int GetStrengthOfField()
+        public int SOF
         {
-            int sof = 0;
-            foreach (Driver d in Drivers)
-                sof += d.IRating;
+            get
+            {
+                /*int sof = 0;
+                foreach (Driver d in Drivers)
+                    sof += d.IRating;
 
-            return sof / Drivers.Count;
+                return sof / Drivers.Count;*/
+
+                // Median calculation
+                List<Driver> query = Drivers.OrderBy(d => d.IRating).ToList();
+                if (query.First().IRating == 0 && query.First().FullName.StartsWith("Pace Car"))
+                    query.RemoveAt(0);
+
+                int length = query.Count;
+                if (length % 2 == 0)
+                    return (query[length / 2].IRating + query[(length / 2) + 1].IRating) / 2;
+                else
+                    return query[(length / 2) + 1].IRating;
+            }
+        }
+
+        public int DriversCount
+        {
+            get
+            {
+                List<Driver> query = Drivers.OrderBy(d => d.IRating).ToList();
+                if (query.First().IRating == 0 && query.First().FullName.StartsWith("Pace Car"))
+                    query.RemoveAt(0);
+
+                return query.Count;
+            }
         }
 
         public override void Update(ConfigurationSection rootNode, API api)
