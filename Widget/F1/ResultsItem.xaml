@@ -256,7 +256,7 @@
 					</LinearGradientBrush>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<Rectangle x:Name="NumberPlate" HorizontalAlignment="Left" Height="30" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="57" Fill="#FF6800FF" RenderTransformOrigin="0.5,0.5" Margin="54.434,3,0,0">
+			<Rectangle x:Name="NumberPlate" HorizontalAlignment="Left" Height="26" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="52" Fill="#FF6800FF" RenderTransformOrigin="0.5,0.5" Margin="54.434,5.75,0,0">
 				<Rectangle.Stroke>
 					<SolidColorBrush Color="Black" Opacity="0"/>
 				</Rectangle.Stroke>
@@ -281,7 +281,7 @@
 					<SolidColorBrush Color="Black" Opacity="0"/>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<TextBlock x:Name="DriversNumber" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="36" Width="50" Margin="61.394,1.084,0,-1.084" FontSize="30.667" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="000" TextAlignment="Center" FontWeight="Bold">
+			<TextBlock x:Name="DriversNumber" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="36" Width="50" Margin="60.894,4.334,0,-4.334" FontSize="25.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="000" TextAlignment="Center" FontWeight="Bold">
 				<TextBlock.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -291,7 +291,7 @@
 					</TransformGroup>
 				</TextBlock.RenderTransform>
 			</TextBlock>
-			<TextBlock x:Name="Position" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="31.5" Width="68.96" Margin="-6.118,0.83,0,3.67" FontSize="30.667" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="22">
+			<TextBlock x:Name="Position" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="31.5" Width="68.96" Margin="-6.118,2.08,0,2.42" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="22">
 				<TextBlock.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -301,7 +301,7 @@
 					</TransformGroup>
 				</TextBlock.RenderTransform>
 			</TextBlock>
-			<Viewbox HorizontalAlignment="Left" VerticalAlignment="Center" Height="34.167" Width="221.666" Margin="121.948,0.83,0,1.003" Stretch="Fill" StretchDirection="DownOnly" RenderTransformOrigin="0.5,0.5">
+			<Viewbox HorizontalAlignment="Left" VerticalAlignment="Center" Height="34.167" Width="231.416" Margin="115.948,2.08,0,-0.247" Stretch="Fill" StretchDirection="DownOnly" RenderTransformOrigin="0.5,0.5">
 				<Viewbox.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -310,7 +310,7 @@
 						<TranslateTransform/>
 					</TransformGroup>
 				</Viewbox.RenderTransform>
-				<TextBlock x:Name="DriverName" TextWrapping="Wrap" FontSize="30.667" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="ALLMANNSBERGER" TextTrimming="CharacterEllipsis" Height="34.167"/>
+				<TextBlock x:Name="DriverName" TextWrapping="Wrap" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="ALLMANNSBERGER" TextTrimming="CharacterEllipsis" Height="34.167"/>
 			</Viewbox>
 		</Grid>
 		<Grid x:Name="TeamCarItem" Margin="388,0,0,0" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top" Height="36" Width="345" Opacity="0">
@@ -402,8 +402,8 @@
 					<SolidColorBrush Color="Black" Opacity="0"/>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<Viewbox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13.001,0.336,0,0" Width="321.333" Height="34.998" Stretch="Fill" StretchDirection="DownOnly">
-				<TextBlock x:Name="TeamCarName" TextWrapping="Wrap" Foreground="White" FontFamily="DIN 1451 Std Mittelschrift" FontSize="30.667" Text="BMW Z4 GT3" TextTrimming="CharacterEllipsis" Height="34.998"/>
+			<Viewbox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13.001,2.001,0,-0.999" Width="321.333" Height="34.998" Stretch="Fill" StretchDirection="DownOnly">
+				<TextBlock x:Name="TeamCarName" TextWrapping="Wrap" Foreground="White" FontFamily="DIN 1451 Std Mittelschrift" FontSize="29.333" Text="BMW Z4 GT3" TextTrimming="CharacterEllipsis" Height="34.998"/>
 			</Viewbox>
 		</Grid>
 		<Grid x:Name="TimeItem" Height="36" Width="243" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Margin="753,0,0,0" VerticalAlignment="Top" Opacity="0">
@@ -451,7 +451,7 @@
 					<SolidColorBrush Color="Black" Opacity="0"/>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<TextBlock x:Name="Time" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="34.167" Width="208.499" Margin="19.015,0.83,0,1.003" FontSize="30.667" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="1:33:42.914" TextTrimming="CharacterEllipsis" TextAlignment="Right">
+			<TextBlock x:Name="Time" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="34.167" Width="208.499" Margin="19.681,1.829,0,0.004" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="1:33:42.914" TextTrimming="CharacterEllipsis" TextAlignment="Right">
 				<TextBlock.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -507,7 +507,7 @@
 					<SolidColorBrush Color="Black" Opacity="0"/>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<TextBlock x:Name="Time1" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="34.167" Width="97.499" Margin="18.765,0.83,0,1.003" FontSize="30.667" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="300 pts" TextTrimming="CharacterEllipsis" TextAlignment="Center">
+			<TextBlock x:Name="Time1" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="34.167" Width="97.499" Margin="19.098,1.496,0,0.337" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="300 pts" TextTrimming="CharacterEllipsis" TextAlignment="Center">
 				<TextBlock.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>

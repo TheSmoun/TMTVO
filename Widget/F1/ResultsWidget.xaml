@@ -127,7 +127,7 @@
     </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot">
-		<Grid x:Name="Header" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="870" Height="72">
+		<Grid x:Name="Header" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1152" Height="72">
 			<Grid x:Name="FirstLine" Margin="31,0,0,0" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Height="36" Width="839" VerticalAlignment="Top" Opacity="0">
 				<Grid.RenderTransform>
 					<TransformGroup>
@@ -281,6 +281,138 @@
 					</Rectangle.Stroke>
 				</Rectangle>
 				<TextBlock x:Name="Announcement" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontFamily="DIN 1451 Std Mittelschrift" FontSize="29.333" Margin="13.667,1.002,0,-0.202" Width="797.333" Text="Race Classification" TextTrimming="CharacterEllipsis"/>
+			</Grid>
+			<Grid x:Name="SofLineOne" Height="36" Width="280" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Margin="861,0,0,0" VerticalAlignment="Top" Opacity="0">
+				<Grid.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform AngleX="-32"/>
+						<RotateTransform/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Grid.RenderTransform>
+				<Rectangle x:Name="BackgroundWhite_Copy" Fill="#FFB9BBBB" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Bottom" Width="280" RenderTransformOrigin="0.5,0.5" Margin="0,0,-600,0">
+					<Rectangle.Stroke>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<LinearGradientBrush.RelativeTransform>
+								<TransformGroup>
+									<ScaleTransform CenterY="0.5" CenterX="0.5"/>
+									<SkewTransform CenterY="0.5" CenterX="0.5"/>
+									<RotateTransform Angle="21.038" CenterY="0.5" CenterX="0.5"/>
+									<TranslateTransform/>
+								</TransformGroup>
+							</LinearGradientBrush.RelativeTransform>
+							<GradientStop Color="Black" Offset="1"/>
+							<GradientStop Color="#FF666666"/>
+						</LinearGradientBrush>
+					</Rectangle.Stroke>
+				</Rectangle>
+				<Rectangle x:Name="Farbverlauf3" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="280" RenderTransformOrigin="0.5,0.5" Margin="0">
+					<Rectangle.Fill>
+						<RadialGradientBrush Center="200,35" GradientOrigin="329,62" MappingMode="Absolute" RadiusY="38" RadiusX="303">
+							<RadialGradientBrush.RelativeTransform>
+								<TransformGroup>
+									<ScaleTransform CenterY="0.5" CenterX="0.5"/>
+									<SkewTransform CenterY="0.5" CenterX="0.5"/>
+									<RotateTransform CenterY="0.5" CenterX="0.5"/>
+									<TranslateTransform/>
+								</TransformGroup>
+							</RadialGradientBrush.RelativeTransform>
+							<GradientStop Offset="0.741"/>
+							<GradientStop Color="#D1FFFFFF" Offset="0.767"/>
+							<GradientStop Offset="1"/>
+						</RadialGradientBrush>
+					</Rectangle.Fill>
+					<Rectangle.Stroke>
+						<SolidColorBrush Color="Black" Opacity="0"/>
+					</Rectangle.Stroke>
+				</Rectangle>
+				<TextBlock x:Name="Time1" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="34.167" Width="278.832" Margin="4.182,0.831,-3.014,1.002" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" UseLayoutRounding="False" Foreground="Black" RenderTransformOrigin="0.5,0.5" Text="STRENGTH OF FIELD" TextTrimming="CharacterEllipsis" TextAlignment="Center">
+					<TextBlock.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform/>
+							<SkewTransform AngleX="32"/>
+							<RotateTransform/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</TextBlock.RenderTransform>
+				</TextBlock>
+			</Grid>
+			<Grid x:Name="SofLineTwo" Height="36" Width="280" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Margin="839,36,0,0" VerticalAlignment="Top" Opacity="0">
+				<Grid.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform AngleX="-32"/>
+						<RotateTransform/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Grid.RenderTransform>
+				<Rectangle x:Name="BackgroundBlue_Copy" Fill="#FF292E39" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Bottom" Width="280" RenderTransformOrigin="0.5,0.5" Margin="0,0,-550,0">
+					<Rectangle.Stroke>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<LinearGradientBrush.RelativeTransform>
+								<TransformGroup>
+									<ScaleTransform CenterY="0.5" CenterX="0.5"/>
+									<SkewTransform CenterY="0.5" CenterX="0.5"/>
+									<RotateTransform Angle="21.038" CenterY="0.5" CenterX="0.5"/>
+									<TranslateTransform/>
+								</TransformGroup>
+							</LinearGradientBrush.RelativeTransform>
+							<GradientStop Color="Black" Offset="1"/>
+							<GradientStop Color="#FF666666"/>
+						</LinearGradientBrush>
+					</Rectangle.Stroke>
+				</Rectangle>
+				<Rectangle x:Name="Farbverlauf2" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Top" Width="280" RenderTransformOrigin="0.5,0.5" Margin="0">
+					<Rectangle.Fill>
+						<RadialGradientBrush Center="200,35" GradientOrigin="329,62" MappingMode="Absolute" RadiusY="38" RadiusX="303">
+							<RadialGradientBrush.RelativeTransform>
+								<TransformGroup>
+									<ScaleTransform CenterY="0.5" CenterX="0.5"/>
+									<SkewTransform CenterY="0.5" CenterX="0.5"/>
+									<RotateTransform CenterY="0.5" CenterX="0.5"/>
+									<TranslateTransform/>
+								</TransformGroup>
+							</RadialGradientBrush.RelativeTransform>
+							<GradientStop Offset="0.741"/>
+							<GradientStop Color="#3FFFFFFF" Offset="0.767"/>
+							<GradientStop Offset="1"/>
+						</RadialGradientBrush>
+					</Rectangle.Fill>
+					<Rectangle.Stroke>
+						<SolidColorBrush Color="Black" Opacity="0"/>
+					</Rectangle.Stroke>
+				</Rectangle>
+				<Rectangle x:Name="Shine_Copy" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" StrokeThickness="0" VerticalAlignment="Bottom" Width="280" RenderTransformOrigin="0.5,0.5" Margin="0,0,-550,0">
+					<Rectangle.Fill>
+						<RadialGradientBrush Center="467,57" GradientOrigin="181,94" MappingMode="Absolute" RadiusY="38" RadiusX="700">
+							<RadialGradientBrush.RelativeTransform>
+								<TransformGroup>
+									<ScaleTransform CenterY="0.5" CenterX="0.5"/>
+									<SkewTransform CenterY="0.5" CenterX="0.5"/>
+									<RotateTransform CenterY="0.5" CenterX="0.5"/>
+									<TranslateTransform/>
+								</TransformGroup>
+							</RadialGradientBrush.RelativeTransform>
+							<GradientStop Offset="0.741"/>
+							<GradientStop Color="#88FFFFFF" Offset="0.767"/>
+							<GradientStop Offset="1"/>
+						</RadialGradientBrush>
+					</Rectangle.Fill>
+					<Rectangle.Stroke>
+						<SolidColorBrush Color="Black" Opacity="0"/>
+					</Rectangle.Stroke>
+				</Rectangle>
+				<TextBlock x:Name="Time2" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="34.167" Width="278.832" Margin="4.182,0.831,-3.014,1.002" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="ABC" TextTrimming="CharacterEllipsis" TextAlignment="Center">
+					<TextBlock.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform/>
+							<SkewTransform AngleX="32"/>
+							<RotateTransform/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</TextBlock.RenderTransform>
+				</TextBlock>
 			</Grid>
 			<Rectangle x:Name="FadeInColor" Fill="White" HorizontalAlignment="Left" Height="36" RadiusY="6" RadiusX="6" VerticalAlignment="Top" Width="830" RenderTransformOrigin="0.5,0.5" Margin="31,0,0,0" Opacity="0">
 				<Rectangle.RenderTransform>

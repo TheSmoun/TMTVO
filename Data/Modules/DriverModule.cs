@@ -33,6 +33,7 @@ namespace TMTVO.Data.Modules
         {
             get
             {
+                // Averga calculation
                 /*int sof = 0;
                 foreach (Driver d in Drivers)
                     sof += d.IRating;
