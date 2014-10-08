@@ -4,6 +4,12 @@
 /irsdksharp/obj
 /Yaml/bin
 /Yaml/obj
+/TMTVO-Api/bin
+/TMTVO-Api/obj
+/TMTVO-F1Theme/bin
+/TMTVO-F1Theme/obj
+/TMTVO-Modules/bin
+/TMTVO-Modules/obj
 /*.suo
 /TMTVO.csproj
 /TMTVO/publish
