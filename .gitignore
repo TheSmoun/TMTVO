@@ -2,6 +2,8 @@
 /TMTVO/obj
 /irsdksharp/bin
 /irsdksharp/obj
+/Yaml/bin
+/Yaml/obj
 /*.suo
 /TMTVO.csproj
 /TMTVO/publish
