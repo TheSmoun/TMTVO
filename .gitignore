@@ -1,5 +1,7 @@
-/bin
-/obj
+/TMTVO/bin
+/TMTVO/obj
+/irsdksharp/bin
+/irsdksharp/obj
 /*.suo
 /TMTVO.csproj
-/publish
+/TMTVO/publish
