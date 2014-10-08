@@ -89,121 +89,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Api\API.cs" />
-    <Compile Include="Api\Component.cs" />
-    <Compile Include="Api\Module.cs" />
-    <Compile Include="Api\ReplayPositionModeTypes.cs" />
-    <Compile Include="Api\ReplaySearchModeTypes.cs" />
     <Compile Include="Controls.xaml.cs">
       <DependentUpon>Controls.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Camera.cs" />
-    <Compile Include="Data\Car.cs" />
-    <Compile Include="Data\Driver.cs" />
-    <Compile Include="Data\Ini\IniFile.cs" />
-    <Compile Include="Data\Lap.cs" />
-    <Compile Include="Data\LicenceLevel.cs" />
-    <Compile Include="Data\Modules\CameraModule.cs" />
-    <Compile Include="Data\Modules\DriverModule.cs" />
-    <Compile Include="Data\Modules\GridItem.cs" />
-    <Compile Include="Data\Modules\GridModule.cs" />
-    <Compile Include="Data\Modules\LiveStandingsItem.cs" />
-    <Compile Include="Data\Modules\LiveStandingsModule.cs" />
-    <Compile Include="Data\Modules\PreviousGapsModule.cs" />
-    <Compile Include="Data\Modules\SessionsModule.cs" />
-    <Compile Include="Data\Modules\SessionTimerModule.cs" />
-    <Compile Include="Data\Modules\TeamRadioModule.cs" />
-    <Compile Include="Data\Modules\TimeDeltaModule.cs" />
-    <Compile Include="Data\Sector.cs" />
-    <Compile Include="Data\SessionFlags.cs" />
-    <Compile Include="Data\SessionState.cs" />
-    <Compile Include="Data\SessionType.cs" />
-    <Compile Include="Data\Skies.cs" />
-    <Compile Include="Data\SurfaceType.cs" />
-    <Compile Include="Data\TimeDelta.cs" />
-    <Compile Include="Data\Track.cs" />
-    <Compile Include="Data\TrackType.cs" />
-    <Compile Include="Data\Utils.cs" />
-    <Compile Include="Data\Weather.cs" />
-    <Compile Include="F1TVOverlay.xaml.cs">
-      <DependentUpon>F1TVOverlay.xaml</DependentUpon>
     </Compile>
     <Compile Include="WECTVOverlay.xaml.cs">
       <DependentUpon>WECTVOverlay.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Widget\ILapTimer.cs" />
-    <Compile Include="Widget\ISideBarElement.cs" />
-    <Compile Include="Widget\IWidget.cs" />
     <Compile Include="TMTVO.cs" />
-    <Compile Include="Widget\F1\BattleElement.xaml.cs">
-      <DependentUpon>BattleElement.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\DriverInfo.xaml.cs">
-      <DependentUpon>DriverInfo.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\DriverOverviewStops.xaml.cs">
-      <DependentUpon>DriverOverviewStops.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\DriverOverviewTitle.xaml.cs">
-      <DependentUpon>DriverOverviewTitle.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\ImprovementElement.xaml.cs">
-      <DependentUpon>ImprovementElement.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\LapsRemainingWidget.xaml.cs">
-      <DependentUpon>LapsRemainingWidget.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\LapTimeElement.xaml.cs">
-      <DependentUpon>LapTimeElement.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\LapTimerLeft.xaml.cs">
-      <DependentUpon>LapTimerLeft.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\LiveTimingItem.xaml.cs">
-      <DependentUpon>LiveTimingItem.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\LiveTimingWidget.xaml.cs">
-      <DependentUpon>LiveTimingWidget.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\PreviousGaps.xaml.cs">
-      <DependentUpon>PreviousGaps.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\RaceBar.xaml.cs">
-      <DependentUpon>RaceBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\RaceBarItem.xaml.cs">
-      <DependentUpon>RaceBarItem.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\RaceControlWidget.xaml.cs">
-      <DependentUpon>RaceControlWidget.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\ResultsItem.xaml.cs">
-      <DependentUpon>ResultsItem.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\ResultsWidget.xaml.cs">
-      <DependentUpon>ResultsWidget.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\RevMeter.xaml.cs">
-      <DependentUpon>RevMeter.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\SessionTimer.xaml.cs">
-      <DependentUpon>SessionTimer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\SideBarTitle.xaml.cs">
-      <DependentUpon>SideBarTitle.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\SideBarWidget.xaml.cs">
-      <DependentUpon>SideBarWidget.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\SpeedCompareWidget.xaml.cs">
-      <DependentUpon>SpeedCompareWidget.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\TeamRadio.xaml.cs">
-      <DependentUpon>TeamRadio.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Widget\F1\WeatherWidget.xaml.cs">
-      <DependentUpon>WeatherWidget.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Widget\WEC\WECOnBoard.xaml.cs">
       <DependentUpon>WECOnBoard.xaml</DependentUpon>
     </Compile>
@@ -230,103 +122,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="F1TVOverlay.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="WECTVOverlay.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\BattleElement.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\DriverInfo.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\DriverOverviewStops.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\DriverOverviewTitle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\ImprovementElement.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\LapsRemainingWidget.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\LapTimeElement.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\LapTimerLeft.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\LiveTimingItem.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\LiveTimingWidget.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\PreviousGaps.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\RaceBar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\RaceBarItem.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\RaceControlWidget.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\ResultsItem.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\ResultsWidget.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\RevMeter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\SessionTimer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\SideBarTitle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\SideBarWidget.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\SpeedCompareWidget.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\TeamRadio.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Widget\F1\WeatherWidget.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -373,7 +169,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Data\Ini\cars.ini" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -386,19 +181,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\irsdkSharp\iRSDKSharp.csproj">
-      <Project>{72631b85-eb9a-473e-9b4c-65b355a9000d}</Project>
-      <Name>iRSDKSharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Yaml\Yaml\iRacingYamlParser.csproj">
-      <Project>{8b38618a-9e58-4b0e-b55a-656bb59f60ab}</Project>
-      <Name>iRacingYamlParser</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="trinitylogo2.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -418,13 +200,18 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Data\Images\ringaussen.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Data\Images\ringinnen.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="trinitylogo.png" />
+    <ProjectReference Include="..\TMTVO-Api\TMTVO-Api.csproj">
+      <Project>{78c82cde-06dc-4cf4-927f-d16ffe007379}</Project>
+      <Name>TMTVO-Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMTVO-F1Theme\TMTVO-F1Theme.csproj">
+      <Project>{1aa91be9-e59a-4962-99ea-2cb183c3309e}</Project>
+      <Name>TMTVO-F1Theme</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMTVO-Modules\TMTVO-Modules.csproj">
+      <Project>{6bf87ba5-0840-41be-9c91-e609e50d7ddb}</Project>
+      <Name>TMTVO-Modules</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

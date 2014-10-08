@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6BF87BA5-0840-41BE-9C91-E609E50D7DDB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TMTVO_Modules</RootNamespace>
+    <AssemblyName>TMTVO-Modules</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\Camera.cs" />
+    <Compile Include="Data\Car.cs" />
+    <Compile Include="Data\Driver.cs" />
+    <Compile Include="Data\Lap.cs" />
+    <Compile Include="Data\LicenceLevel.cs" />
+    <Compile Include="Data\Modules\CameraModule.cs" />
+    <Compile Include="Data\Modules\DriverModule.cs" />
+    <Compile Include="Data\Modules\GridItem.cs" />
+    <Compile Include="Data\Modules\GridModule.cs" />
+    <Compile Include="Data\Modules\LiveStandingsItem.cs" />
+    <Compile Include="Data\Modules\LiveStandingsModule.cs" />
+    <Compile Include="Data\Modules\PreviousGapsModule.cs" />
+    <Compile Include="Data\Modules\SessionsModule.cs" />
+    <Compile Include="Data\Modules\SessionTimerModule.cs" />
+    <Compile Include="Data\Modules\TeamRadioModule.cs" />
+    <Compile Include="Data\Modules\TimeDeltaModule.cs" />
+    <Compile Include="Data\Sector.cs" />
+    <Compile Include="Data\SessionFlags.cs" />
+    <Compile Include="Data\SessionState.cs" />
+    <Compile Include="Data\SessionType.cs" />
+    <Compile Include="Data\Skies.cs" />
+    <Compile Include="Data\SurfaceType.cs" />
+    <Compile Include="Data\TimeDelta.cs" />
+    <Compile Include="Data\Track.cs" />
+    <Compile Include="Data\TrackType.cs" />
+    <Compile Include="Data\Weather.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Images\ringaussen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Images\ringinnen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TMTVO-Api\TMTVO-Api.csproj">
+      <Project>{78c82cde-06dc-4cf4-927f-d16ffe007379}</Project>
+      <Name>TMTVO-Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yaml\Yaml\iRacingYamlParser.csproj">
+      <Project>{8b38618a-9e58-4b0e-b55a-656bb59f60ab}</Project>
+      <Name>iRacingYamlParser</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

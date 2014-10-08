@@ -32,7 +32,6 @@ namespace TMTVO.Controller
         public F1TVOverlay Window { get; private set; }
         public Controls Controls { get; private set; }
         public API Api { get; private set; }
-        public IniFile Cars { get; private set; }
 
         private TMTVO() { }
 
@@ -46,7 +45,6 @@ namespace TMTVO.Controller
 
             t.InitalizeModules();
             t.Controls.Show();
-            t.Cars = new IniFile(Environment.CurrentDirectory + @"\cars.ini"); // TODO Pfad einstellen
             return t;
         }
 
@@ -55,9 +53,9 @@ namespace TMTVO.Controller
             Api.AddModule(new SessionsModule());
             Api.AddModule(new SessionTimerModule());
             Api.AddModule(new TeamRadioModule());
-            Api.AddModule(new DriverModule(Controls));
+            Api.AddModule(new DriverModule());
             Api.AddModule(new LiveStandingsModule());
-            Api.AddModule(new CameraModule(Controls));
+            Api.AddModule(new CameraModule());
             Api.AddModule(new TimeDeltaModule());
             Api.AddModule(new GridModule());
         }
