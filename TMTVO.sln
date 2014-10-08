@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iRSDKSharp", "irsdkSharp\iRSDKSharp.csproj", "{72631B85-EB9A-473E-9B4C-65B355A9000D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iRacingYamlParser", "Yaml\Yaml\iRacingYamlParser.csproj", "{8B38618A-9E58-4B0E-B55A-656BB59F60AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMTVO", "TMTVO\TMTVO.csproj", "{0C0CC577-025E-4AFA-9DE9-64CDD07D6DCE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72631B85-EB9A-473E-9B4C-65B355A9000D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72631B85-EB9A-473E-9B4C-65B355A9000D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72631B85-EB9A-473E-9B4C-65B355A9000D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72631B85-EB9A-473E-9B4C-65B355A9000D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B38618A-9E58-4B0E-B55A-656BB59F60AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B38618A-9E58-4B0E-B55A-656BB59F60AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B38618A-9E58-4B0E-B55A-656BB59F60AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B38618A-9E58-4B0E-B55A-656BB59F60AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C0CC577-025E-4AFA-9DE9-64CDD07D6DCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C0CC577-025E-4AFA-9DE9-64CDD07D6DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C0CC577-025E-4AFA-9DE9-64CDD07D6DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C0CC577-025E-4AFA-9DE9-64CDD07D6DCE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
