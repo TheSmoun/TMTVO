@@ -2,140 +2,14 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="TMTVO.Controls"
-        Title="TM TVO Controls" Height="300" Width="525" ResizeMode="CanMinimize" ScrollViewer.VerticalScrollBarVisibility="Disabled" Closed="Window_Closed" Loaded="controlsWindow_Loaded">
+        Title="TM TVO Controls" Height="300" Width="525" ResizeMode="CanMinimize" ScrollViewer.VerticalScrollBarVisibility="Disabled" Closed="Window_Closed" Loaded="Window_Loaded">
 	<Grid>
 		<Menu>
 			<MenuItem x:Name="FileMenu" Header="Datei" Background="White" >
 				<MenuItem x:Name="SettingsMenu" Header="Settings" HorizontalAlignment="Left" Background="White"/>
 			</MenuItem>
 		</Menu>
-		<Grid x:Name="TabGrid" Margin="0,20,0,23" Visibility="Hidden">
-			<TabControl Background="White">
-				<TabItem x:Name="General" Header="General">
-					<Grid>
-						<Button x:Name="SessionTimer" Grid.Row="0" Content="Session Timer" Height="25" Width="100" Click="SessionTimer_Click" HorizontalAlignment="Center" Margin="0,5,309,0" VerticalAlignment="Top" />
-						<Button x:Name="WeatherToggle" Content="Weather" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,5,103,0" Click="WeatherToggle_Click" />
-						<Button x:Name="DriverInfo" Content="Driver Info" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="103,5,0,0" Click="DriverInfo_Click" />
-						<CheckBox x:Name="TeamRadioEnabled" Content="Team Radio" Checked="TeamRadioEnabled_Checked" Unchecked="TeamRadioEnabled_Unchecked" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,43,103,0" />
-						<ComboBox x:Name="DriverInfoMode" Grid.Row="0" Height="25" Width="100" HorizontalAlignment="Center" Margin="103,40,0,0" SelectionChanged="DriverInfoMode_SelectionChanged" VerticalAlignment="Top">
-							<ComboBoxItem x:Name="NameOnly" Content="NameOnly" IsSelected="True" />
-                            <ComboBoxItem x:Name="PositionOnly" Content="Position Only" />
-                            <ComboBoxItem x:Name="FastestLapTimeOnly" Content="Fastest Time Only" />
-                            <ComboBoxItem x:Name="FastestLapTimeWithGap" Content="Fastest Time Gap" />
-							<ComboBoxItem x:Name="Improvements" Content="Improvements" IsEnabled="False" />
-                            <ComboBoxItem x:Name="QualiTimeOnly" Content="Quali Time Only" />
-                            <ComboBoxItem x:Name="QualiTimeWithGap" Content="Quali Time Gap" />
-						</ComboBox>
-						<Button x:Name="ResultsButton" Click="ResultsButton_Click" Content="Results" Width="100" Height="25" Margin="309,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" />
-						<Button x:Name="TrackMap" Click="ResultsButton_Click" Content="Track Map" Width="100" Height="25" Margin="309,40,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" />
-						<Button x:Name="RevMeter" Content="Rev Meter" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,40,309,0" Click="RevMeter_Click" />
-					</Grid>
-				</TabItem>
-				<TabItem x:Name="Camera" Header="Camera Controls">
-					<TabItem.Background>
-						<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-							<GradientStop Color="#FFF3F3F3" Offset="0"/>
-							<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
-							<GradientStop Color="#FFDDDDDD" Offset="0.5"/>
-							<GradientStop Color="#FFCDCDCD" Offset="1"/>
-						</LinearGradientBrush>
-					</TabItem.Background>
-					<Grid Margin="0">
-						<Grid.RowDefinitions>
-							<RowDefinition Height="40"/>
-							<RowDefinition Height="54"/>
-						</Grid.RowDefinitions>
-						<Button Grid.Row="0" Height="36" HorizontalAlignment="Center" Margin="0" x:Name="playButton" VerticalAlignment="Top" Width="34" Content="4" FontFamily="Webdings" FontSize="32" Click="playButton_Click" ToolTip="Play" />
-						<Button Content="8" Grid.Row="0" Height="28" HorizontalAlignment="Center" Margin="72,0,0,0" x:Name="liveButton" VerticalAlignment="Top" Width="28" FontFamily="Webdings" FontSize="22" Click="liveButton_Click" ToolTip="Live" />
-						<Button Content="7" Grid.Row="0" Height="28" HorizontalAlignment="Center" Margin="0,0,72,0" x:Name="beginButton" VerticalAlignment="Top" Width="28" FontFamily="Webdings" FontSize="22" Click="beginButton_Click" ToolTip="Previous bookmark" />
-						<ComboBox Grid.Row="0" Height="23" HorizontalAlignment="Left" x:Name="cameraSelectComboBox" VerticalAlignment="Top" Width="120" SelectionChanged="cameraSelectComboBox_SelectionChanged" SelectedValuePath="Tag" DropDownOpened="cameraSelectComboBox_DropDownOpened" DropDownClosed="cameraSelectComboBox_DropDownClosed"/>
-						<Button Grid.Row="0" Height="23" HorizontalAlignment="Right" x:Name="nextDriver"  VerticalAlignment="Top" Width="23" FontFamily="Webdings" FontSize="17" Content="4" Click="nextDriver_Click"/>
-						<ComboBox Grid.Row="0" Height="23" HorizontalAlignment="Right" x:Name="driverSelect" VerticalAlignment="Top" Width="120" SelectionChanged="cameraSelectComboBox_SelectionChanged" Margin="0,0,26,0" SelectedValuePath="Tag" DropDownOpened="driverSelect_DropDownOpened" DropDownClosed="driverSelect_DropDownClosed" />
-						<Button Grid.Row="0" Height="23" HorizontalAlignment="Right" x:Name="prevDriver"  VerticalAlignment="Top" Width="23" Margin="0,0,149,0" FontFamily="Webdings" FontSize="17" Content="3" Click="prevDriver_Click"/>
-						<Button Content="Apply" Grid.Row="1" Height="23" HorizontalAlignment="Right" x:Name="commitButton" VerticalAlignment="Top" Margin="0" Click="commitButton_Click" />
-						<Button Content="Auto apply" Grid.Row="1" Height="23" HorizontalAlignment="Right" Margin="0,0,43,0" x:Name="autoCommitButton" VerticalAlignment="Top" Click="autoCommitButton_Click" />
-						<Button Content="Add bookmark" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="0" x:Name="addBookmark" VerticalAlignment="Top" Click="addBookmark_Click_1" Width="90" />
-						<Button Content="Instant replay" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="95,0,0,0" x:Name="instantReplay" VerticalAlignment="Top" Width="85" Click="instantReplay_Click" />
-						<ComboBox x:Name="PlaySpeed" HorizontalAlignment="Left" Margin="185,0,0,0" Height="23" Grid.Row="1" VerticalAlignment="Top" Width="44" SelectionChanged="PlaySpeed_SelectionChanged">
-							<ComboBoxItem Content="1x" IsSelected="True" ToolTip="Normal speed"/>
-							<ComboBoxItem Content="1/2x"/>
-							<ComboBoxItem Content="1/3x"/>
-							<ComboBoxItem Content="1/4x"/>
-							<ComboBoxItem Content="1/5x"/>
-							<ComboBoxItem Content="1/6x"/>
-							<ComboBoxItem Content="1/8x"/>
-							<ComboBoxItem Content="1/10x"/>
-							<ComboBoxItem Content="1/16x"/>
-						</ComboBox>
-						<ComboBox Height="23" HorizontalAlignment="Left"  Grid.Row="1" Margin="251,0,0,0" x:Name="Rewind" VerticalAlignment="Top" Width="50" SelectedIndex="2">
-							<ComboBoxItem Content="1s"/>
-							<ComboBoxItem Content="5s"/>
-							<ComboBoxItem Content="10s"/>
-							<ComboBoxItem Content="15s"/>
-							<ComboBoxItem Content="20s"/>
-							<ComboBoxItem Content="30s"/>
-							<ComboBoxItem Content="40s"/>
-							<ComboBoxItem Content="50s"/>
-							<ComboBoxItem Content="60s"/>
-						</ComboBox>
-						<CheckBox Content="Hide UI" Grid.Row="1" Height="13" HorizontalAlignment="Left" Margin="327,5,0,0" x:Name="uiCheckBox" VerticalAlignment="Top" Click="uiCheckBox_Click"  />
-					</Grid>
-				</TabItem>
-				<TabItem x:Name="Practice" Header="Practice">
-					<Grid>
-						<Button x:Name="ShowHideTiming" Width="100" Height="25" Content="Live Timing" Click="ShowHideTiming_Click" HorizontalAlignment="Center" Margin="0,5,214,0" VerticalAlignment="Top" />
-						<CheckBox x:Name="LiveTimingLeaderOnly" Content="Leader Only" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0" Checked="LiveTimingLeaderOnly_Checked" Unchecked="LiveTimingLeaderOnly_Unchecked" Height="16" />
-						<ComboBox x:Name="TimingMode" Grid.Row="0" Height="24" Width="100" HorizontalAlignment="Center" Margin="214,5,0,0" SelectionChanged="TimingMode_SelectionChanged" VerticalAlignment="Top">
-							<ComboBoxItem x:Name="Gap" Content="Gap" IsSelected="True" />
-							<ComboBoxItem x:Name="Time" Content="Time" />
-							<ComboBoxItem x:Name="LastName" Content="Last Name" />
-						</ComboBox>
-						<Button x:Name="TimingNextPage" Width="100" Height="25" Content="Next Page" IsEnabled="False" Margin="214,40,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Click="TimingNextPage_Click" />
-						<Button x:Name="TimingPrevPage" Width="100" Height="25" Content="Prev Page" IsEnabled="False" Margin="0,40,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Click="TimingPrevPage_Click" />
-						<Button x:Name="TimingLeaderPage" Width="100" Height="25" Content="Leader Page" IsEnabled="False" Margin="0,40,214,0" HorizontalAlignment="Center" VerticalAlignment="Top" Click="TimingLeaderPage_Click" />
-					</Grid>
-				</TabItem>
-				<TabItem x:Name="Race" Header="Race">
-					<Grid>
-						<Button x:Name="RaceBarToggle" Height="25" Width="100" Content="Race Bar" Click="RaceBarToggle_Click" HorizontalAlignment="Center" Margin="0,5,156,0" VerticalAlignment="Top" />
-						<CheckBox x:Name="RaceBarLive" Content="Live" Checked="RaceBarLive_Checked" Unchecked="RaceBarLive_Unchecked" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,9.5,0,0" Width="38" Height="16" />
-						<ComboBox x:Name="RaceBartModeBox" Height="25" Width="100" HorizontalAlignment="Center" Margin="156,5,0,0" SelectionChanged="RaceBartModeBox_SelectionChanged" VerticalAlignment="Top">
-							<ComboBoxItem Content="Gap" IsSelected="True" />
-							<ComboBoxItem Content="Interval" />
-							<ComboBoxItem Content="Name" />
-						</ComboBox>
-						<Button x:Name="DriverProgress" Content="Driver Progress" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,40,156,0" Click="WeatherToggle_Click" />
-						<Button x:Name="SpeedCompare" Content="Speed Comp" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="156,40,0,0" Click="SpeedCompare_Click" />
-						<ComboBox x:Name="SpeedCompMode" Height="25" Width="100" HorizontalAlignment="Center" Margin="373,40,0,0" VerticalAlignment="Top">
-							<ComboBoxItem Content="To Next" IsSelected="True" />
-							<ComboBoxItem Content="To Prev" />
-						</ComboBox>
-                        <Button x:Name="DriverOverview" Content="Driver Overview" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,70,0,0" Click="DriverOverview_Click" />
-                        <ComboBox x:Name="DriverOverviewDriver1" Height="25" Width="150" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,70,276,0" SelectedValuePath="Tag" DropDownOpened="DriverOverviewDriver1_DropDownOpened" DropDownClosed="DriverOverviewDriver1_DropDownClosed">
-                            <ComboBoxItem Content="No Driver" Tag="-1" IsSelected="True" />
-                        </ComboBox>
-                        <ComboBox x:Name="DriverOverviewDriver2" Height="25" Width="150" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,70,-276,0" SelectedValuePath="Tag" DropDownOpened="DriverOverviewDriver2_DropDownOpened"  DropDownClosed="DriverOverviewDriver2_DropDownClosed">
-                            <ComboBoxItem Content="No Driver" Tag="-1" IsSelected="True" />
-                        </ComboBox>
-                        <Button x:Name="Battle_For_Pos" Content="Battle for Pos" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,100,0,0" Click="Battle_For_Pos_Click" />
-                        <ComboBox x:Name="FirstPos" Height="25" Width="150" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,100,276,0" SelectedValuePath="Tag" DropDownOpened="FirstPos_DropDownOpened" DropDownClosed="FirstPos_DropDownClosed">
-                            <ComboBoxItem Content="1" Tag="1" IsSelected="True" />
-                        </ComboBox>
-                        <ComboBox x:Name="NumberOfPositions" Height="25" Width="150" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,100,-276,0" SelectedValuePath="Tag">
-                            <ComboBoxItem Content="2 Drivers" Tag="2" IsSelected="True" />
-                            <ComboBoxItem Content="3 Drivers" Tag="3" />
-                            <ComboBoxItem Content="4 Drivers" Tag="4" />
-                            <ComboBoxItem Content="5 Drivers" Tag="5" />
-                            <ComboBoxItem Content="6 Drivers" Tag="6" />
-                            <ComboBoxItem Content="7 Drivers" Tag="7"/>
-                            <ComboBoxItem Content="8 Drivers" Tag="8" />
-                            <ComboBoxItem Content="9 Drivers" Tag="9" />
-                            <ComboBoxItem Content="10 Drivers" Tag="10" />
-                        </ComboBox>
-                    </Grid>
-				</TabItem>
-			</TabControl>
-		</Grid>
+		<Border x:Name="ControlsBorder" BorderBrush="Black" BorderThickness="0" Height="229" Width="519" Margin="0,20,0,23"/>
 		<StatusBar Height="23" VerticalAlignment="Bottom" Margin="0">
 			<StatusBarItem x:Name="StatusText" Content="iRacing not connected." Margin="5,0,0,0" />
 			<StatusBarItem x:Name="MsItem" Content=" " HorizontalAlignment="Right" VerticalAlignment="Top" Width="60" Height="22" Margin="251,0,0,0" />
@@ -148,6 +22,6 @@
 			<!--<ComboBoxItem Content="WEC TV Overlay" HorizontalAlignment="Left" Width="118"/>
 			<ComboBoxItem Content="TM TV Overlay" HorizontalAlignment="Left" Width="118"/>-->
 		</ComboBox>
-		<CheckBox x:Name="CanResize" Content="Can Resize" Margin="213,13,0,0" Height="16" Checked="CanResize_Checked" Unchecked="CanResize_Unchecked" HorizontalAlignment="Left" VerticalAlignment="Top" Width="74" />
+		<!--<CheckBox x:Name="CanResize" Content="Can Resize" Margin="213,13,0,0" Height="16" Checked="" Unchecked="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="74" />-->
 	</Grid>
 </Window>

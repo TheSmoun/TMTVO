@@ -120,8 +120,6 @@ namespace TMTVO.Api
         {
             foreach (Module m in modules)
                 m.Reset();
-
-            //Controller.TMTVO.Instance.Controls.Reset();
         }
 
         public void HideUI()
@@ -192,13 +190,8 @@ namespace TMTVO.Api
 
         public void UpdateControls(object sender, EventArgs e)
         {
-            //Controller.TMTVO.Instance.Controls.FpsItem.Content = Controller.TMTVO.Instance.Window.CurrentFps + " FPS";
-
             if (time > 0)
                 LastMS = time;
-
-            //TMTVO.Controller.TMTVO.Instance.Controls.UpdateLaunchButton(this);
-            //TMTVO.Controller.TMTVO.Instance.Controls.updateStatusBar(null, null);
         }
     }
 }

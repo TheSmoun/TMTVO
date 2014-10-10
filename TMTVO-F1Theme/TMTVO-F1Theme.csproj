@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="F1ControlTabs.xaml.cs">
+      <DependentUpon>F1ControlTabs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="F1Theme.cs" />
     <Compile Include="F1TVOverlay.xaml.cs">
       <DependentUpon>F1TVOverlay.xaml</DependentUpon>
     </Compile>
@@ -96,6 +100,10 @@
     <Compile Include="Widget\WeatherWidget.xaml.cs">
       <DependentUpon>WeatherWidget.xaml</DependentUpon>
     </Compile>
+    <Page Include="F1ControlTabs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Widget\BattleElement.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

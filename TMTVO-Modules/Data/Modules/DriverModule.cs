@@ -60,6 +60,11 @@ namespace TMTVO.Data.Modules
             }
         }
 
+        public IEnumerable<Driver> OrderDriversByNumberPlate()
+        {
+            return Drivers.OrderBy(d => d.NumberPlateInt);
+        }
+
         public override void Update(ConfigurationSection rootNode, API api)
         {
             List<Dictionary<string, object>> driverMapList = rootNode.GetMapList("DriverInfo.Drivers");

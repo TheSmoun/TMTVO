@@ -51,7 +51,7 @@ namespace TMTVO
             {"W", Colors.LightGray}
         };
 
-        public int CurrentFps { get; private set; }
+        public double CurrentFps { get; private set; }
         public DriverInfo DriverInfo { get; private set; }
         public LapsRemainingWidget LapsRemaining { get; private set; }
         public LapTimerLeft LapTimerLeft { get; private set; }
@@ -66,19 +66,17 @@ namespace TMTVO
         public WeatherWidget WeatherWidget { get; private set; }
 
         private DispatcherTimer timer;
-        private DispatcherTimer fpsTimer;
+        private double lastTimeMillis;
+
         public List<IWidget> Widgets { get; private set; }
-        private int fps;
 
         public F1TVOverlay()
         {
             InitializeComponent();
 
+            CurrentFps = -1;
+            lastTimeMillis = GetCurrentMilli();
             CompositionTarget.Rendering += CompositionTarget_Rendering;
-            fpsTimer = new DispatcherTimer();
-            fpsTimer.Interval = TimeSpan.FromSeconds(1);
-            fpsTimer.Tick += fpsTimer_Tick;
-            fpsTimer.Start();
 
             Widgets = new List<IWidget>();
 
@@ -185,15 +183,11 @@ namespace TMTVO
             timer.Start();
         }
 
-        private void fpsTimer_Tick(object sender, EventArgs e)
-        {
-            CurrentFps = fps;
-            fps = 0;
-        }
-
         private void CompositionTarget_Rendering(object sender, EventArgs e)
         {
-            ++fps;
+            double millis = GetCurrentMilli();
+            CurrentFps = millis - lastTimeMillis;
+            lastTimeMillis = millis;
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -382,6 +376,13 @@ namespace TMTVO
         {
             foreach (IWidget widget in Widgets)
                 widget.FadeOut();
+        }
+
+        private static double GetCurrentMilli()
+        {
+            DateTime Jan1970 = new DateTime(1970, 1, 1, 0, 0,0,DateTimeKind.Utc);
+            TimeSpan javaSpan = DateTime.UtcNow - Jan1970;
+            return javaSpan.TotalMilliseconds;
         }
     }
 }

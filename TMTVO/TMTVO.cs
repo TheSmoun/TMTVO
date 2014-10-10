@@ -9,6 +9,7 @@ using TMTVO.Data;
 using TMTVO.Data.Ini;
 using TMTVO.Data.Modules;
 using TMTVO;
+using TMTVO_Api.ThemeApi;
 
 namespace TMTVO.Controller
 {
@@ -29,7 +30,6 @@ namespace TMTVO.Controller
 
         private static readonly int TICKS_PER_SECOND = 20;
 
-        public F1TVOverlay Window { get; private set; }
         public Controls Controls { get; private set; }
         public API Api { get; private set; }
 
@@ -39,9 +39,7 @@ namespace TMTVO.Controller
         {
             TMTVO t = TMTVO.Instance;
             t.Api = new API(TICKS_PER_SECOND);
-            t.Controls = new Controls(t.Api, t);
-            t.Window = new F1TVOverlay();
-            t.Controls.f1Window = t.Window;
+            t.Controls = new Controls(t.Api);
 
             t.InitalizeModules();
             t.Controls.Show();
