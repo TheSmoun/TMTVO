@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TMTVO.Data.Modules;
+using TMTVO_Api.ThemeApi;
 
 namespace TMTVO.Widget.WEC
 {
@@ -21,14 +22,16 @@ namespace TMTVO.Widget.WEC
 	public partial class WECRaceTicker : UserControl, IWidget
 	{
         public bool Active { get; private set; }
+        public IThemeWindow ParentWindow { get; private set; }
         public LiveStandingsModule Module { get; set; }
 
         Storyboard tickerStoryboard;
         ThicknessAnimation tickerAnimation;
 
-		public WECRaceTicker()
+		public WECRaceTicker(IThemeWindow parent)
 		{
 			this.InitializeComponent();
+            this.ParentWindow = parent;
 		}
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

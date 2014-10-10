@@ -207,7 +207,7 @@
 						</Grid.OpacityMask>
 						<Ellipse x:Name="SpeedLeft" HorizontalAlignment="Center" Height="180" VerticalAlignment="Top" Width="180">
 							<Ellipse.Fill>
-								<ImageBrush ImageSource="/TMTVO;component/Data/Images/ringaussen.png"/>
+                                <ImageBrush ImageSource="/TMTVO-F1Theme;component/Images/ringaussen.png"/>
 							</Ellipse.Fill>
 							<Ellipse.OpacityMask>
 								<RadialGradientBrush>
@@ -324,7 +324,7 @@
 						</Grid.OpacityMask>
 						<Ellipse x:Name="SpeedLeft1" HorizontalAlignment="Center" Height="180" VerticalAlignment="Top" Width="180">
 							<Ellipse.Fill>
-								<ImageBrush ImageSource="/TMTVO;component/Data/Images/ringaussen.png"/>
+                                <ImageBrush ImageSource="/TMTVO-F1Theme;component/Images/ringaussen.png"/>
 							</Ellipse.Fill>
 							<Ellipse.OpacityMask>
 								<RadialGradientBrush>

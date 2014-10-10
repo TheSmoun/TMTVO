@@ -264,6 +264,10 @@
     <Resource Include="trinitylogo2.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\irsdkSharp\iRSDKSharp.csproj">
+      <Project>{72631b85-eb9a-473e-9b4c-65b355a9000d}</Project>
+      <Name>iRSDKSharp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TMTVO-Api\TMTVO-Api.csproj">
       <Project>{78c82cde-06dc-4cf4-927f-d16ffe007379}</Project>
       <Name>TMTVO-Api</Name>
@@ -272,6 +276,12 @@
       <Project>{6bf87ba5-0840-41be-9c91-e609e50d7ddb}</Project>
       <Name>TMTVO-Modules</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ringaussen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ringinnen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

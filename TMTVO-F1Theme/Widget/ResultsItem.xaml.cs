@@ -25,10 +25,9 @@ namespace TMTVO.Widget
         public IThemeWindow ParentWindow { get; private set; }
         public bool Show { get; set; }
 
-		public ResultsItem(IThemeWindow parent)
+		public ResultsItem()
 		{
 			this.InitializeComponent();
-            this.ParentWindow = parent;
 		}
 
         public void FadeIn()

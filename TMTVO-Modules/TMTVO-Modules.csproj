@@ -113,12 +113,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Data\Images\ringaussen.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Data\Images\ringinnen.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\TMTVO-Api\TMTVO-Api.csproj">
       <Project>{78c82cde-06dc-4cf4-927f-d16ffe007379}</Project>
       <Name>TMTVO-Api</Name>

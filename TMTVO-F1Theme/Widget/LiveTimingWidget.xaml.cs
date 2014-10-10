@@ -308,7 +308,7 @@ namespace TMTVO.Widget
             LoadPage(pageIndex - 1);
         }
 
-        internal void LeaderPage()
+        public void LeaderPage()
         {
             canUpdateButtons = false;
             Application.Current.Dispatcher.BeginInvoke(new Action(() =>

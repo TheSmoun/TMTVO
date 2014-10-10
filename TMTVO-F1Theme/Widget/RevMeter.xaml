@@ -354,7 +354,7 @@
 							</Grid.OpacityMask>
 							<Ellipse x:Name="SpeedPct_Copy" HorizontalAlignment="Left" Height="264" VerticalAlignment="Top" Width="264" RenderTransformOrigin="0.5,0.5">
 								<Ellipse.Fill>
-									<ImageBrush ImageSource="/TMTVO;component/Data/Images/ringaussen.png">
+									<ImageBrush ImageSource="/TMTVO-F1Theme;component/Images/ringaussen.png">
 										<ImageBrush.RelativeTransform>
 											<TransformGroup>
 												<ScaleTransform CenterY="0.5" CenterX="0.5"/>
@@ -422,7 +422,7 @@
 							</Grid.OpacityMask>
 							<Ellipse x:Name="SpeedPct_Copy1" HorizontalAlignment="Left" Height="264" VerticalAlignment="Top" Width="264" RenderTransformOrigin="0.5,0.5">
 								<Ellipse.Fill>
-									<ImageBrush ImageSource="/TMTVO;component/Data/Images/ringaussen.png"/>
+                                    <ImageBrush ImageSource="/TMTVO-F1Theme;component/Images/ringaussen.png"/>
 								</Ellipse.Fill>
 								<Ellipse.OpacityMask>
 									<RadialGradientBrush>
@@ -491,7 +491,7 @@
 							</Grid.OpacityMask>
 							<Ellipse x:Name="RevPct" HorizontalAlignment="Left" Height="201" VerticalAlignment="Top" Width="201" RenderTransformOrigin="0.5,0.5">
 								<Ellipse.Fill>
-									<ImageBrush ImageSource="/TMTVO;component/Data/Images/ringinnen.png">
+                                    <ImageBrush ImageSource="/TMTVO-F1Theme;component/Images/ringinnen.png">
 										<ImageBrush.RelativeTransform>
 											<TransformGroup>
 												<ScaleTransform CenterY="0.5" CenterX="0.5"/>
@@ -567,7 +567,7 @@
 							</Grid.OpacityMask>
 							<Ellipse x:Name="RevPct_Copy" HorizontalAlignment="Left" Height="201" VerticalAlignment="Top" Width="201" RenderTransformOrigin="0.5,0.5">
 								<Ellipse.Fill>
-									<ImageBrush ImageSource="/TMTVO;component/Data/Images/ringinnen.png"/>
+                                    <ImageBrush ImageSource="/TMTVO-F1Theme;component/Images/ringinnen.png"/>
 								</Ellipse.Fill>
 								<Ellipse.OpacityMask>
 									<RadialGradientBrush RelativeTransform="{Binding Data, ElementName=SpeedPath}">

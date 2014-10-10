@@ -106,9 +106,7 @@ namespace TMTVO
                 f1Window.Visibility = Visibility.Hidden;
                 CanResize.Visibility = Visibility.Visible;
 
-                foreach (object o in f1Window.MyCanvas.Children)
-                    if (o is IWidget && ((IWidget)o).Active)
-                        ((IWidget)o).FadeOut();
+                f1Window.FadeAllOut();
 
                 TabGrid.Visibility = Visibility.Hidden;
                 ThemeSelector.IsEnabled = true;
