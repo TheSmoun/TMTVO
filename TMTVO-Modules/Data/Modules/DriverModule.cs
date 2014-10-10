@@ -28,23 +28,19 @@ namespace TMTVO.Data.Modules
         {
             get
             {
-                // Averga calculation
-                /*int sof = 0;
-                foreach (Driver d in Drivers)
-                    sof += d.IRating;
+                double log = 1600 / Math.Log(2);
+                int count = DriversCount;
 
-                return sof / Drivers.Count;*/
+                double sum = 0;
+                foreach (Driver driver in Drivers)
+                {
+                    if (driver.FullName.StartsWith("Pace Car"))
+                        continue;
 
-                // Median calculation
-                List<Driver> query = Drivers.OrderBy(d => d.IRating).ToList();
-                if (query.First().IRating == 0 && query.First().FullName.StartsWith("Pace Car"))
-                    query.RemoveAt(0);
+                    sum += Math.Exp(-driver.IRating / log);
+                }
 
-                int length = query.Count;
-                if (length % 2 == 0)
-                    return (query[length / 2].IRating + query[(length / 2) + 1].IRating) / 2;
-                else
-                    return query[(length / 2) + 1].IRating;
+                return (int)(log * Math.Log(count / sum));
             }
         }
 

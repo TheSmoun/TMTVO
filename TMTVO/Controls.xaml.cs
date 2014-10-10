@@ -51,7 +51,7 @@ namespace TMTVO
         {
             api.Run = false;
             theme.Close();
-            Application.Current.Shutdown(0);
+            Environment.Exit(0);
         }
 
         private void timer_Tick(object sender, EventArgs e)
