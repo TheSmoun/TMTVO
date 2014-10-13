@@ -58,16 +58,25 @@ namespace TMTVO.Api
 
                 if (Sdk.IsConnected())
                 {
-                    CurrentTime = (double)Sdk.GetData("SessionTime");
+                    object obj = Sdk.GetData("SessionTime");
+                    if (obj == null)
+                    {
+                        mutex.ReleaseMutex();
+                        return;
+                    }
+
+                    CurrentTime = (double)obj;
                     UpdateModules();
                 }
-                else
+                else if (Sdk.IsInitialized)
                 {
                     Sdk.Shutdown();
                     ResetModules();
                     Run = false;
                     return;
                 }
+                else
+                    return;
 
                 long end = Environment.TickCount;
                 long time = end - start;
