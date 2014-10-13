@@ -21,6 +21,7 @@ using TMTVO.Data;
 using TMTVO.Data.Modules;
 using TMTVO_Api.ThemeApi;
 using TMTVO.Api;
+using TMTVO_F1Theme;
 
 namespace TMTVO
 {
@@ -53,6 +54,7 @@ namespace TMTVO
 
         public double CurrentFps { get; private set; }
         public DriverInfo DriverInfo { get; private set; }
+        private JoinTheConversation Join;
         public LapsRemainingWidget LapsRemaining { get; private set; }
         public LapTimerLeft LapTimerLeft { get; private set; }
         public LiveTimingWidget LiveTimingWidget { get; private set; }
@@ -219,6 +221,26 @@ namespace TMTVO
         public void DriverInfoFadeOut()
         {
             DriverInfo.FadeOut();
+        }
+
+        public void JoinFadeIn(string title, string value)
+        {
+            if (Join != null && Join.Active)
+                return;
+
+            this.Join = new JoinTheConversation(this);
+            this.Join.Width = 350;
+            this.Join.Height = 36;
+            this.Join.HorizontalAlignment = HorizontalAlignment.Left;
+            this.Join.VerticalAlignment = VerticalAlignment.Top;
+            this.Join.Margin = new Thickness(370, 917, 0, 0);
+            MyCanvas.Children.Add(Join);
+            Join.FadeIn(title, value);
+        }
+
+        public void JoinFadeOut()
+        {
+            Join.FadeOut();
         }
 
         public void LapsRemainingFadeIn(int remaining)

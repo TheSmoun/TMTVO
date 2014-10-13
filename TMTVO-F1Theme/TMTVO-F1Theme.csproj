@@ -64,6 +64,9 @@
     </Compile>
     <Compile Include="ILapTimer.cs" />
     <Compile Include="ISideBarElement.cs" />
+    <Compile Include="Widget\JoinTheConversation.xaml.cs">
+      <DependentUpon>JoinTheConversation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widget\RaceBar.xaml.cs">
       <DependentUpon>RaceBar.xaml</DependentUpon>
     </Compile>
@@ -125,6 +128,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Widget\ImprovementElement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Widget\JoinTheConversation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

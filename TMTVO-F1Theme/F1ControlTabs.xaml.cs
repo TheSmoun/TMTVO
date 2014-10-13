@@ -34,7 +34,6 @@ namespace TMTVO_F1Theme
         public DriverModule DriverModule { get; set; }
 
         internal F1TVOverlay f1Window;
-        private Timer t;
         private API api;
         private DispatcherTimer updateTimer;
         private bool autoCommit;
@@ -694,6 +693,19 @@ namespace TMTVO_F1Theme
                 f1Window.SideBarFadeOut();
             else if (!f1Window.SideBar.Active)
                 f1Window.SideBarFadeInBattleForPos(int.Parse(FirstPos.SelectedValue.ToString()), int.Parse(NumberOfPositions.SelectedValue.ToString()));
+        }
+
+        private void SoF_Click(object sender, RoutedEventArgs e)
+        {
+            f1Window.JoinFadeIn("Strength of Field", DriverModule.SOF + " SoF");
+        }
+
+        private void JoinConv_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(HashTag.Text))
+                return;
+
+            f1Window.JoinFadeIn("Join the Conversation", HashTag.Text.StartsWith("#") ? HashTag.Text : "#" + HashTag.Text);
         }
     }
 }

@@ -156,7 +156,7 @@
 				</TransformGroup>
 			</TextBlock.RenderTransform>
         </TextBlock>
-		<TextBlock x:Name="PitText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="138.21" Margin="153.436,0.916,0,-9.416" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" UseLayoutRounding="False" Foreground="Red" RenderTransformOrigin="0.5,0.5" Text="In Pit">
+		<TextBlock x:Name="PitText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="138.21" Margin="153.436,0.916,0,-9.416" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" UseLayoutRounding="False" Foreground="Red" RenderTransformOrigin="0.5,0.5" Text="PIT">
 			<TextBlock.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>

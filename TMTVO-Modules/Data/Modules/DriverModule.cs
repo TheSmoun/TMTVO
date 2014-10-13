@@ -49,7 +49,7 @@ namespace TMTVO.Data.Modules
             get
             {
                 List<Driver> query = Drivers.OrderBy(d => d.IRating).ToList();
-                if (query.First().IRating == 0 && query.First().FullName.StartsWith("Pace Car"))
+                if (query.Count > 0 && query.First().IRating == 0 && query.First().FullName.StartsWith("Pace Car"))
                     query.RemoveAt(0);
 
                 return query.Count;
