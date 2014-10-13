@@ -58,7 +58,34 @@ namespace TMTVO.Widget
 		{
 			this.InitializeComponent();
             this.ParentWindow = parent;
+
+            canUpdateGear1 = true;
+            canUpdateGear2 = true;
+            pushToPass1 = false;
+            pushToPass2 = false;
+            prevPushToPass1 = false;
+            prevPushToPass2 = false;
+            prevGear1 = -1;
+            prevGear2 = -1;
+            currentGear1 = 0;
+            currentGear2 = 0;
+            neutralCooldown1 = new Timer(250);
+            neutralCooldown1.Elapsed += neutralCooldown1_Elapsed;
+            neutralCooldown2 = new Timer(250);
+            neutralCooldown2.Elapsed += neutralCooldown2_Elapsed;
 		}
+
+        private void neutralCooldown1_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            neutralCooldown1.Stop();
+            canUpdateGear1 = true;
+        }
+
+        private void neutralCooldown2_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            neutralCooldown2.Stop();
+            canUpdateGear2 = true;
+        }
 
         public void FadeIn(LiveStandingsItem driver1, LiveStandingsItem driver2)
         {
@@ -173,12 +200,114 @@ namespace TMTVO.Widget
 
         private void updateGear1()
         {
-            // TODO implement
+            if (prevGear1 > currentGear1)
+                Application.Current.Dispatcher.BeginInvoke(new Action(shiftUp1));
+            else if (prevGear1 < currentGear1)
+                Application.Current.Dispatcher.BeginInvoke(new Action(shiftDown1));
+            else
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    sb1_Completed(null, null);
+                }));
+
+            currentGear1 = prevGear1;
+        }
+
+        private void sb1_Completed(object sender, EventArgs e)
+        {
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                Storyboard sb = FindResource("GearReset1") as Storyboard;
+                sb.Begin();
+
+                Gear.Text = gears.GetGearValue(prevGear1);
+                Gear_1.Text = gears.GetGearValue(prevGear1 + 1);
+                Gear_2.Text = gears.GetGearValue(prevGear1 - 2);
+                Gear_3.Text = gears.GetGearValue(prevGear1 - 1);
+                Gear_4.Text = gears.GetGearValue(prevGear1 + 2);
+                Gear_4_Dummy.Text = gears.GetGearValue(prevGear1 + 3);
+                Gear_2_Dummy.Text = gears.GetGearValue(prevGear1 - 3);
+            }));
+
+            canUpdateGear1 = true;
+        }
+
+        private void shiftUp1()
+        {
+            if (prevGear1 >= 7)
+                return;
+
+            canUpdateGear1 = false;
+            Storyboard sb = FindResource("GearPlus1") as Storyboard;
+            sb.Completed += sb1_Completed;
+            sb.Begin();
+        }
+
+        private void shiftDown1()
+        {
+            if (prevGear1 <= -1)
+                return;
+
+            canUpdateGear1 = false;
+            Storyboard sb = FindResource("GearMinus1") as Storyboard;
+            sb.Completed += sb1_Completed;
+            sb.Begin();
         }
 
         private void updateGear2()
         {
-            // TODO implement
+            if (prevGear2 > currentGear2)
+                Application.Current.Dispatcher.BeginInvoke(new Action(shiftUp2));
+            else if (prevGear2 < currentGear2)
+                Application.Current.Dispatcher.BeginInvoke(new Action(shiftDown2));
+            else
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    sb2_Completed(null, null);
+                }));
+
+            currentGear2 = prevGear2;
+        }
+
+        private void sb2_Completed(object sender, EventArgs e)
+        {
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                Storyboard sb = FindResource("GearReset2") as Storyboard;
+                sb.Begin();
+
+                Gear1.Text = gears.GetGearValue(prevGear2);
+                Gear_5.Text = gears.GetGearValue(prevGear2 + 1);
+                Gear_6.Text = gears.GetGearValue(prevGear2 - 2);
+                Gear_6.Text = gears.GetGearValue(prevGear2 - 1);
+                Gear_8.Text = gears.GetGearValue(prevGear2 + 2);
+                Gear_4_Dummy1.Text = gears.GetGearValue(prevGear2 + 3);
+                Gear_2_Dummy1.Text = gears.GetGearValue(prevGear2 - 3);
+            }));
+
+            canUpdateGear2 = true;
+        }
+
+        private void shiftUp2()
+        {
+            if (prevGear2 >= 7)
+                return;
+
+            canUpdateGear2 = false;
+            Storyboard sb = FindResource("GearPlus2") as Storyboard;
+            sb.Completed += sb2_Completed;
+            sb.Begin();
+        }
+
+        private void shiftDown2()
+        {
+            if (prevGear2 <= -1)
+                return;
+
+            canUpdateGear2 = false;
+            Storyboard sb = FindResource("GearMinus2") as Storyboard;
+            sb.Completed += sb2_Completed;
+            sb.Begin();
         }
 
         private void setPushToPass(bool p2p1, bool p2p2)
