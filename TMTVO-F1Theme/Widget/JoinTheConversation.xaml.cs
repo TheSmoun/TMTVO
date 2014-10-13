@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -102,7 +102,14 @@ namespace TMTVO_F1Theme
 
         private void mainAnimation_Completed(object sender, EventArgs e)
         {
-            Thread.Sleep(3000);
+            Timer t = new Timer(3000);
+            t.AutoReset = false;
+            t.Elapsed += t_Elapsed;
+            t.Start();
+        }
+
+        private void t_Elapsed(object sender, ElapsedEventArgs e)
+        {
             Application.Current.Dispatcher.BeginInvoke(new Action(FadeOut));
         }
 
