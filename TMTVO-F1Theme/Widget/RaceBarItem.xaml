@@ -5,7 +5,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
 	x:Class="TMTVO.Widget.RaceBarItem"
-	d:DesignWidth="640" d:DesignHeight="480" Width="340" Height="36" RenderTransformOrigin="0.5,0.5">
+	d:DesignWidth="640" d:DesignHeight="480" Width="1020" Height="36" RenderTransformOrigin="0.5,0.5">
     <UserControl.Resources>
         <Storyboard x:Key="FadeIn" Timeline.DesiredFrameRate="30">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="RaceBarItems">
@@ -19,9 +19,21 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="PositionImproved">
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="RaceBarItems">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="640,0,0,0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="PositionLost">
+        	<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="RaceBarItems">
+        		<EasingThicknessKeyFrame KeyTime="0" Value="-640,0,0,0"/>
+        		<EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="0"/>
+        	</ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
     </UserControl.Resources>
 
-    <Grid x:Name="RaceBarItems" Height="36" Width="300" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center">
+    <Grid x:Name="RaceBarItems" Height="36" Width="300" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" Margin="0">
 		<Grid.RenderTransform>
 			<TransformGroup>
 				<ScaleTransform/>
@@ -135,7 +147,7 @@
 					<TranslateTransform/>
 				</TransformGroup>
 			</TextBlock.RenderTransform>
-        </TextBlock>
+		</TextBlock>
 		<TextBlock x:Name="ThreeLetterCode" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="72" Margin="73.123,0.999,0,-9.499" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" FontWeight="Bold" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="ALO">
 			<TextBlock.RenderTransform>
 				<TransformGroup>
@@ -145,7 +157,7 @@
 					<TranslateTransform/>
 				</TransformGroup>
 			</TextBlock.RenderTransform>
-        </TextBlock>
+		</TextBlock>
 		<TextBlock x:Name="GapText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="163.46" Margin="118.686,0.916,0,-9.416" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Right" LineHeight="48" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="+38.547">
 			<TextBlock.RenderTransform>
 				<TransformGroup>
@@ -155,7 +167,7 @@
 					<TranslateTransform/>
 				</TransformGroup>
 			</TextBlock.RenderTransform>
-        </TextBlock>
+		</TextBlock>
 		<TextBlock x:Name="PitText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="44.5" Width="138.21" Margin="153.436,0.916,0,-9.416" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" TextAlignment="Center" LineHeight="48" UseLayoutRounding="False" Foreground="Red" RenderTransformOrigin="0.5,0.5" Text="PIT">
 			<TextBlock.RenderTransform>
 				<TransformGroup>
@@ -177,5 +189,5 @@
 			</Viewbox.RenderTransform>
 			<TextBlock x:Name="DriverName" TextWrapping="Wrap" FontSize="29.333" FontFamily="DIN 1451 Std Mittelschrift" Padding="0" LineHeight="48" UseLayoutRounding="False" Foreground="White" RenderTransformOrigin="0.5,0.5" Text="ALLMANNSBERGER" TextAlignment="Center" Height="44.5" Margin="0"/>
 		</Viewbox>
-    </Grid>
+	</Grid>
 </UserControl>

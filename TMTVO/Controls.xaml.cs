@@ -22,6 +22,7 @@ using TMTVO.Data.Modules;
 using TMTVO.Widget;
 using TMTVO_Api.ThemeApi;
 using TMTVO_F1Theme;
+using TMTVO_Modules;
 
 namespace TMTVO
 {
@@ -50,8 +51,10 @@ namespace TMTVO
         private void Window_Closed(object sender, EventArgs e)
         {
             api.Run = false;
-            theme.Close();
-            Environment.Exit(0);
+            if (theme != null)
+                theme.Close();
+
+            Application.Current.Shutdown(0);
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -62,14 +65,9 @@ namespace TMTVO
                 StartStop.IsEnabled = false;
             }
             else if (api.IsConnected)
-            {
                 StartStop.IsEnabled = true;
-            }
             else
-            {
                 StartStop.IsEnabled = false;
-
-            }
 
             if (api != null)
                 MsItem.Content = api.LastMS + " MS";

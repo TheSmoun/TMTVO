@@ -64,6 +64,9 @@ namespace TMTVO.Widget
                 return;
 
             Module = (LiveStandingsModule)API.Instance.FindModule("LiveStandings");
+            foreach (LiveStandingsItem i in Module.Items)
+                i.PositionImprovedRaceBar = i.PositionLostRaceBar = false;
+
             Active = true;
             pageIndex = 0;
             oldPageIndex = 0;
@@ -98,7 +101,7 @@ namespace TMTVO.Widget
 
         public void Tick()
         {
-            LoadPage(pageIndex);
+            LoadPage(pageIndex, false);
         }
 
         private void SwitchPage(object sender, ElapsedEventArgs e)
@@ -140,13 +143,13 @@ namespace TMTVO.Widget
         {
             Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
-                LoadPage(pageIndex);
+                LoadPage(pageIndex, true);
                 foreach (UIElement elem in RaceBarBackground.Children)
                     ((RaceBarItem)elem).FadeIn();
             }));
         }
 
-        private void LoadPage(int index)
+        private void LoadPage(int index, bool clearImprs)
         {
             if (index == 0)
                 oldMode = Mode;
@@ -164,6 +167,9 @@ namespace TMTVO.Widget
                     continue;
                 }
 
+                if (clearImprs)
+                    stItem.PositionImprovedRaceBar = stItem.PositionLostRaceBar = false;
+
                 item.Show = true;
 
                 if (stItem.PositionLive == 1)
@@ -174,7 +180,19 @@ namespace TMTVO.Widget
                 item.Position.Text = stItem.PositionLive.ToString();
                 item.ClassColorLeader.Color = stItem.Driver.LicColor; // TODO ClassColor
                 item.ClassColorNormal.Color = stItem.Driver.LicColor;
+                /*
+                if (stItem.PositionImprovedRaceBar)
+                {
+                    item.PositionImproved();
+                    stItem.PositionImprovedRaceBar = false;
+                }
 
+                if (stItem.PositionLostRaceBar)
+                {
+                    item.PositionLost();
+                    stItem.PositionLostRaceBar = false;
+                }
+                */
                 switch (oldMode)
                 {
                     case RaceBarMode.Gap:

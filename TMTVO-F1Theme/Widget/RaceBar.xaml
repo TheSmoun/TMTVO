@@ -9,23 +9,25 @@
 	d:DesignWidth="640" d:DesignHeight="480" Width="1920" Height="47">
     <UserControl.Resources>
         <Storyboard x:Key="FadeAllIn" Timeline.DesiredFrameRate="30">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="RaceBarBackground">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Body">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="FadeAllOut" Timeline.DesiredFrameRate="30">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="RaceBarBackground">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Body">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
-    <Grid x:Name="RaceBarBackground" Background="#B2111111" Width="1920" Height="47" Opacity="0">
-        <w:RaceBarItem x:Name="RaceItem1" HorizontalAlignment="Center" Height="38" Width="300" Margin="0,0,1280,0" />
-        <w:RaceBarItem x:Name="RaceItem2" HorizontalAlignment="Center" Height="38" Width="300" Margin="0,0,640,0" />
-        <w:RaceBarItem x:Name="RaceItem3" HorizontalAlignment="Center" Height="38" Width="300" Margin="0" />
-        <w:RaceBarItem x:Name="RaceItem4" HorizontalAlignment="Center" Height="38" Width="300" Margin="640,0,0,0" />
-        <w:RaceBarItem x:Name="RaceItem5" HorizontalAlignment="Center" Height="38" Width="300" Margin="1280,0,0,0" />
+    <Grid x:Name="Body" Background="#B2111111" Width="1920" Height="42" Opacity="0">
+    	<Grid x:Name="RaceBarBackground" Margin="0,2" Width="1600" HorizontalAlignment="Center" ClipToBounds="True">
+    		<w:RaceBarItem x:Name="RaceItem1" HorizontalAlignment="Center" Height="38" Width="300" Margin="0,0,1280,0" />
+    		<w:RaceBarItem x:Name="RaceItem2" HorizontalAlignment="Center" Height="38" Width="300" Margin="320,0,960,0" />
+    		<w:RaceBarItem x:Name="RaceItem3" HorizontalAlignment="Center" Height="38" Width="300" Margin="640,0" />
+    		<w:RaceBarItem x:Name="RaceItem4" HorizontalAlignment="Center" Height="38" Width="300" Margin="960,0,320,0" />
+    		<w:RaceBarItem x:Name="RaceItem5" HorizontalAlignment="Center" Height="38" Width="300" Margin="1280,0,0,0" />
+    	</Grid>
     </Grid>
 </UserControl>

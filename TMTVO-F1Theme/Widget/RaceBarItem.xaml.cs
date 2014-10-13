@@ -46,5 +46,23 @@ namespace TMTVO.Widget
             Storyboard sb = FindResource("FadeOut") as Storyboard;
             sb.Begin();
         }
+
+        public void PositionImproved()
+        {
+            if (!Active)
+                return;
+
+            Storyboard sb = FindResource("PositionImproved") as Storyboard;
+            sb.Begin();
+        }
+
+        public void PositionLost()
+        {
+            if (!Active)
+                return;
+
+            Storyboard sb = FindResource("PositionLost") as Storyboard;
+            sb.Begin();
+        }
     }
 }
