@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using TMTVO.Api;
 using TMTVO.Data.Modules;
 using TMTVO_Api.ThemeApi;
+using TMTVO_F1Theme;
 
 namespace TMTVO.Widget
 {
@@ -130,6 +131,37 @@ namespace TMTVO.Widget
             }
         }
 
+        public void FadeInTopSpeeds()
+        {
+            if (Active)
+                return;
+
+            module = (LiveStandingsModule)API.Instance.FindModule("LiveStandings");
+            Mode = SideBarMode.TopSpeed;
+            SideBarTitle title = new SideBarTitle(ParentWindow);
+            title.VerticalAlignment = VerticalAlignment.Top;
+            LayoutRoot.Children.Add(title);
+            elements.Add(title);
+            title.FadeIn("TOP SPEEDS kph");
+
+            List<LiveStandingsItem> query = module.OrderByTopSpeed();
+            for (int i = 0; i < 10; i++)
+            {
+                LiveStandingsItem item = query[i];
+                if (item.TopSpeed > 0)
+                {
+                    SpeedElement se = new SpeedElement(ParentWindow);
+                    se.VerticalAlignment = VerticalAlignment.Top;
+                    se.Margin = new Thickness(0, (i + 1) * 36, 0, 0);
+                    LayoutRoot.Children.Add(se);
+                    elements.Add(se);
+                    se.FadeIn(i + 1, item, (i + 1) * 25);
+                }
+            }
+
+            Active = true;
+        }
+
         public void FadeOut()
         {
             if (!Active)
@@ -138,6 +170,8 @@ namespace TMTVO.Widget
             Reset();
             foreach (ISideBarElement e in elements)
                 e.FadeOut();
+
+            elements.Clear();
         }
 
         public void Tick()
@@ -148,7 +182,26 @@ namespace TMTVO.Widget
                 for (int i = FirstPos; i < FirstPos + Count; i++)
                 {
                     BattleElement e = elements[j++] as BattleElement;
-                    e.Driver = module.FindDriverByPos(i);
+                    if (e != null && module != null)
+                        e.Driver = module.FindDriverByPos(i);
+                }
+            }
+
+            if (Mode == SideBarMode.TopSpeed)
+            {
+                int k = 1;
+                List<LiveStandingsItem> query = module.OrderByTopSpeed();
+                for (int i = 0; i < 10; i++)
+                {
+                    if (elements.Count <= k)
+                        break;
+
+                    SpeedElement se = elements[k++] as SpeedElement;
+                    if (se != null)
+                    {
+                        se.Driver = query[i];
+                        se.TopSpeedPosition = i + 1;
+                    }
                 }
             }
 
@@ -167,7 +220,8 @@ namespace TMTVO.Widget
         {
             DriverOverView,
             BattleForPosition,
-            Improvements
+            Improvements,
+            TopSpeed
         }
     }
 }

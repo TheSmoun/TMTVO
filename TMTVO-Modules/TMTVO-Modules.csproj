@@ -57,6 +57,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data\GapManager.cs" />
     <Compile Include="Data\Utils.cs" />
   </ItemGroup>
   <ItemGroup>

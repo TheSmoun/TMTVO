@@ -707,5 +707,13 @@ namespace TMTVO_F1Theme
 
             f1Window.JoinFadeIn("Join the Conversation", HashTag.Text.StartsWith("#") ? HashTag.Text : "#" + HashTag.Text);
         }
+
+        private void Top_Speeds_Click(object sender, RoutedEventArgs e)
+        {
+            if (!f1Window.SideBar.Active)
+                f1Window.SideBarFadeInTopSpeeds();
+            else
+                f1Window.SideBarFadeOut();
+        }
     }
 }

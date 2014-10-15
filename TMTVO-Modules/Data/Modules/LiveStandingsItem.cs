@@ -28,7 +28,22 @@ namespace TMTVO.Data.Modules
         public double LapBegin { get; private set; }
         public bool InPits { get; private set; }
         public bool Finished { get; private set; }
-        public float Speed { get; private set; }
+        
+        private float speed;
+        public float Speed
+        {
+            get
+            {
+                return speed;
+            }
+            private set
+            {
+                if (value > TopSpeed)
+                    TopSpeed = value;
+
+                speed = value;
+            }
+        }
         public float SpeedKmh
         {
             get
@@ -41,6 +56,21 @@ namespace TMTVO.Data.Modules
             get
             {
                 return Speed * 2.23693629F;
+            }
+        }
+        public float TopSpeed { get; private set; }
+        public float TopSpeedKmh
+        {
+            get
+            {
+                return TopSpeed * 3.6F;
+            }
+        }
+        public float TopSpeedMph
+        {
+            get
+            {
+                return TopSpeed * 2.23693629F;
             }
         }
         public double PrevSpeed { get; private set; }

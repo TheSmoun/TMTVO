@@ -53,6 +53,11 @@ namespace TMTVO.Data.Modules
             }
         }
 
+        public List<LiveStandingsItem> OrderByTopSpeed()
+        {
+            return Items.OrderByDescending(i => i.TopSpeed).ToList();
+        }
+
         public override void Update(ConfigurationSection rootNode, API api)
         {
             List<Dictionary<string, object>> sessions = rootNode.GetMapList("SessionInfo.Sessions");

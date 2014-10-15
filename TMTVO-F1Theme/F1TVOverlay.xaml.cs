@@ -340,6 +340,14 @@ namespace TMTVO
             SideBar.FadeInBattleForPos(firstPos, count);
         }
 
+        public void SideBarFadeInTopSpeeds()
+        {
+            if (!MyCanvas.Children.Contains(SideBar))
+                MyCanvas.Children.Add(SideBar);
+
+            SideBar.FadeInTopSpeeds();
+        }
+
         public void SideBarFadeOut()
         {
             SideBar.FadeOut();
