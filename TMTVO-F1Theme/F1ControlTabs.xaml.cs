@@ -697,7 +697,7 @@ namespace TMTVO_F1Theme
 
         private void SoF_Click(object sender, RoutedEventArgs e)
         {
-            f1Window.JoinFadeIn("Strength of Field", DriverModule.SOF + " SoF");
+            f1Window.JoinFadeIn("Strength of Field", DriverModule.SoF + " SoF");
         }
 
         private void JoinConv_Click(object sender, RoutedEventArgs e)

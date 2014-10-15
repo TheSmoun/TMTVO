@@ -115,7 +115,7 @@ namespace TMTVO.Widget
                     break;
             }
 
-            Sof.Text = DriverModule.SOF.ToString() + " SoF";
+            Sof.Text = DriverModule.SoF.ToString() + " SoF";
 
             Storyboard sb = FindResource("FadeInHeader") as Storyboard;
             sb.Begin();
@@ -219,7 +219,8 @@ namespace TMTVO.Widget
 
         private int getPoints(int pos) // (SOF/16)*(1-((x-1)/(y-1))) x=pos, y=count
         {
-            return (int)Math.Floor((DriverModule.SOF / 16F) * (1 - ((pos - 1F) / (DriverModule.DriversCount - 1F))));
+            //return (int)Math.Floor((DriverModule.SoFDouble / 16F) * (1 - ((pos - 1F) / (DriverModule.DriversCount - 1F))));
+            return (int)(DriverModule.SoFDouble / 16D * (DriverModule.DriversCount - pos) / (DriverModule.DriversCount - 1));
         }
 
         private void FadeInPositions()

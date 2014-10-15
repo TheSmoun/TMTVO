@@ -24,7 +24,15 @@ namespace TMTVO.Data.Modules
             return Drivers.Find(d => d.CarIndex == CarIdx);
         }
 
-        public int SOF
+        public int SoF
+        {
+            get
+            {
+                return (int)SoFDouble;
+            }
+        }
+
+        public double SoFDouble
         {
             get
             {
@@ -40,7 +48,7 @@ namespace TMTVO.Data.Modules
                     sum += Math.Exp(-driver.IRating / log);
                 }
 
-                return (int)(log * Math.Log(count / sum));
+                return log * Math.Log(count / sum);
             }
         }
 
