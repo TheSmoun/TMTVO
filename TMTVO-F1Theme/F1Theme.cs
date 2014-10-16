@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using TMTVO;
 using TMTVO.Api;
 using TMTVO_Api.ThemeApi;
@@ -20,7 +21,7 @@ namespace TMTVO_F1Theme
             this.window = overlay;
             this.controls = controls;
         }
-
+        
         public static F1Theme Load()
         {
             F1TVOverlay overlay = new F1TVOverlay();
@@ -41,7 +42,8 @@ namespace TMTVO_F1Theme
 
         public override void Reset()
         {
-            // TODO
+            controls.Reset();
+            window.Reset();
         }
 
         public override void Close()

@@ -268,6 +268,13 @@ namespace TMTVO.Widget
             }
         }
 
+        public void Reset()
+        {
+            Active = false;
+            Live = false;
+            Mode = RaceBarMode.Gap;
+        }
+
         public enum RaceBarMode : int
         {
             Gap = 0,

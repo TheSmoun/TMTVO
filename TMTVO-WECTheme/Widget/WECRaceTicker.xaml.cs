@@ -97,6 +97,11 @@ namespace TMTVO.Widget.WEC
             }
         }
 
+        public void Reset()
+        {
+            
+        }
+
         public enum WECTickerMode
         {
             Gap,

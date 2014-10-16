@@ -73,5 +73,10 @@ namespace TMTVO.Widget
         }
 
         public void Tick() { }
+
+        public void Reset()
+        {
+            
+        }
     }
 }

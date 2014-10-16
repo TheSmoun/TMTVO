@@ -254,6 +254,11 @@ namespace TMTVO.Widget
             
         }
 
+        public void Reset()
+        {
+            throw new NotImplementedException();
+        }
+
         public enum ResultsMode
         {
             Practice,

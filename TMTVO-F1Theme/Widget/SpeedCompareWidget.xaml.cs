@@ -358,5 +358,10 @@ namespace TMTVO.Widget
             if (canUpdateGear2)
                 updateGear2();
         }
+
+        public void Reset()
+        {
+            
+        }
     }
 }

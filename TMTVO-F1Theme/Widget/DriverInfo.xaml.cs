@@ -322,6 +322,11 @@ namespace TMTVO.Widget
             }
         }
 
+        public void Reset()
+        {
+            Active = false;
+        }
+
         public enum DriverInfoMode : int
         {
             NameOnly = 0,

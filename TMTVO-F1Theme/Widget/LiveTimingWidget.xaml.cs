@@ -367,5 +367,10 @@ namespace TMTVO.Widget
                 }
             }));
         }
+
+        public void Reset()
+        {
+            Active = false;
+        }
     }
 }

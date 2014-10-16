@@ -294,5 +294,14 @@ namespace TMTVO.Widget
             Storyboard sb = FindResource("ShowGap") as Storyboard;
             sb.Begin();
         }
+
+        public void Reset()
+        {
+            Active = false;
+            canUpdate = false;
+            gapVisible = false;
+            posVisible = false;
+            Driver = null;
+        }
     }
 }

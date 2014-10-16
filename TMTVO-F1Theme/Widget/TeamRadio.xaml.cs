@@ -92,5 +92,10 @@ namespace TMTVO.Widget
                     FadeOut();
             }
         }
+
+        public void Reset()
+        {
+            
+        }
     }
 }

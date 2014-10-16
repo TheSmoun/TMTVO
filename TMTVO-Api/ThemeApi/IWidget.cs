@@ -12,5 +12,6 @@ namespace TMTVO
         IThemeWindow ParentWindow { get; }
         void FadeOut();
         void Tick();
+        void Reset();
     }
 }

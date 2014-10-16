@@ -134,5 +134,10 @@ namespace TMTVO_F1Theme
         {
             // Do nothing.
         }
+
+        public void Reset()
+        {
+            
+        }
     }
 }

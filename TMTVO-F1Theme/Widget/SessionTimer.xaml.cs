@@ -394,5 +394,10 @@ namespace TMTVO.Widget
         {
             return f.FlagSet(SessionFlag.White);
         }
+
+        public void Reset()
+        {
+            
+        }
     }
 }

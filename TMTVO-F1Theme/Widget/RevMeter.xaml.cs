@@ -283,6 +283,11 @@ namespace TMTVO.Widget
             sb.Begin();
         }
 
+        public void Reset()
+        {
+            
+        }
+
         public void Tick()
         {
             int carIdx = cam.FollowedDriver;

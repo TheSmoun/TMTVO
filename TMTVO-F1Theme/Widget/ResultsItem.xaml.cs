@@ -67,5 +67,10 @@ namespace TMTVO.Widget
         {
             
         }
+
+        public void Reset()
+        {
+            
+        }
     }
 }

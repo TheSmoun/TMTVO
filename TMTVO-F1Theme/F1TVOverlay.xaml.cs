@@ -75,7 +75,7 @@ namespace TMTVO
         public F1TVOverlay()
         {
             InitializeComponent();
-
+            
             CurrentFps = -1;
             lastTimeMillis = GetCurrentMilli();
             CompositionTarget.Rendering += CompositionTarget_Rendering;
@@ -413,6 +413,13 @@ namespace TMTVO
             DateTime Jan1970 = new DateTime(1970, 1, 1, 0, 0,0,DateTimeKind.Utc);
             TimeSpan javaSpan = DateTime.UtcNow - Jan1970;
             return javaSpan.TotalMilliseconds;
+        }
+
+        public void Reset()
+        {
+            FadeAllOut();
+            foreach (IWidget w in Widgets)
+                w.Reset();
         }
     }
 }
