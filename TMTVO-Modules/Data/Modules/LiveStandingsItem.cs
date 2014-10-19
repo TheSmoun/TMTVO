@@ -28,6 +28,9 @@ namespace TMTVO.Data.Modules
         public double LapBegin { get; private set; }
         public bool InPits { get; private set; }
         public bool Finished { get; private set; }
+        public bool Out { get; private set; }
+        public bool Dsq { get; private set; }
+        public bool Dnq { get; private set; }
         
         private float speed;
         public float Speed
@@ -331,6 +334,10 @@ namespace TMTVO.Data.Modules
                 if (Driver.CarIndex >= 0)
                     Surface = surface;
             }
+
+            Out = dict.GetDictValue("ReasonOutStr").StartsWith("Disconnected") || CurrentTrackPct <= ((LiveStandingsModule)API.Instance.FindModule("LiveStandings")).Leader.CurrentTrackPct * 0.75;
+            Dsq = dict.GetDictValue("ReasonOutStr").StartsWith("Disqualified");
+            Dnq = GridModule.FindDriverStatic(this).QualiTime <= 0.0;
 
             prevtime = currentime;
             CurrentSessionTime = currentime;
