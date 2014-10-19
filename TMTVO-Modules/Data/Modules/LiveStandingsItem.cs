@@ -205,13 +205,20 @@ namespace TMTVO.Data.Modules
             Incidents = int.Parse(dict.GetDictValue("Incidents"));
 
             SurfaceType surfaceType = ((SurfaceType[])api.GetData("CarIdxTrackSurface"))[carIdx];
-            InPits = (((bool[])api.GetData("CarIdxOnPitRoad"))[carIdx] || surfaceType == SurfaceType.InPitStall || surfaceType == SurfaceType.NotInWorld);
+
+            SessionTimerModule m = (SessionTimerModule)API.Instance.FindModule("SessionTimer");
+            SessionType sessionType = m.SessionType;
+
+            bool inpits = ((bool[])api.GetData("CarIdxOnPitRoad"))[carIdx];
+            if (sessionType == SessionType.LapRace || sessionType == SessionType.TimeRace)
+                InPits = inpits || surfaceType == SurfaceType.InPitStall;
+            else
+                InPits = inpits || surfaceType == SurfaceType.InPitStall || surfaceType == SurfaceType.NotInWorld;
             Surface = surfaceType;
 
             Track track = ((SessionsModule)API.Instance.FindModule("Sessions")).Track;
 
-            SessionTimerModule m = (SessionTimerModule)API.Instance.FindModule("SessionTimer");
-            SessionType sessionType = m.SessionType;
+            
             SessionState sessionState = m.SessionState;
             int finishLine = m.LapsTotal + 1;
             if (finishLine < 0)
