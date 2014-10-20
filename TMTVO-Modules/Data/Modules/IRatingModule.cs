@@ -139,7 +139,8 @@ namespace TMTVO_Modules.Data.Modules
         private double calcMatrixEntry(double iRatingOldD, double iRatingOldO)
         {
             return (1D - Math.Exp(-iRatingOldD / log)) * Math.Exp(-iRatingOldO / log) 
-                / ((1D - Math.Exp(-iRatingOldO / log)) * Math.Exp(-iRatingOldD / log) + (1D - Math.Exp(-iRatingOldD / log)) * Math.Exp(-iRatingOldO / log));
+                / ((1D - Math.Exp(-iRatingOldO / log)) * Math.Exp(-iRatingOldD / log) 
+                + (1D - Math.Exp(-iRatingOldD / log)) * Math.Exp(-iRatingOldO / log));
         }
     }
 }
