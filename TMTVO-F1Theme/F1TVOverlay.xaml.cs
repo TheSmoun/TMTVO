@@ -348,6 +348,14 @@ namespace TMTVO
             SideBar.FadeInTopSpeeds();
         }
 
+        public void SideBarFadeInIRating()
+        {
+            if (!MyCanvas.Children.Contains(SideBar))
+                MyCanvas.Children.Add(SideBar);
+
+            SideBar.FadeIniRatingGains();
+        }
+
         public void SideBarFadeOut()
         {
             SideBar.FadeOut();

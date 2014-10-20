@@ -31,6 +31,8 @@ namespace TMTVO.Data.Modules
         public bool Out { get; private set; }
         public bool Dsq { get; private set; }
         public bool Dnq { get; private set; }
+        public bool Dns { get; private set; }
+        public int IRatingChange { get; internal set; }
         
         private float speed;
         public float Speed
@@ -345,6 +347,7 @@ namespace TMTVO.Data.Modules
             Out = dict.GetDictValue("ReasonOutStr").StartsWith("Disconnected") || CurrentTrackPct <= ((LiveStandingsModule)API.Instance.FindModule("LiveStandings")).Leader.CurrentTrackPct * 0.75;
             Dsq = dict.GetDictValue("ReasonOutStr").StartsWith("Disqualified");
             Dnq = GridModule.FindDriverStatic(this).QualiTime <= 0.0;
+            Dns = (sessionType == SessionType.LapRace || sessionType == SessionType.TimeRace) ? CurrentTrackPct <= 0.0 : false;
 
             prevtime = currentime;
             CurrentSessionTime = currentime;

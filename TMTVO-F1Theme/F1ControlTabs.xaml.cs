@@ -715,5 +715,13 @@ namespace TMTVO_F1Theme
             else
                 f1Window.SideBarFadeOut();
         }
+
+        private void IRatingChangeSB_Click(object sender, RoutedEventArgs e)
+        {
+            if (!f1Window.SideBar.Active)
+                f1Window.SideBarFadeInIRating();
+            else
+                f1Window.SideBarFadeOut();
+        }
     }
 }

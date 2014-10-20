@@ -150,7 +150,37 @@ namespace TMTVO.Widget
                 LiveStandingsItem item = query[i];
                 if (item.TopSpeed > 0)
                 {
-                    SpeedElement se = new SpeedElement(ParentWindow);
+                    SpeedElement se = new SpeedElement(ParentWindow, SpeedElement.SpeedElementMode.TopSpeed);
+                    se.VerticalAlignment = VerticalAlignment.Top;
+                    se.Margin = new Thickness(0, (i + 1) * 36, 0, 0);
+                    LayoutRoot.Children.Add(se);
+                    elements.Add(se);
+                    se.FadeIn(i + 1, item, (i + 1) * 25);
+                }
+            }
+
+            Active = true;
+        }
+
+        public void FadeIniRatingGains()
+        {
+            if (Active)
+                return;
+
+            module = (LiveStandingsModule)API.Instance.FindModule("LiveStandings");
+            Mode = SideBarMode.iRating;
+            SideBarTitle title = new SideBarTitle(ParentWindow);
+            title.VerticalAlignment = VerticalAlignment.Top;
+            LayoutRoot.Children.Add(title);
+            elements.Add(title);
+            title.FadeIn("LIVE iRATING GAINS");
+
+            for (int i = 0; i < 10; i++)
+            {
+                LiveStandingsItem item = module.FindDriverByPos(i + 1);
+                if (item != null)
+                {
+                    SpeedElement se = new SpeedElement(ParentWindow, SpeedElement.SpeedElementMode.iRating);
                     se.VerticalAlignment = VerticalAlignment.Top;
                     se.Margin = new Thickness(0, (i + 1) * 36, 0, 0);
                     LayoutRoot.Children.Add(se);
@@ -205,6 +235,23 @@ namespace TMTVO.Widget
                 }
             }
 
+            if (Mode == SideBarMode.iRating)
+            {
+                int k = 1;
+                for (int i = 0; i < 10; i++)
+                {
+                    if (elements.Count <= k)
+                        break;
+
+                    SpeedElement se = elements[k++] as SpeedElement;
+                    if (se != null)
+                    {
+                        se.Driver = module.FindDriverByPos(i + 1);
+                        se.TopSpeedPosition = i + 1;
+                    }
+                }
+            }
+
             foreach (ISideBarElement e in elements)
                 e.Tick();
         }
@@ -221,7 +268,8 @@ namespace TMTVO.Widget
             DriverOverView,
             BattleForPosition,
             Improvements,
-            TopSpeed
+            TopSpeed,
+            iRating
         }
     }
 }

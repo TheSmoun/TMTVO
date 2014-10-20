@@ -10,6 +10,7 @@ using TMTVO.Data.Ini;
 using TMTVO.Data.Modules;
 using TMTVO;
 using TMTVO_Api.ThemeApi;
+using TMTVO_Modules.Data.Modules;
 
 namespace TMTVO.Controller
 {
@@ -56,6 +57,7 @@ namespace TMTVO.Controller
             Api.AddModule(new CameraModule());
             Api.AddModule(new TimeDeltaModule());
             Api.AddModule(new GridModule());
+            Api.AddModule(new IRatingModule());
         }
     }
 }

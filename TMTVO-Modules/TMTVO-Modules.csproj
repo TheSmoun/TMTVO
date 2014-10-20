@@ -58,6 +58,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data\GapManager.cs" />
+    <Compile Include="Data\Modules\IRatingModule.cs" />
     <Compile Include="Data\Utils.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -27,11 +27,13 @@ namespace TMTVO_F1Theme
         public IThemeWindow ParentWindow { get; private set; }
         public LiveStandingsItem Driver { get; internal set; }
         public int TopSpeedPosition { get; internal set; }
+        public SpeedElementMode Mode { get; private set; }
 
-        public SpeedElement(IThemeWindow parent)
+        public SpeedElement(IThemeWindow parent, SpeedElementMode Mode)
 		{
 			this.InitializeComponent();
             this.ParentWindow = parent;
+            this.Mode = Mode;
 		}
 
         public void FadeIn(int pos, LiveStandingsItem driver, int delay)
@@ -85,13 +87,22 @@ namespace TMTVO_F1Theme
             Position.Text = TopSpeedPosition.ToString();
             ClassColorLeader.Color = ClassColorNormal.Color = Driver.Driver.LicColor;
             ThreeLetterCode.Text = Driver.Driver.ThreeLetterCode;
-            Speed.Text = Driver.TopSpeedKmh.ToString("0.0").Replace(',', '.');
+            if (Mode == SpeedElementMode.TopSpeed)
+                Speed.Text = Driver.TopSpeedKmh.ToString("0.0").Replace(',', '.');
+            else if (Mode == SpeedElementMode.iRating)
+                Speed.Text = Driver.IRatingChange.ToString("0").Replace(',', '.') + "  ";
         }
 
         public void Reset()
         {
             ParentWindow = null;
             Active = false;
+        }
+
+        public enum SpeedElementMode
+        {
+            TopSpeed,
+            iRating
         }
     }
 }

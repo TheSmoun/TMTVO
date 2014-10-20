@@ -34,6 +34,7 @@
 						<TextBox x:Name="HashTag" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="139.65" Margin="214.35,75,0,0"/>
 						<Button x:Name="JoinConv" Content="Join Conversation" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="309,75,0,0" Click="JoinConv_Click" />
 						<Button x:Name="Top_Speeds" Content="Top Speeds" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="50,110,359,0" Click="Top_Speeds_Click" />
+						<Button x:Name="IRatingChangeSB" Content="iRating Change" Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,110,103,0" Click="IRatingChangeSB_Click" />
 					</Grid>
 				</TabItem>
 				<TabItem x:Name="Camera" Header="Camera Controls">
