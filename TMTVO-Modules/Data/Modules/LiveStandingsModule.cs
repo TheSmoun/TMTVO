@@ -28,6 +28,11 @@ namespace TMTVO.Data.Modules
             return Items.Find(i => i.PositionLive == position);
         }
 
+        public LiveStandingsItem FindDriverByPosNL(int position)
+        {
+            return Items.Find(i => i.PositionLive == position);
+        }
+
         public LiveStandingsItem FindLastDriver()
         {
             LiveStandingsItem item = null;

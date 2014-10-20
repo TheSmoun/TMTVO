@@ -58,21 +58,21 @@ namespace TMTVO_Modules.Data.Modules
 
             for (int i = 0; i < driversCount; i++)
             {
-                LiveStandingsItem driver = liveStandings.FindDriverByPos(i + 1);
+                LiveStandingsItem driver = liveStandings.FindDriverByPosNL(i + 1);
                 if (driver == null)
                     return;
 
                 matrix[i, 0] = driver.Driver.IRating;
                 exponentialSoF[i] = Math.Exp(-driver.Driver.IRating / log);
-                fudgeFactors[i] = driver.Dns ? 0 : (((driversCount - (notStarters / 2D)) / 2 - driver.PositionLive) / 100);
+                fudgeFactors[i] = driver.Dns ? 0 : (((driversCount - (notStarters / 2D)) / 2 - driver.Position) / 100);
             }
 
             for (int i = 0; i < driversCount; i++)
             {
                 for (int j = 1; j <= driversCount; j++)
                 {
-                    LiveStandingsItem driverSelf = liveStandings.FindDriverByPos(j);
-                    LiveStandingsItem driverOpponent = liveStandings.FindDriverByPos(i + 1);
+                    LiveStandingsItem driverSelf = liveStandings.FindDriverByPosNL(j);
+                    LiveStandingsItem driverOpponent = liveStandings.FindDriverByPosNL(i + 1);
                     if (driverSelf == null || driverOpponent == null)
                         return;
 
@@ -85,7 +85,7 @@ namespace TMTVO_Modules.Data.Modules
 
             foreach (LiveStandingsItem driver in liveStandings.Items)
             {
-                int index = driver.PositionLive - 1;
+                int index = driver.Position - 1;
                 double expectedScore = -0.5D;
                 for (int i = 1; i <= driversCount; i++)
                     expectedScore += matrix[index, i];
@@ -99,8 +99,8 @@ namespace TMTVO_Modules.Data.Modules
             {
                 if (!driver.Dns)
                 {
-                    int i = driver.PositionLive - 1;
-                    double change = (driversCount - driver.PositionLive - expectedScores[i] - fudgeFactors[i]) * 200D / (driversCount - notStarters);
+                    int i = driver.Position - 1;
+                    double change = (driversCount - driver.Position - expectedScores[i] - fudgeFactors[i]) * 200D / (driversCount - notStarters);
                     changeStarters.Add(change);
 
                     driver.IRatingChange = (int)change;
@@ -111,7 +111,7 @@ namespace TMTVO_Modules.Data.Modules
             {
                 if (driver.Dns)
                 {
-                    int i = driver.PositionLive - 1;
+                    int i = driver.Position - 1;
 
                     double sum = 0D;
                     foreach (double d in changeStarters)

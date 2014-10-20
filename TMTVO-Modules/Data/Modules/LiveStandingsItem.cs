@@ -344,10 +344,15 @@ namespace TMTVO.Data.Modules
                     Surface = surface;
             }
 
-            Out = dict.GetDictValue("ReasonOutStr").StartsWith("Disconnected") || CurrentTrackPct <= ((LiveStandingsModule)API.Instance.FindModule("LiveStandings")).Leader.CurrentTrackPct * 0.75;
+            if (((LiveStandingsModule)caller).Leader != null)
+                Out = dict.GetDictValue("ReasonOutStr").StartsWith("Disconnected") || CurrentTrackPct <= ((LiveStandingsModule)caller).Leader.CurrentTrackPct * 0.75;
+
+            GridItem gridItem = GridModule.FindDriverStatic(this);
+            if (gridItem != null)
+                Dnq = gridItem.QualiTime <= 0.0;
+
             Dsq = dict.GetDictValue("ReasonOutStr").StartsWith("Disqualified");
-            Dnq = GridModule.FindDriverStatic(this).QualiTime <= 0.0;
-            Dns = (sessionType == SessionType.LapRace || sessionType == SessionType.TimeRace) ? CurrentTrackPct <= 0.0 : false;
+            Dns = (sessionType == SessionType.LapRace || sessionType == SessionType.TimeRace) ? CurrentTrackPct == 0.0 : false;
 
             prevtime = currentime;
             CurrentSessionTime = currentime;

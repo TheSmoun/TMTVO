@@ -30,6 +30,7 @@ namespace TMTVO.Widget
 
         private List<ISideBarElement> elements;
         private LiveStandingsModule module;
+        private DriverModule drivers;
 
 		public SideBarWidget(IThemeWindow parent)
 		{
@@ -168,6 +169,7 @@ namespace TMTVO.Widget
                 return;
 
             module = (LiveStandingsModule)API.Instance.FindModule("LiveStandings");
+            drivers = (DriverModule)API.Instance.FindModule("DriverModule");
             Mode = SideBarMode.iRating;
             SideBarTitle title = new SideBarTitle(ParentWindow);
             title.VerticalAlignment = VerticalAlignment.Top;
@@ -175,7 +177,7 @@ namespace TMTVO.Widget
             elements.Add(title);
             title.FadeIn("LIVE iRATING GAINS");
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < Math.Min(drivers.DriversCount, 22); i++)
             {
                 LiveStandingsItem item = module.FindDriverByPos(i + 1);
                 if (item != null)
