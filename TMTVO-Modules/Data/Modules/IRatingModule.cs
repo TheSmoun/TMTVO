@@ -58,22 +58,18 @@ namespace TMTVO_Modules.Data.Modules
 
             for (int i = 0; i < driversCount; i++)
             {
-                LiveStandingsItem driver = liveStandings.FindDriverByPosNL(i + 1);
-                if (driver == null)
+                LiveStandingsItem driverOpponent = liveStandings.FindDriverByPosNL(i + 1);
+                if (driverOpponent == null)
                     return;
 
-                matrix[i, 0] = driver.Driver.IRating;
-                exponentialSoF[i] = Math.Exp(-driver.Driver.IRating / log);
-                fudgeFactors[i] = driver.Dns ? 0 : (((driversCount - (notStarters / 2D)) / 2 - driver.Position) / 100);
-            }
+                matrix[i, 0] = driverOpponent.Driver.IRating;
+                exponentialSoF[i] = Math.Exp(-driverOpponent.Driver.IRating / log);
+                fudgeFactors[i] = driverOpponent.Dns ? 0 : (((driversCount - (notStarters / 2D)) / 2 - driverOpponent.Position) / 100);
 
-            for (int i = 0; i < driversCount; i++)
-            {
                 for (int j = 1; j <= driversCount; j++)
                 {
                     LiveStandingsItem driverSelf = liveStandings.FindDriverByPosNL(j);
-                    LiveStandingsItem driverOpponent = liveStandings.FindDriverByPosNL(i + 1);
-                    if (driverSelf == null || driverOpponent == null)
+                    if (driverSelf == null)
                         return;
 
                     matrix[i, j] = calcMatrixEntry(driverOpponent.Driver.IRating, driverSelf.Driver.IRating);
