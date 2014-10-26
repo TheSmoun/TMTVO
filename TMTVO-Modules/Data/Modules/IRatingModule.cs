@@ -81,7 +81,7 @@ namespace TMTVO_Modules.Data.Modules
 
             foreach (LiveStandingsItem driver in liveStandings.Items)
             {
-                int index = driver.Position - 1;
+                int index = driver.Position;
                 double expectedScore = -0.5D;
                 for (int i = 1; i <= driversCount; i++)
                     expectedScore += matrix[index, i];
@@ -95,7 +95,7 @@ namespace TMTVO_Modules.Data.Modules
             {
                 if (!driver.Dns)
                 {
-                    int i = driver.Position - 1;
+                    int i = driver.Position;
                     double change = (driversCount - driver.Position - expectedScores[i] - fudgeFactors[i]) * 200D / (driversCount - notStarters);
                     changeStarters.Add(change);
 
