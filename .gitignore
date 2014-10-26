@@ -12,6 +12,8 @@
 /TMTVO-WECTheme/obj
 /TMTVO-Modules/bin
 /TMTVO-Modules/obj
+/TMTVO-Server/bin
+/TMTVO-Server/obj
 /*.suo
 /TMTVO.csproj
 /TMTVO/publish
