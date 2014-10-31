@@ -92,6 +92,7 @@
     <Compile Include="Controls.xaml.cs">
       <DependentUpon>Controls.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ThemeLoader.cs" />
     <Compile Include="TMTVO.cs" />
     <Page Include="Controls.xaml">
       <SubType>Designer</SubType>
@@ -167,6 +168,9 @@
       <Project>{6bf87ba5-0840-41be-9c91-e609e50d7ddb}</Project>
       <Name>TMTVO-Modules</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Themes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

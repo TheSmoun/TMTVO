@@ -39,7 +39,7 @@ namespace TMTVO.Api
             mutex = new Mutex();
             this.ticksPerSecond = ticksPerSecond;
 
-            Cars = new IniFile(Environment.CurrentDirectory + @"\cars.ini"); // TODO Pfad einstellen
+            //Cars = new IniFile(Environment.CurrentDirectory + @"\cars.ini"); // TODO Pfad einstellen
 
             modules = new List<Module>();
             Sdk = new iRacingSDK();
