@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,6 +16,7 @@ using TMTVO.Api;
 using TMTVO.Data;
 using TMTVO.Data.Modules;
 using TMTVO_Api.ThemeApi;
+using TMTVO_F1Theme;
 
 namespace TMTVO.Widget
 {
@@ -317,7 +319,18 @@ namespace TMTVO.Widget
 
                 sb.Append(s);
 
-                LapsText2.Text = sb.ToString();
+                string text = sb.ToString();
+
+                FontStyle fontStyle = FontStyles.Normal;
+                FontWeight fontWeight = FontWeights.ExtraBold;
+
+                FormattedText formattedText = new FormattedText(text, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, 
+                    new Typeface(FontFamily, fontStyle, fontWeight, FontStretches.Normal), FontSize, Brushes.Red);
+
+                Geometry g = formattedText.BuildGeometry(new Point(0, -6));
+                TimeGeometry.Data = g;
+                TimeGeometry1.Data = g;
+                TimeGeometry2.Data = g;
             }
         }
 

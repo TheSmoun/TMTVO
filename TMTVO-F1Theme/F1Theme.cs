@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using TMTVO;
 using TMTVO.Api;
 using TMTVO_Api.ThemeApi;
@@ -13,6 +14,10 @@ namespace TMTVO_F1Theme
 {
     public sealed class F1Theme : Theme
     {
+        internal static readonly Brush TextFill = Brushes.Red;
+        internal static readonly Brush TextStroke = Brushes.Black;
+        internal static readonly double StrokeThickness = 1D;
+
         private F1TVOverlay window;
         private F1ControlTabs controls;
 
